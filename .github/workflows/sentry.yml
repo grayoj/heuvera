@@ -1,0 +1,27 @@
+name: Sentry Release
+
+on:
+  push:
+    branches: [main, develop]
+
+jobs:
+  sentry-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Sentry CLI
+        run: bun add -g @sentry/cli
+
+      - name: Create Sentry Release
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: heuvera
+          SENTRY_PROJECT: heuvera
+        run: |
+          sentry-cli releases new $GITHUB_SHA
+          sentry-cli releases set-commits --auto $GITHUB_SHA
+          sentry-cli releases finalize $GITHUB_SHA
+
