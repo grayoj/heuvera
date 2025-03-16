@@ -12,6 +12,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
       - name: Install Sentry CLI
         run: bun add -g @sentry/cli
 
@@ -24,4 +29,3 @@ jobs:
           sentry-cli releases new $GITHUB_SHA
           sentry-cli releases set-commits --auto $GITHUB_SHA
           sentry-cli releases finalize $GITHUB_SHA
-
