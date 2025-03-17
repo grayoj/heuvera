@@ -1,7 +1,5 @@
-"use client";
-
 import { useMemo, useState } from "react";
-import { HeuveraLogo } from "./logo";
+import { HeuveraLogo } from "../logo";
 import { LucideBell, LucideSearch } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 
@@ -17,7 +15,7 @@ export default function NavigationBar() {
 
     return (
         <>
-            <div className="h-28 w-full px-20 flex items-center justify-between">
+            <div className="h-24 w-full flex items-center justify-between">
                 <div className="w-52">
                     <HeuveraLogo width={35} height={35} />
                 </div>
@@ -42,7 +40,7 @@ export default function NavigationBar() {
                         <div className="h-6 w-6 rounded-full">
                             <Avatar className="rounded-full overflow-hidden block">
                                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                <AvatarFallback>CN</AvatarFallback>
+                                <AvatarFallback className="bg-[#E3E2D9]">FG</AvatarFallback>
                             </Avatar>
                         </div>
                         <h1 className="text-base font-medium text-[#323232]">George</h1>
