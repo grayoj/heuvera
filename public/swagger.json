@@ -24,9 +24,7 @@
       "post": {
         "summary": "Create a user",
         "description": "This endpoint creates a new user based on the provided Auth0 ID.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "security": [
           {
             "BearerAuth": []
@@ -38,11 +36,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "auth0_id",
-                  "email",
-                  "created_at"
-                ],
+                "required": ["auth0_id", "email", "created_at"],
                 "properties": {
                   "auth0_id": {
                     "type": "string",
