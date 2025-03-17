@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev ",
+    "dev": "next dev",
     "generate:swagger": "bun scripts/swagger.ts",
     "generate:client": "bunx swagger-typescript-api -p public/swagger.json -o src/client",
     "build": "bun run generate:swagger && bun run generate:client && prisma generate && next build",
