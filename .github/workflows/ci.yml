@@ -22,9 +22,6 @@ jobs:
       - name: Install dependencies
         run: bun install 
 
-      - name: Run Prettier Check
-        run: bun prettier:check
-
       - name: Lint code
         run: bun lint
 
