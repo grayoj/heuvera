@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { categories } from "./categoriesData";
 import CategoryItem from "./CategoryItem";

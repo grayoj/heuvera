@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
 

@@ -1,9 +1,11 @@
+"use client";
+
 import { useMemo, useState } from "react";
-import { HeuveraLogo } from "../logo";
 import { LucideBell, LucideSearch } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { HeuveraLogo } from "@heuvera/app/components/logo";
 
-export default function NavigationLayout({ children }: { children: React.ReactNode, }) {
+export default function MarketplaceLayout({ children }: { children: React.ReactNode, }) {
     const [selected, setSelected] = useState<string>("Explore");
 
     const NavigationContent = useMemo(() => [
@@ -15,7 +17,7 @@ export default function NavigationLayout({ children }: { children: React.ReactNo
 
     return (
         <>
-            <div className="w-full bg-[#F3F2EC] px-20">
+            <div className="w-full h-full bg-[#F3F2EC] px-20 flex flex-col">
                 <div className="h-24 w-full flex items-center justify-between">
                     <div className="w-52">
                         <HeuveraLogo width={35} height={35} />
@@ -49,7 +51,7 @@ export default function NavigationLayout({ children }: { children: React.ReactNo
                         <LucideBell className="text-2xl text-[#323232]" />
                     </div>
                 </div>
-                <div className="pt-10">
+                <div className="pt-10 w-full flex flex-1">
                     {children}
                 </div>
             </div>
