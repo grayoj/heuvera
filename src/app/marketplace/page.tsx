@@ -7,7 +7,6 @@ import { HeuveraLogo } from "@heuvera/app/components/logo";
 
 export default function MarketplaceLayout({ children }: { children: React.ReactNode, }) {
     const [selected, setSelected] = useState<string>("Explore");
-
     const NavigationContent = useMemo(() => [
         { title: "Explore", link: "/marketplace/explore" },
         { title: "Favorites", link: "#favorites" },
@@ -51,7 +50,7 @@ export default function MarketplaceLayout({ children }: { children: React.ReactN
                         <LucideBell className="text-2xl text-[#323232]" />
                     </div>
                 </div>
-                <div className="pt-10 w-full flex flex-1">
+                <div className="pb-10 w-full flex-1 flex">
                     {children}
                 </div>
             </div>

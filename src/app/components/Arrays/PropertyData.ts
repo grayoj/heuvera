@@ -2,6 +2,7 @@ export const PropertyData = [
     {
         id: 1,
         propertyName: "Luxury Villa",
+        propertyCategory: "Island",
         propertyDetails: {
             price: 50000,
             currency: "₦",
@@ -25,6 +26,7 @@ export const PropertyData = [
     {
         id: 2,
         propertyName: "Cozy Apartment",
+        propertyCategory: "Island",
         propertyDetails: {
             price: 30000,
             currency: "₦",
@@ -47,6 +49,7 @@ export const PropertyData = [
     {
         id: 3,
         propertyName: "Beachfront Bungalow",
+        propertyCategory: "Island",
         propertyDetails: {
             price: 70000,
             currency: "₦",
@@ -69,6 +72,7 @@ export const PropertyData = [
     {
         id: 4,
         propertyName: "Cozy Apartment",
+        propertyCategory: "Island",
         propertyDetails: {
             price: 80000,
             currency: "₦",
@@ -91,6 +95,7 @@ export const PropertyData = [
     {
         id: 5,
         propertyName: "Cozy Apartment",
+        propertyCategory: "Island",
         propertyDetails: {
             price: 76000,
             currency: "₦",
