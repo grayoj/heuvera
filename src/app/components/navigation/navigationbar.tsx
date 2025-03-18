@@ -24,7 +24,7 @@ export default function NavigationBar() {
                         <div key={index}>
                             <button
                                 onClick={() => setSelected(content.title)}
-                                className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium transition-colors duration-300 px-2 pb-2 ${selected === content.title
+                                className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
                                     ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
                                     : "text-[#323232] hover:text-primary"
                                     }`}
@@ -40,10 +40,10 @@ export default function NavigationBar() {
                         <div className="h-6 w-6 rounded-full">
                             <Avatar className="rounded-full overflow-hidden block">
                                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                <AvatarFallback className="bg-[#E3E2D9]">FG</AvatarFallback>
+                                <AvatarFallback className="bg-[#E3E2D9] font-serif">FG</AvatarFallback>
                             </Avatar>
                         </div>
-                        <h1 className="text-base font-medium text-[#323232]">George</h1>
+                        <h1 className="text-base font-medium font-serif text-[#323232]">George</h1>
                     </div>
                     <LucideBell className="text-2xl text-[#323232]" />
                 </div>

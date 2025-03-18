@@ -14,7 +14,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon: Icon, selected
             }`}
     >
         <Icon size={24} />
-        <div className="font-medium text-xs">{label}</div>
+        <div className="font-medium text-xs font-serif">{label}</div>
     </div>
 );
 

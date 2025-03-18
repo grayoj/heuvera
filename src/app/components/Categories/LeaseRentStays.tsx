@@ -8,7 +8,7 @@ const LeaseRentStays = () => {
             {["Lease", "Rent", "Stays"].map((option) => (
                 <button
                     key={option}
-                    className={`h-8 px-4 rounded-sm text-base font-medium transition-all ${selected === option ? "bg-[#F5F5F0] text-black" : "text-gray-600"
+                    className={`h-8 px-4 rounded-sm text-base font-serif font-medium transition-all ${selected === option ? "bg-[#F5F5F0] text-black" : "text-gray-600"
                         }`}
                     onClick={() => setSelected(option)}
                 >
