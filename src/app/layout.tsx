@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Source_Serif_4 } from "next/font/google";
-import "./globals.css";
+import { Quicksand } from "next/font/google"; // Import Quicksand font
 
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
+const quicksand = Quicksand({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sourceSerif.variable} antialiased`}>
+      <body className="antialiased" style={{ fontFamily: 'Quicksand, sans-serif' }}> {/* Apply Quicksand font */}
         {children}
       </body>
     </html>
