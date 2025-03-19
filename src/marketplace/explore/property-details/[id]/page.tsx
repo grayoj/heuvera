@@ -1,15 +1,15 @@
 "use client";
 
-import NavigationLayout from "@heuvera/app/components/navigation/navigationbar";
-import BookingSection from "@heuvera/app/components/Property/BookingSection";
-import ImportantInfo from "@heuvera/app/components/Property/ImportantInfo";
-import LocationSection from "@heuvera/app/components/Property/LocationSection";
-import PageHeader from "@heuvera/app/components/Property/PageHeader";
-import PropertyAmenities from "@heuvera/app/components/Property/PropertyAmenities";
-import PropertyDetails from "@heuvera/app/components/Property/PropertyDetails";
-import HostInfo from "@heuvera/app/components/Property/PropertyHost";
-import PropertyImages from "@heuvera/app/components/Property/PropertyImages";
-import ReviewsSection from "@heuvera/app/components/Property/ReviewsSection";
+import NavigationLayout from "@heuvera/components/navigation/navigationbar";
+import BookingSection from "@heuvera/components/Property/BookingSection";
+import ImportantInfo from "@heuvera/components/Property/ImportantInfo";
+import LocationSection from "@heuvera/components/Property/LocationSection";
+import PageHeader from "@heuvera/components/Property/PageHeader";
+import PropertyAmenities from "@heuvera/components/Property/PropertyAmenities";
+import PropertyDetails from "@heuvera/components/Property/PropertyDetails";
+import HostInfo from "@heuvera/components/Property/PropertyHost";
+import PropertyImages from "@heuvera/components/Property/PropertyImages";
+import ReviewsSection from "@heuvera/components/Property/ReviewsSection";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 

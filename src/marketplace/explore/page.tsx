@@ -1,8 +1,8 @@
 "use client";
 
-import { PropertyData } from "@heuvera/app/components/Arrays/PropertyData";
-import PropertyCard from "@heuvera/app/components/cards/PropertyCards/PropertyCard";
-import Categories from "@heuvera/app/components/Categories/Categories";
+import { PropertyData } from "@heuvera/components/Arrays/PropertyData";
+import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
+import Categories from "@heuvera/components/Categories/Categories";
 import MarketplaceLayout from "../page";
 import { motion } from "framer-motion";
 

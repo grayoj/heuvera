@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { LucideBell, LucideSearch } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import { HeuveraLogo } from "@heuvera/app/components/logo";
+import { HeuveraLogo } from "@heuvera/components/logo";
 
 export default function MarketplaceLayout({ children }: { children: React.ReactNode, }) {
     const [selected, setSelected] = useState<string>("Explore");

@@ -1,6 +1,6 @@
 "use client";
 
-import SplashScreen from "./splashscreen";
+import SplashScreen from "../splashscreen";
 
 
 export default function Home() {
