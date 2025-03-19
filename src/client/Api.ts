@@ -267,12 +267,12 @@ export class Api<
      * @description This endpoint creates a new user based on the provided Auth0 ID.
      *
      * @tags Users
-     * @name UserCreate
+     * @name AuthUserCreate
      * @summary Create a user
-     * @request POST:/api/user
+     * @request POST:/api/auth/user
      * @secure
      */
-    userCreate: (
+    authUserCreate: (
       data: {
         /**
          * The unique identifier for the user from Auth0.
@@ -334,11 +334,515 @@ export class Api<
             error?: string;
           }
       >({
-        path: `/api/user`,
+        path: `/api/auth/user`,
         method: 'POST',
         body: data,
         secure: true,
         type: ContentType.Json,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Fetches an existing user or creates a new one if they do not exist in the database.
+     *
+     * @tags User
+     * @name AuthVerifyList
+     * @summary Retrieve or create a user from the session
+     * @request GET:/api/auth/verify
+     * @secure
+     */
+    authVerifyList: (params: RequestParams = {}) =>
+      this.request<
+        {
+          message?: string;
+          newUser?: boolean;
+          user?: {
+            id?: string;
+            auth0_id?: string;
+            email?: string;
+            name?: string;
+            picture?: string;
+          };
+        },
+        void
+      >({
+        path: `/api/auth/verify`,
+        method: 'GET',
+        secure: true,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Allows an authenticated user to cancel their booking if it hasn't started yet.
+     *
+     * @tags Bookings
+     * @name V1BookingsDelete
+     * @summary Cancel a booking
+     * @request DELETE:/api/v1/bookings
+     * @secure
+     */
+    v1BookingsDelete: (
+      query: {
+        /**
+         * The ID of the booking to cancel.
+         * @format uuid
+         */
+        id: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          message?: string;
+        },
+        void
+      >({
+        path: `/api/v1/bookings`,
+        method: 'DELETE',
+        query: query,
+        secure: true,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Fetches all bookings made by the authenticated user.
+     *
+     * @tags Bookings
+     * @name V1BookingsList
+     * @summary Get user bookings
+     * @request GET:/api/v1/bookings
+     * @secure
+     */
+    v1BookingsList: (params: RequestParams = {}) =>
+      this.request<
+        {
+          bookings?: {
+            /** @format uuid */
+            id?: string;
+            /** @format uuid */
+            userId?: string;
+            /** @format uuid */
+            listingId?: string;
+            /** @format date */
+            startDate?: string;
+            /** @format date */
+            endDate?: string;
+            guests?: number;
+            totalPrice?: number;
+            listing?: {
+              /** @format uuid */
+              id?: string;
+              title?: string;
+              price?: number;
+            };
+          }[];
+        },
+        void
+      >({
+        path: `/api/v1/bookings`,
+        method: 'GET',
+        secure: true,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Users can book a listing by providing the listing ID, start date, end date, and the number of guests.
+     *
+     * @tags Bookings
+     * @name V1BookingsCreate
+     * @summary Create a new booking
+     * @request POST:/api/v1/bookings
+     * @secure
+     */
+    v1BookingsCreate: (
+      data: {
+        /**
+         * The UUID of the listing to book.
+         * @format uuid
+         */
+        listingId?: string;
+        /**
+         * The start date of the booking (YYYY-MM-DD).
+         * @format date
+         */
+        startDate?: string;
+        /**
+         * The end date of the booking (YYYY-MM-DD).
+         * @format date
+         */
+        endDate?: string;
+        /**
+         * Number of guests for the booking.
+         * @min 1
+         */
+        guests?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          booking?: {
+            /** @format uuid */
+            id?: string;
+            /** @format uuid */
+            listingId?: string;
+            /** @format uuid */
+            userId?: string;
+            /** @format date */
+            startDate?: string;
+            /** @format date */
+            endDate?: string;
+            guests?: number;
+            totalPrice?: number;
+          };
+        },
+        void
+      >({
+        path: `/api/v1/bookings`,
+        method: 'POST',
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Retrieves details of a specific booking for an authenticated user.
+     *
+     * @tags Bookings
+     * @name V1BookingsDetail
+     * @summary Get booking details
+     * @request GET:/api/v1/bookings/{id}
+     * @secure
+     */
+    v1BookingsDetail: (id: string, params: RequestParams = {}) =>
+      this.request<
+        {
+          booking?: object;
+        },
+        void
+      >({
+        path: `/api/v1/bookings/${id}`,
+        method: 'GET',
+        secure: true,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Updates host profile details. Only approved hosts can update their information.
+     *
+     * @tags Host
+     * @name V1HostPartialUpdate
+     * @summary Update host details
+     * @request PATCH:/api/v1/host
+     * @secure
+     */
+    v1HostPartialUpdate: (
+      data: {
+        /**
+         * @minLength 10
+         * @maxLength 15
+         */
+        phoneNumber?: string;
+        bio?: string;
+        governmentId?: string;
+        idVerificationStatus?: 'PENDING' | 'VERIFIED' | 'REJECTED';
+        businessName?: string;
+        /** @format url */
+        businessLogo?: string;
+        businessRegistrationNumber?: string;
+        businessAddress?: string;
+        socialMediaLinks?: Record<string, string>;
+        asBusiness?: boolean;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          host?: object;
+        },
+        void
+      >({
+        path: `/api/v1/host`,
+        method: 'PATCH',
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Allows an approved host to delete one of their property listings.
+     *
+     * @tags Listings
+     * @name V1ListingsDelete
+     * @summary Delete a property listing
+     * @request DELETE:/api/v1/listings
+     * @secure
+     */
+    v1ListingsDelete: (
+      query: {
+        /** The ID of the listing to delete. */
+        id: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          message?: string;
+          listing?: object;
+        },
+        void
+      >({
+        path: `/api/v1/listings`,
+        method: 'DELETE',
+        query: query,
+        secure: true,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Fetches a paginated list of property listings, sorted by creation date in descending order.
+     *
+     * @tags Listings
+     * @name V1ListingsList
+     * @summary Retrieve paginated property listings
+     * @request GET:/api/v1/listings
+     * @secure
+     */
+    v1ListingsList: (
+      query?: {
+        /**
+         * The page number to retrieve.
+         * @default 1
+         */
+        page?: number;
+        /**
+         * The number of listings per page.
+         * @default 10
+         */
+        pageSize?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          listings?: object[];
+          pagination?: {
+            page?: number;
+            pageSize?: number;
+            totalPages?: number;
+            totalCount?: number;
+          };
+        },
+        void
+      >({
+        path: `/api/v1/listings`,
+        method: 'GET',
+        query: query,
+        secure: true,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Allows an approved host to update an existing property listing.
+     *
+     * @tags Listings
+     * @name V1ListingsPartialUpdate
+     * @summary Update a property listing
+     * @request PATCH:/api/v1/listings
+     * @secure
+     */
+    v1ListingsPartialUpdate: (
+      query: {
+        /** The ID of the listing to update. */
+        id: string;
+      },
+      data: {
+        /** @minLength 5 */
+        title?: string;
+        /** @minLength 10 */
+        description?: string;
+        price?: number;
+        listingType?: string;
+        category?: string;
+        address?: string;
+        city?: string;
+        country?: string;
+        latitude?: number;
+        longitude?: number;
+        checkInTime?: string;
+        checkOutTime?: string;
+        available?: boolean;
+        amenities?: string[];
+        images?: string[];
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          listing?: object;
+        },
+        void
+      >({
+        path: `/api/v1/listings`,
+        method: 'PATCH',
+        query: query,
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Allows an approved host to create a new property listing.
+     *
+     * @tags Listings
+     * @name V1ListingsCreate
+     * @summary Create a new property listing
+     * @request POST:/api/v1/listings
+     * @secure
+     */
+    v1ListingsCreate: (
+      data: {
+        /** @minLength 5 */
+        title?: string;
+        /** @minLength 10 */
+        description?: string;
+        price?: number;
+        listingType?: string;
+        category?: string;
+        address?: string;
+        city?: string;
+        country?: string;
+        latitude?: number;
+        longitude?: number;
+        checkInTime?: string;
+        checkOutTime?: string;
+        /** @default true */
+        available?: boolean;
+        amenities?: string[];
+        /** @minItems 1 */
+        images?: string[];
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          listing?: object;
+        },
+        void
+      >({
+        path: `/api/v1/listings`,
+        method: 'POST',
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Retrieve details of a specific listing by its ID, including host details.
+     *
+     * @tags Listings
+     * @name V1ListingsDetail
+     * @summary Get a listing by ID
+     * @request GET:/api/v1/listings/{id}
+     * @secure
+     */
+    v1ListingsDetail: (id: string, params: RequestParams = {}) =>
+      this.request<
+        {
+          listing?: object;
+        },
+        void
+      >({
+        path: `/api/v1/listings/${id}`,
+        method: 'GET',
+        secure: true,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Updates the user's profile if it exists, otherwise creates a new one.
+     *
+     * @tags Profile
+     * @name V1ProfilePartialUpdate
+     * @summary Update or create user profile
+     * @request PATCH:/api/v1/profile
+     * @secure
+     */
+    v1ProfilePartialUpdate: (
+      data: {
+        country?: string;
+        state?: string;
+        city?: string;
+        address?: string;
+        isStudent?: boolean;
+        isEmployed?: boolean;
+        occupation?: string;
+        incomeRange?: string;
+        interests?: string[];
+        preferredRentRange?: string;
+        preferredListingTypes?: string[];
+        moveInDate?: string;
+        stayDuration?: string;
+        hasPets?: boolean;
+        hasChildren?: boolean;
+        smoking?: boolean;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          profile?: object;
+        },
+        void
+      >({
+        path: `/api/v1/profile`,
+        method: 'PATCH',
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * @description Retrieves details of the currently authenticated user.
+     *
+     * @tags Users
+     * @name V1UserList
+     * @summary Get logged-in user
+     * @request GET:/api/v1/user
+     * @secure
+     */
+    v1UserList: (params: RequestParams = {}) =>
+      this.request<
+        {
+          /** @format uuid */
+          id?: string;
+          /** @format email */
+          email?: string;
+          name?: string;
+        },
+        void
+      >({
+        path: `/api/v1/user`,
+        method: 'GET',
+        secure: true,
         format: 'json',
         ...params,
       }),

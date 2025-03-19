@@ -32,7 +32,7 @@ const createResponse = <T>(
 
 /**
  * @swagger
- * /api/user:
+ * /api/auth/user:
  *   post:
  *     summary: Create a user
  *     description: This endpoint creates a new user based on the provided Auth0 ID.
@@ -159,7 +159,7 @@ export async function POST(
         email,
         name,
         picture,
-        created_at: new Date(created_at),
+        createdAt: new Date(created_at),
       },
     });
 
