@@ -2,10 +2,11 @@ import { Button } from "@heuvera/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { IoStar } from "react-icons/io5";
 import { LucideMoreVertical } from "lucide-react";
+import { FaStar } from "react-icons/fa6";
 
 export default function ReviewCard() {
     return (
-        <div className="w-6/12 flex flex-col gap-5 rounded-xl border border-[#E3E2D9] p-6">
+        <div className="w-full flex flex-col gap-5 rounded-xl border border-[#E3E2D9] p-6">
             <div className="flex flex-row justify-between items-center">
                 <div className="flex flex-row">
                     <div className="flex gap-2 items-center">
@@ -19,7 +20,7 @@ export default function ReviewCard() {
                             <h1 className="text-base font-medium font-serif text-[#323232]">Gerald Maduabubuhari</h1>
                             <div className="flex flex-row gap-2">
                                 {[...Array(5)].map((_, i) => (
-                                    <IoStar key={i} className="text-yellow-600 text-2xl" />
+                                    <FaStar key={i} className="text-yellow-400 text-2xl" />
                                 ))}
                             </div>
                         </div>

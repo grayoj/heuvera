@@ -14,7 +14,7 @@ export default function HostInfo() {
                             <AvatarFallback className="bg-[#E3E2D9] font-serif">FG</AvatarFallback>
                         </Avatar>
                     </div>
-                    <h1 className="text-xl font-medium font-serif text-[#323232]">Gerald Maduabubuhari</h1>
+                    <h1 className="text-base font-normal font-serif text-[#323232]">Gerald Maduabubuhari</h1>
                 </div>
             </div>
         </>
