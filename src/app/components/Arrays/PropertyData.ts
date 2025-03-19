@@ -11,6 +11,7 @@ export const PropertyData = [
             bedrooms: 3,
             bathrooms: 2,
             guests: 5,
+            rating: 3.5,
         },
         propertyDescription: "A luxurious villa in the heart of Lekki.",
         propertyHost: {
@@ -35,6 +36,7 @@ export const PropertyData = [
             bedrooms: 2,
             bathrooms: 1,
             guests: 4,
+            rating: 4.5,
         },
         propertyDescription: "A cozy apartment perfect for small families.",
         propertyHost: {
@@ -58,6 +60,7 @@ export const PropertyData = [
             bedrooms: 4,
             bathrooms: 3,
             guests: 8,
+            rating: 1.5,
         },
         propertyDescription: "A beautiful bungalow right on the beach.",
         propertyHost: {
@@ -81,6 +84,7 @@ export const PropertyData = [
             bedrooms: 2,
             bathrooms: 1,
             guests: 4,
+            rating: 3.5,
         },
         propertyDescription: "A cozy apartment perfect for small families.",
         propertyHost: {
@@ -104,6 +108,7 @@ export const PropertyData = [
             bedrooms: 2,
             bathrooms: 1,
             guests: 4,
+            rating: 3.8,
         },
         propertyDescription: "A cozy apartment perfect for small families.",
         propertyHost: {

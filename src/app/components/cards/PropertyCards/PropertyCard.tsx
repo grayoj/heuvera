@@ -2,8 +2,7 @@
 
 import PropertyImage from "./PropertyImage";
 import PropertyDetails from "./PropertyDetails";
-import Link from "next/link"; 
-import BookmarkButton from "../../Buttons/BookmarkButton";
+import Link from "next/link";
 
 interface Property {
     id: number;
@@ -16,6 +15,7 @@ interface Property {
         bedrooms: number;
         bathrooms: number;
         guests: number;
+        rating: number;
     };
     propertyDescription: string;
     propertyHost: {
@@ -30,9 +30,9 @@ interface Property {
 
 export default function PropertyCard({ property }: { property: Property }) {
     return (
-        <Link href={`/marketplace/explore/property-details/${property.id}`} key={property.id}>
-            <div className="w-80 h-80 rounded-2xl border border-[#E3E2D9] transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
-                <PropertyImage imageUrl={property.images[0]} />
+        <div className="w-80 h-80 rounded-2xl border border-[#E3E2D9] transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
+            <PropertyImage imageUrl={property.images[0]} />
+            <Link href={`/marketplace/explore/property-details/${property.id}`} key={property.id}>
                 <div className="h-36 p-4 flex flex-col justify-evenly">
                     <PropertyDetails
                         price={property.propertyDetails.price}
@@ -41,9 +41,10 @@ export default function PropertyCard({ property }: { property: Property }) {
                         baths={property.propertyDetails.bathrooms}
                         guests={property.propertyDetails.guests}
                         isVerified={property.isVerified}
+                        rating={property.propertyDetails.rating}
                     />
                 </div>
-            </div>
-        </Link>
+            </Link>
+        </div>
     );
 }

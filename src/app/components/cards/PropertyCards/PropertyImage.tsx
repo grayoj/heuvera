@@ -1,8 +1,9 @@
 import Image from "next/image";
+import BookmarkButton from "../../Buttons/BookmarkButton";
 
-export default function PropertyImage({ imageUrl }: { imageUrl?: string }) {
+export default function PropertyImage({ imageUrl }: { imageUrl?: string; }) {
     return (
-        <div className="w-full h-44">
+        <div className="relative w-full h-44">
             {imageUrl ? (
                 <Image
                     src={imageUrl}
@@ -16,6 +17,11 @@ export default function PropertyImage({ imageUrl }: { imageUrl?: string }) {
                     <p className="text-gray-500">No Image Available</p>
                 </div>
             )}
+
+            {/* BookMark Section */}
+            <div className="absolute top-3 right-3 size-8 bg-[#F3F2EC] text-[#3e3e3e] font-bold flex items-center justify-center rounded-full shadow-md">
+                <BookmarkButton />
+            </div>
         </div>
     );
 }

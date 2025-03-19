@@ -2,21 +2,24 @@ import BadgeCheck from "../../icons/svgs/badgeCheck";
 import { IoBed, IoPerson } from "react-icons/io5";
 import { FaBath } from "react-icons/fa";
 import BookmarkButton from "../../Buttons/BookmarkButton";
+import { FaStar } from "react-icons/fa6";
 
-export default function PropertyDetails({ 
-    price, 
-    address, 
-    beds, 
-    baths, 
-    guests, 
-    isVerified 
-}: { 
-    price: number, 
-    address: string, 
-    beds: number, 
-    baths: number, 
-    guests: number, 
-    isVerified: boolean 
+export default function PropertyDetails({
+    price,
+    address,
+    beds,
+    baths,
+    guests,
+    isVerified,
+    rating
+}: {
+    price: number,
+    address: string,
+    beds: number,
+    baths: number,
+    guests: number,
+    isVerified: boolean,
+    rating: number
 }) {
     return (
         <div className="h-36 flex flex-col justify-evenly">
@@ -50,7 +53,11 @@ export default function PropertyDetails({
                         <h1 className="text-[#898989] text-base font-serif">{guests}</h1>
                     </div>
                 </div>
-                <BookmarkButton />
+                <div className="flex flex-row items-center gap-1">
+                    <h1 className="text-base text-base font-medium font-serif text-[#898989]">{rating}</h1>
+                    <FaStar className="text-yellow-400 text-base" />
+                </div>
+                {/* <BookmarkButton /> */}
             </div>
         </div>
     );
