@@ -1,0 +1,56 @@
+"use client"
+
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Fix for default marker icons in React Leaflet
+// Using a different approach to avoid the _getIconUrl TypeScript error
+const defaultIcon = new L.Icon({
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+export default function LocationSection() {
+  // Coordinates for Maitama, Abuja, Nigeria
+  // Explicitly typed as LatLngTuple to fix the TypeScript error
+  const position: [number, number] = [9.0765, 7.4815];
+
+  return (
+    <div className="w-full flex flex-col gap-2">
+      <h1 className="text-2xl font-serif font-medium text-[#3E3E3E] pb-2">Where you're staying</h1>
+
+      {/* React Leaflet Map */}
+      <div className="w-full h-90 rounded-xl overflow-hidden">
+        <MapContainer
+          center={position}
+          zoom={14}
+          scrollWheelZoom={false}
+          style={{ height: '100%', width: '100%' }}
+          className="rounded-xl"
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={position} icon={defaultIcon}>
+            <Popup>
+              Your accommodation in Maitama, Abuja, Nigeria
+            </Popup>
+          </Marker>
+        </MapContainer>
+      </div>
+
+      <div className="pt-2">
+        <p className="text-sm text-gray-600">Maitama, Abuja, Nigeria</p>
+        <p className="text-sm text-gray-500">5 minutes to city center, 20 minutes to airport</p>
+      </div>
+    </div>
+  );
+}
