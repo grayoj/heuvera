@@ -1,12 +1,20 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, createContext, useContext } from "react";
 import { LucideBell, LucideSearch } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { HeuveraLogo } from "@heuvera/components/logo";
 
-export default function MarketplaceLayout({ children }: { children: React.ReactNode }) {
+interface MarketplaceContextType {
+  selected: string;
+  setSelected: (value: string) => void;
+}
+
+const MarketplaceContext = createContext<MarketplaceContextType | undefined>(undefined);
+
+export function MarketplaceProvider({ children }: { children: React.ReactNode }) {
   const [selected, setSelected] = useState<string>("Explore");
+
   const NavigationContent = useMemo(() => [
     { title: "Explore", link: "/marketplace/explore" },
     { title: "Favorites", link: "#favorites" },
@@ -15,8 +23,8 @@ export default function MarketplaceLayout({ children }: { children: React.ReactN
   ], []);
 
   return (
-    <>
-      <div className="w-full h-full bg-[#F3F2EC] px-20 flex flex-col">
+    <MarketplaceContext.Provider value={{ selected, setSelected }}>
+      <div className="w-full h-full px-20 flex flex-col">
         <div className="h-24 w-full flex items-center justify-between">
           <div className="w-52">
             <HeuveraLogo width={35} height={35} />
@@ -50,10 +58,17 @@ export default function MarketplaceLayout({ children }: { children: React.ReactN
             <LucideBell className="text-2xl text-[#323232]" />
           </div>
         </div>
-        <div className="pb-10 w-full flex-1 flex">
-          {children}
-        </div>
+        <div className="pb-10 w-full flex-1 flex">{children}</div>
       </div>
-    </>
-  )
+    </MarketplaceContext.Provider>
+  );
 }
+
+export function useMarketplace() {
+  const context = useContext(MarketplaceContext);
+  if (!context) {
+    throw new Error("useMarketplace must be used within a MarketplaceProvider");
+  }
+  return context;
+}
+
