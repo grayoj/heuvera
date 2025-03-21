@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "next dev",
+    "generate:swagger": "bun scripts/swagger.ts",
+    "generate:client": "bunx swagger-typescript-api -p public/swagger.json -o src/client",
+    "build": "bun run generate:swagger && bun run prettier:write && bun run generate:client && prisma generate && next build",
+    "postinstall": "bun run prettier:write && bun run generate:swagger && bun run generate:client && prisma generate",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "prettier:write": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.3",
@@ -17,16 +23,32 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^12.5.0",
     "leaflet": "^1.9.4",
+    "@auth0/nextjs-auth0": "3.5.0",
+    "@prisma/client": "^6.5.0",
+    "@sentry/nextjs": "^9",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-react": "^5.18.0",
+    "@upstash/redis": "^1.34.5",
+    "bullmq": "^5.43.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "jwks-rsa": "^3.2.0",
     "lucide-react": "^0.482.0",
     "next": "15.2.2",
+    "prisma": "^6.5.0",
     "react": "^19.0.0",
     "react-day-picker": "8.10.1",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-leaflet": "^5.0.0",
     "remixicons": "^4.6.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-typescript-api": "^13.0.23",
+    "swagger-ui-react": "^5.20.1",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -39,5 +61,12 @@
     "eslint-config-next": "15.2.2",
     "tailwindcss": "^4",
     "typescript": "^5"
+    "prettier": "^3.5.3",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^1.0.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/user-event": "^14.0.0"
   }
 }
