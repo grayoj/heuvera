@@ -1,7 +1,7 @@
-import { IoBed, IoPerson } from "react-icons/io5";
-import { FaBath } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
-import BadgeCheck from "@heuvera/components/icons/svgs/badgeCheck";
+import { IoBed, IoPerson } from 'react-icons/io5';
+import { FaBath } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa6';
+import BadgeCheck from '@heuvera/components/icons/svgs/badgeCheck';
 
 export default function PropertyDetails({
   price,
@@ -10,15 +10,15 @@ export default function PropertyDetails({
   baths,
   guests,
   isVerified,
-  rating
+  rating,
 }: {
-  price: number,
-  address: string,
-  beds: number,
-  baths: number,
-  guests: number,
-  isVerified: boolean,
-  rating: number
+  price: number;
+  address: string;
+  beds: number;
+  baths: number;
+  guests: number;
+  isVerified: boolean;
+  rating: number;
 }) {
   return (
     <div className="h-36 flex flex-col justify-evenly">
@@ -26,14 +26,19 @@ export default function PropertyDetails({
       <div className="flex flex-row justify-between">
         <h1 className="text-2xl text-[#3F3B2B] font-semibold font-serif">
           ₦{(price ?? 0).toLocaleString()}
-          <span className="text-sm text-[#898989] font-serif font-normal"> /night</span>
+          <span className="text-sm text-[#898989] font-serif font-normal">
+            {' '}
+            /night
+          </span>
         </h1>
         {isVerified && <BadgeCheck color="#7B4F3A" />}
       </div>
 
       {/* Address */}
       <div className="flex flex-row">
-        <h1 className="text-sm text-[#505050] font-normal font-serif">{address}</h1>
+        <h1 className="text-sm text-[#505050] font-normal font-serif">
+          {address}
+        </h1>
       </div>
 
       {/* Icons */}
@@ -53,7 +58,9 @@ export default function PropertyDetails({
           </div>
         </div>
         <div className="flex flex-row items-center gap-1">
-          <h1 className="text-base text-base font-medium font-serif text-[#898989]">{rating}</h1>
+          <h1 className="text-base text-base font-medium font-serif text-[#898989]">
+            {rating}
+          </h1>
           <FaStar className="text-yellow-400 text-base" />
         </div>
         {/* <BookmarkButton /> */}

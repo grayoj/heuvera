@@ -1,12 +1,12 @@
-import BookingSection from "@heuvera/components/property/BookingSection";
-import ImportantInfo from "@heuvera/components/property/ImportantInfo";
-import LocationSection from "@heuvera/components/property/LocationSection";
-import PageHeader from "@heuvera/components/property/PageHeader";
-import PropertyAmenities from "@heuvera/components/property/PropertyAmenities";
-import PropertyDetails from "@heuvera/components/property/PropertyDetails";
-import HostInfo from "@heuvera/components/property/PropertyHost";
-import PropertyImages from "@heuvera/components/property/PropertyImages";
-import ReviewsSection from "@heuvera/components/property/ReviewsSection";
+import BookingSection from '@heuvera/components/property/BookingSection';
+import ImportantInfo from '@heuvera/components/property/ImportantInfo';
+import LocationSection from '@heuvera/components/property/LocationSection';
+import PageHeader from '@heuvera/components/property/PageHeader';
+import PropertyAmenities from '@heuvera/components/property/PropertyAmenities';
+import PropertyDetails from '@heuvera/components/property/PropertyDetails';
+import HostInfo from '@heuvera/components/property/PropertyHost';
+import PropertyImages from '@heuvera/components/property/PropertyImages';
+import ReviewsSection from '@heuvera/components/property/ReviewsSection';
 
 export default function ExploreViewPage() {
   return (

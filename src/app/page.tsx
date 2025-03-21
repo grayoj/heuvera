@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { PropertyData } from "@heuvera/components/data/PropertyData";
-import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
-import Categories from "@heuvera/components/categories/Categories";
-import { motion } from "framer-motion";
+import { PropertyData } from '@heuvera/components/data/PropertyData';
+import PropertyCard from '@heuvera/components/cards/PropertyCards/PropertyCard';
+import Categories from '@heuvera/components/categories/Categories';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
@@ -29,7 +29,8 @@ export default function Home() {
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0 },
               }}
-              transition={{ duration: 0.6, ease: "easeOut" }}>
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
               <PropertyCard property={property} />
             </motion.div>
           ))}

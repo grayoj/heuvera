@@ -1,26 +1,35 @@
-"use client";
+'use client';
 
-import { useMemo, useState, createContext, useContext } from "react";
-import { LucideBell, LucideSearch } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import { HeuveraLogo } from "@heuvera/components/logo";
+import { useMemo, useState, createContext, useContext } from 'react';
+import { LucideBell, LucideSearch } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
+import { HeuveraLogo } from '@heuvera/components/logo';
 
 interface MarketplaceContextType {
   selected: string;
   setSelected: (value: string) => void;
 }
 
-const MarketplaceContext = createContext<MarketplaceContextType | undefined>(undefined);
+const MarketplaceContext = createContext<MarketplaceContextType | undefined>(
+  undefined,
+);
 
-export function MarketplaceProvider({ children }: { children: React.ReactNode }) {
-  const [selected, setSelected] = useState<string>("Explore");
+export function MarketplaceProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [selected, setSelected] = useState<string>('Explore');
 
-  const NavigationContent = useMemo(() => [
-    { title: "Explore", link: "/marketplace/explore" },
-    { title: "Favorites", link: "#favorites" },
-    { title: "Discover", link: "#discover" },
-    { title: "Contact", link: "#contact" },
-  ], []);
+  const NavigationContent = useMemo(
+    () => [
+      { title: 'Explore', link: '/marketplace/explore' },
+      { title: 'Favorites', link: '#favorites' },
+      { title: 'Discover', link: '#discover' },
+      { title: 'Contact', link: '#contact' },
+    ],
+    [],
+  );
 
   return (
     <MarketplaceContext.Provider value={{ selected, setSelected }}>
@@ -34,10 +43,11 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
               <div key={index}>
                 <button
                   onClick={() => setSelected(content.title)}
-                  className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
-                    ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
-                    : "text-[#323232] hover:text-primary"
-                    }`}
+                  className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
+                    selected === content.title
+                      ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'
+                      : 'text-[#323232] hover:text-primary'
+                  }`}
                 >
                   {content.title}
                 </button>
@@ -49,11 +59,18 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
             <div className="flex gap-2 items-center">
               <div className="h-6 w-6 rounded-full">
                 <Avatar className="rounded-full overflow-hidden block">
-                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                  <AvatarFallback className="bg-[#E3E2D9] font-serif">FG</AvatarFallback>
+                  <AvatarImage
+                    src="https://github.com/shadcn.png"
+                    alt="@shadcn"
+                  />
+                  <AvatarFallback className="bg-[#E3E2D9] font-serif">
+                    FG
+                  </AvatarFallback>
                 </Avatar>
               </div>
-              <h1 className="text-base font-medium font-serif text-[#323232]">George</h1>
+              <h1 className="text-base font-medium font-serif text-[#323232]">
+                George
+              </h1>
             </div>
             <LucideBell className="text-2xl text-[#323232]" />
           </div>
@@ -67,8 +84,7 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
 export function useMarketplace() {
   const context = useContext(MarketplaceContext);
   if (!context) {
-    throw new Error("useMarketplace must be used within a MarketplaceProvider");
+    throw new Error('useMarketplace must be used within a MarketplaceProvider');
   }
   return context;
 }
-

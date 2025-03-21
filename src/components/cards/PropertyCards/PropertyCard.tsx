@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import PropertyImage from "./PropertyImage";
-import PropertyDetails from "./PropertyDetails";
-import Link from "next/link";
+import PropertyImage from './PropertyImage';
+import PropertyDetails from './PropertyDetails';
+import Link from 'next/link';
 
 interface Property {
   id: number;
