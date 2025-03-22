@@ -8,7 +8,7 @@ const CategoryList = () => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
     return (
-        <div className="flex gap-8 overflow-x-auto">
+        <div className="flex gap-8 overflow-x-auto whitespace-nowrap no-scrollbar scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none]">
             {categories.map(({ label, icon }) => (
                 <CategoryItem
                     key={label}

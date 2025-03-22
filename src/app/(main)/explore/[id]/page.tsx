@@ -10,7 +10,7 @@ import ReviewsSection from "@heuvera/components/property/ReviewsSection";
 
 export default function ExploreViewPage() {
   return (
-    <div className="w-full flex flex-col pb-10 gap-10">
+    <div className="w-full flex flex-col pb-10 gap-10 px-4 md:px-20 lg:px-20 xl:px-20 2xl:px-20">
       <PageHeader />
       {/*  */}
       <div className="flex flex-row justify-between gap-10 h-full">

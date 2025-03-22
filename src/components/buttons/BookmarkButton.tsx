@@ -11,7 +11,7 @@ export default function BookmarkButton() {
       {isBookmarked ? (
         <IoBookmark className="text-2xl text-[#7B4F3A]" />
       ) : (
-        <IoBookmarkOutline className="text-2xl text-[#E3E2D9]" />
+        <IoBookmarkOutline className="text-2xl text-[#898989]" />
       )}
     </button>
   );
