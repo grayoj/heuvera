@@ -19,8 +19,9 @@ const MarketplaceContext = createContext<MarketplaceContextType | undefined>(
   undefined,
 );
 
-export function MarketplaceProvider({ children }: { children: React.ReactNode }) {
+export function MarketplaceProvider({ children, className = "", showSearch = true }: { children: React.ReactNode, className?: string, showSearch?: boolean; }) {
   const [selected, setSelected] = useState<string>("Explore");
+  const isMobile = useIsMobile(); // Check if it's mobile
 
   const NavigationContent = useMemo(() => [
     { title: "Explore", link: "/marketplace/explore" },
