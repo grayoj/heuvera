@@ -1,5 +1,5 @@
-import { Button } from "@heuvera/components/ui/button";
-import { LucideSlidersHorizontal } from "lucide-react";
+import { Button } from '@heuvera/components/ui/button';
+import { LucideSlidersHorizontal } from 'lucide-react';
 
 const FilterButton = () => (
     <Button

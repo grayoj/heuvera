@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 interface CategoryItemProps {
-    label: string;
-    icon: React.ComponentType<{ size: number }>;
-    selected: boolean;
-    onSelect: (label: string) => void;
+  label: string;
+  icon: React.ComponentType<{ size: number }>;
+  selected: boolean;
+  onSelect: (label: string) => void;
 }
 
 const CategoryItem: React.FC<CategoryItemProps> = ({ label, icon: Icon, selected, onSelect }) => (

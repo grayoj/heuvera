@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import React, { useState } from 'react';
 
@@ -30,7 +30,9 @@ export default function PropertyDescription() {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-2xl font-serif font-medium text-[#3E3E3E] pb-5">Description</h1>
+      <h1 className="text-2xl font-serif font-medium text-[#3E3E3E] pb-5">
+        Description
+      </h1>
       <p className="text-base font-serif font-normal text-[#3E3E3E]">
         {isExpanded ? fullDescription : truncatedDescription}
       </p>
@@ -38,7 +40,7 @@ export default function PropertyDescription() {
         className="text-base font-serif font-normal text-[#3E3E3E] underline self-start mt-2"
         onClick={toggleExpanded}
       >
-        {isExpanded ? "Show Less" : "Show More"}
+        {isExpanded ? 'Show Less' : 'Show More'}
       </button>
     </div>
   );

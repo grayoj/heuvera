@@ -1,7 +1,7 @@
-import BookmarkButton from "@heuvera/components/buttons/BookmarkButton";
-import Image from "next/image";
+import BookmarkButton from '@heuvera/components/buttons/BookmarkButton';
+import Image from 'next/image';
 
-export default function PropertyImage({ imageUrl }: { imageUrl?: string; }) {
+export default function PropertyImage({ imageUrl }: { imageUrl?: string }) {
   return (
     <div className="relative w-full h-44">
       {imageUrl ? (

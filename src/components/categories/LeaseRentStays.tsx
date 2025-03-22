@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 const LeaseRentStays = () => {
-  const [selected, setSelected] = useState("Lease");
+  const [selected, setSelected] = useState('Lease');
 
   return (
-    <div className="h-9 md:h-10 lg:h-10 xl:h-10 2xl:h-10 bg-[#E3E2D9] flex gap-1 items-center rounded-sm px-1 min-w-fit">
+    <div className="h-10 bg-[#E3E2D9] flex gap-1 items-center rounded-sm px-1 min-w-fit">
       {["Lease", "Rent", "Stays"].map((option) => (
         <button
           key={option}

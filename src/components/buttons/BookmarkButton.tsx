@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
+import { useState } from 'react';
+import { IoBookmark, IoBookmarkOutline } from 'react-icons/io5';
 
 export default function BookmarkButton() {
   const [isBookmarked, setIsBookmarked] = useState(false);

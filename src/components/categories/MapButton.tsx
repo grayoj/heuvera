@@ -1,6 +1,5 @@
-
-import { Button } from "@heuvera/components/ui/button";
-import { LucideMap } from "lucide-react";
+import { Button } from '@heuvera/components/ui/button';
+import { LucideMap } from 'lucide-react';
 
 interface MapButtonProp {
   onClick: () => void;

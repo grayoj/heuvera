@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { PropertyData } from "@heuvera/components/data/PropertyData";
-import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
-import Categories from "@heuvera/components/categories/Categories";
-import { motion } from "framer-motion";
+import { PropertyData } from '@heuvera/components/data/PropertyData';
+import PropertyCard from '@heuvera/components/cards/PropertyCards/PropertyCard';
+import Categories from '@heuvera/components/categories/Categories';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
