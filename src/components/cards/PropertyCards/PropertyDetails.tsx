@@ -31,7 +31,12 @@ export default function PropertyDetails({
             /night
           </span>
         </h1>
-        {isVerified && <BadgeCheck className='size-6 md:size-6 lg:size-5 xl:size-6 2xl:size-6' color="#7B4F3A" />}
+        {isVerified && (
+          <BadgeCheck
+            className="size-6 md:size-6 lg:size-5 xl:size-6 2xl:size-6"
+            color="#7B4F3A"
+          />
+        )}
       </div>
 
       {/* Address */}
@@ -46,15 +51,21 @@ export default function PropertyDetails({
         <div className="flex flex-row gap-5 md:gap-5 lg:gap-3 xl:gap-5 2xl:gap-5">
           <div className="gap-1 flex items-center">
             <IoBed className="text-[#898989] text-xl md:text-base lg:text-sm xl:text-xl 2xl:text-xl" />
-            <h1 className="text-[#898989] text-base md:text-sm lg:text-xs xl:text-base 2xl:text-base font-serif">{beds}</h1>
+            <h1 className="text-[#898989] text-base md:text-sm lg:text-xs xl:text-base 2xl:text-base font-serif">
+              {beds}
+            </h1>
           </div>
           <div className="gap-1 flex items-center">
             <FaBath className="text-[#898989] text-base md:text-base lg:text-xs xl:text-base 2xl:text-base" />
-            <h1 className="text-[#898989] text-base md:text-sm lg:text-xs xl:text-base 2xl:text-base font-serif">{baths}</h1>
+            <h1 className="text-[#898989] text-base md:text-sm lg:text-xs xl:text-base 2xl:text-base font-serif">
+              {baths}
+            </h1>
           </div>
           <div className="gap-1 flex items-center">
             <IoPerson className="text-[#898989] text-xl md:text-base lg:text-sm xl:text-xl 2xl:text-xl" />
-            <h1 className="text-[#898989] text-base md:text-sm lg:text-xs xl:text-base 2xl:text-base font-serif">{guests}</h1>
+            <h1 className="text-[#898989] text-base md:text-sm lg:text-xs xl:text-base 2xl:text-base font-serif">
+              {guests}
+            </h1>
           </div>
         </div>
         <div className="flex flex-row items-center gap-1">

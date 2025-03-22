@@ -6,7 +6,7 @@ const LeaseRentStays = () => {
   const [selected, setSelected] = useState('Lease');
 
   return (
-    <div className="h-10 md:h-9 lg:h-9 xl:h-10 2xl:h-10 bg-[#E3E2D9] flex gap-1 items-center rounded-sm px-1 min-w-fit">
+    <div className="h-9 md:h-9 lg:h-9 xl:h-10 2xl:h-10 bg-[#E3E2D9] flex gap-1 items-center rounded-sm px-1 min-w-fit">
       {['Lease', 'Rent', 'Stays'].map((option) => (
         <button
           key={option}

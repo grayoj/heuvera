@@ -32,6 +32,15 @@ const FitMapToBounds = ({
 
   return null;
 };
+const MapRecenter = ({ center }: { center: LatLngTuple }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    map.setView(center, map.getZoom(), { animate: true });
+  }, [center, map]);
+
+  return null;
+};
 
 // Define interface for property type
 interface Property {
@@ -68,14 +77,15 @@ const MapComponents = ({
   setSelectedProperty,
 }: MapComponentsProps) => {
   return (
-    <div className="flex justify-center items-center w-full h-screen">
+    <div className="flex justify-center items-center w-full h-[calc(100vh-15rem)]">
       {' '}
       {/* Centered Container */}
       <MapContainer
         center={center}
         zoom={12}
-        className="w-[90%] h-[80vh] z-0 rounded-lg shadow-lg"
+        className="w-full h-full z-0 rounded-lg shadow-lg"
       >
+        <MapRecenter center={center} />
         <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
         <FitMapToBounds positions={markerPositions} isTrayOpen={isTrayOpen} />
 

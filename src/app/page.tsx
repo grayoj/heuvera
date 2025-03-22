@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 h-full w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 2xl:px-24">
-      <div className='w-full'>
+      <div className="w-full">
         <Categories />
       </div>
       <motion.div

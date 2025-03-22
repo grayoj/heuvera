@@ -126,25 +126,13 @@ const PropertyDetailTray = ({
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
             className="fixed right-0 bottom-0 h-[calc(100vh-6rem)] w-1/2 bg-[#F3F2EC] shadow-lg z-[1000] overflow-y-auto"
         >
-            <div className="sticky top-0 z-10 bg-[#F3F2EC] flex justify-between items-center p-5 border-b border-[#E3E2D9]">
-                <h2 className="text-xl font-serif font-semibold text-[#3E3E3E]">
-                    Property Details
-                </h2>
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={onClose}
-                    className="rounded-full hover:bg-[#E3E2D9]"
-                >
-                    <X className="h-5 w-5 text-[#3E3E3E]" />
-                </Button>
-            </div>
+
 
             <div className="w-full p-5 flex flex-col gap-6">
                 {PropertyData.length > 0 && (
-                    <div className="w-full flex flex-col gap-6">
+                    <div className="w-full flex flex-row gap-6">
                         {/* Image Section */}
-                        <div className="w-full h-80 rounded-3xl overflow-hidden">
+                        <div className="w-5/6 h-96 flex-grow rounded-3xl overflow-hidden">
                             <Image
                                 src={PropertyData[0].images[0]}
                                 alt="Property Image"
@@ -157,10 +145,15 @@ const PropertyDetailTray = ({
                         {/* Details Section */}
                         <div className="w-full rounded-2xl flex flex-col gap-4">
                             <div className="flex flex-row justify-between items-center">
-                                <div className="cursor-pointer flex flex-row gap-2 items-center">
-                                    <h1 className="text-base font-serif text-[#898989]">
-                                        Island
-                                    </h1>
+                                <div className="cursor-pointer flex flex-row items-center">
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        onClick={onClose}
+                                        className="rounded-full hover:bg-[#E3E2D9]"
+                                    >
+                                        <X className="h-5 w-5 text-[#3E3E3E]" />
+                                    </Button>
                                 </div>
                                 <div className="flex flex-row gap-2 items-center">
                                     <Button
@@ -193,7 +186,7 @@ const PropertyDetailTray = ({
                                 {PropertyData[0].propertyDetails.location}
                             </p>
 
-                            <div className="flex flex-row gap-5 py-2 border-y border-[#E3E2D9]">
+                            <div className="flex flex-row gap-5 py-2">
                                 <div className="gap-1 flex items-center">
                                     <IoBed className="text-[#6A6A6A] text-lg" />
                                     <h1 className="text-[#6A6A6A] text-sm font-serif">
@@ -239,8 +232,8 @@ const PropertyDetailTray = ({
                 )}
             </div>
 
-            <div className="p-5 mt-4">
-                <h3 className="text-lg font-serif font-semibold text-[#3E3E3E] mb-4">
+            <div className="p-5">
+                <h3 className="text-lg font-serif font-semibold text-[#3E3E3E] mb-3">
                     Similar Properties
                 </h3>
                 <div className="w-full flex overflow-x-auto gap-4 pb-4">
@@ -255,18 +248,21 @@ const PropertyDetailTray = ({
     );
 };
 
+// Define proper interface for MapSection props
 interface MapSectionProps {
     properties?: Property[];
     isTrayOpen?: boolean;
 }
 
-export default function MapSection({
+// Use a function declaration with explicit return type
+const MapSection: React.FC<MapSectionProps> = ({
     properties: propProperties = [],
     isTrayOpen = false,
-}: MapSectionProps) {
+}) => {
     const [selectedProperty, setSelectedProperty] = useState<Property | null>(
         null,
     );
+    const [centery, setCentery] = useState<LatLngTuple>([9.0579, 7.4951]);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
     const router = useRouter();
@@ -328,10 +324,10 @@ export default function MapSection({
     };
 
     return (
-        <div className="relative w-full h-screen overflow-hidden">
+        <div className="relative w-full h-[calc(100vh-15rem)] bg-red-200 overflow-hidden">
             {/* Header Bar with Search - Animates when tray opens */}
             <motion.div
-                className="absolute top-0 left-0 right-0 z-[1000] bg-[#F3F2EC] shadow-sm"
+                className="absolute top-0 left-0 right-0 z-[1000] bg-[#F3F2EC] shadow-sm px-12"
                 animate={{
                     width: selectedProperty ? '50%' : '100%',
                 }}
@@ -388,7 +384,7 @@ export default function MapSection({
 
             {/* Map Container - Animates when property is selected */}
             <motion.div
-                className="absolute top-20 left-0 bottom-0 bg-[#F8F7F2]"
+                className="bg-[#F8F7F2] w-screen h-[calc(100vh-15rem)] overflow-hidden flex-grow relative"
                 animate={{
                     width: selectedProperty ? '50%' : '100%',
                 }}
@@ -416,4 +412,6 @@ export default function MapSection({
             </AnimatePresence>
         </div>
     );
-}
+};
+
+export default MapSection;
