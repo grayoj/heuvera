@@ -9,9 +9,9 @@ export default function BookmarkButton() {
   return (
     <button onClick={() => setIsBookmarked(!isBookmarked)}>
       {isBookmarked ? (
-        <IoBookmark className="text-2xl text-[#7B4F3A]" />
+        <IoBookmark className="text-2xl md:text-xl lg:text-base xl:text-2xl 2xl:text-2xl text-[#7B4F3A]" />
       ) : (
-        <IoBookmarkOutline className="text-2xl text-[#898989]" />
+        <IoBookmarkOutline className="text-2xl md:text-xl lg:text-base xl:text-2xl 2xl:text-2xl text-[#898989]" />
       )}
     </button>
   );

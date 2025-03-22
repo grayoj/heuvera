@@ -5,21 +5,21 @@ import { categories } from './categoriesData';
 import CategoryItem from './CategoryItem';
 
 const CategoryList = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  return (
-    <div className="flex gap-8 overflow-x-auto whitespace-nowrap no-scrollbar scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none]">
-      {categories.map(({ label, icon }) => (
-        <CategoryItem
-          key={label}
-          label={label}
-          icon={icon}
-          selected={selectedCategory === label}
-          onSelect={setSelectedCategory}
-        />
-      ))}
-    </div>
-  );
+    return (
+        <div className="flex gap-8 overflow-x-auto whitespace-nowrap no-scrollbar scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none]">
+            {categories.map(({ label, icon }) => (
+                <CategoryItem
+                    key={label}
+                    label={label}
+                    icon={icon}
+                    selected={selectedCategory === label}
+                    onSelect={setSelectedCategory}
+                />
+            ))}
+        </div>
+    );
 };
 
 export default CategoryList;
