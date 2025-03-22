@@ -9,7 +9,7 @@
         "@radix-ui/react-avatar": "^1.1.3",
         "@radix-ui/react-slot": "^1.1.2",
         "@react-google-maps/api": "^2.20.6",
-        "@sentry/nextjs": "^9",
+        "@sentry/nextjs": "^9.8.0",
         "@types/swagger-jsdoc": "^6.0.4",
         "@types/swagger-ui-react": "^5.18.0",
         "@upstash/redis": "^1.34.5",

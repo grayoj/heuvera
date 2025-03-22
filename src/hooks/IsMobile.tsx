@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const useIsMobile = (breakpoint: number = 640) => {
-    const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsMobile(window.innerWidth < breakpoint);
-        };
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
 
-        checkScreenSize(); // Check on mount
-        window.addEventListener("resize", checkScreenSize);
+    checkScreenSize(); // Check on mount
+    window.addEventListener('resize', checkScreenSize);
 
-        return () => window.removeEventListener("resize", checkScreenSize);
-    }, [breakpoint]);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, [breakpoint]);
 
-    return isMobile;
+  return isMobile;
 };
 
 export default useIsMobile;

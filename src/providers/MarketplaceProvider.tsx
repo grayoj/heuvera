@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useMemo, useState, createContext, useContext, JSX } from "react";
 import { LucideBell, LucideSearch, LucideMail, LucideHome, LucideHeart, LucideCompass } from "lucide-react";
@@ -15,19 +15,17 @@ interface MarketplaceContextType {
   setSelected: (value: string) => void;
 }
 
-const MarketplaceContext = createContext<MarketplaceContextType | undefined>(
-  undefined,
-);
+const MarketplaceContext = createContext<MarketplaceContextType | undefined>(undefined);
 
 export function MarketplaceProvider({ children, className = "", showSearch = true }: { children: React.ReactNode, className?: string, showSearch?: boolean; }) {
   const [selected, setSelected] = useState<string>("Explore");
   const isMobile = useIsMobile(); // Check if it's mobile
 
   const NavigationContent = useMemo(() => [
-    { title: "Explore", link: "/marketplace/explore" },
-    { title: "Favorites", link: "#favorites" },
-    { title: "Discover", link: "#discover" },
-    { title: "Contact", link: "#contact" },
+    { title: "Explore", link: "/marketplace/explore", icon: <GoHomeFill /> },
+    { title: "Favorites", link: "#favorites", icon: <LucideHeart /> },
+    { title: "Discover", link: "#discover", icon: <LucideCompass /> },
+    { title: "Contact", link: "#contact", icon: <LucideMail /> },
   ], []);
 
   return (
@@ -38,33 +36,50 @@ export function MarketplaceProvider({ children, className = "", showSearch = tru
           <div className="max-w-min md:w-52 lg:w-52 xl:w-52 2xl:w-52">
             <HeuveraLogo width={35} height={35} />
           </div>
-          <div className="hidden md:flex items-center space-x-12 md:space-x-4 lg:space-x-6 xl:space-x-10 2xl:space-x-12">
-            {NavigationContent.map((content, index) => (
-              <div key={index}>
-                <button
-                  onClick={() => setSelected(content.title)}
-                  className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
-                    ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
-                    : "text-[#323232] hover:text-primary"
-                    }`}
-                >
-                  {content.title}
-                </button>
-              </div>
-            ))}
-          </div>
-          <div className="w-52 flex flex-row items-center justify-between">
-            <LucideSearch className="text-[#323232] text-2xl" />
-            <div className="flex gap-2 items-center">
-              <div className="h-6 w-6 rounded-full">
-                <Avatar className="rounded-full overflow-hidden block">
-                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                  <AvatarFallback className="bg-[#E3E2D9] font-serif">FG</AvatarFallback>
-                </Avatar>
-              </div>
-              <h1 className="text-base font-medium font-serif text-[#323232]">George</h1>
+          {!isMobile && (
+            <div className="hidden md:flex items-center space-x-12 md:space-x-4 lg:space-x-6 xl:space-x-10 2xl:space-x-12">
+              {NavigationContent.map((content, index) => (
+                <div key={index}>
+                  <button
+                    onClick={() => setSelected(content.title)}
+                    className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
+                      ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
+                      : "text-[#323232] hover:text-primary"
+                      }`}
+                  >
+                    {content.title}
+                  </button>
+                </div>
+              ))}
             </div>
-            <LucideBell className="text-2xl text-[#323232]" />
+          )}
+          <div className="w-full md:w-52 lg:w-52 xl:w-52 2xl:w-52 flex flex-row items-center justify-evenly">
+            {isMobile && (
+              // Search Bar with Icon Prefix
+              <div className="flex items-center bg-[#F8F7F2] border border-[#C4C3B8] rounded-full px-4 py-2 w-full mx-4">
+                <LucideSearch className="text-[#C4C3B8] text-xl mr-2" />
+                <input
+                  type="text"
+                  placeholder="search properties..."
+                  className="bg-transparent outline-none w-full text-[#C4C3B8] font-serif text-md placeholder:text-[#C4C3B8]"
+                />
+              </div>
+            )}
+
+            {isMobile &&
+              // Show Contact Icon on Mobile
+              <div className="flex gap-2 items-center">
+                <div className="size-10 md:size-6 lg:size-6 xl:size-6 2xl:size-6 rounded-full">
+                  <Avatar className="rounded-full overflow-hidden block">
+                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                    <AvatarFallback className="bg-[#E3E2D9] font-serif">FG</AvatarFallback>
+                  </Avatar>
+                </div>
+                <h1 className="text-base font-medium font-serif hidden md:block text-[#323232]">George</h1>
+              </div>
+            }
+            {/* Notification Icon: Only Show on Desktop */}
+            {!isMobile && <LucideBell className="text-2xl text-[#323232]" />}
           </div>
         </div>
 
@@ -83,7 +98,7 @@ export function MarketplaceProvider({ children, className = "", showSearch = tru
                 Explore: { filled: <GoHomeFill fill="#7B4F3A" />, outline: <GoHome /> },
                 Favorites: { filled: <GoHeartFill fill="#7B4F3A" />, outline: <GoHeart /> },
                 Discover: { filled: <IoCompass className="text-2xl" fill="#7B4F3A" />, outline: <IoCompassOutline className="text-2xl" /> },
-                Contact: { filled: <MdMail fill="#7B4F3A" className="text-2xl"/>, outline: <MdMailOutline className="text-2xl"/> },
+                Contact: { filled: <MdMail fill="#7B4F3A" className="text-2xl" />, outline: <MdMailOutline className="text-2xl" /> },
               };
 
               return (
@@ -117,7 +132,7 @@ export function MarketplaceProvider({ children, className = "", showSearch = tru
 export function useMarketplace() {
   const context = useContext(MarketplaceContext);
   if (!context) {
-    throw new Error('useMarketplace must be used within a MarketplaceProvider');
+    throw new Error("useMarketplace must be used within a MarketplaceProvider");
   }
   return context;
 }
