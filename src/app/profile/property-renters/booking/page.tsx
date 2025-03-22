@@ -1,5 +1,6 @@
 import BookingTable from '@heuvera/components/ui/Table';
 import { Button } from '@heuvera/components/ui/button';
+import { ArrowDown, Newspaper } from 'lucide-react';
 
 export default function BookingHistory() {
   return (
@@ -16,21 +17,23 @@ export default function BookingHistory() {
         <div className="flex space-x-[0.6875rem]">
           <Button
             variant="default"
-            className="bg-[#7B4F3A] py-[0.6875rem] px-[2.5rem] rounded-full"
+            className="bg-[#7B4F3A] py-[0.6875rem] px-[2.5rem] rounded-full hover:bg-[#664130] hover:cursor-pointer"
           >
             Rebook
           </Button>
           <Button
             variant="outline"
-            className="py-[0.6875rem] px-[2.5rem] rounded-full"
+            className="py-[0.6875rem] px-[2.5rem] rounded-full hover:cursor-pointer"
           >
             Export booking report
+            <Newspaper />
           </Button>
           <Button
             variant="outline"
-            className="py-[0.6875rem] px-[2.5rem] rounded-full"
+            className="py-[0.6875rem] px-[2.5rem] rounded-full  hover:cursor-pointer"
           >
             Sort by:
+            <ArrowDown />
           </Button>
         </div>
       </div>

@@ -81,3 +81,8 @@ export const help = [
       'Rest assured, we’ve taken steps to safeguard your identity by noy displaying certain account details',
   },
 ];
+
+export const inputs = [
+  { name: 'Full Name', value: 'John Doe' },
+  { name: 'Email', value: 'george' },
+];

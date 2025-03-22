@@ -22,9 +22,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col h-screen">
       <AccountBanner />
-      
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-[20%] bg-[#F8F7F2] border-[#E3E2D9] border-r-[1px] overflow-y-auto">
+        <aside className="w-[20%] bg-[#F8F7F2]  border-r-[1px] overflow-y-auto">
           {sidebarItems}
         </aside>
         <main className="flex-1 p-4 bg-[#F8F7F2] overflow-y-auto">

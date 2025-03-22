@@ -20,8 +20,8 @@ function SidebarItem({
     <Link
       href={fullRoute}
       prefetch={true}
-      className={`flex justify-center bg-[#F8F7F2] left-[1px] top-[145px] border-b-2 py-[14px] ${
-        isActive ? 'bg-gray-200' : 'border-[#E3E2D9]'
+      className={`flex justify-center left-[1px] top-[145px]  py-[14px] ${
+        isActive ? 'bg-[#E3E2D966] border-2 border-t-0 border-l-[#7B4F3A] ' : 'border-b-2 border-[#E3E2D9] '
       }`} 
     >
       {children}

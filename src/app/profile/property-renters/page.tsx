@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@heuvera/components/ui/button';
 import { personInput } from '../../data/array';
 import Input from '../../../components/ui/Input';
@@ -8,8 +10,27 @@ import {
 } from '@heuvera/components/ui/avatar';
 import Help from '@heuvera/components/ui/Help';
 import { Plus, Upload } from 'lucide-react';
+import { useState } from 'react';
 
 export default function PersonInfo() {
+  const [userImage, setUserImage] = useState('');
+
+  function handleImageUpload() {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.onchange = (event) => {
+      const file = (event.target as HTMLInputElement).files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setUserImage(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    fileInput.click();
+  }
   return (
     <>
       <div className="border-b pb-5 mb-5">
@@ -21,25 +42,35 @@ export default function PersonInfo() {
       </div>
 
       <div className="flex justify-between">
-        <div className="flex flex-col justify-between w-[66%]">
-          <div className="pb-5">
+        <form className="flex flex-col justify-between w-full pr-5">
+          <div className="pb-5 border-b">
             <Avatar className="w-[75px] h-[75px]">
-              <AvatarImage className="" src="https://github.com/shadcn.png" />
+              <AvatarImage
+                className="object-cover"
+                src={userImage || 'https://github.com/shadcn.png'}
+              />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div className="flex mt-5 justify-between">
               <div>
                 <h2 className="text-[1rem] font-medium">Profile Picture</h2>
                 <p className="text-[#898989] text-[14px] ">
-                  PNG,JPEG under 15mb{' '}
+                  PNG, JPEG under 15mb{' '}
                 </p>
               </div>
               <div className="flex space-x-8">
-                <Button variant="default" className="bg-[#7B4F3A] rounded-full">
+                <Button
+                  variant="default"
+                  className="bg-[#7B4F3A] rounded-full hover:bg-[#664130] hover:cursor-pointer"
+                  onClick={handleImageUpload}
+                >
                   <Upload />
                   Upload Image
                 </Button>
-                <Button variant="outline" className="rounded-full">
+                <Button
+                  variant="outline"
+                  className="rounded-full  hover:cursor-pointer"
+                >
                   Remove
                 </Button>
               </div>
@@ -51,26 +82,31 @@ export default function PersonInfo() {
               key={index}
               className={`${item.label2 && 'flex-row'} flex flex-col space-y-4`}
             >
-              <div className="flex justify-between items-center space-x-4 space-y-5 border-t">
-                <div className="flex flex-col justify-center mt-3  space-y-4 w-[50%]">
+              <div className="flex justify-between items-center space-x-4 space-y-5 border-b w-full">
+                <div className="flex flex-col justify-center mt-3 space-y-4 w-[40%]">
                   <Input label={item.label || ''} value={item.value || ''} />
                   {index >= 1 && (
-                    <Button variant="outline" className="w-fit rounded-full">
+                    <Button
+                      variant="outline"
+                      className="w-fit rounded-full  hover:cursor-pointer"
+                    >
                       <Plus />
                       {item.secondaryBtn}
                     </Button>
                   )}
                 </div>
                 {item.label2 && (
-                  <Input label={item.label2 || ''} value={item.value || ''} />
+                  <Input className='w-[40%]' label={item.label2 || ''} value={item.value || ''} />
                 )}
                 {index >= 1 && (
-                  <Button variant="outline">{item.primaryBtn}</Button>
+                  <Button variant="outline" className=" hover:cursor-pointer">
+                    {item.primaryBtn}
+                  </Button>
                 )}
               </div>
             </div>
           ))}
-        </div>
+        </form>
 
         <Help />
       </div>
