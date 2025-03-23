@@ -10,10 +10,8 @@ import {
   useEffect,
 } from 'react';
 import {
-  LucideBell,
   LucideSearch,
   LucideMail,
-  LucideHome,
   LucideHeart,
   LucideCompass,
 } from 'lucide-react';
@@ -37,7 +35,6 @@ const MarketplaceContext = createContext<MarketplaceContextType | undefined>(
 
 export function MarketplaceProvider({
   children,
-  className = '',
   showSearch = true,
 }: {
   children: React.ReactNode;
@@ -61,12 +58,10 @@ export function MarketplaceProvider({
     [],
   );
 
-  // Initialize refs array
   useEffect(() => {
     navRefs.current = navRefs.current.slice(0, NavigationContent.length);
   }, [NavigationContent]);
 
-  // Handle smooth indicator animation for mobile navigation
   useEffect(() => {
     if (isMobile) {
       const selectedIndex = NavigationContent.findIndex(
@@ -85,7 +80,6 @@ export function MarketplaceProvider({
     }
   }, [selected, isMobile, NavigationContent]);
 
-  // Automatically focus on input when search expands
   useEffect(() => {
     if (isSearchOpen && inputRef.current) {
       inputRef.current.focus();
@@ -95,13 +89,11 @@ export function MarketplaceProvider({
   return (
     <MarketplaceContext.Provider value={{ selected, setSelected }}>
       <div className="w-full h-full flex flex-col">
-        {/* Top Navbar */}
         <div className="px-4 md:px-20 lg:px-20 xl:px-20 2xl:px-20 h-24 w-full flex items-center justify-between">
           <div className="flex-shrink-0">
             <HeuveraLogo width={35} height={35} />
           </div>
 
-          {/* Mobile Search Bar - Centered */}
           {isMobile && showSearch && (
             <div className="flex-1 px-4">
               <div className="flex items-center bg-[#F8F7F2] border border-[#C4C3B8] rounded-full px-4 py-2 w-full">
@@ -115,7 +107,6 @@ export function MarketplaceProvider({
             </div>
           )}
 
-          {/* Centered Navigation Links (Desktop) */}
           {!isMobile && (
             <div className="flex-1 flex justify-center">
               <div className="flex items-center space-x-12 md:space-x-4 lg:space-x-6 xl:space-x-10 2xl:space-x-12">
@@ -123,11 +114,10 @@ export function MarketplaceProvider({
                   <div key={index}>
                     <button
                       onClick={() => setSelected(content.title)}
-                      className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
-                        selected === content.title
+                      className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
                           ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'
                           : 'text-[#323232] hover:text-primary'
-                      }`}
+                        }`}
                     >
                       {content.title}
                     </button>
@@ -137,9 +127,7 @@ export function MarketplaceProvider({
             </div>
           )}
 
-          {/* Right Side - Avatar (and Search for Desktop) */}
           <div className="flex-shrink-0 flex items-center gap-4">
-            {/* Desktop Search Icon */}
             {!isMobile && showSearch && (
               <div className="relative flex-1 flex justify-center">
                 <motion.div
@@ -157,7 +145,6 @@ export function MarketplaceProvider({
                     <LucideSearch className="text-[#323232] text-xl" />
                   </motion.button>
 
-                  {/* Search Input */}
                   {isSearchOpen && (
                     <motion.input
                       ref={inputRef}
@@ -174,34 +161,26 @@ export function MarketplaceProvider({
               </div>
             )}
 
-            {/* {!isMobile && showSearch && <LucideSearch className="text-[#323232] text-xl" />} */}
-
-            {/* Avatar */}
-            <div className="size-10 md:size-6 lg:size-6 xl:size-6 2xl:size-6 rounded-full">
+            <div className="size-10 md:size-6 lg:size-20 xl:size-8 2xl:size-8">
               <Avatar className="rounded-full overflow-hidden block">
                 <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
+                  src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
+                  alt="avatar"
                 />
-                <AvatarFallback className="bg-[#E3E2D9] font-serif">
-                  FG
-                </AvatarFallback>
+                <AvatarFallback>FG</AvatarFallback>
               </Avatar>
             </div>
           </div>
         </div>
 
-        {/* Page Content */}
         <div className="pb-36 w-full flex-1 flex">{children}</div>
 
-        {/* Bottom Navigation (Mobile Only) with Sliding Animation */}
         {isMobile && (
           <div className="w-full h-[90px] fixed bottom-3 left-0 px-4">
             <div className="w-full bg-[#E3E2D9] shadow-md border-t border-[#E3E2D9] rounded-2xl px-4 flex items-center h-[70px] justify-between">
               {NavigationContent.map((content, index) => {
                 const isSelected = selected === content.title;
 
-                // Define both filled and outline icons
                 const iconMapping: {
                   [key: string]: { filled: JSX.Element; outline: JSX.Element };
                 } = {
@@ -233,7 +212,6 @@ export function MarketplaceProvider({
                     onClick={() => setSelected(content.title)}
                     className="flex flex-col items-center justify-center min-w-[60px] h-full transition-all duration-300"
                   >
-                    {/* Icon */}
                     <span
                       className={`text-2xl ${isSelected ? 'text-[#7B4F3A]' : 'text-[#323232]'}`}
                     >
@@ -242,7 +220,6 @@ export function MarketplaceProvider({
                         : iconMapping[content.title].outline}
                     </span>
 
-                    {/* Text label */}
                     <span
                       className={`text-xs font-medium ${isSelected ? 'text-[#7B4F3A]' : 'text-[#323232]'}`}
                     >
