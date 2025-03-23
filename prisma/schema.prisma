@@ -12,3 +12,112 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id             String  @id @default(uuid())
+  auth0_id       String  @unique
+  email          String  @unique
+  name           String?
+  picture        String?
+  isHostApproved Boolean @default(false) // Must be true before host details can be created
+
+  profile  Profile?  @relation()
+  listings Listing[]
+  host     Host? // Removed relation fields here
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Booking   Booking[]
+}
+
+model Host {
+  userId String @id
+  user   User   @relation(fields: [userId], references: [id]) // Define relation here
+
+  phoneNumber                String
+  bio                        String?
+  governmentId               String?
+  idVerificationStatus       VerificationStatus @default(PENDING)
+  businessName               String?
+  businessLogo               String? // URL to the business logo image
+  businessRegistrationNumber String?
+  businessAddress            String?
+  socialMediaLinks           Json?
+  hostRating                 Float              @default(0.0)
+  asBusiness                 Boolean            @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  userId String @id
+  user   User   @relation(fields: [userId], references: [id])
+
+  country String?
+  state   String?
+  city    String?
+  address String?
+
+  isStudent   Boolean?
+  isEmployed  Boolean?
+  occupation  String?
+  incomeRange String?
+  interests   String[]
+
+  preferredRentRange     String?
+  preferredPropertyTypes String[]
+  moveInDate             DateTime?
+  stayDuration           String?
+  hasPets                Boolean?
+  hasChildren            Boolean?
+  smoking                Boolean?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Listing {
+  id           String    @id @default(uuid())
+  title        String
+  description  String
+  price        Decimal
+  listingType  String // <-- Changed from propertyType to listingType
+  category     String
+  address      String
+  city         String
+  country      String
+  latitude     Float
+  longitude    Float
+  checkInTime  String
+  checkOutTime String
+  available    Boolean   @default(true)
+  amenities    Json
+  images       String[]
+  hostId       String
+  host         User      @relation(fields: [hostId], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  Booking      Booking[]
+}
+
+enum VerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+model Booking {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  listingId  String
+  listing    Listing  @relation(fields: [listingId], references: [id])
+  startDate  DateTime
+  endDate    DateTime
+  guests     Int
+  totalPrice Decimal
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
