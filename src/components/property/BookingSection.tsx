@@ -14,14 +14,12 @@ export default function BookingSection() {
   const [selectedGuests, setSelectedGuests] = useState('1 Guest');
   const guestOptions = ['1 Guest', '2 Guests', '3 Guests', '4+ Guests'];
 
-  // Calendar states
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: new Date(),
     to: addDays(new Date(), 7),
   });
 
-  // Format date range for display
   const formatDateRange = () => {
     if (!dateRange || !dateRange.from) return 'Select dates';
 
@@ -36,9 +34,9 @@ export default function BookingSection() {
     <>
       <Divider />
       <SectionHeaderText title='Create Booking' />
-      <div className="flex flex-col gap-8 mt-1 md:mt-0">
-        <div className="w-full gap-8 flex flex-col md:flex-row justify-between">
-          <div className="flex flex-col gap-2 md:gap-4 w-12/12 md:w-6/12 relative">
+      <div className="flex flex-col gap-8 mt-1">
+        <div className="w-full gap-8 flex flex-col md:flex-col lg:flex-col xl:flex-row 2xl:flex-row justify-between">
+          <div className="flex flex-col gap-2 md:gap-4 w-12/12 md:w-12/12 lg:w-12/12 xl:w-6/12 2xl:w-6/12 relative">
             <h1 className="text-sm md:text-base font-normal text-[#3E3E3E]">
               Check Availability
             </h1>
@@ -82,7 +80,7 @@ export default function BookingSection() {
             )}
           </div>
 
-          <div className="flex flex-col gap-2 md:gap-4 relative w-12/12 md:w-6/12">
+          <div className="flex flex-col gap-2 md:gap-4 relative w-12/12 md:w-12/12 lg:w-12/12 xl:w-6/12 2xl:w-6/12">
             <h1 className="text-sm md:text-base font-serif font-normal text-[#3E3E3E]">
               Guests:
             </h1>

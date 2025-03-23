@@ -21,7 +21,7 @@ export default function PropertyImages() {
   return (
     <>
       {/* Main Property Image */}
-      <div className="w-full h-[14rem] md:h-[40rem] lg:h-[40rem] xl:h-[40rem] 2xl:h-[40rem] bg-blue-400 rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem]">
+      <div className="w-full h-[14rem] md:h-[20rem] lg:h-[20rem] xl:h-[24rem] 2xl:h-[40rem] bg-blue-400 rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem]">
         <Image
           src={images[0]}
           alt="Property main image"
@@ -33,29 +33,29 @@ export default function PropertyImages() {
 
       {/* Two Secondary Images */}
       <div className="flex flex-row gap-3 md:gap-6 lg:gap-6 xl:gap-6 2xl:gap-6 mt-3 md:mt-6 lg:mt-6 xl:mt-6 2xl:mt-6">
-        <div className="w-6/12 h-28 md:h-60 lg:h-60 xl:h-60 2xl:h-60 rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem]">
+        <div className="w-6/12 h-28 md:h-60 lg:h-40 xl:h-48 2xl:h-60 rounded-2xl md:rounded-[2rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[3rem]">
           <Image
             src={images[1]}
             alt="Property tertiary image"
             height={500}
             width={500}
-            className="w-full h-full rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem] object-cover"
+            className="w-full h-full rounded-2xl md:rounded-[2rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[3rem] object-cover"
           />
         </div>
-        <div className="w-6/12 h-28 md:h-60 lg:h-60 xl:h-60 2xl:h-60 rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem]">
+        <div className="w-6/12 h-28 md:h-60 lg:h-40 xl:h-48 2xl:h-60 rounded-2xl md:rounded-[2rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[3rem]">
           <Image
             src={images[2]}
             alt="Property tertiary image"
             height={500}
             width={500}
-            className="w-full h-full rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem] object-cover"
+            className="w-full h-full rounded-2xl md:rounded-[2rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[3rem] object-cover"
           />
         </div>
       </div>
 
       {/* View More Pictures */}
       <div
-        className="relative h-[14rem] md:h-[40rem] lg:h-[40rem] xl:h-[40rem] 2xl:h-[40rem] bg-blue-400 rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem] overflow-hidden cursor-pointer mt-3 md:mt-6 lg:mt-6 xl:mt-6 2xl:mt-6"
+        className="relative h-[14rem] md:h-[20rem] lg:h-[20rem] xl:h-[24rem] 2xl:h-[40rem] bg-blue-400 rounded-2xl md:rounded-[2rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[3rem] overflow-hidden cursor-pointer mt-3 md:mt-6 lg:mt-6 xl:mt-6 2xl:mt-6"
         onClick={() => setIsOpen(true)}
       >
         <Image
@@ -63,17 +63,17 @@ export default function PropertyImages() {
           alt="Property Image"
           layout="fill"
           objectFit="cover"
-          className="w-full h-full rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem] object-cover"
+          className="w-full h-full rounded-2xl md:rounded-[2rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[3rem] object-cover"
         />
-        <div className="absolute bottom-6 right-6 w-32 md:w-56 lg:w-56 xl:w-56 2xl:w-56 h-20 md:h-32 lg:h-32 xl:h-32 2xl:h-32 rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem] overflow-hidden">
+        <div className="absolute bottom-6 right-6 w-32 md:w-40 lg:w-40 xl:w-56 2xl:w-56 h-20 md:h-24 lg:h-24 xl:h-32 2xl:h-32 rounded-2xl md:rounded-3xl lg:rounded-3xl xl:rounded-[2rem] 2xl:rounded-[3rem] overflow-hidden">
           <Image
             src={images[2]}
-            className="absolute inset-0 bg-cover bg-center blur-lg rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem]"
+            className="absolute inset-0 bg-cover bg-center blur-lg rounded-2xl md:rounded-3xl lg:rounded-3xl xl:rounded-[2rem] 2xl:rounded-[3rem]"
             alt="Blurred background"
             width={500}
             height={500}
           />
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white text-xs md:text-lg lg:text-lg xl:text-lg 2xl:text-lg font-serif font-medium">
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white text-xs md:text-sm lg:text-sm xl:text-lg 2xl:text-lg font-serif font-medium">
             View 7 More Pictures
           </div>
         </div>

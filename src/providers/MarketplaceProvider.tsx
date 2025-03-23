@@ -162,7 +162,7 @@ export function MarketplaceProvider({
               </div>
             )}
 
-            <div className="size-10 md:size-6 lg:size-20 xl:size-8 2xl:size-8">
+            <div className="size-10 md:size-6 lg:size-7 xl:size-8 2xl:size-8">
               <Avatar className="rounded-full overflow-hidden block">
                 <AvatarImage
                   src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"

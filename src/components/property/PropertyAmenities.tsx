@@ -42,8 +42,8 @@ export default function PropertyAmenities() {
         <div className="flex gap-2 items-center">
           <div className="flex flex-row flex-wrap gap-12">
             {amenities.map((amenity, index) => (
-              <div key={index} className="flex flex-row gap-8 transition-transform duration-300 hover:scale-105 hover:shadow-md">
-                <div className="flex flex-row gap-3 items-center">
+              <div key={index} className="flex flex-row gap-8">
+                <div className="flex flex-row gap-3 items-center rounded-xl p-2 transition-transform duration-300 hover:scale-105 hover:shadow-md">
                   {amenity.icon}
                   <h1 className="text-sm md:text-base lg:text-base xl:text-base 2xl:text-base text-[#3E3E3E]">{amenity.name}</h1>
                 </div>
