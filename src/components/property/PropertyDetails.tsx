@@ -19,7 +19,10 @@ export default function PropertyDetails() {
             </h1>
             <div className="flex flex-row gap-2 mt-0 md:mt-0.5 lg:mt-0.5 xl:mt-0 2xl:mt-0">
               {[...Array(5)].map((_, i) => (
-                <FaStar key={i} className="text-yellow-400 text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl" />
+                <FaStar
+                  key={i}
+                  className="text-yellow-400 text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl"
+                />
               ))}
             </div>
           </div>
@@ -37,15 +40,21 @@ export default function PropertyDetails() {
         <div className="flex flex-row gap-5">
           <div className="gap-1 flex items-center">
             <IoBed className="text-[#6A6A6A] text-xl md:text-xl lg:text-xl xl:text-base 2xl:text-base" />
-            <h1 className="text-[#6A6A6A] text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-base font-serif">3 Bedrooms</h1>
+            <h1 className="text-[#6A6A6A] text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-base font-serif">
+              3 Bedrooms
+            </h1>
           </div>
           <div className="gap-1 flex items-center">
             <FaBath className="text-[#6A6A6A] text-base md:text-sm lg:text-sm xl:text-base 2xl:text-base" />
-            <h1 className="text-[#6A6A6A] text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-base font-serif">5 Bathrooms</h1>
+            <h1 className="text-[#6A6A6A] text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-base font-serif">
+              5 Bathrooms
+            </h1>
           </div>
           <div className="gap-1 flex items-center">
             <IoPerson className="text-[#6A6A6A] text-base md:text-sm lg:text-sm xl:text-base 2xl:text-base" />
-            <h1 className="text-[#6A6A6A] text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-base font-serif">4 Guests</h1>
+            <h1 className="text-[#6A6A6A] text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-base font-serif">
+              4 Guests
+            </h1>
           </div>
         </div>
       </div>

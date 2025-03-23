@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function PropertyImage({ imageUrl }: { imageUrl?: string }) {
   return (
-    <div className="relative w-full h-48 md:h-36 lg:h-28 xl:h-36 2xl:h-44">
+    <div className="relative w-full h-60 md:h-36 lg:h-28 xl:h-36 2xl:h-44">
       {imageUrl ? (
         <Image
           src={imageUrl}

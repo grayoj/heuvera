@@ -86,7 +86,10 @@ export default function PropertyImages() {
           onClick={() => setIsOpen(false)}
         >
           <div className="flex justify-between items-center text-white p-5 md:p-10 lg:p-10 xl:p-10 2xl:p-10 w-full">
-            <SectionHeaderText title='Property Gallery' className='text-white pb-0' />
+            <SectionHeaderText
+              title="Property Gallery"
+              className="text-white pb-0"
+            />
             <button
               onClick={() => setIsOpen(false)}
               className="text-white hover:text-gray-300 p-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors"

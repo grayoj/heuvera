@@ -12,7 +12,7 @@ export default function ReviewsSection() {
 
   return (
     <div className="flex flex-col gap-2">
-      <SectionHeaderText title='Reviews'/>
+      <SectionHeaderText title="Reviews" />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 w-full">
         <ReviewCard />
         <ReviewCard />

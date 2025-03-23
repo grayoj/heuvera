@@ -33,7 +33,7 @@ export default function BookingSection() {
   return (
     <>
       <Divider />
-      <SectionHeaderText title='Create Booking' />
+      <SectionHeaderText title="Create Booking" />
       <div className="flex flex-col gap-8 mt-1">
         <div className="w-full gap-8 flex flex-col md:flex-col lg:flex-col xl:flex-row 2xl:flex-row justify-between">
           <div className="flex flex-col gap-2 md:gap-4 w-12/12 md:w-12/12 lg:w-12/12 xl:w-6/12 2xl:w-6/12 relative">

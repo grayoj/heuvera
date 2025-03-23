@@ -31,7 +31,7 @@ export default function PropertyDescription() {
 
   return (
     <div className="flex flex-col">
-      <SectionHeaderText title='Description' />
+      <SectionHeaderText title="Description" />
       <p className="text-base font-serif font-normal text-[#3E3E3E]">
         {isExpanded ? fullDescription : truncatedDescription}
       </p>

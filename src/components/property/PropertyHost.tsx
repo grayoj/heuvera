@@ -9,7 +9,7 @@ export default function HostInfo() {
     <>
       <Divider />
       <div className="flex flex-col gap-5">
-        <SectionHeaderText title='Property Host' />
+        <SectionHeaderText title="Property Host" />
         <div className="flex gap-2 items-center">
           <div className="size-10 rounded-full">
             <Avatar className="rounded-full overflow-hidden block">
