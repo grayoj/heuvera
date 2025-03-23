@@ -48,20 +48,13 @@ export default function NavigationLayout({
           <div className="w-52 flex flex-row items-center justify-between">
             <LucideSearch className="text-[#323232] text-2xl" />
             <div className="flex gap-2 items-center">
-              <div className="h-6 w-6 rounded-full">
-                <Avatar className="rounded-full overflow-hidden block">
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="@shadcn"
-                  />
-                  <AvatarFallback className="bg-[#E3E2D9] font-serif">
-                    FG
-                  </AvatarFallback>
-                </Avatar>
-              </div>
-              <h1 className="text-base font-medium font-serif text-[#323232]">
-                George
-              </h1>
+              <Avatar className="overflow-hidden block">
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
+                <AvatarFallback className="bg-[#E3E2D9]">FG</AvatarFallback>
+              </Avatar>
             </div>
             <LucideBell className="text-2xl text-[#323232]" />
           </div>

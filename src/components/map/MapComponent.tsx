@@ -6,15 +6,14 @@ import {
   Circle,
   useMap,
 } from 'react-leaflet';
-import { divIcon, LatLngTuple, LatLngBounds } from 'leaflet';
+import { divIcon, LatLngTuple } from 'leaflet';
 import L from 'leaflet';
 import { ReactNode, useEffect } from 'react';
 import Image from 'next/image';
-import { IoHome, IoStar } from 'react-icons/io5';
 import { FaStar } from 'react-icons/fa6';
 import ReactDOMServer from 'react-dom/server';
-import { GoHome, GoHomeFill } from 'react-icons/go';
-// FitMapToBounds component
+import { GoHomeFill } from 'react-icons/go';
+
 const FitMapToBounds = ({
   positions,
 }: {
@@ -42,7 +41,6 @@ const MapRecenter = ({ center }: { center: LatLngTuple }) => {
   return null;
 };
 
-// Define interface for property type
 interface Property {
   id: number;
   name: string;
@@ -55,7 +53,6 @@ interface Property {
   [key: string]: any;
 }
 
-// Props interface for MapComponents
 interface MapComponentsProps {
   center: LatLngTuple;
   properties: Property[];
@@ -64,7 +61,6 @@ interface MapComponentsProps {
   radius: number;
   isTrayOpen: boolean;
   setSelectedProperty: (property: Property | null) => void;
-  // className: string;
 }
 
 const MapComponents = ({
@@ -79,7 +75,6 @@ const MapComponents = ({
   return (
     <div className="flex justify-center items-center w-full h-[calc(100vh-15rem)]">
       {' '}
-      {/* Centered Container */}
       <MapContainer
         center={center}
         zoom={12}
@@ -89,7 +84,6 @@ const MapComponents = ({
         <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
         <FitMapToBounds positions={markerPositions} isTrayOpen={isTrayOpen} />
 
-        {/* Circular Boundary */}
         <Circle
           center={center_radius}
           radius={radius}
