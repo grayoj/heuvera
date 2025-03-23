@@ -39,12 +39,13 @@ export default function BookingTable() {
               <td className="border-x">{index + 1}</td>
               <td className="border-x flex justify-center items-center">
                 <Image
-              src='https://picsum.photos/50/36'
-              className='rounded-md my-1.5'
-              height={36}
-              width={50}
-              alt='fun'
-              /></td>
+                  src="https://picsum.photos/50/36"
+                  className="rounded-md my-1.5"
+                  height={36}
+                  width={50}
+                  alt="fun"
+                />
+              </td>
               <td className="border-x">{booking.name}</td>
               <td className="border-x">{booking.location}</td>
               <td className="border-x">{booking.date}</td>
@@ -53,6 +54,17 @@ export default function BookingTable() {
               <td className="border-x">{booking.noOfGuests}</td>
             </tr>
           ))}
+          {/* Default last row */}
+          <tr className="bg-[#F8F7F2] border-b text-center border-gray-200 hover:bg-gray-50 h-[20vh]">
+            <td className="border-x"></td>
+            <td className="border-x"></td>
+            <td className="border-x"></td>
+            <td className="border-x"></td>
+            <td className="border-x"></td>
+            <td className="border-x"></td>
+            <td className="border-x"></td>
+            <td className="border-x"></td>
+          </tr>
         </tbody>
       </table>
     </div>

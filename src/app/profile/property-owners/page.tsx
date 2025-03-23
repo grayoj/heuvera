@@ -34,8 +34,18 @@ export default function PersonInfo() {
   }
   return (
     <>
-    <AccountHeader heading='Personal Info' subheading='Update your profile, contact details, and preferences to personalize
-          your experience.' />
+      <AccountHeader
+        heading="Admin Info"
+        subheading="Update your profile, contact details, and preferences to personalize
+              your experience."
+      >
+        <Button
+          variant="default"
+          className="rounded-full hover:cursor-pointer bg-[#CB2517] font-normal"
+        >
+          Delete Account
+        </Button>
+      </AccountHeader>
 
       <div className="flex justify-between">
         <form className="flex flex-col justify-between w-full pr-5">
@@ -92,7 +102,11 @@ export default function PersonInfo() {
                   )}
                 </div>
                 {item.label2 && (
-                  <Input className='w-[40%]' label={item.label2 || ''} value={item.value || ''} />
+                  <Input
+                    className="w-[40%]"
+                    label={item.label2 || ''}
+                    value={item.value || ''}
+                  />
                 )}
                 {index >= 1 && (
                   <Button variant="outline" className=" hover:cursor-pointer">

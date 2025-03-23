@@ -1,4 +1,3 @@
-
 export const sideBar = [
   {
     name: 'Personal Info',
@@ -26,6 +25,50 @@ export const sideBar = [
   },
 ];
 
+export const sideBarAdmin = [
+  {
+    name: 'Personal Info',
+    route: '',
+    description:
+      'Update your profile, contact details, and preferences to personalize your experience.',
+  },
+  {
+    route: 'property',
+    name: 'Property Listings',
+    description:
+      'Manage and view all properties you’ve listed for rent or lease.',
+  },
+  {
+    route: 'booking',
+    name: 'Booking Mangement',
+    description: 'Track upcoming, ongoing, and past bookings in one place',
+  },
+  {
+    route: 'earnings',
+    name: 'Earnings & Payouts',
+    description:
+      'Monitor your earnings, track pending payments, and manage payout preferences.',
+  },
+  {
+    route: 'review',
+    name: 'Reviews & Ratings',
+    description:
+      'View guest feedback, monitor your ratings, and maintain your reputation.',
+  },
+  {
+    route: 'insights',
+    name: 'Property Insights',
+    description:
+      'Analyze booking trends, occupancy rates, and performance metrics for your listings. ',
+  },
+  {
+    route: 'support',
+    name: 'Support & Assistance',
+    description:
+      'Access help articles, contact support, or resolve issues with your listings. ',
+  },
+];
+
 export const personInput = [
   { label: 'First name', value1: 'George', label2: 'Last name', value2: 'Doe' },
   {
@@ -41,7 +84,7 @@ export const personInput = [
     secondaryBtn: 'Add another email',
   },
   {
-    label : 'Address',
+    label: 'Address',
     primaryBtn: 'Change address',
     value: 'No.2 West Street, Nursing Estate, Karu, Abuja',
     secondaryBtn: 'Add another address',
@@ -85,4 +128,8 @@ export const help = [
 export const inputs = [
   { name: 'Full Name', value: 'John Doe' },
   { name: 'Email', value: 'george' },
+];
+
+export const propertyListings = [
+  { image: '', price: '#50,000', address: '3617 W.Gray St. Utica', noOfBeds: 2, noOfBaths: 2, measurement: '60m^2' },
 ];
