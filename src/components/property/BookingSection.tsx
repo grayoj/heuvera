@@ -7,6 +7,7 @@ import Divider from '../Divider';
 import { DateRange } from 'react-day-picker';
 import { format, addDays } from 'date-fns';
 import { Calendar } from '@heuvera/components/ui/calendar';
+import SectionHeaderText from '../text/SectionHeaderText';
 
 export default function BookingSection() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,13 +35,11 @@ export default function BookingSection() {
   return (
     <>
       <Divider />
-      <h1 className="text-2xl font-serif font-medium text-[#3E3E3E]">
-        Create Booking
-      </h1>
-      <div className="flex flex-col gap-8">
-        <div className="w-full gap-8 flex flex-row justify-between">
-          <div className="flex flex-col gap-4 w-6/12 relative">
-            <h1 className="text-base font-normal text-[#3E3E3E]">
+      <SectionHeaderText title='Create Booking' />
+      <div className="flex flex-col gap-8 mt-1 md:mt-0">
+        <div className="w-full gap-8 flex flex-col md:flex-row justify-between">
+          <div className="flex flex-col gap-2 md:gap-4 w-12/12 md:w-6/12 relative">
+            <h1 className="text-sm md:text-base font-normal text-[#3E3E3E]">
               Check Availability
             </h1>
             <div className="h-14 w-full border border-[#3E3E3E] rounded-full flex items-center justify-between relative px-6">
@@ -83,8 +82,8 @@ export default function BookingSection() {
             )}
           </div>
 
-          <div className="flex flex-col gap-4 relative w-6/12">
-            <h1 className="text-base font-serif font-normal text-[#3E3E3E]">
+          <div className="flex flex-col gap-2 md:gap-4 relative w-12/12 md:w-6/12">
+            <h1 className="text-sm md:text-base font-serif font-normal text-[#3E3E3E]">
               Guests:
             </h1>
 

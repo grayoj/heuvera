@@ -196,7 +196,7 @@ export function MarketplaceProvider({
 
         {/* Bottom Navigation (Mobile Only) with Sliding Animation */}
         {isMobile && (
-          <div className="w-full h-[90px] fixed bottom-3 left-0 px-4">
+          <div className="w-full h-[90px] fixed bottom-3 left-0 px-4 z-[1000]">
             <div className="w-full bg-[#E3E2D9] shadow-md border-t border-[#E3E2D9] rounded-2xl px-4 flex items-center h-[70px] justify-between">
               {NavigationContent.map((content, index) => {
                 const isSelected = selected === content.title;
