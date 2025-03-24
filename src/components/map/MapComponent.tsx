@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import {
   MapContainer,
   TileLayer,
@@ -8,12 +11,27 @@ import {
 } from 'react-leaflet';
 import { divIcon, LatLngTuple } from 'leaflet';
 import L from 'leaflet';
-import { ReactNode, useEffect } from 'react';
 import Image from 'next/image';
 import { FaStar } from 'react-icons/fa6';
 import ReactDOMServer from 'react-dom/server';
 import { GoHomeFill } from 'react-icons/go';
 
+// Leaflet CSS Import (crucial for map rendering)
+import 'leaflet/dist/leaflet.css';
+
+// Fix for default marker icon
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+    iconUrl: icon.src,
+    shadowUrl: iconShadow.src,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41]
+});
+L.Marker.prototype.options.icon = DefaultIcon;
+
+// FitMapToBounds Component
 const FitMapToBounds = ({
   positions,
   isTrayOpen,
@@ -31,13 +49,14 @@ const FitMapToBounds = ({
             [positions[0][0] - 0.01, positions[0][1] - 0.01],
             [positions[0][0] + 0.01, positions[0][1] + 0.01]
           ]);
-      map.fitBounds(bounds, { padding: [80, 50] });
+      map.fitBounds(bounds, { padding: [50, 50] });
     }
   }, [map, positions, isTrayOpen]);
 
   return null;
 };
 
+// MapRecenter Component
 const MapRecenter = ({ center }: { center: LatLngTuple }) => {
   const map = useMap();
 
@@ -56,7 +75,7 @@ interface Property {
   position: LatLngTuple;
   image: string;
   description: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
   [key: string]: any;
 }
 
@@ -80,14 +99,26 @@ const MapComponents = ({
   setSelectedProperty,
 }: MapComponentsProps) => {
   return (
-    <div className="flex justify-center items-center w-full h-full">
+    <div className="w-full h-full relative">
       <MapContainer
         center={center}
         zoom={13}
+        scrollWheelZoom={true}
         className="w-full h-full z-0 rounded-lg shadow-lg"
+        style={{ 
+          height: '100%', 
+          width: '100%', 
+          position: 'absolute', 
+          top: 0, 
+          left: 0 
+        }}
       >
         <MapRecenter center={center} />
-        <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+        <TileLayer 
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          className="bg-[#F8F7F2]" // Beige background for the map
+        />
         <FitMapToBounds positions={markerPositions} isTrayOpen={isTrayOpen} />
 
         <Circle
@@ -106,8 +137,6 @@ const MapComponents = ({
             position={property.position}
             eventHandlers={{
               click: () => setSelectedProperty(property),
-              mouseover: (e) => e.target.openPopup(),
-              mouseout: (e) => e.target.closePopup(),
             }}
             icon={divIcon({
               className: '',
@@ -120,24 +149,36 @@ const MapComponents = ({
               iconAnchor: [16, 16],
             })}
           >
-            <Popup keepInView={true} closeButton={false} className="w-52">
-              <div className="py-2 flex flex-col gap-2 font-serif">
+            <Popup 
+              keepInView={true} 
+              closeButton={false} 
+              className="w-48 p-0 m-0"
+              eventHandlers={{
+                click: () => {
+                  // Open property details in a new tab
+                  window.open(`/property/${property.id}`, '_blank');
+                }
+              }}
+            >
+              <div className="py-1 flex flex-col gap-1 font-serif">
                 <Image
                   src={property.image}
                   alt=""
-                  height={500}
-                  width={500}
-                  className="rounded-lg"
+                  height={200}
+                  width={200}
+                  className="rounded-t-lg"
                 />
-                <h3 className="font-bold text-[#3e3e3e] text-sm">
-                  {property.name}
-                </h3>
-                <div className="flex justify-between items-center">
-                  <h3 className="font-bold text-xs text-[#7B4F3A]">
-                    {property.price}
+                <div className="px-2">
+                  <h3 className="font-bold text-[#3e3e3e] text-xs">
+                    {property.name}
                   </h3>
-                  <div className="flex flex-row gap-1 items-center text-xs font-semibold">
-                    {property.rating} <FaStar className="text-yellow-400" />
+                  <div className="flex justify-between items-center">
+                    <h3 className="font-bold text-[10px] text-[#7B4F3A]">
+                      {property.price}
+                    </h3>
+                    <div className="flex flex-row gap-1 items-center text-[10px] font-semibold">
+                      {property.rating} <FaStar className="text-yellow-400" />
+                    </div>
                   </div>
                 </div>
               </div>

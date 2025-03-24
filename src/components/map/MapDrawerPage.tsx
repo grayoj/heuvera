@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LatLngTuple } from 'leaflet';
 import { IoHome } from 'react-icons/io5';
-import { Search, X, MapPin, List, Filter, Heart } from 'lucide-react';
+import { Search, X, MapPin, List, Filter, Heart, LucideSearch } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 import {
@@ -19,11 +19,13 @@ import {
 import { Button } from '../../components/ui/button';
 import { getCenterAndRadius } from '@heuvera/utils/map';
 import { Property, MapComponentsProps } from '@heuvera/types/map';
+import CategoryList from '../categories/CategoryList';
+import FilterButton from '../categories/FilterButton';
 
 // Dynamically import the MapComponent to avoid SSR issues with Leaflet
 const MapComponents = dynamic<MapComponentsProps>(
     () => import('./MapComponent'),
-    { ssr: false },
+    { ssr: false }
 );
 
 // Sample properties data (use your actual data source)
@@ -38,9 +40,8 @@ const properties: Property[] = [
         description: 'Modern luxury apartment with panoramic city views.',
         icon: <IoHome className="text-sm text-[#7B4F3A]" />,
     },
-    // ... (other properties remain the same)
+    // ... other properties
 ];
-
 
 interface MapDrawerPageProps {
     properties?: Property[];
@@ -51,8 +52,6 @@ export default function MapDrawerPage({ properties: propProperties = [] }: MapDr
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-    const [showListView, setShowListView] = useState<boolean>(true);
-    const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
     const router = useRouter();
 
     // Use provided properties or fall back to sample data
@@ -94,23 +93,24 @@ export default function MapDrawerPage({ properties: propProperties = [] }: MapDr
     // Ensure default values if center is undefined
     const mapCenter = center || [9.0579, 7.4951] as LatLngTuple;
     const mapRadius = radius || 1; // Default radius if not calculated
+
     return (
-        <div className="relative w-full h-screen bg-[#F8F7F2] overflow-hidden">
-            {/* Refined Header */}
+        <div className="relative w-full h-screen bg-[#F8F7F2] flex flex-col">
+            {/* Responsive Header */}
             <motion.div
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="absolute top-0 left-0 right-0 z-[1000] bg-white shadow-subtle"
+                className="z-[1000] bg-white shadow-subtle"
             >
-                <div className="h-16 flex items-center justify-between px-6 md:px-12">
-                    {/* Search with Enhanced Interactions */}
+                <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+                    {/* Search Input */}
                     <motion.form
                         onSubmit={(e) => {
                             e.preventDefault();
                             console.log('Searching:', searchQuery);
                         }}
-                        className="flex-1 max-w-md mx-4"
+                        className="w-full sm:w-80 flex-shrink-0"
                         initial={{ scale: 0.9 }}
                         animate={{ scale: 1 }}
                         transition={{ type: "spring", stiffness: 300 }}
@@ -124,7 +124,7 @@ export default function MapDrawerPage({ properties: propProperties = [] }: MapDr
                             border rounded-full flex items-center transition-all duration-300
                         `}>
                             <div className="flex items-center pl-3 text-[#898989]">
-                                <Search size={16} />
+                                <LucideSearch size={16} />
                             </div>
                             <input
                                 className="w-full px-3 py-2 text-sm bg-transparent focus:outline-none 
@@ -156,164 +156,56 @@ export default function MapDrawerPage({ properties: propProperties = [] }: MapDr
                         </div>
                     </motion.form>
 
-                    {/* View Toggle and Filter */}
-                    <div className="flex items-center space-x-2">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => setIsFilterOpen(!isFilterOpen)}
-                            className="h-10 w-10 rounded-full hover:bg-[#F0F0F0]"
-                        >
-                            <Filter size={20} className="text-[#7B4F3A]" />
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => setShowListView(!showListView)}
-                            className="h-10 w-10 rounded-full hover:bg-[#F0F0F0]"
-                        >
-                            {showListView ?
-                                <MapPin size={20} className="text-[#7B4F3A]" /> :
-                                <List size={20} className="text-[#7B4F3A]" />
-                            }
-                        </Button>
+                    {/* Category and Filter Controls */}
+                    <div className="flex items-center space-x-4">
+                        <CategoryList />
+                        <FilterButton />
                     </div>
                 </div>
             </motion.div>
 
-            {/* Main Content Area */}
-            <div className="w-full h-[calc(100vh-64px)] pt-16 flex">
-                {/* Refined Property List */}
-                {showListView && (
-                    <motion.div
-                        initial={{ x: -100, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-80 h-full bg-white shadow-md overflow-y-auto"
-                    >
-                        <div className="p-4 border-b border-[#E3E2D9]">
-                            <h2 className="font-serif font-bold text-xl text-[#3E3E3E]">
-                                Available Properties
-                            </h2>
-                            <p className="text-sm text-[#6E6E6E] mt-1">
-                                {displayProperties.length} properties found
-                            </p>
-                        </div>
-
-                        <div className="divide-y divide-[#E3E2D9]">
-                            {displayProperties.map(property => (
-                                <motion.div
-                                    key={property.id}
-                                    whileHover={{ scale: 1.02 }}
-                                    className="p-4 hover:bg-[#F8F7F2] cursor-pointer transition-colors group"
-                                    onClick={() => {
-                                        setSelectedProperty(property);
-                                        setIsDrawerOpen(true);
-                                    }}
-                                >
-                                    <div className="relative aspect-video overflow-hidden rounded-lg mb-2">
-                                        <img
-                                            src={property.image}
-                                            alt={property.name}
-                                            className="w-full h-full object-cover transition-transform group-hover:scale-110"
-                                        />
-                                        <Button
-                                            variant="ghost"
-                                            size="icon"
-                                            className="absolute top-2 right-2 bg-white/70 rounded-full hover:bg-white"
-                                        >
-                                            <Heart size={16} className="text-[#7B4F3A]" />
-                                        </Button>
-                                    </div>
-                                    <h3 className="font-serif font-bold text-[#3E3E3E]">
-                                        {property.name}
-                                    </h3>
-                                    <div className="flex justify-between items-center mt-1">
-                                        <p className="font-medium text-[#7B4F3A]">
-                                            {property.price}
-                                        </p>
-                                        <div className="flex items-center gap-1 text-sm">
-                                            <span>{property.rating}</span>
-                                            <span className="text-yellow-400">★</span>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-
-                {/* Map Container */}
-                <div className={`
-                    ${showListView ? 'w-[calc(100%-20rem)]' : 'w-full'} 
-                    h-full overflow-hidden
-                `}>
-                    <MapComponents
-                        center={mapCenter}
-                        properties={displayProperties}
-                        markerPositions={markerPositions}
-                        center_radius={mapCenter}
-                        radius={mapRadius}
-                        isTrayOpen={isDrawerOpen}
-                        setSelectedProperty={setSelectedProperty}
-                    />
-                </div>
+            {/* Full-Screen Map */}
+            <div className="flex-grow relative w-full h-[calc(100vh-4rem)]">
+                <MapComponents
+                    center={mapCenter}
+                    properties={displayProperties}
+                    markerPositions={markerPositions}
+                    center_radius={mapCenter}
+                    radius={mapRadius}
+                    isTrayOpen={isDrawerOpen}
+                    setSelectedProperty={setSelectedProperty}
+                />
             </div>
 
-            {/* Property Detail Drawer */}
-            <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
-                <DrawerContent className="max-h-[85vh] rounded-t-2xl">
-                    <DrawerHeader className="bg-[#F3F2EC] border-b border-[#E3E2D9]">
-                        <DrawerTitle className="text-[#3E3E3E] font-serif flex justify-between items-center">
-                            <span>{selectedProperty?.name}</span>
-                        </DrawerTitle>
-                        <DrawerDescription className="text-[#7B4F3A] font-semibold">
-                            {selectedProperty?.price}
-                        </DrawerDescription>
-                    </DrawerHeader>
-
+            {/* Property Drawer */}
+            <Drawer open={!!selectedProperty} onOpenChange={() => setSelectedProperty(null)}>
+                <DrawerContent className="h-[90vh] px-6 py-4 rounded-t-2xl">
                     {selectedProperty && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="p-4 bg-white"
-                        >
-                            <div className="relative aspect-video overflow-hidden rounded-lg mb-4">
-                                <img
-                                    src={selectedProperty.image}
-                                    alt={selectedProperty.name}
-                                    className="w-full h-full object-cover"
-                                />
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="absolute top-2 right-2 bg-white/70 rounded-full hover:bg-white"
-                                >
-                                    <Heart size={20} className="text-[#7B4F3A]" />
-                                </Button>
-                            </div>
+                        <>
+                            <DrawerHeader>
+                                <DrawerTitle>{selectedProperty.name}</DrawerTitle>
+                                <DrawerDescription>{selectedProperty.description}</DrawerDescription>
+                            </DrawerHeader>
 
-                            <div className="flex justify-between items-center mb-4">
-                                <h3 className="font-serif font-bold text-lg text-[#3E3E3E]">
-                                    {selectedProperty.name}
-                                </h3>
-                                <div className="flex items-center gap-1 text-sm font-medium">
-                                    <span>{selectedProperty.rating}</span>
-                                    <span className="text-yellow-400">★</span>
+                            {/* Detailed Property Information */}
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <img
+                                        src={selectedProperty.image}
+                                        alt={selectedProperty.name}
+                                        className="w-full h-64 object-cover rounded-lg"
+                                    />
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-bold text-[#7B4F3A]">{selectedProperty.price}</div>
+                                    <div className="flex items-center mt-2">
+                                        <Heart className="mr-2 text-red-500" />
+                                        <span>{selectedProperty.rating} / 5</span>
+                                    </div>
+                                    {/* Add more property details as needed */}
                                 </div>
                             </div>
-
-                            <p className="text-[#6E6E6E] mb-6">
-                                {selectedProperty.description}
-                            </p>
-
-                            <Button
-                                className="w-full bg-[#7B4F3A] hover:bg-[#694332] text-white font-medium"
-                            >
-                                Book Viewing
-                            </Button>
-                        </motion.div>
+                        </>
                     )}
                 </DrawerContent>
             </Drawer>
