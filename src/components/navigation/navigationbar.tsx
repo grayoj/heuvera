@@ -34,6 +34,7 @@ export default function NavigationLayout({
               <div key={index}>
                 <button
                   onClick={() => setSelected(content.title)}
+                  
                   className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
                     selected === content.title
                       ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'

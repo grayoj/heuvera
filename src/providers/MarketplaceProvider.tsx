@@ -21,6 +21,7 @@ import React from 'react';
 import { IoCompass, IoCompassOutline } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 import SearchBar from '../components/search/SearchBar';
+import { useRouter } from 'next/navigation';
 
 interface MarketplaceContextType {
   selected: string;
@@ -45,12 +46,13 @@ export function MarketplaceProvider({
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const navRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const router = useRouter();
 
   const NavigationContent = useMemo(
     () => [
-      { title: 'Explore', link: '/marketplace/explore', icon: <GoHomeFill /> },
+      { title: 'Explore', link: '/explore', icon: <GoHomeFill /> },
       { title: 'Favorites', link: '#favorites', icon: <LucideHeart /> },
-      { title: 'Discover', link: '#discover', icon: <LucideCompass /> },
+      { title: 'Discover', link: '/discover', icon: <LucideCompass /> },
       { title: 'Profile', link: '#profile', icon: null },
     ],
     [],
@@ -119,39 +121,49 @@ export function MarketplaceProvider({
     <MarketplaceContext.Provider value={{ selected, setSelected, openSearchModal }}>
       <div className="w-full h-full flex flex-col">
         <div className="px-4 md:px-8 lg:px-12 h-20 w-full flex items-center justify-between">
-          <div className="flex-shrink-0">
-            <HeuveraLogo width={35} height={35} />
-          </div>
-
+          {isMobile ?
+            <div className="w-full flex items-center justify-center">
+              <HeuveraLogo width={35} height={35} />
+            </div>
+            :
+            <div className="flex-shrink-0">
+              <HeuveraLogo width={35} height={35} />
+            </div>
+          }
           {/* Desktop Navigation Items */}
           {!isMobile && (
             <div className="flex items-center space-x-8">
               {NavigationContent.slice(0, 3).map((content, index) => (
                 <button
                   key={index}
-                  onClick={() => setSelected(content.title)}
+                  onClick={() => {
+                    setSelected(content.title);
+                    router.push(content.link);
+                  }}
                   className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
-                      ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'
-                      : 'text-[#323232] hover:text-[#7B4F3A]'
+                    ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'
+                    : 'text-[#323232] hover:text-[#7B4F3A]'
                     }`}
                 >
                   {content.title}
                 </button>
+
               ))}
             </div>
           )}
-
-          <div className="flex-shrink-0 flex items-center">
-            <div className="size-10 md:size-8">
-              <Avatar className="rounded-full overflow-hidden block">
-                <AvatarImage
-                  src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
-                  alt="avatar"
-                />
-                <AvatarFallback>FG</AvatarFallback>
-              </Avatar>
+          {!isMobile && (
+            <div className="flex-shrink-0 flex items-center">
+              <div className="size-10 md:size-8">
+                <Avatar className="rounded-full overflow-hidden block">
+                  <AvatarImage
+                    src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
+                    alt="avatar"
+                  />
+                  <AvatarFallback>FG</AvatarFallback>
+                </Avatar>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Main Content */}
@@ -170,9 +182,13 @@ export function MarketplaceProvider({
                     ref={(el) => {
                       navRefs.current[index] = el;
                     }}
-                    onClick={() => setSelected(content.title)}
+                    onClick={() => {
+                      setSelected(content.title);
+                      router.push(content.link);
+                    }}
                     className="flex flex-col items-center justify-center min-w-[60px] h-full transition-all duration-300"
                   >
+
                     {content.title === "Profile" ? (
                       <span
                         className={`text-2xl ${isSelected ? "text-[#7B4F3A] border-2 border-[#7B4F3A] bg-[#7B4F3A] rounded-full" : "text-[#323232]"}`}

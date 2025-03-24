@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { LucideSearch, LucideX, LucideMapPin, LucideCalendar, LucideUsers, LucideTrash } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LeaseRentStays from '../categories/LeaseRentStays';
 
 interface SearchBarProps {
     isMobile: boolean;
@@ -70,17 +71,27 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
     // Mobile search button
     if (isMobile) {
         return (
-            <div className="flex-1 px-4">
+            <div className="flex-1">
 
-                <div className='w-full'></div>
-                <button
-                    onClick={openSearchModal}
-                    className="flex items-center bg-[#F8F7F2] border border-[#C4C3B8] rounded-full px-4 py-3 w-full shadow-sm"
-                >
-                    <LucideSearch className="text-[#7B4F3A] text-lg mr-2" />
-                    <span className="text-[#323232] font-serif text-md">Search properties...</span>
-                </button>
-
+                <div onClick={openSearchModal} className='w-full rounded-full h-16 bg-[#FBFAF6] pl-4 pr-2 shadow-sm flex flex-row items-center justify-between'>
+                    <div className='flex flex-col justify-center h-full'>
+                        <h1 className='font-serif font-medium text-sm text-[#7B4F3A]'>Where</h1>
+                        <h1 className='font-serif text-sm text-[#323232]'>Anywhere</h1>
+                    </div>
+                    <div className="h-8 w-px bg-[#DDDDDD]"></div>
+                    <div className='flex flex-col justify-center h-full'>
+                        <h1 className='font-serif font-medium text-sm text-[#7B4F3A]'>When</h1>
+                        <h1 className='font-serif text-sm text-[#323232]'>Any week</h1>
+                    </div>
+                    <div className="h-8 w-px bg-[#DDDDDD]"></div>
+                    <div className='flex flex-col justify-center h-full'>
+                        <h1 className='font-serif font-medium text-sm text-[#7B4F3A]'>Who</h1>
+                        <h1 className='font-serif text-sm text-[#323232]'>Add guests</h1>
+                    </div>
+                    <div className='bg-[#7B4F3A] size-13 rounded-full flex items-center justify-center'>
+                        <LucideSearch className='text-[#FBFAF6] text-2xl' />
+                    </div>
+                </div>
                 {/* Search Modal - Will only show on mobile */}
                 <AnimatePresence>
                     {isSearchModalOpen && renderSearchModal()}
@@ -93,12 +104,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
     return (
         <motion.div
             ref={searchContainerRef}
-            className="w-full flex items-center justify-center pt-4 relative"
+            className="w-full flex flex-col items-center justify-center pt-4 relative"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.2 }}
         >
-            <div className="w-full max-w-3xl bg-white rounded-full shadow-md overflow-hidden">
+            <div className='bg-[#FBFAF6] p-1 rounded-t-lg'>
+                <LeaseRentStays />
+            </div>
+            <div className="w-full max-w-3xl bg-[#FBFAF6] rounded-full shadow-md overflow-hidden">
                 <div className="flex items-center">
                     {/* Where section in navbar - becomes input when active */}
                     <div
@@ -194,21 +208,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.2 }}
                                 >
-                                    {/* {activeFilter === 'location' && (
-                                        <div className="relative mb-4">
-                                            <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                                                <LucideSearch className="text-[#7B4F3A]" />
-                                            </div>
-                                            <input
-                                                type="text"
-                                                value={searchText}
-                                                onChange={(e) => setSearchText(e.target.value)}
-                                                placeholder="Where are you going?"
-                                                className="w-full pl-12 pr-4 py-3 bg-white border border-[#C4C3B8] rounded-full outline-none text-[#323232] font-serif"
-                                                autoFocus
-                                            />
-                                        </div>
-                                    )} */}
                                     <h3 className="font-serif font-medium text-lg text-[#323232]">Popular destinations</h3>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         {['Malibu, California', 'Miami, Florida', 'Aspen, Colorado', 'New York, New York', 'Las Vegas, Nevada'].map((location, idx) => (
@@ -271,7 +270,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.2 }}
                                 >
-                                    <h3 className="font-serif font-medium text-lg text-[#323232]">Who's coming?</h3>
+                                    <h3 className="font-serif font-medium text-lg text-[#323232]">Who will be there?</h3>
                                     <div className="space-y-3">
                                         {['Adults', 'Children', 'Infants', 'Pets'].map((guestType, idx) => (
                                             <motion.div
@@ -338,7 +337,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
     function renderSearchModal() {
         return (
             <motion.div
-                className="fixed inset-0 bg-[#E3E2D9] z-[2000] flex flex-col px-4"
+                className="fixed inset-0 z-[2000] bg-[#E3E2D9] flex flex-col px-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -346,7 +345,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             >
                 {/* Header */}
                 <motion.div
-                    className="flex items-center justify-between p-4 px-2 border-b border-[#E3E2D9]"
+                    className="flex items-center justify-between p-4 px-2"
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.1 }}
@@ -368,7 +367,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
                 >
-                    <div className="px-4 py-2 flex gap-2 overflow-x-auto no-scrollbar rounded-t-xl bg-[#F8F7F2]">
+                    <div className="px-2 pt-2 flex gap-2 overflow-x-auto no-scrollbar rounded-t-xl bg-[#F8F7F2]">
                         {[
                             { id: 'location', label: 'Where', icon: <LucideMapPin size={16} /> },
                             { id: 'dates', label: 'When', icon: <LucideCalendar size={16} /> },
@@ -377,7 +376,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                             <motion.button
                                 key={filter.id}
                                 onClick={() => toggleFilter(filter.id)}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-xl border ${activeFilter === filter.id
+                                className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${activeFilter === filter.id
                                     ? 'border-[#7B4F3A] bg-[#F8F7F2] text-[#7B4F3A]'
                                     : 'border-[#E3E2D9] text-[#323232]'
                                     }`}
@@ -392,7 +391,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
 
                 {/* Main search content */}
                 <motion.div
-                    className="p-4 shadow-md bg-[#F8F7F2] rounded-2xl flex-1 overflow-hidden flex flex-col mb-10"
+                    className="py-4 px-2 shadow-md bg-[#F8F7F2] rounded-xl flex-1 overflow-hidden flex flex-col mb-10"
                     initial={{ y: -30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.4, delay: 0.3 }}
@@ -411,7 +410,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                     </div>
 
                     {/* Content area that changes based on filter selection */}
-                    <div className="flex-1 p-4 overflow-y-auto">
+                    <div className="flex-1 py-4 px-2 overflow-y-auto">
                         <AnimatePresence mode="wait">
                             {activeFilter === 'location' && (
                                 <motion.div
@@ -560,7 +559,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
 
                     {/* Footer with search and clear all buttons */}
                     <motion.div
-                        className="p-4 sticky bottom-0 w-full"
+                        className="py-2 px-2 sticky bottom-0 w-full"
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.4, delay: 0.4 }}

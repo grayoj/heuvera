@@ -30,26 +30,22 @@ const Categories = () => {
         </div>
       ) : (
         <div className="w-full flex items-center justify-between gap-2 min-w-0 flex-nowrap">
-          <div className="flex-shrink-0">
+          <div className="">
             <MapButton onClick={ToMap} />
           </div>
 
-          <div className="flex md:flex-[2] lg:flex-[2] xl:flex-[2] 2xl:flex-[1] justify-center min-w-0">
-            <LeaseRentStays />
-          </div>
-
           {/* Divider */}
-          <div className="h-8 border-[#E3E2D9] border-l flex-shrink-0" />
+          <div className="h-8 border-[#E3E2D9] border-l" />
 
           {/* Categories List */}
-          <div className="flex-[5] min-w-0 overflow-hidden">
+          <div className="min-w-0 overflow-hidden">
             <CategoryList />
           </div>
 
           {/* Divider */}
-          <div className="h-8 border-[#E3E2D9] border-l flex-shrink-0" />
+          <div className="h-8 border-[#E3E2D9] border-l" />
 
-          <div className="flex-shrink-0">
+          <div className="">
             <FilterButton />
           </div>
         </div>
