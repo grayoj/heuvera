@@ -4,11 +4,18 @@ import { PropertyData } from '@heuvera/components/data/PropertyData';
 import PropertyCard from '@heuvera/components/cards/PropertyCards/PropertyCard';
 import Categories from '@heuvera/components/categories/Categories';
 import { motion } from 'framer-motion';
+import SearchBar from '../components/search/SearchBar';
+import useIsMobile from '@heuvera/hooks/IsMobile';
 
 export default function Home() {
+  const isMobile = useIsMobile();
+
   return (
     <div className="flex flex-col flex-1 h-full w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 2xl:px-24">
-      <div className="w-full">
+      <div className="w-full gap-5 flex flex-col items-center justify-center">
+        <div className='w-full flex items-center justify-between'>
+          <SearchBar isMobile={isMobile} />
+        </div>
         <Categories />
       </div>
       <motion.div

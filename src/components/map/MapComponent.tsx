@@ -16,6 +16,7 @@ import { GoHomeFill } from 'react-icons/go';
 
 const FitMapToBounds = ({
   positions,
+  isTrayOpen,
 }: {
   positions: LatLngTuple[];
   isTrayOpen: boolean;
@@ -23,14 +24,20 @@ const FitMapToBounds = ({
   const map = useMap();
 
   useEffect(() => {
-    if (positions.length > 1) {
-      const bounds = new L.LatLngBounds(positions);
+    if (positions.length > 0) {
+      const bounds = positions.length > 1 
+        ? new L.LatLngBounds(positions) 
+        : L.latLngBounds([
+            [positions[0][0] - 0.01, positions[0][1] - 0.01],
+            [positions[0][0] + 0.01, positions[0][1] + 0.01]
+          ]);
       map.fitBounds(bounds, { padding: [80, 50] });
     }
-  }, [map, positions]);
+  }, [map, positions, isTrayOpen]);
 
   return null;
 };
+
 const MapRecenter = ({ center }: { center: LatLngTuple }) => {
   const map = useMap();
 
@@ -73,11 +80,10 @@ const MapComponents = ({
   setSelectedProperty,
 }: MapComponentsProps) => {
   return (
-    <div className="flex justify-center items-center w-full h-[calc(100vh-15rem)]">
-      {' '}
+    <div className="flex justify-center items-center w-full h-full">
       <MapContainer
         center={center}
-        zoom={12}
+        zoom={13}
         className="w-full h-full z-0 rounded-lg shadow-lg"
       >
         <MapRecenter center={center} />
@@ -104,10 +110,14 @@ const MapComponents = ({
               mouseout: (e) => e.target.closePopup(),
             }}
             icon={divIcon({
-              className: 'custom-marker',
+              className: '',
               html: ReactDOMServer.renderToString(
-                <GoHomeFill size={24} color="#7B4F3A" />,
+                <div className="bg-white p-1 rounded-full shadow-md flex items-center justify-center" style={{ width: '32px', height: '32px' }}>
+                  <GoHomeFill size={20} color="#7B4F3A" />
+                </div>
               ),
+              iconSize: [32, 32],
+              iconAnchor: [16, 16],
             })}
           >
             <Popup keepInView={true} closeButton={false} className="w-52">
