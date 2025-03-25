@@ -24,10 +24,10 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 let DefaultIcon = L.icon({
-    iconUrl: icon.src,
-    shadowUrl: iconShadow.src,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41]
+  iconUrl: icon.src,
+  shadowUrl: iconShadow.src,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
@@ -43,12 +43,13 @@ const FitMapToBounds = ({
 
   useEffect(() => {
     if (positions.length > 0) {
-      const bounds = positions.length > 1 
-        ? new L.LatLngBounds(positions) 
-        : L.latLngBounds([
-            [positions[0][0] - 0.01, positions[0][1] - 0.01],
-            [positions[0][0] + 0.01, positions[0][1] + 0.01]
-          ]);
+      const bounds =
+        positions.length > 1
+          ? new L.LatLngBounds(positions)
+          : L.latLngBounds([
+              [positions[0][0] - 0.01, positions[0][1] - 0.01],
+              [positions[0][0] + 0.01, positions[0][1] + 0.01],
+            ]);
       map.fitBounds(bounds, { padding: [50, 50] });
     }
   }, [map, positions, isTrayOpen]);
@@ -105,16 +106,16 @@ const MapComponents = ({
         zoom={13}
         scrollWheelZoom={true}
         className="w-full h-full z-0 rounded-lg shadow-lg"
-        style={{ 
-          height: '100%', 
-          width: '100%', 
-          position: 'absolute', 
-          top: 0, 
-          left: 0 
+        style={{
+          height: '100%',
+          width: '100%',
+          position: 'absolute',
+          top: 0,
+          left: 0,
         }}
       >
         <MapRecenter center={center} />
-        <TileLayer 
+        <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           className="bg-[#F8F7F2]" // Beige background for the map
@@ -141,23 +142,26 @@ const MapComponents = ({
             icon={divIcon({
               className: '',
               html: ReactDOMServer.renderToString(
-                <div className="bg-white p-1 rounded-full shadow-md flex items-center justify-center" style={{ width: '32px', height: '32px' }}>
+                <div
+                  className="bg-white p-1 rounded-full shadow-md flex items-center justify-center"
+                  style={{ width: '32px', height: '32px' }}
+                >
                   <GoHomeFill size={20} color="#7B4F3A" />
-                </div>
+                </div>,
               ),
               iconSize: [32, 32],
               iconAnchor: [16, 16],
             })}
           >
-            <Popup 
-              keepInView={true} 
-              closeButton={false} 
+            <Popup
+              keepInView={true}
+              closeButton={false}
               className="w-48 p-0 m-0"
               eventHandlers={{
                 click: () => {
                   // Open property details in a new tab
                   window.open(`/property/${property.id}`, '_blank');
-                }
+                },
               }}
             >
               <div className="py-1 flex flex-col gap-1 font-serif">

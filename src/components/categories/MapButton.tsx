@@ -9,16 +9,15 @@ import {
   DrawerContent,
   DrawerClose,
   DrawerTrigger,
-  DrawerTitle
-} from "../../components/ui/drawer";
+  DrawerTitle,
+} from '../../components/ui/drawer';
 import { Button } from '../ui/button';
 import dynamic from 'next/dynamic';
 
 // Dynamically import MapDrawerPage to avoid SSR issues
-const MapDrawerPage = dynamic(
-  () => import('../map/MapDrawerPage'),
-  { ssr: false }
-);
+const MapDrawerPage = dynamic(() => import('../map/MapDrawerPage'), {
+  ssr: false,
+});
 
 interface MapButtonProps {
   onClick?: () => void;
@@ -58,7 +57,9 @@ const MapButton = ({ className }: MapButtonProps) => {
         <DrawerClose className="absolute top-4 right-4 z-[1001]">
           <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
             <span className="sr-only">Close</span>
-            <span aria-hidden className="text-[#898989]">×</span>
+            <span aria-hidden className="text-[#898989]">
+              ×
+            </span>
           </Button>
         </DrawerClose>
       </DrawerContent>

@@ -9,10 +9,7 @@ import {
   useRef,
   useEffect,
 } from 'react';
-import {
-  LucideHeart,
-  LucideCompass,
-} from 'lucide-react';
+import { LucideHeart, LucideCompass } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
 import { HeuveraLogo } from '@heuvera/components/logo';
 import useIsMobile from '@heuvera/hooks/IsMobile';
@@ -51,7 +48,7 @@ export function MarketplaceProvider({
   const NavigationContent = useMemo(
     () => [
       { title: 'Explore', link: '/explore', icon: <GoHomeFill /> },
-      { title: 'Favorites', link: '#favorites', icon: <LucideHeart /> },
+      { title: 'Favorites', link: '/favorites', icon: <LucideHeart /> },
       { title: 'Discover', link: '/discover', icon: <LucideCompass /> },
       { title: 'Profile', link: '#profile', icon: null },
     ],
@@ -74,20 +71,24 @@ export function MarketplaceProvider({
       outline: <IoCompassOutline className="text-2xl text-[#323232]" />,
     },
     Profile: {
-      filled: <Avatar className="rounded-full overflow-hidden block border-2 border-[#7B4F3A] ring-2 ring-[#7B4F3A]">
-        <AvatarImage
-          src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
-          alt="avatar"
-        />
-        <AvatarFallback>FG</AvatarFallback>
-      </Avatar>,
-      outline: <Avatar className="rounded-full overflow-hidden block">
-        <AvatarImage
-          src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
-          alt="avatar"
-        />
-        <AvatarFallback>FG</AvatarFallback>
-      </Avatar>,
+      filled: (
+        <Avatar className="rounded-full overflow-hidden block border-2 border-[#7B4F3A] ring-2 ring-[#7B4F3A]">
+          <AvatarImage
+            src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
+            alt="avatar"
+          />
+          <AvatarFallback>FG</AvatarFallback>
+        </Avatar>
+      ),
+      outline: (
+        <Avatar className="rounded-full overflow-hidden block">
+          <AvatarImage
+            src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
+            alt="avatar"
+          />
+          <AvatarFallback>FG</AvatarFallback>
+        </Avatar>
+      ),
     },
   };
 
@@ -118,18 +119,20 @@ export function MarketplaceProvider({
   };
 
   return (
-    <MarketplaceContext.Provider value={{ selected, setSelected, openSearchModal }}>
+    <MarketplaceContext.Provider
+      value={{ selected, setSelected, openSearchModal }}
+    >
       <div className="w-full h-full flex flex-col">
         <div className="px-4 md:px-8 lg:px-12 h-20 w-full flex items-center justify-between">
-          {isMobile ?
+          {isMobile ? (
             <div className="w-full flex items-center justify-center">
               <HeuveraLogo width={35} height={35} />
             </div>
-            :
+          ) : (
             <div className="flex-shrink-0">
               <HeuveraLogo width={35} height={35} />
             </div>
-          }
+          )}
           {/* Desktop Navigation Items */}
           {!isMobile && (
             <div className="flex items-center space-x-8">
@@ -140,14 +143,14 @@ export function MarketplaceProvider({
                     setSelected(content.title);
                     router.push(content.link);
                   }}
-                  className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
-                    ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'
-                    : 'text-[#323232] hover:text-[#7B4F3A]'
-                    }`}
+                  className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
+                    selected === content.title
+                      ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'
+                      : 'text-[#323232] hover:text-[#7B4F3A]'
+                  }`}
                 >
                   {content.title}
                 </button>
-
               ))}
             </div>
           )}
@@ -188,10 +191,9 @@ export function MarketplaceProvider({
                     }}
                     className="flex flex-col items-center justify-center min-w-[60px] h-full transition-all duration-300"
                   >
-
-                    {content.title === "Profile" ? (
+                    {content.title === 'Profile' ? (
                       <span
-                        className={`text-2xl ${isSelected ? "text-[#7B4F3A] border-2 border-[#7B4F3A] bg-[#7B4F3A] rounded-full" : "text-[#323232]"}`}
+                        className={`text-2xl ${isSelected ? 'text-[#7B4F3A] border-2 border-[#7B4F3A] bg-[#7B4F3A] rounded-full' : 'text-[#323232]'}`}
                       >
                         <div className="size-6">
                           <Avatar className="rounded-full overflow-hidden block">
@@ -205,7 +207,7 @@ export function MarketplaceProvider({
                       </span>
                     ) : (
                       <span
-                        className={`text-2xl ${isSelected ? "text-[#7B4F3A]" : "text-[#323232]"}`}
+                        className={`text-2xl ${isSelected ? 'text-[#7B4F3A]' : 'text-[#323232]'}`}
                       >
                         {isSelected
                           ? iconMapping[content.title]?.filled
@@ -214,7 +216,7 @@ export function MarketplaceProvider({
                     )}
 
                     <span
-                      className={`text-xs font-medium ${isSelected ? "text-[#7B4F3A]" : "text-[#323232]"}`}
+                      className={`text-xs font-medium ${isSelected ? 'text-[#7B4F3A]' : 'text-[#323232]'}`}
                     >
                       {content.title}
                     </span>

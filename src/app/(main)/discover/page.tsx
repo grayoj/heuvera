@@ -1,5 +1,3 @@
 export default function Discover() {
-    return (
-        <></>
-    )
+  return <></>;
 }
