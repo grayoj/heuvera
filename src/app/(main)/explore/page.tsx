@@ -45,8 +45,10 @@ export default function Explore() {
   // Filter properties based on selected category
   useEffect(() => {
     if (selectedCategory) {
-      const filtered = PropertyData.filter(property => 
-        property.propertyCategory.toLowerCase() === selectedCategory.toLowerCase()
+      const filtered = PropertyData.filter(
+        (property) =>
+          property.propertyCategory.toLowerCase() ===
+          selectedCategory.toLowerCase(),
       );
       setFilteredProperties(filtered);
     } else {
@@ -60,11 +62,11 @@ export default function Explore() {
         <div className="w-full flex items-center justify-between">
           <SearchBar isMobile={isMobile} />
         </div>
-        <Categories 
+        <Categories
           onCategorySelect={(category) => setSelectedCategory(category)}
         />
       </div>
-      
+
       {loading ? (
         <SkeletalPreloader />
       ) : (
@@ -95,7 +97,7 @@ export default function Explore() {
           ))}
         </motion.div>
       )}
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }

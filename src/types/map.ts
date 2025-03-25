@@ -12,6 +12,7 @@ export interface Property {
   icon: ReactNode;
   [key: string]: any;
   location?: string;
+  propertyType: 'apartment' | 'house' | 'office' | 'land';
 }
 
 export interface MapComponentsProps {

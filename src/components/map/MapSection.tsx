@@ -16,6 +16,7 @@ import {
 } from '@heuvera/types/map';
 import PropertyDetailTray from '../property/PropertyDetailTray';
 import { getCenterAndRadius } from '@heuvera/utils/map';
+import { FaHome } from 'react-icons/fa';
 
 const MapComponents = dynamic<MapComponentsProps>(
   () => import('./MapComponent'),
@@ -30,20 +31,22 @@ const properties: Property[] = [
     rating: 4.8,
     position: [9.0579, 7.4951] as LatLngTuple,
     image:
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format',
     description: 'Modern luxury apartment with panoramic city views.',
     icon: <IoHome className="text-sm text-[#7B4F3A]" />,
+    propertyType: 'apartment',
   },
   {
     id: 2,
-    name: 'Modern Duplex',
-    price: '$2,500/mo',
-    rating: 4.6,
-    position: [9.065, 7.497] as LatLngTuple,
+    name: 'Family House',
+    price: '$950/mo',
+    rating: 4.5,
+    position: [9.06, 7.49] as LatLngTuple,
     image:
-      'https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    description: 'Spacious modern duplex in a prime location.',
-    icon: <IoHome className="text-sm text-[#7B4F3A]" />,
+      'https://images.unsplash.com/photo-1579656592043-6a47e332b902?q=80&w=1974&auto=format',
+    description: 'Cozy family home with a large backyard.',
+    icon: <FaHome className="text-sm text-[#7B4F3A]" />,
+    propertyType: 'house',
   },
 ];
 

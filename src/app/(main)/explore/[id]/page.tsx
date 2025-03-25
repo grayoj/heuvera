@@ -17,7 +17,6 @@ import PropertyDetailsSkeletalPreloader from '@heuvera/components/skeletalpreloa
 const SkeletalPreloader = () => {
   return (
     <div className="w-full flex flex-col pb-10 gap-10 px-4 md:px-20 lg:px-20 xl:px-20 2xl:px-20">
-
       {/* Main Content Skeleton */}
       <div className="flex flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row justify-between gap-10 h-full">
         {/* Images Section */}
@@ -25,7 +24,10 @@ const SkeletalPreloader = () => {
           <div className="h-[400px] bg-gray-200 rounded-lg"></div>
           <div className="flex gap-4">
             {[1, 2].map((_, index) => (
-              <div key={index} className="h-52 w-12/12 md:w-7/12 lg:w-7/12 xl:w-7/12 2xl:w-7/12 bg-gray-200 rounded-lg"></div>
+              <div
+                key={index}
+                className="h-52 w-12/12 md:w-7/12 lg:w-7/12 xl:w-7/12 2xl:w-7/12 bg-gray-200 rounded-lg"
+              ></div>
             ))}
           </div>
           <div className="h-[400px] bg-gray-200 rounded-lg"></div>
@@ -73,7 +75,7 @@ export default function ExploreViewPage() {
   }, []);
 
   if (loading) {
-    return <PropertyDetailsSkeletalPreloader/>
+    return <PropertyDetailsSkeletalPreloader />;
   }
 
   return (
