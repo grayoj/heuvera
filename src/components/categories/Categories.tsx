@@ -7,7 +7,11 @@ import LeaseRentStays from './LeaseRentStays';
 import CategoryList from './CategoryList';
 import useIsMobile from '@heuvera/hooks/IsMobile';
 
-const Categories = () => {
+interface CategoriesProps {
+  onCategorySelect: (category: string | null) => void;
+}
+
+const Categories: React.FC<CategoriesProps> = ({ onCategorySelect }) => {
   const router = useRouter();
   const isMobile = useIsMobile();
 
@@ -26,7 +30,7 @@ const Categories = () => {
             <LeaseRentStays />
             <FilterButton />
           </div>
-          <CategoryList />
+          <CategoryList onCategorySelect={onCategorySelect} />
         </div>
       ) : (
         <div className="w-full flex items-center justify-between gap-2 min-w-0 flex-nowrap">
@@ -39,7 +43,7 @@ const Categories = () => {
 
           {/* Categories List */}
           <div className="min-w-0 overflow-hidden">
-            <CategoryList />
+            <CategoryList onCategorySelect={onCategorySelect} />
           </div>
 
           {/* Divider */}

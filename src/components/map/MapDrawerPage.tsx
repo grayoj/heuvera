@@ -29,12 +29,13 @@ import { getCenterAndRadius } from '@heuvera/utils/map';
 import { Property, MapComponentsProps } from '@heuvera/types/map';
 import CategoryList from '../categories/CategoryList';
 import FilterButton from '../categories/FilterButton';
+import { FaHome } from 'react-icons/fa';
+import useIsMobile from '@heuvera/hooks/IsMobile';
 
-// Dynamically import the MapComponent to avoid SSR issues with Leaflet
-const MapComponents = dynamic<MapComponentsProps>(
-  () => import('./MapComponent'),
-  { ssr: false },
-);
+const MapComponents = dynamic(() => import('./MapComponent'), {
+  loading: () => null,
+  ssr: false,
+}) as React.ComponentType<MapComponentsProps>;
 
 // Sample properties data (use your actual data source)
 const properties: Property[] = [
@@ -45,11 +46,23 @@ const properties: Property[] = [
     rating: 4.8,
     position: [9.0579, 7.4951] as LatLngTuple,
     image:
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format',
     description: 'Modern luxury apartment with panoramic city views.',
     icon: <IoHome className="text-sm text-[#7B4F3A]" />,
+    propertyType: 'apartment',
   },
-  // ... other properties
+  {
+    id: 2,
+    name: 'Family House',
+    price: '$950/mo',
+    rating: 4.5,
+    position: [9.06, 7.49] as LatLngTuple,
+    image:
+      'https://images.unsplash.com/photo-1579656592043-6a47e332b902?q=80&w=1974&auto=format',
+    description: 'Cozy family home with a large backyard.',
+    icon: <FaHome className="text-sm text-[#7B4F3A]" />,
+    propertyType: 'house',
+  },
 ];
 
 interface MapDrawerPageProps {
@@ -66,6 +79,7 @@ export default function MapDrawerPage({
   const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const router = useRouter();
+  const isMobile = useIsMobile();
 
   // Use provided properties or fall back to sample data
   const displayProperties =
@@ -115,68 +129,73 @@ export default function MapDrawerPage({
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="z-[1000] bg-white shadow-subtle"
+        className="z-[1000] bg-white shadow-subtle w-full"
       >
-        <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+        <div className="container mx-auto w-full py-4 flex flex-col items-center justify-between space-x-4 px-4">
           {/* Search Input */}
-          <motion.form
-            onSubmit={(e) => {
-              e.preventDefault();
-              console.log('Searching:', searchQuery);
-            }}
-            className="w-full sm:w-80 flex-shrink-0"
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-          >
-            <div
-              className={`
-                            relative w-full h-10 
-                            ${
-                              isSearchFocused
-                                ? 'bg-white border-[#7B4F3A] shadow-sm'
-                                : 'bg-[#F8F7F2] border-[#E3E2D9]'
-                            } 
-                            border rounded-full flex items-center transition-all duration-300
-                        `}
-            >
-              <div className="flex items-center pl-3 text-[#898989]">
-                <LucideSearch size={16} />
-              </div>
-              <input
-                className="w-full px-3 py-2 text-sm bg-transparent focus:outline-none 
-                                text-[#3E3E3E] placeholder-[#A0A0A0]"
-                placeholder="Search properties, locations..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setIsSearchFocused(false)}
-              />
-              <AnimatePresence>
-                {searchQuery && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.5 }}
-                  >
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-6 w-6 mr-2 text-[#898989] hover:bg-[#F0F0F0]"
-                      onClick={() => setSearchQuery('')}
-                    >
-                      <X size={14} />
-                    </Button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+          <div className="w-full flex items-center justify-between px-4">
+            <div className="flex-grow flex justify-center">
+              <motion.form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  console.log('Searching:', searchQuery);
+                }}
+                className="w-full max-w-80"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                <div
+                  className={`
+                    relative w-full h-10 
+                    ${
+                      isSearchFocused
+                        ? 'bg-white border-[#7B4F3A] shadow-sm'
+                        : 'bg-[#F8F7F2] border-[#E3E2D9]'
+                    } 
+                    border rounded-full flex items-center transition-all duration-300
+                `}
+                >
+                  <div className="flex items-center pl-3 text-[#898989]">
+                    <LucideSearch size={16} />
+                  </div>
+                  <input
+                    className="w-full px-3 py-2 text-sm bg-transparent focus:outline-none 
+                    text-[#3E3E3E] placeholder-[#A0A0A0]"
+                    placeholder="Search properties, locations..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
+                    onBlur={() => setIsSearchFocused(false)}
+                  />
+                  <AnimatePresence>
+                    {searchQuery && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.5 }}
+                      >
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 rounded-full"
+                          onClick={() => setSearchQuery('')}
+                          asChild
+                        >
+                          <div>
+                            <X size={16} />
+                          </div>
+                        </Button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.form>
             </div>
-          </motion.form>
 
-          {/* Category and Filter Controls */}
-          <div className="flex items-center space-x-4">
-            <CategoryList />
-            <FilterButton />
+            <div className="">
+              <FilterButton />
+            </div>
           </div>
         </div>
       </motion.div>
@@ -193,46 +212,6 @@ export default function MapDrawerPage({
           setSelectedProperty={setSelectedProperty}
         />
       </div>
-
-      {/* Property Drawer */}
-      <Drawer
-        open={!!selectedProperty}
-        onOpenChange={() => setSelectedProperty(null)}
-      >
-        <DrawerContent className="h-[90vh] px-6 py-4 rounded-t-2xl">
-          {selectedProperty && (
-            <>
-              <DrawerHeader>
-                <DrawerTitle>{selectedProperty.name}</DrawerTitle>
-                <DrawerDescription>
-                  {selectedProperty.description}
-                </DrawerDescription>
-              </DrawerHeader>
-
-              {/* Detailed Property Information */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <img
-                    src={selectedProperty.image}
-                    alt={selectedProperty.name}
-                    className="w-full h-64 object-cover rounded-lg"
-                  />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-[#7B4F3A]">
-                    {selectedProperty.price}
-                  </div>
-                  <div className="flex items-center mt-2">
-                    <Heart className="mr-2 text-red-500" />
-                    <span>{selectedProperty.rating} / 5</span>
-                  </div>
-                  {/* Add more property details as needed */}
-                </div>
-              </div>
-            </>
-          )}
-        </DrawerContent>
-      </Drawer>
     </div>
   );
 }
