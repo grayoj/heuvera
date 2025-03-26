@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
-import Divider from '../Divider';
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import Divider from "../Divider";
 
 export default function HostInfo() {
   return (

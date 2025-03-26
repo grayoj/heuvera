@@ -1,7 +1,7 @@
-import { getOrCreateUser } from '@heuvera/lib/auth';
-import { prisma } from '@heuvera/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { getOrCreateUser } from "@heuvera/lib/auth";
+import { prisma } from "@heuvera/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 const listingSchema = z.object({
   title: z.string().min(5),
@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
   try {
     const user = await getOrCreateUser(req);
     if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const dbUser = await prisma.user.findUnique({
@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
 
     if (!dbUser?.isHostApproved) {
       return NextResponse.json(
-        { error: 'User is not approved as a host' },
+        { error: "User is not approved as a host" },
         { status: 403 },
       );
     }
@@ -124,9 +124,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ listing }, { status: 201 });
   } catch (error: any) {
-    console.error('Error creating listing:', error);
+    console.error("Error creating listing:", error);
     return NextResponse.json(
-      { error: error.message || 'Internal Server Error' },
+      { error: error.message || "Internal Server Error" },
       { status: 400 },
     );
   }

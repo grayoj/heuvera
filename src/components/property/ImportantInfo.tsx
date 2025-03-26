@@ -1,29 +1,29 @@
-import InfoSection from './InfoSection';
+import InfoSection from "./InfoSection";
 
 export default function ImportantInfo() {
   const sections = [
     {
-      title: 'Property Rules',
+      title: "Property Rules",
       items: [
-        '🍔 Do not bring in external food',
-        '🚬 Smoking is not allowed',
-        '🐾 Pets are not allowed',
+        "🍔 Do not bring in external food",
+        "🚬 Smoking is not allowed",
+        "🐾 Pets are not allowed",
       ],
     },
     {
-      title: 'Property Policy',
+      title: "Property Policy",
       items: [
-        '❌ No cancellations allowed',
-        '👥 No additional guests permitted',
-        '🍷 Drinking is prohibited',
+        "❌ No cancellations allowed",
+        "👥 No additional guests permitted",
+        "🍷 Drinking is prohibited",
       ],
     },
     {
-      title: 'Property Safety',
+      title: "Property Safety",
       items: [
-        '📹 Live 24/7 CCTV camera',
-        '🛡️ Property guards present',
-        '🔥 Smoke detector enabled',
+        "📹 Live 24/7 CCTV camera",
+        "🛡️ Property guards present",
+        "🔥 Smoke detector enabled",
       ],
     },
   ];

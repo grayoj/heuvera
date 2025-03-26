@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { categories } from './categoriesData';
-import CategoryItem from './CategoryItem';
+import { useState } from "react";
+import { categories } from "./categoriesData";
+import CategoryItem from "./CategoryItem";
 
 const CategoryList = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);

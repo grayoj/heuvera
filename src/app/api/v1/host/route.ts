@@ -1,13 +1,13 @@
-import { getOrCreateUser } from '@heuvera/lib/auth';
-import { prisma } from '@heuvera/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { getOrCreateUser } from "@heuvera/lib/auth";
+import { prisma } from "@heuvera/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 const hostSchema = z.object({
   phoneNumber: z.string().min(10).max(15),
   bio: z.string().optional(),
   governmentId: z.string().optional(),
-  idVerificationStatus: z.enum(['PENDING', 'VERIFIED', 'REJECTED']).optional(),
+  idVerificationStatus: z.enum(["PENDING", "VERIFIED", "REJECTED"]).optional(),
   businessName: z.string().optional(),
   businessLogo: z.string().url().optional(),
   businessRegistrationNumber: z.string().optional(),
@@ -80,12 +80,12 @@ export async function PATCH(req: NextRequest) {
   try {
     const user = await getOrCreateUser(req);
     if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     if (!user.isHostApproved) {
       return NextResponse.json(
-        { error: 'User is not approved as a host' },
+        { error: "User is not approved as a host" },
         { status: 403 },
       );
     }
@@ -101,9 +101,9 @@ export async function PATCH(req: NextRequest) {
 
     return NextResponse.json({ host: updatedHost }, { status: 200 });
   } catch (error: any) {
-    console.error('Error updating host:', error);
+    console.error("Error updating host:", error);
     return NextResponse.json(
-      { error: error.message || 'Internal Server Error' },
+      { error: error.message || "Internal Server Error" },
       { status: 400 },
     );
   }

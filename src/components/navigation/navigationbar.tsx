@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
-import { HeuveraLogo } from '../logo';
-import { LucideBell, LucideSearch } from 'lucide-react';
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
+import { useMemo, useState } from "react";
+import { HeuveraLogo } from "../logo";
+import { LucideBell, LucideSearch } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 
 export default function NavigationLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [selected, setSelected] = useState<string>('Explore');
+  const [selected, setSelected] = useState<string>("Explore");
 
   const NavigationContent = useMemo(
     () => [
-      { title: 'Explore', link: '/marketplace/explore' },
-      { title: 'Favorites', link: '#favorites' },
-      { title: 'Discover', link: '#discover' },
-      { title: 'Contact', link: '#contact' },
+      { title: "Explore", link: "/marketplace/explore" },
+      { title: "Favorites", link: "#favorites" },
+      { title: "Discover", link: "#discover" },
+      { title: "Contact", link: "#contact" },
     ],
     [],
   );
@@ -36,8 +36,8 @@ export default function NavigationLayout({
                   onClick={() => setSelected(content.title)}
                   className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
                     selected === content.title
-                      ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'
-                      : 'text-[#323232] hover:text-primary'
+                      ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
+                      : "text-[#323232] hover:text-primary"
                   }`}
                 >
                   {content.title}

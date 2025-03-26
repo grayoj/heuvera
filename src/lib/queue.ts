@@ -1,10 +1,10 @@
-import { Queue, Worker, Job } from 'bullmq';
-import { sendEmail } from './email';
-import { prisma } from './prisma';
+import { Queue, Worker, Job } from "bullmq";
+import { sendEmail } from "./email";
+import { prisma } from "./prisma";
 import {
   getBookingConfirmationEmailTemplate,
   getBookingCancellationEmailTemplate,
-} from './templates';
+} from "./templates";
 
 const redisUrl = process.env.REDIS_URLS!;
 const url = new URL(redisUrl);
@@ -20,13 +20,13 @@ if (password) {
   connection.password = password;
 }
 
-export const queue = new Queue('booking-confirmation', { connection });
-export const cancellationQueue = new Queue('booking-cancellation', {
+export const queue = new Queue("booking-confirmation", { connection });
+export const cancellationQueue = new Queue("booking-cancellation", {
   connection,
 });
 
 export const worker = new Worker(
-  'booking-confirmation',
+  "booking-confirmation",
   async (job: Job<{ bookingId: string; userId: string }>) => {
     const { bookingId } = job.data;
     const booking = await prisma.booking.findUnique({
@@ -36,23 +36,23 @@ export const worker = new Worker(
 
     if (booking && booking.user && booking.listing) {
       const emailTemplate = getBookingConfirmationEmailTemplate({
-        guestName: booking.user.name ?? 'Guest',
-        propertyName: booking.listing.title ?? 'Unknown Property',
-        propertyLocation: booking.listing.address ?? 'Not Provided',
+        guestName: booking.user.name ?? "Guest",
+        propertyName: booking.listing.title ?? "Unknown Property",
+        propertyLocation: booking.listing.address ?? "Not Provided",
         checkInDate: booking.startDate
           ? booking.startDate.toDateString()
-          : 'N/A',
-        checkOutDate: booking.endDate ? booking.endDate.toDateString() : 'N/A',
+          : "N/A",
+        checkOutDate: booking.endDate ? booking.endDate.toDateString() : "N/A",
         guestCount: booking.guests ?? 1,
         totalPrice: booking.totalPrice
           ? `$${booking.totalPrice.toFixed(2)}`
-          : 'N0.00',
+          : "N0.00",
         bookingDetailsLink: `https://heuvera.com/bookings/${booking.id}`,
       });
 
       await sendEmail(
-        booking.user.email ?? '',
-        'Booking Confirmed',
+        booking.user.email ?? "",
+        "Booking Confirmed",
         emailTemplate,
       );
     }
@@ -61,7 +61,7 @@ export const worker = new Worker(
 );
 
 export const cancellationWorker = new Worker(
-  'booking-cancellation',
+  "booking-cancellation",
   async (
     job: Job<{
       bookingId: string;
@@ -81,7 +81,7 @@ export const cancellationWorker = new Worker(
       checkOutDate: new Date(job.data.checkOutDate).toDateString(),
     });
 
-    await sendEmail(job.data.userEmail, 'Booking Cancelled', emailTemplate);
+    await sendEmail(job.data.userEmail, "Booking Cancelled", emailTemplate);
   },
   { connection },
 );

@@ -5,14 +5,14 @@ import {
   Popup,
   Circle,
   useMap,
-} from 'react-leaflet';
-import { divIcon, LatLngTuple } from 'leaflet';
-import L from 'leaflet';
-import { ReactNode, useEffect } from 'react';
-import Image from 'next/image';
-import { FaStar } from 'react-icons/fa6';
-import ReactDOMServer from 'react-dom/server';
-import { GoHomeFill } from 'react-icons/go';
+} from "react-leaflet";
+import { divIcon, LatLngTuple } from "leaflet";
+import L from "leaflet";
+import { ReactNode, useEffect } from "react";
+import Image from "next/image";
+import { FaStar } from "react-icons/fa6";
+import ReactDOMServer from "react-dom/server";
+import { GoHomeFill } from "react-icons/go";
 
 const FitMapToBounds = ({
   positions,
@@ -74,7 +74,7 @@ const MapComponents = ({
 }: MapComponentsProps) => {
   return (
     <div className="flex justify-center items-center w-full h-[calc(100vh-15rem)]">
-      {' '}
+      {" "}
       <MapContainer
         center={center}
         zoom={12}
@@ -88,7 +88,7 @@ const MapComponents = ({
           center={center_radius}
           radius={radius}
           pathOptions={{
-            color: 'rgba(123, 79, 58, 0.7)',
+            color: "rgba(123, 79, 58, 0.7)",
             weight: 3,
             fillOpacity: 0.1,
           }}
@@ -104,7 +104,7 @@ const MapComponents = ({
               mouseout: (e) => e.target.closePopup(),
             }}
             icon={divIcon({
-              className: 'custom-marker',
+              className: "custom-marker",
               html: ReactDOMServer.renderToString(
                 <GoHomeFill size={24} color="#7B4F3A" />,
               ),
