@@ -1,4 +1,6 @@
 import { getOrCreateUser } from '@heuvera/lib/auth';
+import { sendEmail } from '@heuvera/lib/email';
+import { getListingConfirmationMail } from '@heuvera/lib/email/render';
 import { prisma } from '@heuvera/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
@@ -102,7 +104,7 @@ export async function POST(req: NextRequest) {
 
     const dbUser = await prisma.user.findUnique({
       where: { id: user.id },
-      select: { isHostApproved: true },
+      select: { isHostApproved: true, name: true, email: true },
     });
 
     if (!dbUser?.isHostApproved) {
@@ -122,6 +124,18 @@ export async function POST(req: NextRequest) {
       },
     });
 
+
+    const hostName = dbUser.name ?? 'there';
+    const emailBody = await getListingConfirmationMail(
+      hostName,
+      listing.title,
+      listing.images[0],
+      `https://heuvera.com/explore/${listing.id}`
+    );
+
+    await sendEmail(dbUser.email, 'Your Listing Has Been Created!', emailBody);
+
+
     return NextResponse.json({ listing }, { status: 201 });
   } catch (error: any) {
     console.error('Error creating listing:', error);
@@ -131,3 +145,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

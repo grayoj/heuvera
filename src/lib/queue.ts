@@ -1,10 +1,7 @@
 import { Queue, Worker, Job } from 'bullmq';
 import { sendEmail } from './email';
 import { prisma } from './prisma';
-import {
-  getBookingConfirmationEmailTemplate,
-  getBookingCancellationEmailTemplate,
-} from './templates';
+import { getBookingCancellationMail, getBookingConfirmationMail } from './email/render';
 
 const redisUrl = process.env.REDIS_URLS!;
 const url = new URL(redisUrl);
@@ -34,30 +31,25 @@ export const worker = new Worker(
       include: { listing: true, user: true },
     });
 
-    if (booking && booking.user && booking.listing) {
-      const emailTemplate = getBookingConfirmationEmailTemplate({
-        guestName: booking.user.name ?? 'Guest',
-        propertyName: booking.listing.title ?? 'Unknown Property',
-        propertyLocation: booking.listing.address ?? 'Not Provided',
-        checkInDate: booking.startDate
-          ? booking.startDate.toDateString()
-          : 'N/A',
-        checkOutDate: booking.endDate ? booking.endDate.toDateString() : 'N/A',
-        guestCount: booking.guests ?? 1,
-        totalPrice: booking.totalPrice
-          ? `$${booking.totalPrice.toFixed(2)}`
-          : 'N0.00',
-        bookingDetailsLink: `https://heuvera.com/bookings/${booking.id}`,
-      });
-
-      await sendEmail(
-        booking.user.email ?? '',
-        'Booking Confirmed',
-        emailTemplate,
-      );
+    if (!booking || !booking.user || !booking.listing) {
+      console.error(`Booking not found or missing user/listing data for ID: ${bookingId}`);
+      return;
     }
+
+    const emailContent = await getBookingConfirmationMail(
+      booking.user.name ?? 'Guest',
+      booking.listing.title ?? 'Unknown Property',
+      booking.listing.address ?? 'Not Provided',
+      booking.startDate ? booking.startDate.toDateString() : 'N/A',
+      booking.endDate ? booking.endDate.toDateString() : 'N/A',
+      booking.guests ?? 1,
+      booking.totalPrice ? `$${booking.totalPrice.toFixed(2)}` : 'N0.00',
+      `https://heuvera.com/bookings/${booking.id}`
+    );
+
+    await sendEmail(booking.user.email ?? '', 'Booking Confirmed', emailContent);
   },
-  { connection },
+  { connection }
 );
 
 export const cancellationWorker = new Worker(
@@ -73,13 +65,13 @@ export const cancellationWorker = new Worker(
       checkOutDate: string;
     }>,
   ) => {
-    const emailTemplate = getBookingCancellationEmailTemplate({
-      guestName: job.data.guestName,
-      propertyName: job.data.propertyName,
-      propertyLocation: job.data.propertyLocation,
-      checkInDate: new Date(job.data.checkInDate).toDateString(),
-      checkOutDate: new Date(job.data.checkOutDate).toDateString(),
-    });
+    const emailTemplate = await getBookingCancellationMail(
+      job.data.guestName,
+      job.data.propertyName,
+      job.data.propertyLocation,
+      new Date(job.data.checkInDate).toDateString(),
+      new Date(job.data.checkOutDate).toDateString()
+    );
 
     await sendEmail(job.data.userEmail, 'Booking Cancelled', emailTemplate);
   },

@@ -1,4 +1,6 @@
 import { getOrCreateUser } from '@heuvera/lib/auth';
+import { sendEmail } from '@heuvera/lib/email';
+import { getHostApprovalMail } from '@heuvera/lib/email/render';
 import { prisma } from '@heuvera/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
@@ -98,6 +100,11 @@ export async function PATCH(req: NextRequest) {
       update: validatedData,
       create: { userId: user.id, ...validatedData },
     });
+
+    const userName = user.name ?? 'there';
+    const emailBody = await getHostApprovalMail(userName, 'https://heuvera.com/');
+    await sendEmail(user.email, 'Welcome to Heuvera', emailBody);
+
 
     return NextResponse.json({ host: updatedHost }, { status: 200 });
   } catch (error: any) {

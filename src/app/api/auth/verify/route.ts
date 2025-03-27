@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@auth0/nextjs-auth0/edge';
 import { prisma } from '@heuvera/lib/prisma';
 import { sendEmail } from '@heuvera/lib/email';
-import { getWelcomeTemplate } from '@heuvera/lib/templates';
+import { getWelcomeEmail } from '@heuvera/lib/email/render';
 
 /**
  * @swagger
@@ -68,8 +68,9 @@ export async function GET(req: NextRequest) {
       newUser = true;
 
       const userName = user.name ?? 'there';
-      const emailBody = getWelcomeTemplate(userName, 'https://heuvera.com/');
-      await sendEmail(user.email, 'Welcome to Heuvera', emailBody);
+      const emailBody = await getWelcomeEmail(userName, 'https://heuvera.com/dashboard');
+      await sendEmail(user.email, 'Host Approval Confirmation', emailBody);
+
     }
 
     return NextResponse.json(
