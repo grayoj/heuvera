@@ -68,9 +68,11 @@ export async function GET(req: NextRequest) {
       newUser = true;
 
       const userName = user.name ?? 'there';
-      const emailBody = await getWelcomeEmail(userName, 'https://heuvera.com/dashboard');
+      const emailBody = await getWelcomeEmail(
+        userName,
+        'https://heuvera.com/dashboard',
+      );
       await sendEmail(user.email, 'Host Approval Confirmation', emailBody);
-
     }
 
     return NextResponse.json(

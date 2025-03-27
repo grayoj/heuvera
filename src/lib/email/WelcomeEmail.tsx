@@ -40,8 +40,8 @@ export default function WelcomeEmailTemplate({
               Welcome, {userName}!
             </Text>
             <Text className="text-gray-700 leading-relaxed">
-              We're thrilled to have you on Heuvera. Start exploring unique stays,
-              handpicked for your next adventure.
+              We're thrilled to have you on Heuvera. Start exploring unique
+              stays, handpicked for your next adventure.
             </Text>
 
             <div className="mt-6">
@@ -54,7 +54,14 @@ export default function WelcomeEmailTemplate({
             </div>
 
             <Text className="text-gray-600 text-sm mt-6">
-              Need help? Get in touch with our <a className='text-[#8F6858] cursor-pointer no-underline' href="https://heuvera.com/contact">Support</a>.
+              Need help? Get in touch with our{' '}
+              <a
+                className="text-[#8F6858] cursor-pointer no-underline"
+                href="https://heuvera.com/contact"
+              >
+                Support
+              </a>
+              .
             </Text>
 
             <Text className="text-gray-800 font-semibold mt-6">
@@ -63,19 +70,33 @@ export default function WelcomeEmailTemplate({
 
             <div className="flex justify-center gap-4 mt-6">
               <a href="#" className="text-[#8F6858]">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="24" alt="Facebook" />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                  width="24"
+                  alt="Facebook"
+                />
               </a>
               <a href="#" className="text-[#8F6858]">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" width="24" alt="Twitter" />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+                  width="24"
+                  alt="Twitter"
+                />
               </a>
               <a href="#" className="text-[#8F6858]">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="24" alt="Instagram" />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                  width="24"
+                  alt="Instagram"
+                />
               </a>
             </div>
 
             <Text className="text-xs text-gray-500 mt-6">
               © {currentYear} Heuvera. All rights reserved. <br />
-              <a href="#" className="text-[#8F6858] font-semibold">Unsubscribe</a>
+              <a href="#" className="text-[#8F6858] font-semibold">
+                Unsubscribe
+              </a>
             </Text>
           </Container>
         </Body>
@@ -83,6 +104,3 @@ export default function WelcomeEmailTemplate({
     </Html>
   );
 }
-
-
-

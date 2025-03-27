@@ -102,9 +102,11 @@ export async function PATCH(req: NextRequest) {
     });
 
     const userName = user.name ?? 'there';
-    const emailBody = await getHostApprovalMail(userName, 'https://heuvera.com/');
+    const emailBody = await getHostApprovalMail(
+      userName,
+      'https://heuvera.com/',
+    );
     await sendEmail(user.email, 'Welcome to Heuvera', emailBody);
-
 
     return NextResponse.json({ host: updatedHost }, { status: 200 });
   } catch (error: any) {

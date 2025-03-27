@@ -124,17 +124,15 @@ export async function POST(req: NextRequest) {
       },
     });
 
-
     const hostName = dbUser.name ?? 'there';
     const emailBody = await getListingConfirmationMail(
       hostName,
       listing.title,
       listing.images[0],
-      `https://heuvera.com/explore/${listing.id}`
+      `https://heuvera.com/explore/${listing.id}`,
     );
 
     await sendEmail(dbUser.email, 'Your Listing Has Been Created!', emailBody);
-
 
     return NextResponse.json({ listing }, { status: 201 });
   } catch (error: any) {
@@ -145,4 +143,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-

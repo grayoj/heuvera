@@ -53,18 +53,33 @@ export default function BookingConfirmationEmailTemplate({
             </Text>
 
             <Text className="text-gray-700 leading-relaxed">
-              We’re excited to host you at <strong>{propertyName}</strong>. Here are your stay details:
+              We’re excited to host you at <strong>{propertyName}</strong>. Here
+              are your stay details:
             </Text>
 
             <div className="bg-gray-100 p-4 rounded-lg text-left mt-4">
-              <Text className="text-gray-900 font-semibold">Booking Details:</Text>
+              <Text className="text-gray-900 font-semibold">
+                Booking Details:
+              </Text>
               <ul className="text-gray-700 leading-relaxed text-sm">
-                <li><strong>Property:</strong> {propertyName}</li>
-                <li><strong>Location:</strong> {propertyLocation}</li>
-                <li><strong>Check-in:</strong> {checkInDate}</li>
-                <li><strong>Check-out:</strong> {checkOutDate}</li>
-                <li><strong>Guests:</strong> {guestCount}</li>
-                <li><strong>Total Price:</strong> {totalPrice}</li>
+                <li>
+                  <strong>Property:</strong> {propertyName}
+                </li>
+                <li>
+                  <strong>Location:</strong> {propertyLocation}
+                </li>
+                <li>
+                  <strong>Check-in:</strong> {checkInDate}
+                </li>
+                <li>
+                  <strong>Check-out:</strong> {checkOutDate}
+                </li>
+                <li>
+                  <strong>Guests:</strong> {guestCount}
+                </li>
+                <li>
+                  <strong>Total Price:</strong> {totalPrice}
+                </li>
               </ul>
             </div>
 
@@ -78,7 +93,14 @@ export default function BookingConfirmationEmailTemplate({
             </div>
 
             <Text className="text-gray-600 text-sm mt-6">
-              Need assistance? Our <a className="text-[#8F6858] cursor-pointer no-underline" href="https://heuvera.com/contact">Support Team</a> is available 24/7.
+              Need assistance? Our{' '}
+              <a
+                className="text-[#8F6858] cursor-pointer no-underline"
+                href="https://heuvera.com/contact"
+              >
+                Support Team
+              </a>{' '}
+              is available 24/7.
             </Text>
 
             <Text className="text-gray-800 font-semibold mt-6">
@@ -87,19 +109,37 @@ export default function BookingConfirmationEmailTemplate({
 
             <div className="flex justify-center gap-4 mt-6">
               <a href="#" className="text-[#8F6858]">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="24" alt="Facebook" />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                  width="24"
+                  alt="Facebook"
+                />
               </a>
               <a href="#" className="text-[#8F6858]">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" width="24" alt="Twitter" />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+                  width="24"
+                  alt="Twitter"
+                />
               </a>
               <a href="#" className="text-[#8F6858]">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="24" alt="Instagram" />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                  width="24"
+                  alt="Instagram"
+                />
               </a>
             </div>
 
             <Text className="text-xs text-gray-500 mt-6">
               © {currentYear} Heuvera. All rights reserved. <br />
-              <a href="#" className="text-[#8F6858] font-semibold">Cancel Booking</a> | <a href="#" className="text-[#8F6858] font-semibold">Contact Support</a>
+              <a href="#" className="text-[#8F6858] font-semibold">
+                Cancel Booking
+              </a>{' '}
+              |{' '}
+              <a href="#" className="text-[#8F6858] font-semibold">
+                Contact Support
+              </a>
             </Text>
           </Container>
         </Body>
@@ -107,4 +147,3 @@ export default function BookingConfirmationEmailTemplate({
     </Html>
   );
 }
-

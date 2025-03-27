@@ -47,21 +47,39 @@ export default function BookingCancellationEmailTemplate({
 
             <Text className="text-gray-700 leading-relaxed">
               We’re sorry to inform you that your booking at{' '}
-              <strong>{propertyName}</strong> has been cancelled. Here were your stay details:
+              <strong>{propertyName}</strong> has been cancelled. Here were your
+              stay details:
             </Text>
 
             <div className="bg-gray-100 p-4 rounded-lg text-left mt-4">
-              <Text className="text-gray-900 font-semibold">Cancelled Booking Details:</Text>
+              <Text className="text-gray-900 font-semibold">
+                Cancelled Booking Details:
+              </Text>
               <ul className="text-gray-700 leading-relaxed text-sm">
-                <li><strong>Property:</strong> {propertyName}</li>
-                <li><strong>Location:</strong> {propertyLocation}</li>
-                <li><strong>Check-in:</strong> {checkInDate}</li>
-                <li><strong>Check-out:</strong> {checkOutDate}</li>
+                <li>
+                  <strong>Property:</strong> {propertyName}
+                </li>
+                <li>
+                  <strong>Location:</strong> {propertyLocation}
+                </li>
+                <li>
+                  <strong>Check-in:</strong> {checkInDate}
+                </li>
+                <li>
+                  <strong>Check-out:</strong> {checkOutDate}
+                </li>
               </ul>
             </div>
 
             <Text className="text-gray-600 text-sm mt-6">
-              If you need assistance, our <a className="text-[#8F6858] cursor-pointer no-underline" href="https://heuvera.com/contact">Support Team</a> is available 24/7.
+              If you need assistance, our{' '}
+              <a
+                className="text-[#8F6858] cursor-pointer no-underline"
+                href="https://heuvera.com/contact"
+              >
+                Support Team
+              </a>{' '}
+              is available 24/7.
             </Text>
 
             <Text className="text-gray-800 font-semibold mt-6">
@@ -70,7 +88,12 @@ export default function BookingCancellationEmailTemplate({
 
             <Text className="text-xs text-gray-500 mt-6">
               © {currentYear} Heuvera. All rights reserved. <br />
-              <a href="https://heuvera.com/contact" className="text-[#8F6858] font-semibold">Contact Support</a>
+              <a
+                href="https://heuvera.com/contact"
+                className="text-[#8F6858] font-semibold"
+              >
+                Contact Support
+              </a>
             </Text>
           </Container>
         </Body>
@@ -78,4 +101,3 @@ export default function BookingCancellationEmailTemplate({
     </Html>
   );
 }
-

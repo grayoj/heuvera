@@ -6,8 +6,14 @@ import BookingCancellationEmailTemplate from './BookingCancellationEmail';
 import HostApprovalEmailTemplate from './HostApprovalEmail';
 import ListingConfirmationEmail from './ListingConfirmationEmail';
 
-export async function getWelcomeEmail(userName: string, exploreLink: string): Promise<string> {
-  const emailElement = React.createElement(WelcomeEmailTemplate, { userName, exploreLink });
+export async function getWelcomeEmail(
+  userName: string,
+  exploreLink: string,
+): Promise<string> {
+  const emailElement = React.createElement(WelcomeEmailTemplate, {
+    userName,
+    exploreLink,
+  });
   return await render(emailElement);
 }
 
@@ -19,7 +25,7 @@ export async function getBookingConfirmationMail(
   checkOutDate: string,
   guestCount: number,
   totalPrice: string,
-  bookingDetailsLink: string
+  bookingDetailsLink: string,
 ): Promise<string> {
   const emailElement = React.createElement(BookingConfirmationEmailTemplate, {
     guestName,
@@ -40,7 +46,7 @@ export async function getBookingCancellationMail(
   propertyName: string,
   propertyLocation: string,
   checkInDate: string,
-  checkOutDate: string
+  checkOutDate: string,
 ): Promise<string> {
   const emailElement = React.createElement(BookingCancellationEmailTemplate, {
     guestName,
@@ -53,8 +59,14 @@ export async function getBookingCancellationMail(
   return await render(emailElement);
 }
 
-export async function getHostApprovalMail(userName: string, dashboardLink: string): Promise<string> {
-  const emailElement = React.createElement(HostApprovalEmailTemplate, { userName, dashboardLink });
+export async function getHostApprovalMail(
+  userName: string,
+  dashboardLink: string,
+): Promise<string> {
+  const emailElement = React.createElement(HostApprovalEmailTemplate, {
+    userName,
+    dashboardLink,
+  });
   return await render(emailElement);
 }
 
@@ -62,7 +74,7 @@ export async function getListingConfirmationMail(
   hostName: string,
   listingTitle: string,
   listingImage: string,
-  listingDetailsLink: string
+  listingDetailsLink: string,
 ): Promise<string> {
   const emailElement = React.createElement(ListingConfirmationEmail, {
     hostName,
