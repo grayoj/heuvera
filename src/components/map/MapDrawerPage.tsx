@@ -6,28 +6,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { LatLngTuple } from "leaflet";
 import { IoHome } from "react-icons/io5";
 import {
-  Search,
   X,
-  MapPin,
-  List,
-  Filter,
-  Heart,
   LucideSearch,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-} from "../ui/drawer";
-
 import { Button } from "../../components/ui/button";
 import { getCenterAndRadius } from "@heuvera/utils/map";
 import { Property, MapComponentsProps } from "@heuvera/types/map";
-import CategoryList from "../categories/CategoryList";
 import FilterButton from "../categories/FilterButton";
 import { FaHome } from "react-icons/fa";
 import useIsMobile from "@heuvera/hooks/IsMobile";
@@ -37,7 +23,6 @@ const MapComponents = dynamic(() => import("./MapComponent"), {
   ssr: false,
 }) as React.ComponentType<MapComponentsProps>;
 
-// Sample properties data (use your actual data source)
 const properties: Property[] = [
   {
     id: 1,
@@ -148,10 +133,9 @@ export default function MapDrawerPage({
                 <div
                   className={`
                     relative w-full h-10 
-                    ${
-                      isSearchFocused
-                        ? "bg-white border-[#7B4F3A] shadow-sm"
-                        : "bg-[#F8F7F2] border-[#E3E2D9]"
+                    ${isSearchFocused
+                      ? "bg-white border-[#7B4F3A] shadow-sm"
+                      : "bg-[#F8F7F2] border-[#E3E2D9]"
                     } 
                     border rounded-full flex items-center transition-all duration-300
                 `}
@@ -194,7 +178,9 @@ export default function MapDrawerPage({
             </div>
 
             <div className="">
-              <FilterButton />
+
+              <FilterButton setActiveFilters={() => { }} />
+
             </div>
           </div>
         </div>
