@@ -1,28 +1,33 @@
+import { User, Calendar, CreditCard, HelpCircle } from 'lucide-react';
 
 export const sideBar = [
   {
     name: 'Personal Info',
-    route: '',
+    route: '/',
     description:
       'Update your profile, contact details, and preferences to personalize your experience.',
+    icon: User,
   },
   {
     route: 'booking',
     name: 'Booking History',
     description:
       'View and manage your past, current, and upcoming bookings in one place.',
+    icon: Calendar,
   },
   {
     route: 'payment',
     name: 'Payment Methods',
     description:
       'Securely manage and update your preferred payment options for smooth transactions.',
+    icon: CreditCard,
   },
   {
     route: 'support',
     name: 'Support & Assistance',
     description:
       'Get help, contact support, and access resources to enhance your experience.',
+    icon: HelpCircle,
   },
 ];
 
@@ -41,7 +46,7 @@ export const personInput = [
     secondaryBtn: 'Add another email',
   },
   {
-    label : 'Address',
+    label: 'Address',
     primaryBtn: 'Change address',
     value: 'No.2 West Street, Nursing Estate, Karu, Abuja',
     secondaryBtn: 'Add another address',

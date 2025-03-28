@@ -1,4 +1,5 @@
 import { inputs } from '@heuvera/app/data/array';
+import AccountHeader from '@heuvera/components/ui/AccountHeader';
 import Help from '@heuvera/components/ui/Help';
 import Input from '@heuvera/components/ui/Input';
 import Textarea from '@heuvera/components/ui/Textarea';
@@ -7,13 +8,7 @@ import { Button } from '@heuvera/components/ui/button';
 export default function Page() {
   return (
     <>
-      <div className="border-b pb-5 mb-5">
-        <h2 className="text-[1.25rem] font-medium">Support & Assistance</h2>
-        <p className="text-[#898989] font-normal text-[14px]">
-          Get help, contact support, and access resources to enhance your
-          experience.
-        </p>
-      </div>
+    <AccountHeader heading="Support & Assistance" subheading="Get help, contact support, and access resources to enhance your experience." />
 
       <div className="flex justify-between ">
         <div className="flex-grow mr-5">
