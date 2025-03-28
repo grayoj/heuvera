@@ -24,9 +24,7 @@
       "post": {
         "summary": "Create a user",
         "description": "This endpoint creates a new user based on the provided Auth0 ID.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "security": [
           {
             "BearerAuth": []
@@ -38,11 +36,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "auth0_id",
-                  "email",
-                  "created_at"
-                ],
+                "required": ["auth0_id", "email", "created_at"],
                 "properties": {
                   "auth0_id": {
                     "type": "string",
@@ -179,9 +173,7 @@
       "get": {
         "summary": "Retrieve or create a user from the session",
         "description": "Fetches an existing user or creates a new one if they do not exist in the database.",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "responses": {
           "200": {
             "description": "User retrieved or created successfully",
@@ -234,9 +226,7 @@
       "delete": {
         "summary": "Cancel a booking",
         "description": "Allows an authenticated user to cancel their booking if it hasn't started yet.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "security": [
           {
             "bearerAuth": []
@@ -287,9 +277,7 @@
       "get": {
         "summary": "Get user bookings",
         "description": "Fetches all bookings made by the authenticated user.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "security": [
           {
             "bearerAuth": []
@@ -368,9 +356,7 @@
       "post": {
         "summary": "Create a new booking",
         "description": "Users can book a listing by providing the listing ID, start date, end date, and the number of guests.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "requestBody": {
           "required": true,
           "content": {
@@ -469,9 +455,7 @@
       "get": {
         "summary": "Get booking details",
         "description": "Retrieves details of a specific booking for an authenticated user.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "security": [
           {
             "bearerAuth": []
@@ -523,13 +507,139 @@
         }
       }
     },
+    "/api/v1/favorites/{listingId}": {
+      "delete": {
+        "summary": "Remove a listing from favorites",
+        "description": "Deletes a listing from the authenticated user's favorites.",
+        "tags": ["Favorites"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listingId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the listing to remove from favorites."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listing removed from favorites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Removed from favorites"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Listing ID is required"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Favorite not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/favorites": {
+      "get": {
+        "summary": "Get user's favorite listings",
+        "description": "Retrieves all favorite listings for the authenticated user.",
+        "tags": ["Favorites"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of favorite listings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FavoriteListing"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a listing to favorites",
+        "description": "Adds a listing to the authenticated user's favorites.",
+        "tags": ["Favorites"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "listingId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Listing added to favorites"
+          },
+          "400": {
+            "description": "Listing is already in favorites"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Listing not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v1/host": {
       "patch": {
         "summary": "Update host details",
         "description": "Updates host profile details. Only approved hosts can update their information.",
-        "tags": [
-          "Host"
-        ],
+        "tags": ["Host"],
         "security": [
           {
             "BearerAuth": []
@@ -555,11 +665,7 @@
                   },
                   "idVerificationStatus": {
                     "type": "string",
-                    "enum": [
-                      "PENDING",
-                      "VERIFIED",
-                      "REJECTED"
-                    ]
+                    "enum": ["PENDING", "VERIFIED", "REJECTED"]
                   },
                   "businessName": {
                     "type": "string"
@@ -620,9 +726,7 @@
       "delete": {
         "summary": "Delete a property listing",
         "description": "Allows an approved host to delete one of their property listings.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "query",
@@ -667,9 +771,7 @@
       "get": {
         "summary": "Retrieve paginated property listings",
         "description": "Fetches a paginated list of property listings, sorted by creation date in descending order.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "query",
@@ -734,9 +836,7 @@
       "patch": {
         "summary": "Update a property listing",
         "description": "Allows an approved host to update an existing property listing.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "security": [
           {
             "BearerAuth": []
@@ -848,9 +948,7 @@
       "post": {
         "summary": "Create a new property listing",
         "description": "Allows an approved host to create a new property listing.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "security": [
           {
             "BearerAuth": []
@@ -955,9 +1053,7 @@
       "get": {
         "summary": "Get a listing by ID",
         "description": "Retrieve details of a specific listing by its ID, including host details.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "path",
@@ -1001,9 +1097,7 @@
       "patch": {
         "summary": "Update or create user profile",
         "description": "Updates the user's profile if it exists, otherwise creates a new one.",
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "requestBody": {
           "required": true,
           "content": {
@@ -1099,9 +1193,7 @@
       "get": {
         "summary": "Get logged-in user",
         "description": "Retrieves details of the currently authenticated user.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "security": [
           {
             "bearerAuth": []

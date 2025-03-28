@@ -5,31 +5,31 @@ import {
   LucideBone,
   LucideWashingMachine,
   LucideVideo,
-} from 'lucide-react';
-import Divider from '../Divider';
+} from "lucide-react";
+import Divider from "../Divider";
 
 export default function PropertyAmenities() {
   const amenities = [
     {
       icon: <LucideLeaf className="text-2xl text-[#3e3e3e]" />,
-      name: 'Garden View',
+      name: "Garden View",
     },
-    { icon: <LucideWifi className="text-2xl text-[#3e3e3e]" />, name: 'Wifi' },
+    { icon: <LucideWifi className="text-2xl text-[#3e3e3e]" />, name: "Wifi" },
     {
       icon: <LucideUtensils className="text-2xl text-[#3e3e3e]" />,
-      name: 'Kitchen',
+      name: "Kitchen",
     },
     {
       icon: <LucideBone className="text-2xl text-[#3e3e3e]" />,
-      name: 'Pets allowed',
+      name: "Pets allowed",
     },
     {
       icon: <LucideWashingMachine className="text-2xl text-[#3e3e3e]" />,
-      name: 'Free Washer - in building',
+      name: "Free Washer - in building",
     },
     {
       icon: <LucideVideo className="text-2xl text-[#3e3e3e]" />,
-      name: 'Security Cameras on property',
+      name: "Security Cameras on property",
     },
   ];
 

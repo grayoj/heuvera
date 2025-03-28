@@ -1,5 +1,5 @@
-import BookmarkButton from '@heuvera/components/buttons/BookmarkButton';
-import Image from 'next/image';
+import BookmarkButton from "@heuvera/components/buttons/BookmarkButton";
+import Image from "next/image";
 
 export default function PropertyImage({ imageUrl }: { imageUrl?: string }) {
   return (

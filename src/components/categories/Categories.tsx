@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import MapButton from './MapButton';
-import FilterButton from './FilterButton';
-import LeaseRentStays from './LeaseRentStays';
-import CategoryList from './CategoryList';
-import useIsMobile from '@heuvera/hooks/IsMobile';
+import { useRouter } from "next/navigation";
+import MapButton from "./MapButton";
+import FilterButton from "./FilterButton";
+import LeaseRentStays from "./LeaseRentStays";
+import CategoryList from "./CategoryList";
+import useIsMobile from "@heuvera/hooks/IsMobile";
 
 const Categories = () => {
   const router = useRouter();
   const isMobile = useIsMobile();
 
   const ToMap = () => {
-    router.push('/explore/map');
+    router.push("/explore/map");
   };
 
   return (
     <div
-      className={`w-full border-b border-[#E3E2D9] ${isMobile ? 'h-[130px]' : 'h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t'} flex items-center`}
+      className={`w-full border-b border-[#E3E2D9] ${isMobile ? "h-[130px]" : "h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t"} flex items-center`}
     >
       {isMobile ? (
         // Mobile Layout

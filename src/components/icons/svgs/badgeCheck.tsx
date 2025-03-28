@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
 interface BadgeCheckProps {
-  size?: 'small' | 'medium' | 'large';
+  size?: "small" | "medium" | "large";
   color?: string; // Allow custom color
   className?: string;
   ariaLabel?: string;
 }
 
 const BadgeCheck: React.FC<BadgeCheckProps> = ({
-  size = 'medium',
-  color = 'currentColor', // Default to currentColor
-  className = '',
-  ariaLabel = 'Badge Check',
+  size = "medium",
+  color = "currentColor", // Default to currentColor
+  className = "",
+  ariaLabel = "Badge Check",
 }) => {
   const sizeClasses = {
-    small: 'w-4 h-4',
-    medium: 'w-6 h-6',
-    large: 'w-8 h-8',
+    small: "w-4 h-4",
+    medium: "w-6 h-6",
+    large: "w-8 h-8",
   };
 
   return (

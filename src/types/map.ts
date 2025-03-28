@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, ReactNode } from 'react';
-import { LatLngTuple } from 'leaflet';
+import { Dispatch, SetStateAction, ReactNode } from "react";
+import { LatLngTuple } from "leaflet";
 
 export interface Property {
   id: number;
