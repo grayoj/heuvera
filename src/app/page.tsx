@@ -1,7 +1,5 @@
-export default function Page() {
-  return (
-    <div>
-      Page
-    </div>
-  );
+import SplashScreen from "./auth/splashscreen/Splashscreen";
+
+export default function Home() {
+  return <SplashScreen />;
 }
