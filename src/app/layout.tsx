@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
-import { MarketplaceProvider } from "@heuvera/providers/MarketplaceProvider";
 import { siteConfig } from "./site-config";
 
 const quicksand = Quicksand({
@@ -27,7 +26,7 @@ export default function RootLayout({
         className="antialiased bg-[#F3F2ED]"
         style={{ fontFamily: "Quicksand, sans-serif" }}
       >
-        <MarketplaceProvider>{children}</MarketplaceProvider>
+        {children}
       </body>
     </html>
   );
