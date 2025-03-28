@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import SectionHeaderText from "../text/SectionHeaderText";
 
 export default function PropertyDescription() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -20,8 +21,8 @@ export default function PropertyDescription() {
   const wordLimit = 30;
 
   // Split the description into words and get the truncated version
-  const words = fullDescription.split(' ');
-  const truncatedDescription = words.slice(0, wordLimit).join(' ') + '...';
+  const words = fullDescription.split(" ");
+  const truncatedDescription = words.slice(0, wordLimit).join(" ") + "...";
 
   // Toggle the expanded state
   const toggleExpanded = () => {
@@ -30,9 +31,7 @@ export default function PropertyDescription() {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-2xl font-serif font-medium text-[#3E3E3E] pb-5">
-        Description
-      </h1>
+      <SectionHeaderText title="Description" />
       <p className="text-base font-serif font-normal text-[#3E3E3E]">
         {isExpanded ? fullDescription : truncatedDescription}
       </p>
@@ -40,7 +39,7 @@ export default function PropertyDescription() {
         className="text-base font-serif font-normal text-[#3E3E3E] underline self-start mt-2"
         onClick={toggleExpanded}
       >
-        {isExpanded ? 'Show Less' : 'Show More'}
+        {isExpanded ? "Show Less" : "Show More"}
       </button>
     </div>
   );

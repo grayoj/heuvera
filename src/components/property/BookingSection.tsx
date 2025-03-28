@@ -1,46 +1,43 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@heuvera/components/ui/button';
-import { IoCalendarOutline, IoChevronDown, IoChevronUp } from 'react-icons/io5';
-import Divider from '../Divider';
-import { DateRange } from 'react-day-picker';
-import { format, addDays } from 'date-fns';
-import { Calendar } from '@heuvera/components/ui/calendar';
+import { useState } from "react";
+import { Button } from "@heuvera/components/ui/button";
+import { IoCalendarOutline, IoChevronDown, IoChevronUp } from "react-icons/io5";
+import Divider from "../Divider";
+import { DateRange } from "react-day-picker";
+import { format, addDays } from "date-fns";
+import { Calendar } from "@heuvera/components/ui/calendar";
+import SectionHeaderText from "../text/SectionHeaderText";
 
 export default function BookingSection() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedGuests, setSelectedGuests] = useState('1 Guest');
-  const guestOptions = ['1 Guest', '2 Guests', '3 Guests', '4+ Guests'];
+  const [selectedGuests, setSelectedGuests] = useState("1 Guest");
+  const guestOptions = ["1 Guest", "2 Guests", "3 Guests", "4+ Guests"];
 
-  // Calendar states
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: new Date(),
     to: addDays(new Date(), 7),
   });
 
-  // Format date range for display
   const formatDateRange = () => {
-    if (!dateRange || !dateRange.from) return 'Select dates';
+    if (!dateRange || !dateRange.from) return "Select dates";
 
     if (!dateRange.to) {
-      return format(dateRange.from, 'MMM d');
+      return format(dateRange.from, "MMM d");
     }
 
-    return `${format(dateRange.from, 'MMM d')} - ${format(dateRange.to, 'MMM d')}`;
+    return `${format(dateRange.from, "MMM d")} - ${format(dateRange.to, "MMM d")}`;
   };
 
   return (
     <>
       <Divider />
-      <h1 className="text-2xl font-serif font-medium text-[#3E3E3E]">
-        Create Booking
-      </h1>
-      <div className="flex flex-col gap-8">
-        <div className="w-full gap-8 flex flex-row justify-between">
-          <div className="flex flex-col gap-4 w-6/12 relative">
-            <h1 className="text-base font-normal text-[#3E3E3E]">
+      <SectionHeaderText title="Create Booking" />
+      <div className="flex flex-col gap-8 mt-1">
+        <div className="w-full gap-8 flex flex-col md:flex-col lg:flex-col xl:flex-row 2xl:flex-row justify-between">
+          <div className="flex flex-col gap-2 md:gap-4 w-12/12 md:w-12/12 lg:w-12/12 xl:w-6/12 2xl:w-6/12 relative">
+            <h1 className="text-sm md:text-base font-normal text-[#3E3E3E]">
               Check Availability
             </h1>
             <div className="h-14 w-full border border-[#3E3E3E] rounded-full flex items-center justify-between relative px-6">
@@ -65,10 +62,10 @@ export default function BookingSection() {
                   numberOfMonths={1}
                   className="bg-transparent scale-110 origin-center"
                   styles={{
-                    day: { width: '40px', height: '40px' },
-                    month: { width: '100%' },
-                    caption_label: { fontSize: '1rem' },
-                    head_cell: { fontSize: '0.9rem', width: '40px' },
+                    day: { width: "40px", height: "40px" },
+                    month: { width: "100%" },
+                    caption_label: { fontSize: "1rem" },
+                    head_cell: { fontSize: "0.9rem", width: "40px" },
                   }}
                 />
                 <div className="mt-6 flex justify-end">
@@ -83,8 +80,8 @@ export default function BookingSection() {
             )}
           </div>
 
-          <div className="flex flex-col gap-4 relative w-6/12">
-            <h1 className="text-base font-serif font-normal text-[#3E3E3E]">
+          <div className="flex flex-col gap-2 md:gap-4 relative w-12/12 md:w-12/12 lg:w-12/12 xl:w-6/12 2xl:w-6/12">
+            <h1 className="text-sm md:text-base font-serif font-normal text-[#3E3E3E]">
               Guests:
             </h1>
 

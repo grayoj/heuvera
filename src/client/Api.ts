@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /*
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
@@ -10,9 +11,9 @@
  */
 
 export type QueryParamsType = Record<string | number, any>;
-export type ResponseFormat = keyof Omit<Body, 'body' | 'bodyUsed'>;
+export type ResponseFormat = keyof Omit<Body, "body" | "bodyUsed">;
 
-export interface FullRequestParams extends Omit<RequestInit, 'body'> {
+export interface FullRequestParams extends Omit<RequestInit, "body"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -31,22 +32,16 @@ export interface FullRequestParams extends Omit<RequestInit, 'body'> {
   cancelToken?: CancelToken;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  'body' | 'method' | 'query' | 'path'
->;
+export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
 
 export interface ApiConfig<SecurityDataType = unknown> {
   baseUrl?: string;
-  baseApiParams?: Omit<RequestParams, 'baseUrl' | 'cancelToken' | 'signal'>;
-  securityWorker?: (
-    securityData: SecurityDataType | null,
-  ) => Promise<RequestParams | void> | RequestParams | void;
+  baseApiParams?: Omit<RequestParams, "baseUrl" | "cancelToken" | "signal">;
+  securityWorker?: (securityData: SecurityDataType | null) => Promise<RequestParams | void> | RequestParams | void;
   customFetch?: typeof fetch;
 }
 
-export interface HttpResponse<D extends unknown, E extends unknown = unknown>
-  extends Response {
+export interface HttpResponse<D extends unknown, E extends unknown = unknown> extends Response {
   data: D;
   error: E;
 }
@@ -54,25 +49,24 @@ export interface HttpResponse<D extends unknown, E extends unknown = unknown>
 type CancelToken = Symbol | string | number;
 
 export enum ContentType {
-  Json = 'application/json',
-  FormData = 'multipart/form-data',
-  UrlEncoded = 'application/x-www-form-urlencoded',
-  Text = 'text/plain',
+  Json = "application/json",
+  FormData = "multipart/form-data",
+  UrlEncoded = "application/x-www-form-urlencoded",
+  Text = "text/plain",
 }
 
 export class HttpClient<SecurityDataType = unknown> {
-  public baseUrl: string = '';
+  public baseUrl: string = "";
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
+  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private abortControllers = new Map<CancelToken, AbortController>();
-  private customFetch = (...fetchParams: Parameters<typeof fetch>) =>
-    fetch(...fetchParams);
+  private customFetch = (...fetchParams: Parameters<typeof fetch>) => fetch(...fetchParams);
 
   private baseApiParams: RequestParams = {
-    credentials: 'same-origin',
+    credentials: "same-origin",
     headers: {},
-    redirect: 'follow',
-    referrerPolicy: 'no-referrer',
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
   };
 
   constructor(apiConfig: ApiConfig<SecurityDataType> = {}) {
@@ -85,7 +79,7 @@ export class HttpClient<SecurityDataType = unknown> {
 
   protected encodeQueryParam(key: string, value: any) {
     const encodedKey = encodeURIComponent(key);
-    return `${encodedKey}=${encodeURIComponent(typeof value === 'number' ? value : `${value}`)}`;
+    return `${encodedKey}=${encodeURIComponent(typeof value === "number" ? value : `${value}`)}`;
   }
 
   protected addQueryParam(query: QueryParamsType, key: string) {
@@ -94,37 +88,26 @@ export class HttpClient<SecurityDataType = unknown> {
 
   protected addArrayQueryParam(query: QueryParamsType, key: string) {
     const value = query[key];
-    return value.map((v: any) => this.encodeQueryParam(key, v)).join('&');
+    return value.map((v: any) => this.encodeQueryParam(key, v)).join("&");
   }
 
   protected toQueryString(rawQuery?: QueryParamsType): string {
     const query = rawQuery || {};
-    const keys = Object.keys(query).filter(
-      (key) => 'undefined' !== typeof query[key],
-    );
+    const keys = Object.keys(query).filter((key) => "undefined" !== typeof query[key]);
     return keys
-      .map((key) =>
-        Array.isArray(query[key])
-          ? this.addArrayQueryParam(query, key)
-          : this.addQueryParam(query, key),
-      )
-      .join('&');
+      .map((key) => (Array.isArray(query[key]) ? this.addArrayQueryParam(query, key) : this.addQueryParam(query, key)))
+      .join("&");
   }
 
   protected addQueryParams(rawQuery?: QueryParamsType): string {
     const queryString = this.toQueryString(rawQuery);
-    return queryString ? `?${queryString}` : '';
+    return queryString ? `?${queryString}` : "";
   }
 
   private contentFormatters: Record<ContentType, (input: any) => any> = {
     [ContentType.Json]: (input: any) =>
-      input !== null && (typeof input === 'object' || typeof input === 'string')
-        ? JSON.stringify(input)
-        : input,
-    [ContentType.Text]: (input: any) =>
-      input !== null && typeof input !== 'string'
-        ? JSON.stringify(input)
-        : input,
+      input !== null && (typeof input === "object" || typeof input === "string") ? JSON.stringify(input) : input,
+    [ContentType.Text]: (input: any) => (input !== null && typeof input !== "string" ? JSON.stringify(input) : input),
     [ContentType.FormData]: (input: any) =>
       Object.keys(input || {}).reduce((formData, key) => {
         const property = input[key];
@@ -132,7 +115,7 @@ export class HttpClient<SecurityDataType = unknown> {
           key,
           property instanceof Blob
             ? property
-            : typeof property === 'object' && property !== null
+            : typeof property === "object" && property !== null
               ? JSON.stringify(property)
               : `${property}`,
         );
@@ -141,10 +124,7 @@ export class HttpClient<SecurityDataType = unknown> {
     [ContentType.UrlEncoded]: (input: any) => this.toQueryString(input),
   };
 
-  protected mergeRequestParams(
-    params1: RequestParams,
-    params2?: RequestParams,
-  ): RequestParams {
+  protected mergeRequestParams(params1: RequestParams, params2?: RequestParams): RequestParams {
     return {
       ...this.baseApiParams,
       ...params1,
@@ -157,9 +137,7 @@ export class HttpClient<SecurityDataType = unknown> {
     };
   }
 
-  protected createAbortSignal = (
-    cancelToken: CancelToken,
-  ): AbortSignal | undefined => {
+  protected createAbortSignal = (cancelToken: CancelToken): AbortSignal | undefined => {
     if (this.abortControllers.has(cancelToken)) {
       const abortController = this.abortControllers.get(cancelToken);
       if (abortController) {
@@ -194,7 +172,7 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<HttpResponse<T, E>> => {
     const secureParams =
-      ((typeof secure === 'boolean' ? secure : this.baseApiParams.secure) &&
+      ((typeof secure === "boolean" ? secure : this.baseApiParams.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
@@ -203,26 +181,15 @@ export class HttpClient<SecurityDataType = unknown> {
     const payloadFormatter = this.contentFormatters[type || ContentType.Json];
     const responseFormat = format || requestParams.format;
 
-    return this.customFetch(
-      `${baseUrl || this.baseUrl || ''}${path}${queryString ? `?${queryString}` : ''}`,
-      {
-        ...requestParams,
-        headers: {
-          ...(requestParams.headers || {}),
-          ...(type && type !== ContentType.FormData
-            ? { 'Content-Type': type }
-            : {}),
-        },
-        signal:
-          (cancelToken
-            ? this.createAbortSignal(cancelToken)
-            : requestParams.signal) || null,
-        body:
-          typeof body === 'undefined' || body === null
-            ? null
-            : payloadFormatter(body),
+    return this.customFetch(`${baseUrl || this.baseUrl || ""}${path}${queryString ? `?${queryString}` : ""}`, {
+      ...requestParams,
+      headers: {
+        ...(requestParams.headers || {}),
+        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
       },
-    ).then(async (response) => {
+      signal: (cancelToken ? this.createAbortSignal(cancelToken) : requestParams.signal) || null,
+      body: typeof body === "undefined" || body === null ? null : payloadFormatter(body),
+    }).then(async (response) => {
       const r = response.clone() as HttpResponse<T, E>;
       r.data = null as unknown as T;
       r.error = null as unknown as E;
@@ -230,18 +197,18 @@ export class HttpClient<SecurityDataType = unknown> {
       const data = !responseFormat
         ? r
         : await response[responseFormat]()
-          .then((data) => {
-            if (r.ok) {
-              r.data = data;
-            } else {
-              r.error = data;
-            }
-            return r;
-          })
-          .catch((e) => {
-            r.error = e;
-            return r;
-          });
+            .then((data) => {
+              if (r.ok) {
+                r.data = data;
+              } else {
+                r.error = data;
+              }
+              return r;
+            })
+            .catch((e) => {
+              r.error = e;
+              return r;
+            });
 
       if (cancelToken) {
         this.abortControllers.delete(cancelToken);
@@ -259,9 +226,7 @@ export class HttpClient<SecurityDataType = unknown> {
  *
  * Heuvera API documentation with Swagger
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   api = {
     /**
      * @description This endpoint creates a new user based on the provided Auth0 ID.
@@ -315,31 +280,31 @@ export class Api<
           };
         },
         | {
-          /** @example false */
-          success?: boolean;
-          /** @example "Invalid input" */
-          error?: string;
-          details?: object[];
-        }
+            /** @example false */
+            success?: boolean;
+            /** @example "Invalid input" */
+            error?: string;
+            details?: object[];
+          }
         | {
-          /** @example false */
-          success?: boolean;
-          /** @example "Unauthorized" */
-          error?: string;
-        }
+            /** @example false */
+            success?: boolean;
+            /** @example "Unauthorized" */
+            error?: string;
+          }
         | {
-          /** @example false */
-          success?: boolean;
-          /** @example "Internal Server Error" */
-          error?: string;
-        }
+            /** @example false */
+            success?: boolean;
+            /** @example "Internal Server Error" */
+            error?: string;
+          }
       >({
         path: `/api/auth/user`,
-        method: 'POST',
+        method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -368,9 +333,9 @@ export class Api<
         void
       >({
         path: `/api/auth/verify`,
-        method: 'GET',
+        method: "GET",
         secure: true,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -400,10 +365,10 @@ export class Api<
         void
       >({
         path: `/api/v1/bookings`,
-        method: 'DELETE',
+        method: "DELETE",
         query: query,
         secure: true,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -443,9 +408,9 @@ export class Api<
         void
       >({
         path: `/api/v1/bookings`,
-        method: 'GET',
+        method: "GET",
         secure: true,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -503,11 +468,11 @@ export class Api<
         void
       >({
         path: `/api/v1/bookings`,
-        method: 'POST',
+        method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -528,9 +493,75 @@ export class Api<
         void
       >({
         path: `/api/v1/bookings/${id}`,
-        method: 'GET',
+        method: "GET",
         secure: true,
-        format: 'json',
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Deletes a listing from the authenticated user's favorites.
+     *
+     * @tags Favorites
+     * @name V1FavoritesDelete
+     * @summary Remove a listing from favorites
+     * @request DELETE:/api/v1/favorites/{listingId}
+     * @secure
+     */
+    v1FavoritesDelete: (listingId: string, params: RequestParams = {}) =>
+      this.request<
+        {
+          /** @example "Removed from favorites" */
+          message?: string;
+        },
+        void
+      >({
+        path: `/api/v1/favorites/${listingId}`,
+        method: "DELETE",
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Retrieves all favorite listings for the authenticated user.
+     *
+     * @tags Favorites
+     * @name V1FavoritesList
+     * @summary Get user's favorite listings
+     * @request GET:/api/v1/favorites
+     * @secure
+     */
+    v1FavoritesList: (params: RequestParams = {}) =>
+      this.request<any[], void>({
+        path: `/api/v1/favorites`,
+        method: "GET",
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Adds a listing to the authenticated user's favorites.
+     *
+     * @tags Favorites
+     * @name V1FavoritesCreate
+     * @summary Add a listing to favorites
+     * @request POST:/api/v1/favorites
+     * @secure
+     */
+    v1FavoritesCreate: (
+      data: {
+        listingId?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/v1/favorites`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
         ...params,
       }),
 
@@ -552,7 +583,7 @@ export class Api<
         phoneNumber?: string;
         bio?: string;
         governmentId?: string;
-        idVerificationStatus?: 'PENDING' | 'VERIFIED' | 'REJECTED';
+        idVerificationStatus?: "PENDING" | "VERIFIED" | "REJECTED";
         businessName?: string;
         /** @format url */
         businessLogo?: string;
@@ -570,11 +601,11 @@ export class Api<
         void
       >({
         path: `/api/v1/host`,
-        method: 'PATCH',
+        method: "PATCH",
         body: data,
         secure: true,
         type: ContentType.Json,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -602,10 +633,10 @@ export class Api<
         void
       >({
         path: `/api/v1/listings`,
-        method: 'DELETE',
+        method: "DELETE",
         query: query,
         secure: true,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -646,10 +677,10 @@ export class Api<
         void
       >({
         path: `/api/v1/listings`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -695,12 +726,12 @@ export class Api<
         void
       >({
         path: `/api/v1/listings`,
-        method: 'PATCH',
+        method: "PATCH",
         query: query,
         body: data,
         secure: true,
         type: ContentType.Json,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -709,46 +740,46 @@ export class Api<
      *
      * @tags Listings
      * @name V1ListingsCreate
-     * @summary Create a new property listing
+     * @summary Create a new listing
      * @request POST:/api/v1/listings
      * @secure
      */
     v1ListingsCreate: (
       data: {
         /** @minLength 5 */
-        title?: string;
+        title: string;
         /** @minLength 10 */
-        description?: string;
-        price?: number;
-        listingType?: string;
-        category?: string;
-        address?: string;
-        city?: string;
-        country?: string;
-        latitude?: number;
-        longitude?: number;
-        checkInTime?: string;
-        checkOutTime?: string;
+        description: string;
+        price: number;
+        listingType: string;
+        category: string;
+        address: string;
+        city: string;
+        country: string;
+        latitude: number;
+        longitude: number;
+        checkInTime: string;
+        checkOutTime: string;
         /** @default true */
         available?: boolean;
-        amenities?: string[];
+        amenities: string[];
         /** @minItems 1 */
-        images?: string[];
+        images: string[];
       },
       params: RequestParams = {},
     ) =>
       this.request<
         {
-          listing?: object;
+          listing?: any;
         },
         void
       >({
         path: `/api/v1/listings`,
-        method: 'POST',
+        method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
-        format: 'json',
+        format: "json",
         ...params,
       }),
 
@@ -769,9 +800,57 @@ export class Api<
         void
       >({
         path: `/api/v1/listings/${id}`,
-        method: 'GET',
+        method: "GET",
         secure: true,
-        format: 'json',
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Search for listings based on filters like title, category, city, country, price range, and amenities.
+     *
+     * @tags Listings
+     * @name V1ListingsSearchList
+     * @summary Search listings
+     * @request GET:/api/v1/listings/search
+     * @secure
+     */
+    v1ListingsSearchList: (
+      query?: {
+        /** Search by title (case-insensitive). */
+        title?: string;
+        /** Filter by category. */
+        category?: string;
+        /** Filter by city. */
+        city?: string;
+        /** Filter by country. */
+        country?: string;
+        /** Minimum price. */
+        minPrice?: number;
+        /** Maximum price. */
+        maxPrice?: number;
+        /** Filter by listing type. */
+        listingType?: string;
+        /** Filter by amenities (comma-separated). */
+        amenities?: string[];
+        /**
+         * Pagination - Page number.
+         * @default 1
+         */
+        page?: number;
+        /**
+         * Number of results per page.
+         * @default 10
+         */
+        pageSize?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/v1/listings/search`,
+        method: "GET",
+        query: query,
+        secure: true,
         ...params,
       }),
 
@@ -812,11 +891,174 @@ export class Api<
         void
       >({
         path: `/api/v1/profile`,
-        method: 'PATCH',
+        method: "PATCH",
         body: data,
         secure: true,
         type: ContentType.Json,
-        format: 'json',
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Fetches all reviews for a given property listing.
+     *
+     * @tags Reviews
+     * @name V1ReviewsList
+     * @summary Get reviews for a property listing
+     * @request GET:/api/v1/reviews
+     * @secure
+     */
+    v1ReviewsList: (
+      query: {
+        /** The ID of the listing for which to fetch reviews. */
+        listingId: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          id?: string;
+          rating?: number;
+          comment?: string;
+          /** @format date-time */
+          createdAt?: string;
+          user?: {
+            name?: string;
+            /** @format url */
+            picture?: string;
+          };
+        }[],
+        void
+      >({
+        path: `/api/v1/reviews`,
+        method: "GET",
+        query: query,
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Users can review a property only if they have booked it.
+     *
+     * @tags Reviews
+     * @name V1ReviewsCreate
+     * @summary Add a review for a property listing
+     * @request POST:/api/v1/reviews
+     * @secure
+     */
+    v1ReviewsCreate: (
+      data: {
+        /** @example "123e4567-e89b-12d3-a456-426614174000" */
+        listingId: string;
+        /**
+         * @min 1
+         * @max 5
+         * @example 5
+         */
+        rating: number;
+        /** @example "Amazing stay! The host was very accommodating." */
+        comment?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          id?: string;
+          userId?: string;
+          listingId?: string;
+          rating?: number;
+          comment?: string;
+        },
+        void
+      >({
+        path: `/api/v1/reviews`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Retrieves the average rating and total review count for a given property listing.
+     *
+     * @tags Reviews
+     * @name V1ReviewsAverageRatingList
+     * @summary Get average rating for a property listing
+     * @request GET:/api/v1/reviews/average-rating
+     * @secure
+     */
+    v1ReviewsAverageRatingList: (
+      query: {
+        /** The ID of the listing for which to fetch the average rating. */
+        listingId: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** The average rating of the listing. */
+          average?: number;
+          /** The total number of reviews for the listing. */
+          count?: number;
+        },
+        void
+      >({
+        path: `/api/v1/reviews/average-rating`,
+        method: "GET",
+        query: query,
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Search for listings based on filters like title, category, city, country, price range, and amenities.
+     *
+     * @tags Listings
+     * @name V1SearchList
+     * @summary Search listings
+     * @request GET:/api/v1/search
+     * @secure
+     */
+    v1SearchList: (
+      query?: {
+        /** Search by title (case-insensitive). */
+        title?: string;
+        /** Filter by category. */
+        category?: string;
+        /** Filter by city. */
+        city?: string;
+        /** Filter by country. */
+        country?: string;
+        /** Minimum price. */
+        minPrice?: number;
+        /** Maximum price. */
+        maxPrice?: number;
+        /** Filter by listing type. */
+        listingType?: string;
+        /** Filter by amenities (comma-separated). */
+        amenities?: string[];
+        /**
+         * Pagination - Page number.
+         * @default 1
+         */
+        page?: number;
+        /**
+         * Number of results per page.
+         * @default 10
+         */
+        pageSize?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/v1/search`,
+        method: "GET",
+        query: query,
+        secure: true,
         ...params,
       }),
 
@@ -841,9 +1083,9 @@ export class Api<
         void
       >({
         path: `/api/v1/user`,
-        method: 'GET',
+        method: "GET",
         secure: true,
-        format: 'json',
+        format: "json",
         ...params,
       }),
   };

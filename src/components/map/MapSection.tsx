@@ -1,49 +1,52 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@heuvera/components/ui/button';
-import { LucideSlidersHorizontal, Search, X } from 'lucide-react';
-import { BsArrowLeft } from 'react-icons/bs';
-import { useRouter } from 'next/navigation';
-import { IoHome } from 'react-icons/io5';
-import { LatLngTuple } from 'leaflet';
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@heuvera/components/ui/button";
+import { LucideSlidersHorizontal, Search, X } from "lucide-react";
+import { BsArrowLeft } from "react-icons/bs";
+import { useRouter } from "next/navigation";
+import { IoHome } from "react-icons/io5";
+import { LatLngTuple } from "leaflet";
 import {
   Property,
   MapSectionProps,
   MapComponentsProps,
-} from '@heuvera/types/map';
-import PropertyDetailTray from '../property/PropertyDetailTray';
-import { getCenterAndRadius } from '@heuvera/utils/map';
+} from "@heuvera/types/map";
+import PropertyDetailTray from "../property/PropertyDetailTray";
+import { getCenterAndRadius } from "@heuvera/utils/map";
+import { FaHome } from "react-icons/fa";
 
 const MapComponents = dynamic<MapComponentsProps>(
-  () => import('./MapComponent'),
+  () => import("./MapComponent"),
   { ssr: false },
 );
 
 const properties: Property[] = [
   {
     id: 1,
-    name: 'Luxury Apartment',
-    price: '$1,200/mo',
+    name: "Luxury Apartment",
+    price: "$1,200/mo",
     rating: 4.8,
     position: [9.0579, 7.4951] as LatLngTuple,
     image:
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    description: 'Modern luxury apartment with panoramic city views.',
+      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format",
+    description: "Modern luxury apartment with panoramic city views.",
     icon: <IoHome className="text-sm text-[#7B4F3A]" />,
+    propertyType: "apartment",
   },
   {
     id: 2,
-    name: 'Modern Duplex',
-    price: '$2,500/mo',
-    rating: 4.6,
-    position: [9.065, 7.497] as LatLngTuple,
+    name: "Family House",
+    price: "$950/mo",
+    rating: 4.5,
+    position: [9.06, 7.49] as LatLngTuple,
     image:
-      'https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    description: 'Spacious modern duplex in a prime location.',
-    icon: <IoHome className="text-sm text-[#7B4F3A]" />,
+      "https://images.unsplash.com/photo-1579656592043-6a47e332b902?q=80&w=1974&auto=format",
+    description: "Cozy family home with a large backyard.",
+    icon: <FaHome className="text-sm text-[#7B4F3A]" />,
+    propertyType: "house",
   },
 ];
 
@@ -53,7 +56,7 @@ export default function MapPageContent({
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(
     null,
   );
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
   const router = useRouter();
 
@@ -69,7 +72,7 @@ export default function MapPageContent({
           !isNaN(Number(property.position[0])) &&
           !isNaN(Number(property.position[1]))
         );
-      } else if (typeof property.position === 'object') {
+      } else if (typeof property.position === "object") {
         const pos = property.position as { lat?: number; lng?: number };
         return (
           pos.lat !== undefined &&
@@ -97,7 +100,7 @@ export default function MapPageContent({
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Searching for:', searchQuery);
+    console.log("Searching for:", searchQuery);
   };
 
   return (
@@ -105,7 +108,7 @@ export default function MapPageContent({
       <motion.div
         className="absolute top-0 left-0 right-0 z-[1000] bg-[#F3F2EC] shadow-sm px-12"
         animate={{
-          width: selectedProperty ? '50%' : '100%',
+          width: selectedProperty ? "50%" : "100%",
         }}
         transition={{ duration: 0.3 }}
       >
@@ -122,7 +125,7 @@ export default function MapPageContent({
           <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-4">
             <div
               className={`relative w-full h-10 bg-[#F8F7F2] border ${
-                isSearchFocused ? 'border-[#7B4F3A]' : 'border-[#C4C3B8]'
+                isSearchFocused ? "border-[#7B4F3A]" : "border-[#C4C3B8]"
               } rounded-full flex items-center transition-all duration-300`}
             >
               <div className="flex items-center pl-3 text-[#898989]">
@@ -142,7 +145,7 @@ export default function MapPageContent({
                   variant="ghost"
                   size="icon"
                   className="h-6 w-6 mr-2"
-                  onClick={() => setSearchQuery('')}
+                  onClick={() => setSearchQuery("")}
                 >
                   <X size={14} className="text-[#898989]" />
                 </Button>
@@ -163,7 +166,7 @@ export default function MapPageContent({
       <motion.div
         className="bg-[#F8F7F2] w-screen h-[calc(100vh-15rem)] overflow-hidden flex-grow relative"
         animate={{
-          width: selectedProperty ? '50%' : '100%',
+          width: selectedProperty ? "50%" : "100%",
         }}
         transition={{ duration: 0.3 }}
       >

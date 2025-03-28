@@ -1,6 +1,6 @@
-import { getOrCreateUser } from '@heuvera/lib/auth';
-import { prisma } from '@heuvera/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
+import { getOrCreateUser } from "@heuvera/lib/auth";
+import { prisma } from "@heuvera/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
 
 /**
  * @swagger
@@ -50,13 +50,13 @@ export async function GET(
   try {
     const user = await getOrCreateUser(req);
     if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const bookingId = params.id;
     if (!bookingId) {
       return NextResponse.json(
-        { error: 'Booking ID is required' },
+        { error: "Booking ID is required" },
         { status: 400 },
       );
     }
@@ -67,21 +67,21 @@ export async function GET(
     });
 
     if (!booking) {
-      return NextResponse.json({ error: 'Booking not found' }, { status: 404 });
+      return NextResponse.json({ error: "Booking not found" }, { status: 404 });
     }
 
     if (booking.userId !== user.id) {
       return NextResponse.json(
-        { error: 'Unauthorized to view this booking' },
+        { error: "Unauthorized to view this booking" },
         { status: 403 },
       );
     }
 
     return NextResponse.json({ booking }, { status: 200 });
   } catch (error) {
-    console.error('Error fetching booking:', error);
+    console.error("Error fetching booking:", error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 },
     );
   }

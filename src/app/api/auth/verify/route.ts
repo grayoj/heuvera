@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@auth0/nextjs-auth0/edge';
-import { prisma } from '@heuvera/lib/prisma';
-import { sendEmail } from '@heuvera/lib/email';
-import { getWelcomeTemplate } from '@heuvera/lib/templates';
+import { NextRequest, NextResponse } from "next/server";
+import { getSession } from "@auth0/nextjs-auth0/edge";
+import { prisma } from "@heuvera/lib/prisma";
+import { sendEmail } from "@heuvera/lib/email";
+import { getWelcomeEmail } from "@heuvera/lib/email/render";
 
 /**
  * @swagger
@@ -48,7 +48,7 @@ export async function GET(req: NextRequest) {
     const session = await getSession(req, res);
 
     if (!session || !session.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const { sub: auth0_id, email, name, picture } = session.user;
@@ -60,30 +60,33 @@ export async function GET(req: NextRequest) {
       user = await prisma.user.create({
         data: {
           auth0_id,
-          email: email ?? '',
+          email: email ?? "",
           name: name || null,
           picture: picture || null,
         },
       });
       newUser = true;
 
-      const userName = user.name ?? 'there';
-      const emailBody = getWelcomeTemplate(userName, 'https://heuvera.com/');
-      await sendEmail(user.email, 'Welcome to Heuvera', emailBody);
+      const userName = user.name ?? "there";
+      const emailBody = await getWelcomeEmail(
+        userName,
+        "https://heuvera.com/dashboard",
+      );
+      await sendEmail(user.email, "Host Approval Confirmation", emailBody);
     }
 
     return NextResponse.json(
       {
-        message: newUser ? 'User created successfully' : 'User already exists',
+        message: newUser ? "User created successfully" : "User already exists",
         newUser,
         user,
       },
       { status: 200 },
     );
   } catch (error) {
-    console.error('Error handling user request:', error);
+    console.error("Error handling user request:", error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 },
     );
   }

@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, ReactNode } from 'react';
-import { LatLngTuple } from 'leaflet';
+import { Dispatch, SetStateAction, ReactNode } from "react";
+import { LatLngTuple } from "leaflet";
 
 export interface Property {
   id: number;
@@ -11,6 +11,8 @@ export interface Property {
   description: string;
   icon: ReactNode;
   [key: string]: any;
+  location?: string;
+  propertyType: "apartment" | "house" | "office" | "land";
 }
 
 export interface MapComponentsProps {
@@ -27,3 +29,6 @@ export interface MapSectionProps {
   properties?: Property[];
   isTrayOpen?: boolean;
 }
+
+export type ViewMode = "grid" | "list";
+export type SortOption = "recent" | "price-low" | "price-high";

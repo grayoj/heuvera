@@ -1,18 +1,18 @@
-import { getOrCreateUser } from '@heuvera/lib/auth';
-import { prisma } from '@heuvera/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
-import { Decimal } from '@prisma/client/runtime/library';
-import { redis } from '@heuvera/lib/redis';
-import { queue } from '@heuvera/lib/queue';
+import { getOrCreateUser } from "@heuvera/lib/auth";
+import { prisma } from "@heuvera/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+import { Decimal } from "@prisma/client/runtime/library";
+import { redis } from "@heuvera/lib/redis";
+import { queue } from "@heuvera/lib/queue";
 
 const bookingSchema = z.object({
   listingId: z.string().uuid(),
   startDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
-    message: 'Invalid date format',
+    message: "Invalid date format",
   }),
   endDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
-    message: 'Invalid date format',
+    message: "Invalid date format",
   }),
   guests: z.number().int().positive(),
 });
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
   try {
     const user = await getOrCreateUser(req);
     if (!user)
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const body = await req.json();
     const validatedData = bookingSchema.parse(body);
@@ -104,10 +104,10 @@ export async function POST(req: NextRequest) {
     });
 
     if (!listing)
-      return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+      return NextResponse.json({ error: "Listing not found" }, { status: 404 });
     if (listing.hostId === user.id)
       return NextResponse.json(
-        { error: 'You cannot book your own listing' },
+        { error: "You cannot book your own listing" },
         { status: 403 },
       );
 
@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
       (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24);
     if (duration <= 0)
       return NextResponse.json(
-        { error: 'Invalid booking dates' },
+        { error: "Invalid booking dates" },
         { status: 400 },
       );
 
@@ -126,7 +126,7 @@ export async function POST(req: NextRequest) {
     );
     if (isAvailable)
       return NextResponse.json(
-        { error: 'Listing is already booked for this date' },
+        { error: "Listing is already booked for this date" },
         { status: 400 },
       );
 
@@ -145,20 +145,20 @@ export async function POST(req: NextRequest) {
 
     await redis.set(
       `booking:${validatedData.listingId}:${validatedData.startDate}`,
-      'booked',
+      "booked",
       { ex: 86400 },
     );
 
-    await queue.add('booking-confirmation', {
+    await queue.add("booking-confirmation", {
       bookingId: booking.id,
       userId: user.id,
     });
 
     return NextResponse.json({ booking }, { status: 201 });
   } catch (error) {
-    console.error('Error creating booking:', error);
+    console.error("Error creating booking:", error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 },
     );
   }

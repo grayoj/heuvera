@@ -1,19 +1,20 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import React from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import SectionHeaderText from "../text/SectionHeaderText";
 
 // Fix for default marker icons in React Leaflet
 // Using a different approach to avoid the _getIconUrl TypeScript error
 const defaultIcon = new L.Icon({
   iconUrl:
-    'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
   iconRetinaUrl:
-    'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
   shadowUrl:
-    'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
@@ -27,17 +28,14 @@ export default function LocationSection() {
 
   return (
     <div className="w-full flex flex-col gap-2">
-      <h1 className="text-2xl font-serif font-medium text-[#3E3E3E] pb-2">
-        Where you're staying
-      </h1>
-
+      <SectionHeaderText title="Where you're staying" />
       {/* React Leaflet Map */}
-      <div className="w-full h-90 rounded-xl overflow-hidden">
+      <div className="w-full h-52 md:h-90 lg:h-90 xl:h-90 2xl:h-90 rounded-xl overflow-hidden">
         <MapContainer
           center={position}
           zoom={14}
           scrollWheelZoom={false}
-          style={{ height: '100%', width: '100%' }}
+          style={{ height: "100%", width: "100%" }}
           className="rounded-xl"
         >
           <TileLayer

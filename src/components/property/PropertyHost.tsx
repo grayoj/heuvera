@@ -1,16 +1,15 @@
-'use client';
+"use client";
 
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
-import Divider from '../Divider';
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import Divider from "../Divider";
+import SectionHeaderText from "../text/SectionHeaderText";
 
 export default function HostInfo() {
   return (
     <>
       <Divider />
       <div className="flex flex-col gap-5">
-        <h1 className="text-2xl font-serif font-medium text-[#3E3E3E] pb-5">
-          Property Host
-        </h1>
+        <SectionHeaderText title="Property Host" />
         <div className="flex gap-2 items-center">
           <div className="size-10 rounded-full">
             <Avatar className="rounded-full overflow-hidden block">

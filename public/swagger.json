@@ -24,9 +24,7 @@
       "post": {
         "summary": "Create a user",
         "description": "This endpoint creates a new user based on the provided Auth0 ID.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "security": [
           {
             "BearerAuth": []
@@ -38,11 +36,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "auth0_id",
-                  "email",
-                  "created_at"
-                ],
+                "required": ["auth0_id", "email", "created_at"],
                 "properties": {
                   "auth0_id": {
                     "type": "string",
@@ -179,9 +173,7 @@
       "get": {
         "summary": "Retrieve or create a user from the session",
         "description": "Fetches an existing user or creates a new one if they do not exist in the database.",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "responses": {
           "200": {
             "description": "User retrieved or created successfully",
@@ -234,9 +226,7 @@
       "delete": {
         "summary": "Cancel a booking",
         "description": "Allows an authenticated user to cancel their booking if it hasn't started yet.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "security": [
           {
             "bearerAuth": []
@@ -287,9 +277,7 @@
       "get": {
         "summary": "Get user bookings",
         "description": "Fetches all bookings made by the authenticated user.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "security": [
           {
             "bearerAuth": []
@@ -368,9 +356,7 @@
       "post": {
         "summary": "Create a new booking",
         "description": "Users can book a listing by providing the listing ID, start date, end date, and the number of guests.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "requestBody": {
           "required": true,
           "content": {
@@ -469,9 +455,7 @@
       "get": {
         "summary": "Get booking details",
         "description": "Retrieves details of a specific booking for an authenticated user.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "security": [
           {
             "bearerAuth": []
@@ -523,13 +507,139 @@
         }
       }
     },
+    "/api/v1/favorites/{listingId}": {
+      "delete": {
+        "summary": "Remove a listing from favorites",
+        "description": "Deletes a listing from the authenticated user's favorites.",
+        "tags": ["Favorites"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "listingId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the listing to remove from favorites."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listing removed from favorites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Removed from favorites"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Listing ID is required"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Favorite not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/favorites": {
+      "get": {
+        "summary": "Get user's favorite listings",
+        "description": "Retrieves all favorite listings for the authenticated user.",
+        "tags": ["Favorites"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of favorite listings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FavoriteListing"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a listing to favorites",
+        "description": "Adds a listing to the authenticated user's favorites.",
+        "tags": ["Favorites"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "listingId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Listing added to favorites"
+          },
+          "400": {
+            "description": "Listing is already in favorites"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Listing not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v1/host": {
       "patch": {
         "summary": "Update host details",
         "description": "Updates host profile details. Only approved hosts can update their information.",
-        "tags": [
-          "Host"
-        ],
+        "tags": ["Host"],
         "security": [
           {
             "BearerAuth": []
@@ -555,11 +665,7 @@
                   },
                   "idVerificationStatus": {
                     "type": "string",
-                    "enum": [
-                      "PENDING",
-                      "VERIFIED",
-                      "REJECTED"
-                    ]
+                    "enum": ["PENDING", "VERIFIED", "REJECTED"]
                   },
                   "businessName": {
                     "type": "string"
@@ -620,9 +726,7 @@
       "delete": {
         "summary": "Delete a property listing",
         "description": "Allows an approved host to delete one of their property listings.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "query",
@@ -667,9 +771,7 @@
       "get": {
         "summary": "Retrieve paginated property listings",
         "description": "Fetches a paginated list of property listings, sorted by creation date in descending order.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "query",
@@ -734,9 +836,7 @@
       "patch": {
         "summary": "Update a property listing",
         "description": "Allows an approved host to update an existing property listing.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "security": [
           {
             "BearerAuth": []
@@ -846,22 +946,31 @@
         }
       },
       "post": {
-        "summary": "Create a new property listing",
+        "summary": "Create a new listing",
         "description": "Allows an approved host to create a new property listing.",
-        "tags": [
-          "Listings"
-        ],
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ],
+        "tags": ["Listings"],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "title",
+                  "description",
+                  "price",
+                  "listingType",
+                  "category",
+                  "address",
+                  "city",
+                  "country",
+                  "latitude",
+                  "longitude",
+                  "checkInTime",
+                  "checkOutTime",
+                  "amenities",
+                  "images"
+                ],
                 "properties": {
                   "title": {
                     "type": "string",
@@ -932,7 +1041,7 @@
                   "type": "object",
                   "properties": {
                     "listing": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/Listing"
                     }
                   }
                 }
@@ -940,13 +1049,16 @@
             }
           },
           "400": {
-            "description": "Bad request - Validation failed"
+            "description": "Bad request, validation error"
           },
           "401": {
-            "description": "Unauthorized - User not found"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden - User is not an approved host"
+            "description": "User is not approved as a host"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -955,9 +1067,7 @@
       "get": {
         "summary": "Get a listing by ID",
         "description": "Retrieve details of a specific listing by its ID, including host details.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "path",
@@ -997,13 +1107,116 @@
         }
       }
     },
+    "/api/v1/listings/search": {
+      "get": {
+        "summary": "Search listings",
+        "description": "Search for listings based on filters like title, category, city, country, price range, and amenities.",
+        "tags": ["Listings"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "title",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search by title (case-insensitive)."
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by category."
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by city."
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by country."
+          },
+          {
+            "in": "query",
+            "name": "minPrice",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Minimum price."
+          },
+          {
+            "in": "query",
+            "name": "maxPrice",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Maximum price."
+          },
+          {
+            "in": "query",
+            "name": "listingType",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by listing type."
+          },
+          {
+            "in": "query",
+            "name": "amenities",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter by amenities (comma-separated)."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number",
+              "default": 1
+            },
+            "description": "Pagination - Page number."
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "description": "Number of results per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved listings."
+          },
+          "400": {
+            "description": "Invalid query parameters."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
     "/api/v1/profile": {
       "patch": {
         "summary": "Update or create user profile",
         "description": "Updates the user's profile if it exists, otherwise creates a new one.",
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "requestBody": {
           "required": true,
           "content": {
@@ -1095,13 +1308,295 @@
         }
       }
     },
+    "/api/v1/reviews": {
+      "get": {
+        "summary": "Get reviews for a property listing",
+        "description": "Fetches all reviews for a given property listing.",
+        "tags": ["Reviews"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "listingId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the listing for which to fetch reviews."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of reviews for the specified listing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "rating": {
+                        "type": "integer"
+                      },
+                      "comment": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "user": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "picture": {
+                            "type": "string",
+                            "format": "url"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Listing ID is required."
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a review for a property listing",
+        "description": "Users can review a property only if they have booked it.",
+        "tags": ["Reviews"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["listingId", "rating"],
+                "properties": {
+                  "listingId": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  },
+                  "rating": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5,
+                    "example": 5
+                  },
+                  "comment": {
+                    "type": "string",
+                    "example": "Amazing stay! The host was very accommodating."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Review successfully added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "listingId": {
+                      "type": "string"
+                    },
+                    "rating": {
+                      "type": "integer"
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "You must book this property before reviewing"
+          },
+          "409": {
+            "description": "Review already exists"
+          }
+        }
+      }
+    },
+    "/api/v1/reviews/average-rating": {
+      "get": {
+        "summary": "Get average rating for a property listing",
+        "description": "Retrieves the average rating and total review count for a given property listing.",
+        "tags": ["Reviews"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "listingId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the listing for which to fetch the average rating."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The average rating and review count for the specified listing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "average": {
+                      "type": "number",
+                      "description": "The average rating of the listing."
+                    },
+                    "count": {
+                      "type": "integer",
+                      "description": "The total number of reviews for the listing."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Listing ID is required."
+          }
+        }
+      }
+    },
+    "/api/v1/search": {
+      "get": {
+        "summary": "Search listings",
+        "description": "Search for listings based on filters like title, category, city, country, price range, and amenities.",
+        "tags": ["Listings"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "title",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search by title (case-insensitive)."
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by category."
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by city."
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by country."
+          },
+          {
+            "in": "query",
+            "name": "minPrice",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Minimum price."
+          },
+          {
+            "in": "query",
+            "name": "maxPrice",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Maximum price."
+          },
+          {
+            "in": "query",
+            "name": "listingType",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by listing type."
+          },
+          {
+            "in": "query",
+            "name": "amenities",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter by amenities (comma-separated)."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number",
+              "default": 1
+            },
+            "description": "Pagination - Page number."
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "description": "Number of results per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved listings."
+          },
+          "400": {
+            "description": "Invalid query parameters."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
     "/api/v1/user": {
       "get": {
         "summary": "Get logged-in user",
         "description": "Retrieves details of the currently authenticated user.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "security": [
           {
             "bearerAuth": []
