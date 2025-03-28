@@ -19,20 +19,19 @@ import { GoHomeFill } from "react-icons/go";
 // Leaflet CSS Import (crucial for map rendering)
 import "leaflet/dist/leaflet.css";
 
-// Fix for default marker icon
-import icon from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 
+
 let DefaultIcon = L.icon({
-  iconUrl: icon.src,
-  shadowUrl: iconShadow.src,
+  iconUrl: "/leaflet/marker-icon.png",
+  shadowUrl: "/leaflet/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
 });
 L.Marker.prototype.options.icon = DefaultIcon;
+
 
 // FitMapToBounds Component
 const FitMapToBounds = ({
@@ -50,9 +49,9 @@ const FitMapToBounds = ({
         positions.length > 1
           ? new L.LatLngBounds(positions)
           : L.latLngBounds([
-              [positions[0][0] - 0.01, positions[0][1] - 0.01],
-              [positions[0][0] + 0.01, positions[0][1] + 0.01],
-            ]);
+            [positions[0][0] - 0.01, positions[0][1] - 0.01],
+            [positions[0][0] + 0.01, positions[0][1] + 0.01],
+          ]);
       map.fitBounds(bounds, { padding: [50, 50] });
     }
   }, [map, positions, isTrayOpen]);
