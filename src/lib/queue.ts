@@ -1,10 +1,7 @@
 import { Queue, Worker, Job } from "bullmq";
 import { sendEmail } from "./email";
 import { prisma } from "./prisma";
-import {
-  getBookingCancellationMail,
-  getBookingConfirmationMail,
-} from "./email/render";
+import { getBookingCancellationMail, getBookingConfirmationMail } from "./email/render";
 
 const redisUrl = process.env.REDIS_URLS!;
 const url = new URL(redisUrl);
@@ -64,7 +61,7 @@ export const cancellationWorker = new Worker(
       propertyLocation: string;
       checkInDate: string;
       checkOutDate: string;
-    }>,
+    }>
   ) => {
     const emailTemplate = await getBookingCancellationMail(
       job.data.guestName,
