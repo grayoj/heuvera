@@ -1,12 +1,15 @@
-import AccountHeader from '@heuvera/components/ui/AccountHeader';
-import BookingTable from '@heuvera/components/ui/Table';
-import { Button } from '@heuvera/components/ui/button';
-import { ArrowDown, Newspaper } from 'lucide-react';
+import AccountHeader from "@heuvera/components/ui/AccountHeader";
+import BookingTable from "@heuvera/components/ui/Table";
+import { Button } from "@heuvera/components/ui/button";
+import { ArrowDown, Newspaper } from "lucide-react";
 
 export default function BookingHistory() {
   return (
     <div>
-      <AccountHeader heading='Booking Management' subheading='Track upcoming, ongoing, and past bookings in one place' />
+      <AccountHeader
+        heading="Booking Management"
+        subheading="Track upcoming, ongoing, and past bookings in one place"
+      />
 
       <div className="flex justify-between items-center mb-3">
         <h2 className="font-medium text-[1.125rem]">Past Bookings</h2>

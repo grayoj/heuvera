@@ -23,7 +23,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 
-
 let DefaultIcon = L.icon({
   iconUrl: "/leaflet/marker-icon.png",
   shadowUrl: "/leaflet/marker-shadow.png",
@@ -31,7 +30,6 @@ let DefaultIcon = L.icon({
   iconAnchor: [12, 41],
 });
 L.Marker.prototype.options.icon = DefaultIcon;
-
 
 // FitMapToBounds Component
 const FitMapToBounds = ({
@@ -49,9 +47,9 @@ const FitMapToBounds = ({
         positions.length > 1
           ? new L.LatLngBounds(positions)
           : L.latLngBounds([
-            [positions[0][0] - 0.01, positions[0][1] - 0.01],
-            [positions[0][0] + 0.01, positions[0][1] + 0.01],
-          ]);
+              [positions[0][0] - 0.01, positions[0][1] - 0.01],
+              [positions[0][0] + 0.01, positions[0][1] + 0.01],
+            ]);
       map.fitBounds(bounds, { padding: [50, 50] });
     }
   }, [map, positions, isTrayOpen]);

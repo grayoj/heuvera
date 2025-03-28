@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import Help from '@heuvera/components/ui/Help';
-import { useState } from 'react';
-import AccountHeader from '@heuvera/components/ui/AccountHeader';
-import PersonalForm from '@heuvera/components/personal-info/PersonalForm';
+import Help from "@heuvera/components/ui/Help";
+import { useState } from "react";
+import AccountHeader from "@heuvera/components/ui/AccountHeader";
+import PersonalForm from "@heuvera/components/personal-info/PersonalForm";
 
 export default function PersonInfo() {
-  const [userImage, setUserImage] = useState('');
+  const [userImage, setUserImage] = useState("");
 
   function handleImageUpload() {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
     fileInput.onchange = (event) => {
       const file = (event.target as HTMLInputElement).files?.[0];
       if (file) {

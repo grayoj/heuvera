@@ -1,16 +1,16 @@
-import Image from 'next/image';
-import { pastBookings } from '../../app/data/array';
+import Image from "next/image";
+import { pastBookings } from "../../app/data/array";
 
 export default function BookingTable() {
   const tableHeadings = [
-    'S/N',
-    'Property Image',
-    'Property Name',
-    'Location',
-    'Check-In Date & Check-Out Date',
-    'Booking Status',
-    'Price Paid',
-    'Number of Guests',
+    "S/N",
+    "Property Image",
+    "Property Name",
+    "Location",
+    "Check-In Date & Check-Out Date",
+    "Booking Status",
+    "Price Paid",
+    "Number of Guests",
   ];
   return (
     <div className="relative overflow-x-auto shadow-md">
@@ -22,7 +22,7 @@ export default function BookingTable() {
                 key={index}
                 scope="col"
                 className={`py-4 px-3 whitespace-nowrap border-x ${
-                  index === tableHeadings.length - 1 ? 'border-r' : ''
+                  index === tableHeadings.length - 1 ? "border-r" : ""
                 }`}
               >
                 {heading}
@@ -39,12 +39,13 @@ export default function BookingTable() {
               <td className="border-x">{index + 1}</td>
               <td className="border-x flex justify-center items-center">
                 <Image
-              src='https://picsum.photos/50/36'
-              className='rounded-md my-1.5'
-              height={36}
-              width={50}
-              alt='fun'
-              /></td>
+                  src="https://picsum.photos/50/36"
+                  className="rounded-md my-1.5"
+                  height={36}
+                  width={50}
+                  alt="fun"
+                />
+              </td>
               <td className="border-x">{booking.name}</td>
               <td className="border-x">{booking.location}</td>
               <td className="border-x">{booking.date}</td>

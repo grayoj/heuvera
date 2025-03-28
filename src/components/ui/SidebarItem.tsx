@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Item {
   icon: React.FC;
@@ -23,8 +23,8 @@ function SidebarItem({
   const pathname = usePathname();
   // Adjust fullRoute to handle the root route correctly
   const fullRoute =
-    route === '/'
-      ? '/profile/property-renters'
+    route === "/"
+      ? "/profile/property-renters"
       : `/profile/property-renters/${route}`;
   const isActive = pathname === fullRoute;
 
@@ -33,12 +33,12 @@ function SidebarItem({
       href={fullRoute}
       className={`flex justify-center left-[1px] top-[145px]  py-3.5 ${
         isActive
-          ? 'bg-[#E3E2D966] border-2 border-t-0 border-l-[#7B4F3A] '
-          : 'border-b-2 border-[#E3E2D9] '
+          ? "bg-[#E3E2D966] border-2 border-t-0 border-l-[#7B4F3A] "
+          : "border-b-2 border-[#E3E2D9] "
       }`}
     >
       <div
-        className={`${isActive ? 'bg-[#7B4F3A] text-white ' : 'bg-[#F8F7F2] text-black'} rounded-full size-12 flex justify-center items-center shadow-[#00000040] shadow-[0px_2px_2px]`}
+        className={`${isActive ? "bg-[#7B4F3A] text-white " : "bg-[#F8F7F2] text-black"} rounded-full size-12 flex justify-center items-center shadow-[#00000040] shadow-[0px_2px_2px]`}
       >
         <item.icon />
       </div>

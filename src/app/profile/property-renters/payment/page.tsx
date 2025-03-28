@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import AccountHeader from '@heuvera/components/ui/AccountHeader';
-import CreditPayment from '@heuvera/components/payment/CreditPayment';
-import PaymentSecurity from '@heuvera/components/payment/PaymentSecurity';
-import BankPayment from '@heuvera/components/payment/BankPayment';
-import PaymentMethod from '@heuvera/components/payment/PaymentMethod';
+import { useState } from "react";
+import AccountHeader from "@heuvera/components/ui/AccountHeader";
+import CreditPayment from "@heuvera/components/payment/CreditPayment";
+import PaymentSecurity from "@heuvera/components/payment/PaymentSecurity";
+import BankPayment from "@heuvera/components/payment/BankPayment";
+import PaymentMethod from "@heuvera/components/payment/PaymentMethod";
 
 export default function Page() {
-  const [paymentMethod, setPaymentMethod] = useState('credit');
+  const [paymentMethod, setPaymentMethod] = useState("credit");
 
   return (
     <>
@@ -24,9 +24,9 @@ export default function Page() {
             setPaymentMethod={setPaymentMethod}
           />
 
-          {paymentMethod === 'credit' && <CreditPayment />}
+          {paymentMethod === "credit" && <CreditPayment />}
 
-          {paymentMethod === 'bank' && <BankPayment />}
+          {paymentMethod === "bank" && <BankPayment />}
         </div>
 
         <PaymentSecurity />

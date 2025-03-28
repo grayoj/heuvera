@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useMemo } from 'react';
-import { sideBar } from '../data/array';
-import SidebarItem from '../../components/ui/SidebarItem';
-import AccountBanner from '@heuvera/components/ui/AccountBanner';
+import React, { useMemo } from "react";
+import { sideBar } from "../data/array";
+import SidebarItem from "../../components/ui/SidebarItem";
+import AccountBanner from "@heuvera/components/ui/AccountBanner";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const sidebarItems = useMemo(() => {
