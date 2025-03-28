@@ -1189,6 +1189,185 @@
         }
       }
     },
+    "/api/v1/reviews": {
+      "get": {
+        "summary": "Get reviews for a property listing",
+        "description": "Fetches all reviews for a given property listing.",
+        "tags": ["Reviews"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "listingId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the listing for which to fetch reviews."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of reviews for the specified listing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "rating": {
+                        "type": "integer"
+                      },
+                      "comment": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "user": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "picture": {
+                            "type": "string",
+                            "format": "url"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Listing ID is required."
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a review for a property listing",
+        "description": "Users can review a property only if they have booked it.",
+        "tags": ["Reviews"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["listingId", "rating"],
+                "properties": {
+                  "listingId": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  },
+                  "rating": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5,
+                    "example": 5
+                  },
+                  "comment": {
+                    "type": "string",
+                    "example": "Amazing stay! The host was very accommodating."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Review successfully added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "listingId": {
+                      "type": "string"
+                    },
+                    "rating": {
+                      "type": "integer"
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "You must book this property before reviewing"
+          },
+          "409": {
+            "description": "Review already exists"
+          }
+        }
+      }
+    },
+    "/api/v1/reviews/average-rating": {
+      "get": {
+        "summary": "Get average rating for a property listing",
+        "description": "Retrieves the average rating and total review count for a given property listing.",
+        "tags": ["Reviews"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "listingId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the listing for which to fetch the average rating."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The average rating and review count for the specified listing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "average": {
+                      "type": "number",
+                      "description": "The average rating of the listing."
+                    },
+                    "count": {
+                      "type": "integer",
+                      "description": "The total number of reviews for the listing."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Listing ID is required."
+          }
+        }
+      }
+    },
     "/api/v1/user": {
       "get": {
         "summary": "Get logged-in user",

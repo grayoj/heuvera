@@ -499,72 +499,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
-     * @description Deletes a listing from the authenticated user's favorites.
-     *
-     * @tags Favorites
-     * @name V1FavoritesDelete
-     * @summary Remove a listing from favorites
-     * @request DELETE:/api/v1/favorites/{listingId}
-     * @secure
-     */
-    v1FavoritesDelete: (listingId: string, params: RequestParams = {}) =>
-      this.request<
-        {
-          /** @example "Removed from favorites" */
-          message?: string;
-        },
-        void
-      >({
-        path: `/api/v1/favorites/${listingId}`,
-        method: "DELETE",
-        secure: true,
-        format: "json",
-        ...params,
-      }),
-
-    /**
-     * @description Retrieves all favorite listings for the authenticated user.
-     *
-     * @tags Favorites
-     * @name V1FavoritesList
-     * @summary Get user's favorite listings
-     * @request GET:/api/v1/favorites
-     * @secure
-     */
-    v1FavoritesList: (params: RequestParams = {}) =>
-      this.request<any[], void>({
-        path: `/api/v1/favorites`,
-        method: "GET",
-        secure: true,
-        format: "json",
-        ...params,
-      }),
-
-    /**
-     * @description Adds a listing to the authenticated user's favorites.
-     *
-     * @tags Favorites
-     * @name V1FavoritesCreate
-     * @summary Add a listing to favorites
-     * @request POST:/api/v1/favorites
-     * @secure
-     */
-    v1FavoritesCreate: (
-      data: {
-        listingId?: string;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<void, void>({
-        path: `/api/v1/favorites`,
-        method: "POST",
-        body: data,
-        secure: true,
-        type: ContentType.Json,
-        ...params,
-      }),
-
-    /**
      * @description Updates host profile details. Only approved hosts can update their information.
      *
      * @tags Host
@@ -846,6 +780,121 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         body: data,
         secure: true,
         type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Fetches all reviews for a given property listing.
+     *
+     * @tags Reviews
+     * @name V1ReviewsList
+     * @summary Get reviews for a property listing
+     * @request GET:/api/v1/reviews
+     * @secure
+     */
+    v1ReviewsList: (
+      query: {
+        /** The ID of the listing for which to fetch reviews. */
+        listingId: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          id?: string;
+          rating?: number;
+          comment?: string;
+          /** @format date-time */
+          createdAt?: string;
+          user?: {
+            name?: string;
+            /** @format url */
+            picture?: string;
+          };
+        }[],
+        void
+      >({
+        path: `/api/v1/reviews`,
+        method: "GET",
+        query: query,
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Users can review a property only if they have booked it.
+     *
+     * @tags Reviews
+     * @name V1ReviewsCreate
+     * @summary Add a review for a property listing
+     * @request POST:/api/v1/reviews
+     * @secure
+     */
+    v1ReviewsCreate: (
+      data: {
+        /** @example "123e4567-e89b-12d3-a456-426614174000" */
+        listingId: string;
+        /**
+         * @min 1
+         * @max 5
+         * @example 5
+         */
+        rating: number;
+        /** @example "Amazing stay! The host was very accommodating." */
+        comment?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          id?: string;
+          userId?: string;
+          listingId?: string;
+          rating?: number;
+          comment?: string;
+        },
+        void
+      >({
+        path: `/api/v1/reviews`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Retrieves the average rating and total review count for a given property listing.
+     *
+     * @tags Reviews
+     * @name V1ReviewsAverageRatingList
+     * @summary Get average rating for a property listing
+     * @request GET:/api/v1/reviews/average-rating
+     * @secure
+     */
+    v1ReviewsAverageRatingList: (
+      query: {
+        /** The ID of the listing for which to fetch the average rating. */
+        listingId: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** The average rating of the listing. */
+          average?: number;
+          /** The total number of reviews for the listing. */
+          count?: number;
+        },
+        void
+      >({
+        path: `/api/v1/reviews/average-rating`,
+        method: "GET",
+        query: query,
+        secure: true,
         format: "json",
         ...params,
       }),
