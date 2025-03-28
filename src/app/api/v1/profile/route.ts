@@ -1,7 +1,7 @@
-import { getOrCreateUser } from '@heuvera/lib/auth';
-import { prisma } from '@heuvera/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { getOrCreateUser } from "@heuvera/lib/auth";
+import { prisma } from "@heuvera/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 const profileSchema = z.object({
   country: z.string().optional(),
@@ -92,7 +92,7 @@ export async function PATCH(req: NextRequest) {
   try {
     const user = await getOrCreateUser(req);
     if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const body = await req.json();
@@ -106,9 +106,9 @@ export async function PATCH(req: NextRequest) {
 
     return NextResponse.json({ profile: updatedProfile }, { status: 200 });
   } catch (error: any) {
-    console.error('Error updating profile:', error);
+    console.error("Error updating profile:", error);
     return NextResponse.json(
-      { error: error.message || 'Internal Server Error' },
+      { error: error.message || "Internal Server Error" },
       { status: 400 },
     );
   }

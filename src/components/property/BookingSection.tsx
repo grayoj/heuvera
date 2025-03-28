@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@heuvera/components/ui/button';
-import { IoCalendarOutline, IoChevronDown, IoChevronUp } from 'react-icons/io5';
-import Divider from '../Divider';
-import { DateRange } from 'react-day-picker';
-import { format, addDays } from 'date-fns';
-import { Calendar } from '@heuvera/components/ui/calendar';
-import SectionHeaderText from '../text/SectionHeaderText';
+import { useState } from "react";
+import { Button } from "@heuvera/components/ui/button";
+import { IoCalendarOutline, IoChevronDown, IoChevronUp } from "react-icons/io5";
+import Divider from "../Divider";
+import { DateRange } from "react-day-picker";
+import { format, addDays } from "date-fns";
+import { Calendar } from "@heuvera/components/ui/calendar";
+import SectionHeaderText from "../text/SectionHeaderText";
 
 export default function BookingSection() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedGuests, setSelectedGuests] = useState('1 Guest');
-  const guestOptions = ['1 Guest', '2 Guests', '3 Guests', '4+ Guests'];
+  const [selectedGuests, setSelectedGuests] = useState("1 Guest");
+  const guestOptions = ["1 Guest", "2 Guests", "3 Guests", "4+ Guests"];
 
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
@@ -21,13 +21,13 @@ export default function BookingSection() {
   });
 
   const formatDateRange = () => {
-    if (!dateRange || !dateRange.from) return 'Select dates';
+    if (!dateRange || !dateRange.from) return "Select dates";
 
     if (!dateRange.to) {
-      return format(dateRange.from, 'MMM d');
+      return format(dateRange.from, "MMM d");
     }
 
-    return `${format(dateRange.from, 'MMM d')} - ${format(dateRange.to, 'MMM d')}`;
+    return `${format(dateRange.from, "MMM d")} - ${format(dateRange.to, "MMM d")}`;
   };
 
   return (
@@ -62,10 +62,10 @@ export default function BookingSection() {
                   numberOfMonths={1}
                   className="bg-transparent scale-110 origin-center"
                   styles={{
-                    day: { width: '40px', height: '40px' },
-                    month: { width: '100%' },
-                    caption_label: { fontSize: '1rem' },
-                    head_cell: { fontSize: '0.9rem', width: '40px' },
+                    day: { width: "40px", height: "40px" },
+                    month: { width: "100%" },
+                    caption_label: { fontSize: "1rem" },
+                    head_cell: { fontSize: "0.9rem", width: "40px" },
                   }}
                 />
                 <div className="mt-6 flex justify-end">

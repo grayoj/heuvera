@@ -1,6 +1,6 @@
-import { getOrCreateUser } from '@heuvera/lib/auth';
-import { prisma } from '@heuvera/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
+import { getOrCreateUser } from "@heuvera/lib/auth";
+import { prisma } from "@heuvera/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
 
 /**
  * @swagger
@@ -63,19 +63,19 @@ export async function GET(req: NextRequest) {
   try {
     const user = await getOrCreateUser(req);
     if (!user)
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const bookings = await prisma.booking.findMany({
       where: { userId: user.id },
       include: { listing: true },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
 
     return NextResponse.json({ bookings }, { status: 200 });
   } catch (error) {
-    console.error('Error fetching bookings:', error);
+    console.error("Error fetching bookings:", error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 },
     );
   }

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { BsArrowLeft } from 'react-icons/bs';
-import { useRouter } from 'next/navigation';
-import { IoShareSocialOutline } from 'react-icons/io5';
+import { BsArrowLeft } from "react-icons/bs";
+import { useRouter } from "next/navigation";
+import { IoShareSocialOutline } from "react-icons/io5";
 
 export default function PageHeader() {
   const router = useRouter();

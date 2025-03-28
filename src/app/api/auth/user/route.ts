@@ -1,7 +1,7 @@
-import { HEUVERA_API_KEY } from '@heuvera/lib/constants';
-import { prisma } from '@heuvera/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { HEUVERA_API_KEY } from "@heuvera/lib/constants";
+import { prisma } from "@heuvera/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 const userSchema = z.object({
   auth0_id: z.string(),
@@ -142,9 +142,9 @@ export async function POST(
   req: NextRequest,
 ): Promise<ApiResponse<{ user: unknown }>> {
   try {
-    const authHeader = req.headers.get('Authorization') ?? '';
+    const authHeader = req.headers.get("Authorization") ?? "";
     if (authHeader !== `Bearer ${HEUVERA_API_KEY}`) {
-      return createResponse(401, undefined, 'Unauthorized');
+      return createResponse(401, undefined, "Unauthorized");
     }
 
     const body = await req.json();
@@ -165,12 +165,12 @@ export async function POST(
 
     return createResponse(200, { user });
   } catch (error) {
-    console.error('Error storing user:', error);
+    console.error("Error storing user:", error);
 
     if (error instanceof z.ZodError) {
-      return createResponse(400, undefined, 'Invalid input', error.errors);
+      return createResponse(400, undefined, "Invalid input", error.errors);
     }
 
-    return createResponse(500, undefined, 'Internal Server Error');
+    return createResponse(500, undefined, "Internal Server Error");
   }
 }

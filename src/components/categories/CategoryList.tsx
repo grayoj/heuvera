@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { categories } from './categoriesData';
-import CategoryItem from './CategoryItem';
+import { useState } from "react";
+import { categories } from "./categoriesData";
+import CategoryItem from "./CategoryItem";
 
 interface CategoryListProps {
   onCategorySelect: (category: string | null) => void;

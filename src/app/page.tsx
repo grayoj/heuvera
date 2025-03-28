@@ -1,4 +1,4 @@
-import SplashScreen from './auth/splashscreen/Splashscreen';
+import SplashScreen from "./auth/splashscreen/Splashscreen";
 
 export default function Home() {
   return <SplashScreen />;

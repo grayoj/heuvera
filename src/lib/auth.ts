@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@auth0/nextjs-auth0/edge';
-import { prisma } from './prisma';
+import { NextRequest, NextResponse } from "next/server";
+import { getSession } from "@auth0/nextjs-auth0/edge";
+import { prisma } from "./prisma";
 
 export async function getOrCreateUser(req: NextRequest) {
   const res = NextResponse.next();
@@ -21,7 +21,7 @@ export async function getOrCreateUser(req: NextRequest) {
     user = await prisma.user.create({
       data: {
         auth0_id,
-        email: email ?? '',
+        email: email ?? "",
         name: name || null,
         picture: picture || null,
       },

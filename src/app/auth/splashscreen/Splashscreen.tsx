@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HeuveraLogo } from '@heuvera/components/logo';
-import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HeuveraLogo } from "@heuvera/components/logo";
+import { useRouter } from "next/navigation";
 
 const SplashScreen = () => {
   const router = useRouter();
@@ -13,7 +13,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsAnimating(false);
-      router.push('/explore');
+      router.push("/explore");
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -22,7 +22,7 @@ const SplashScreen = () => {
   const handleLogoInteraction = () => {
     setIsClicked(true);
     setTimeout(() => {
-      router.push('/explore');
+      router.push("/explore");
     }, 300);
   };
 
@@ -36,7 +36,7 @@ const SplashScreen = () => {
             opacity: 1,
             transition: {
               duration: 0.8,
-              ease: 'easeOut',
+              ease: "easeOut",
             },
           }}
           exit={{
@@ -44,7 +44,7 @@ const SplashScreen = () => {
             scale: 1.2,
             transition: {
               duration: 0.5,
-              ease: 'easeIn',
+              ease: "easeIn",
             },
           }}
           className="fixed inset-0 flex items-center justify-center bg-[#7B4F3A]"
@@ -58,8 +58,8 @@ const SplashScreen = () => {
               transition: {
                 duration: 3,
                 repeat: Infinity,
-                repeatType: 'reverse',
-                ease: 'easeInOut',
+                repeatType: "reverse",
+                ease: "easeInOut",
               },
             }}
             className="absolute w-96 h-96 bg-[#F8F7F2] rounded-full opacity-10"
@@ -71,15 +71,15 @@ const SplashScreen = () => {
               scale: 0.5,
               rotate: -180,
               opacity: 0,
-              filter: 'blur(15px)',
+              filter: "blur(15px)",
             }}
             animate={{
               scale: isClicked ? 1.5 : 1,
               rotate: isClicked ? 360 : 0,
               opacity: 1,
-              filter: 'blur(0px)',
+              filter: "blur(0px)",
               transition: {
-                type: 'spring',
+                type: "spring",
                 stiffness: 300,
                 damping: 25,
                 duration: 1.2,
@@ -95,7 +95,7 @@ const SplashScreen = () => {
                 transition: {
                   duration: 2.5,
                   repeat: Infinity,
-                  ease: 'easeInOut',
+                  ease: "easeInOut",
                 },
               }}
             >

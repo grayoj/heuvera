@@ -1,8 +1,8 @@
-import { Button } from '@heuvera/components/ui/button';
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
-import { IoStar } from 'react-icons/io5';
-import { LucideMoreVertical } from 'lucide-react';
-import { FaStar } from 'react-icons/fa6';
+import { Button } from "@heuvera/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { IoStar } from "react-icons/io5";
+import { LucideMoreVertical } from "lucide-react";
+import { FaStar } from "react-icons/fa6";
 
 export default function ReviewCard() {
   return (

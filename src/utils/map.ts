@@ -1,4 +1,4 @@
-import { LatLngTuple } from 'leaflet';
+import { LatLngTuple } from "leaflet";
 
 export const getCenterAndRadius = (locations: LatLngTuple[]) => {
   if (locations.length === 0) {

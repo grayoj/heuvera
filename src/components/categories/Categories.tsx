@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import MapButton from './MapButton';
-import FilterButton from './FilterButton';
-import LeaseRentStays from './LeaseRentStays';
-import CategoryList from './CategoryList';
-import useIsMobile from '@heuvera/hooks/IsMobile';
+import { useRouter } from "next/navigation";
+import MapButton from "./MapButton";
+import FilterButton from "./FilterButton";
+import LeaseRentStays from "./LeaseRentStays";
+import CategoryList from "./CategoryList";
+import useIsMobile from "@heuvera/hooks/IsMobile";
 
 interface CategoriesProps {
   onCategorySelect: (category: string | null) => void;
@@ -28,7 +28,7 @@ const Categories: React.FC<CategoriesProps> = ({ onCategorySelect, setActiveFilt
   const isMobile = useIsMobile();
 
   const ToMap = () => {
-    router.push('/explore/map');
+    router.push("/explore/map");
   };
 
   return (

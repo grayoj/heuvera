@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Map } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { Map } from "lucide-react";
+import { useRouter } from "next/navigation";
 import {
   Drawer,
   DrawerHeader,
@@ -10,12 +10,11 @@ import {
   DrawerClose,
   DrawerTrigger,
   DrawerTitle,
-} from '../../components/ui/drawer';
-import { Button } from '../ui/button';
-import dynamic from 'next/dynamic';
+} from "../../components/ui/drawer";
+import { Button } from "../ui/button";
+import dynamic from "next/dynamic";
 
-// Dynamically import MapDrawerPage to avoid SSR issues
-const MapDrawerPage = dynamic(() => import('../map/MapDrawerPage'), {
+const MapDrawerPage = dynamic(() => import("../map/MapDrawerPage"), {
   ssr: false,
 });
 
@@ -28,12 +27,10 @@ const MapButton = ({ className }: MapButtonProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const router = useRouter();
 
-  // You can choose to use the drawer or navigate to a separate page
-  const useDrawer = true; // Set to false if you prefer navigation
-
+  const useDrawer = true;
   const handleClick = () => {
     if (!useDrawer) {
-      router.push('/explore/map');
+      router.push("/explore/map");
     }
   };
 

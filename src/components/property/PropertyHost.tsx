@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
-import Divider from '../Divider';
-import SectionHeaderText from '../text/SectionHeaderText';
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import Divider from "../Divider";
+import SectionHeaderText from "../text/SectionHeaderText";
 
 export default function HostInfo() {
   return (

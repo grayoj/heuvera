@@ -14,32 +14,33 @@ datasource db {
 }
 
 model User {
-  id             String  @id @default(uuid())
-  auth0_id       String  @unique
-  email          String  @unique
+  id             String    @id @default(uuid())
+  auth0_id       String    @unique
+  email          String    @unique
   name           String?
   picture        String?
-  isHostApproved Boolean @default(false) // Must be true before host details can be created
+  isHostApproved Boolean   @default(false)
+  profile        Profile?  @relation()
+  listings       Listing[]
+  host           Host?
+  Booking        Booking[]
+  reviews        Review[]
+  favorites      FavoriteListing[]
 
-  profile  Profile?  @relation()
-  listings Listing[]
-  host     Host? // Removed relation fields here
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  Booking   Booking[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Host {
   userId String @id
-  user   User   @relation(fields: [userId], references: [id]) // Define relation here
+  user   User   @relation(fields: [userId], references: [id])
 
   phoneNumber                String
   bio                        String?
   governmentId               String?
   idVerificationStatus       VerificationStatus @default(PENDING)
   businessName               String?
-  businessLogo               String? // URL to the business logo image
+  businessLogo               String?
   businessRegistrationNumber String?
   businessAddress            String?
   socialMediaLinks           Json?
@@ -78,7 +79,7 @@ model Profile {
 }
 
 model Listing {
-  id           String    @id @default(uuid())
+  id           String   @id @default(uuid())
   title        String
   description  String
   price        Decimal
@@ -91,14 +92,35 @@ model Listing {
   longitude    Float
   checkInTime  String
   checkOutTime String
-  available    Boolean   @default(true)
+  available    Boolean  @default(true)
   amenities    Json
   images       String[]
   hostId       String
-  host         User      @relation(fields: [hostId], references: [id])
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  Booking      Booking[]
+  host         User     @relation(fields: [hostId], references: [id])
+
+  bedrooms  Int @default(0)
+  bathrooms Int @default(0)
+  kitchens  Int @default(0)
+  guests    Int @default(0)
+
+  Booking   Booking[]
+  reviews   Review[]
+  favorites FavoriteListing[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FavoriteListing {
+  id        String  @id @default(uuid())
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  listingId String
+  listing   Listing @relation(fields: [listingId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, listingId])
 }
 
 enum VerificationStatus {
@@ -120,4 +142,18 @@ model Booking {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id])
+  rating    Int      @default(5)
+  comment   String
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, listingId])
 }

@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Button } from '@heuvera/components/ui/button';
-import { X } from 'lucide-react';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { IoShareSocialOutline, IoBed, IoPerson } from 'react-icons/io5';
-import { FaBath, FaStar } from 'react-icons/fa';
-import PropertyCard from '@heuvera/components/cards/PropertyCards/PropertyCard';
-import { PropertyData } from '@heuvera/components/data/PropertyData';
-import { Property } from '@heuvera/types/map';
+import { motion } from "framer-motion";
+import { Button } from "@heuvera/components/ui/button";
+import { X } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { IoShareSocialOutline, IoBed, IoPerson } from "react-icons/io5";
+import { FaBath, FaStar } from "react-icons/fa";
+import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
+import { PropertyData } from "@heuvera/components/data/PropertyData";
+import { Property } from "@heuvera/types/map";
 
 interface PropertyDetailTrayProps {
   property: Property;
@@ -28,10 +28,10 @@ export default function PropertyDetailTray({
 
   return (
     <motion.div
-      initial={{ x: '100%' }}
+      initial={{ x: "100%" }}
       animate={{ x: 0 }}
-      exit={{ x: '100%' }}
-      transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+      exit={{ x: "100%" }}
+      transition={{ type: "spring", damping: 30, stiffness: 300 }}
       className="fixed right-0 bottom-0 h-[calc(100vh-6rem)] w-1/2 bg-[#F3F2EC] shadow-lg z-[1000] overflow-y-auto"
     >
       <div className="w-full p-5 flex flex-col gap-6">
@@ -120,7 +120,7 @@ export default function PropertyDetailTray({
               <h1 className="text-2xl text-[#3F3B2B] font-semibold font-serif">
                 ₦{PropertyData[0].propertyDetails.price}
                 <span className="text-sm text-[#3E3E3E] font-serif font-normal">
-                  {' '}
+                  {" "}
                   /night
                 </span>
               </h1>
