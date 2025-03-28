@@ -15,7 +15,7 @@ import {
   LucideSlidersHorizontal,
   X,
 } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IoBedOutline } from "react-icons/io5";
 import Currency from "./icons/svgs/currency";
 import { Button } from "./ui/button";
@@ -94,10 +94,8 @@ interface FilterModalProps {
 export function FilterModal({
   onApplyFilters,
   initialFilters = {},
-  isOpen,
   onClose,
 }: FilterModalProps) {
-  // State management
   const [activeTab, setActiveTab] = useState<TabType>("price");
 
   const [priceRange, setPriceRange] = useState<[number, number]>(
