@@ -230,18 +230,18 @@ export class HttpClient<SecurityDataType = unknown> {
       const data = !responseFormat
         ? r
         : await response[responseFormat]()
-            .then((data) => {
-              if (r.ok) {
-                r.data = data;
-              } else {
-                r.error = data;
-              }
-              return r;
-            })
-            .catch((e) => {
-              r.error = e;
-              return r;
-            });
+          .then((data) => {
+            if (r.ok) {
+              r.data = data;
+            } else {
+              r.error = data;
+            }
+            return r;
+          })
+          .catch((e) => {
+            r.error = e;
+            return r;
+          });
 
       if (cancelToken) {
         this.abortControllers.delete(cancelToken);
@@ -315,24 +315,24 @@ export class Api<
           };
         },
         | {
-            /** @example false */
-            success?: boolean;
-            /** @example "Invalid input" */
-            error?: string;
-            details?: object[];
-          }
+          /** @example false */
+          success?: boolean;
+          /** @example "Invalid input" */
+          error?: string;
+          details?: object[];
+        }
         | {
-            /** @example false */
-            success?: boolean;
-            /** @example "Unauthorized" */
-            error?: string;
-          }
+          /** @example false */
+          success?: boolean;
+          /** @example "Unauthorized" */
+          error?: string;
+        }
         | {
-            /** @example false */
-            success?: boolean;
-            /** @example "Internal Server Error" */
-            error?: string;
-          }
+          /** @example false */
+          success?: boolean;
+          /** @example "Internal Server Error" */
+          error?: string;
+        }
       >({
         path: `/api/auth/user`,
         method: 'POST',
