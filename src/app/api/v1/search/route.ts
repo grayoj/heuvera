@@ -1,7 +1,7 @@
-import { prisma } from '@heuvera/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
-import { Decimal } from '@prisma/client/runtime/library';
-import { z } from 'zod';
+import { prisma } from "@heuvera/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import { Decimal } from "@prisma/client/runtime/library";
+import { z } from "zod";
 
 /**
  * @swagger
@@ -88,25 +88,38 @@ export async function GET(req: NextRequest) {
       maxPrice: z.string().transform(Number).optional(),
       listingType: z.string().optional(),
       amenities: z.string().optional(),
-      page: z.string().transform(Number).default('1'),
-      pageSize: z.string().transform(Number).default('10'),
+      page: z.string().transform(Number).default("1"),
+      pageSize: z.string().transform(Number).default("10"),
     });
 
     const parsed = schema.parse(params);
-    const { title, category, city, country, minPrice, maxPrice, listingType, amenities, page, pageSize } = parsed;
+    const {
+      title,
+      category,
+      city,
+      country,
+      minPrice,
+      maxPrice,
+      listingType,
+      amenities,
+      page,
+      pageSize,
+    } = parsed;
 
-    const amenitiesArray = amenities ? amenities.split(',') : [];
+    const amenitiesArray = amenities ? amenities.split(",") : [];
 
     const where: any = {
       AND: [
-        title ? { title: { contains: title, mode: 'insensitive' } } : {},
+        title ? { title: { contains: title, mode: "insensitive" } } : {},
         category ? { category } : {},
         city ? { city } : {},
         country ? { country } : {},
         minPrice ? { price: { gte: new Decimal(minPrice) } } : {},
         maxPrice ? { price: { lte: new Decimal(maxPrice) } } : {},
         listingType ? { listingType } : {},
-        amenitiesArray.length > 0 ? { amenities: { array_contains: amenitiesArray } } : {},
+        amenitiesArray.length > 0
+          ? { amenities: { array_contains: amenitiesArray } }
+          : {},
       ],
     };
 
@@ -122,8 +135,10 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ listings, page, pageSize }, { status: 200 });
   } catch (error) {
-    console.error('Error searching listings:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    console.error("Error searching listings:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
-

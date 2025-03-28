@@ -1,10 +1,10 @@
-import { render } from '@react-email/render';
-import React from 'react';
-import WelcomeEmailTemplate from './WelcomeEmail';
-import BookingConfirmationEmailTemplate from './BookingConfirmationEmail';
-import BookingCancellationEmailTemplate from './BookingCancellationEmail';
-import HostApprovalEmailTemplate from './HostApprovalEmail';
-import ListingConfirmationEmail from './ListingConfirmationEmail';
+import { render } from "@react-email/render";
+import React from "react";
+import WelcomeEmailTemplate from "./WelcomeEmail";
+import BookingConfirmationEmailTemplate from "./BookingConfirmationEmail";
+import BookingCancellationEmailTemplate from "./BookingCancellationEmail";
+import HostApprovalEmailTemplate from "./HostApprovalEmail";
+import ListingConfirmationEmail from "./ListingConfirmationEmail";
 
 export async function getWelcomeEmail(
   userName: string,

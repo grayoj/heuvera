@@ -7,7 +7,7 @@ import {
   Text,
   Button,
   Tailwind,
-} from '@react-email/components';
+} from "@react-email/components";
 
 interface BookingConfirmationEmailProps {
   guestName: string;
@@ -93,13 +93,13 @@ export default function BookingConfirmationEmailTemplate({
             </div>
 
             <Text className="text-gray-600 text-sm mt-6">
-              Need assistance? Our{' '}
+              Need assistance? Our{" "}
               <a
                 className="text-[#8F6858] cursor-pointer no-underline"
                 href="https://heuvera.com/contact"
               >
                 Support Team
-              </a>{' '}
+              </a>{" "}
               is available 24/7.
             </Text>
 
@@ -135,8 +135,8 @@ export default function BookingConfirmationEmailTemplate({
               © {currentYear} Heuvera. All rights reserved. <br />
               <a href="#" className="text-[#8F6858] font-semibold">
                 Cancel Booking
-              </a>{' '}
-              |{' '}
+              </a>{" "}
+              |{" "}
               <a href="#" className="text-[#8F6858] font-semibold">
                 Contact Support
               </a>

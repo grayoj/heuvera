@@ -130,5 +130,32 @@ export const PropertyData = [
     isBookmarked: false,
     isVerified: false,
   },
+  {
+    id: 1,
+    propertyName: "Luxury Villa",
+    propertyCategory: "Island",
+    propertyDetails: {
+      price: 50000,
+      currency: "₦",
+      period: "night",
+      location: "Lekki, Lagos",
+      bedrooms: 3,
+      bathrooms: 2,
+      guests: 5,
+      rating: 3.5,
+    },
+    propertyDescription: "A luxurious villa in the heart of Lekki.",
+    propertyHost: {
+      name: "John Doe",
+      profilePicture: "host_image_url.jpg",
+    },
+    images: [
+      "https://images.unsplash.com/photo-1592595896551-12b371d546d5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1592595896551-12b371d546d5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
+    amenities: ["WiFi", "Pool", "Parking"],
+    isBookmarked: false,
+    isVerified: true,
+  },
   // ... (continue generating properties up to 35)
 ];

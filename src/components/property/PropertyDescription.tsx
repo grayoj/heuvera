@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import SectionHeaderText from "../text/SectionHeaderText";
 
 export default function PropertyDescription() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -30,9 +31,7 @@ export default function PropertyDescription() {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-2xl font-serif font-medium text-[#3E3E3E] pb-5">
-        Description
-      </h1>
+      <SectionHeaderText title="Description" />
       <p className="text-base font-serif font-normal text-[#3E3E3E]">
         {isExpanded ? fullDescription : truncatedDescription}
       </p>

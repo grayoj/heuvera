@@ -126,7 +126,7 @@ export async function POST(req: NextRequest) {
     if (!dbUser?.isHostApproved) {
       return NextResponse.json(
         { error: "User is not approved as a host" },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -145,7 +145,7 @@ export async function POST(req: NextRequest) {
       hostName,
       listing.title,
       listing.images[0],
-      `https://heuvera.com/explore/${listing.id}`
+      `https://heuvera.com/explore/${listing.id}`,
     );
 
     await sendEmail(dbUser.email, "Your Listing Has Been Created!", emailBody);
@@ -155,7 +155,7 @@ export async function POST(req: NextRequest) {
     console.error("Error creating listing:", error);
     return NextResponse.json(
       { error: error.message || "Internal Server Error" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }

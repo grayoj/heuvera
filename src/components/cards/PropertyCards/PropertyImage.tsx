@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function PropertyImage({ imageUrl }: { imageUrl?: string }) {
   return (
-    <div className="relative w-full h-48 md:h-36 lg:h-28 xl:h-36 2xl:h-44">
+    <div className="relative w-full h-60 md:h-36 lg:h-28 xl:h-32 2xl:h-40">
       {imageUrl ? (
         <Image
           src={imageUrl}
@@ -18,7 +18,7 @@ export default function PropertyImage({ imageUrl }: { imageUrl?: string }) {
         </div>
       )}
 
-      <div className="absolute top-3 right-3 size-8 md:size-8 lg:size-6 xl:size-8 2xl:size-8 bg-[#F3F2EC] text-[#3e3e3e] font-bold flex items-center justify-center rounded-full shadow-md">
+      <div className="absolute top-3 right-3 size-8 md:size-8 lg:size-6 xl:size-6 2xl:size-8 bg-[#F3F2EC] text-[#3e3e3e] font-bold flex items-center justify-center rounded-full shadow-md">
         <BookmarkButton />
       </div>
     </div>

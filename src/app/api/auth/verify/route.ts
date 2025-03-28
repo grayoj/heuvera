@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@auth0/nextjs-auth0/edge';
-import { prisma } from '@heuvera/lib/prisma';
-import { sendEmail } from '@heuvera/lib/email';
-import { getWelcomeEmail } from '@heuvera/lib/email/render';
+import { NextRequest, NextResponse } from "next/server";
+import { getSession } from "@auth0/nextjs-auth0/edge";
+import { prisma } from "@heuvera/lib/prisma";
+import { sendEmail } from "@heuvera/lib/email";
+import { getWelcomeEmail } from "@heuvera/lib/email/render";
 
 /**
  * @swagger
@@ -67,12 +67,12 @@ export async function GET(req: NextRequest) {
       });
       newUser = true;
 
-      const userName = user.name ?? 'there';
+      const userName = user.name ?? "there";
       const emailBody = await getWelcomeEmail(
         userName,
-        'https://heuvera.com/dashboard',
+        "https://heuvera.com/dashboard",
       );
-      await sendEmail(user.email, 'Host Approval Confirmation', emailBody);
+      await sendEmail(user.email, "Host Approval Confirmation", emailBody);
     }
 
     return NextResponse.json(

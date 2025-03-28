@@ -7,7 +7,7 @@ import {
   Text,
   Button,
   Tailwind,
-} from '@react-email/components';
+} from "@react-email/components";
 
 interface WelcomeEmailProps {
   userName: string;
@@ -54,7 +54,7 @@ export default function WelcomeEmailTemplate({
             </div>
 
             <Text className="text-gray-600 text-sm mt-6">
-              Need help? Get in touch with our{' '}
+              Need help? Get in touch with our{" "}
               <a
                 className="text-[#8F6858] cursor-pointer no-underline"
                 href="https://heuvera.com/contact"

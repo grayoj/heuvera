@@ -6,7 +6,7 @@ import {
   Container,
   Text,
   Tailwind,
-} from '@react-email/components';
+} from "@react-email/components";
 
 interface BookingCancellationEmailProps {
   guestName: string;
@@ -46,7 +46,7 @@ export default function BookingCancellationEmailTemplate({
             </Text>
 
             <Text className="text-gray-700 leading-relaxed">
-              We’re sorry to inform you that your booking at{' '}
+              We’re sorry to inform you that your booking at{" "}
               <strong>{propertyName}</strong> has been cancelled. Here were your
               stay details:
             </Text>
@@ -72,13 +72,13 @@ export default function BookingCancellationEmailTemplate({
             </div>
 
             <Text className="text-gray-600 text-sm mt-6">
-              If you need assistance, our{' '}
+              If you need assistance, our{" "}
               <a
                 className="text-[#8F6858] cursor-pointer no-underline"
                 href="https://heuvera.com/contact"
               >
                 Support Team
-              </a>{' '}
+              </a>{" "}
               is available 24/7.
             </Text>
 

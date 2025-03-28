@@ -9,7 +9,7 @@ import {
   Tailwind,
   Img,
   Link,
-} from '@react-email/components';
+} from "@react-email/components";
 
 interface ListingConfirmationEmailProps {
   hostName: string;
@@ -66,13 +66,13 @@ export default function ListingConfirmationEmail({
             </div>
 
             <Text className="text-gray-600 text-sm mt-6">
-              Need assistance? Reach out to our{' '}
+              Need assistance? Reach out to our{" "}
               <Link
                 href="https://heuvera.com/contact"
                 className="text-[#8F6858] no-underline"
               >
                 Support
-              </Link>{' '}
+              </Link>{" "}
               team.
             </Text>
 

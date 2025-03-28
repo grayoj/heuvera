@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /*
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
@@ -499,6 +500,72 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
+     * @description Deletes a listing from the authenticated user's favorites.
+     *
+     * @tags Favorites
+     * @name V1FavoritesDelete
+     * @summary Remove a listing from favorites
+     * @request DELETE:/api/v1/favorites/{listingId}
+     * @secure
+     */
+    v1FavoritesDelete: (listingId: string, params: RequestParams = {}) =>
+      this.request<
+        {
+          /** @example "Removed from favorites" */
+          message?: string;
+        },
+        void
+      >({
+        path: `/api/v1/favorites/${listingId}`,
+        method: "DELETE",
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Retrieves all favorite listings for the authenticated user.
+     *
+     * @tags Favorites
+     * @name V1FavoritesList
+     * @summary Get user's favorite listings
+     * @request GET:/api/v1/favorites
+     * @secure
+     */
+    v1FavoritesList: (params: RequestParams = {}) =>
+      this.request<any[], void>({
+        path: `/api/v1/favorites`,
+        method: "GET",
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Adds a listing to the authenticated user's favorites.
+     *
+     * @tags Favorites
+     * @name V1FavoritesCreate
+     * @summary Add a listing to favorites
+     * @request POST:/api/v1/favorites
+     * @secure
+     */
+    v1FavoritesCreate: (
+      data: {
+        listingId?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/v1/favorites`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
      * @description Updates host profile details. Only approved hosts can update their information.
      *
      * @tags Host
@@ -673,37 +740,37 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      *
      * @tags Listings
      * @name V1ListingsCreate
-     * @summary Create a new property listing
+     * @summary Create a new listing
      * @request POST:/api/v1/listings
      * @secure
      */
     v1ListingsCreate: (
       data: {
         /** @minLength 5 */
-        title?: string;
+        title: string;
         /** @minLength 10 */
-        description?: string;
-        price?: number;
-        listingType?: string;
-        category?: string;
-        address?: string;
-        city?: string;
-        country?: string;
-        latitude?: number;
-        longitude?: number;
-        checkInTime?: string;
-        checkOutTime?: string;
+        description: string;
+        price: number;
+        listingType: string;
+        category: string;
+        address: string;
+        city: string;
+        country: string;
+        latitude: number;
+        longitude: number;
+        checkInTime: string;
+        checkOutTime: string;
         /** @default true */
         available?: boolean;
-        amenities?: string[];
+        amenities: string[];
         /** @minItems 1 */
-        images?: string[];
+        images: string[];
       },
       params: RequestParams = {},
     ) =>
       this.request<
         {
-          listing?: object;
+          listing?: any;
         },
         void
       >({
@@ -736,6 +803,54 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         method: "GET",
         secure: true,
         format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Search for listings based on filters like title, category, city, country, price range, and amenities.
+     *
+     * @tags Listings
+     * @name V1ListingsSearchList
+     * @summary Search listings
+     * @request GET:/api/v1/listings/search
+     * @secure
+     */
+    v1ListingsSearchList: (
+      query?: {
+        /** Search by title (case-insensitive). */
+        title?: string;
+        /** Filter by category. */
+        category?: string;
+        /** Filter by city. */
+        city?: string;
+        /** Filter by country. */
+        country?: string;
+        /** Minimum price. */
+        minPrice?: number;
+        /** Maximum price. */
+        maxPrice?: number;
+        /** Filter by listing type. */
+        listingType?: string;
+        /** Filter by amenities (comma-separated). */
+        amenities?: string[];
+        /**
+         * Pagination - Page number.
+         * @default 1
+         */
+        page?: number;
+        /**
+         * Number of results per page.
+         * @default 10
+         */
+        pageSize?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/v1/listings/search`,
+        method: "GET",
+        query: query,
+        secure: true,
         ...params,
       }),
 
@@ -896,6 +1011,54 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         query: query,
         secure: true,
         format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Search for listings based on filters like title, category, city, country, price range, and amenities.
+     *
+     * @tags Listings
+     * @name V1SearchList
+     * @summary Search listings
+     * @request GET:/api/v1/search
+     * @secure
+     */
+    v1SearchList: (
+      query?: {
+        /** Search by title (case-insensitive). */
+        title?: string;
+        /** Filter by category. */
+        category?: string;
+        /** Filter by city. */
+        city?: string;
+        /** Filter by country. */
+        country?: string;
+        /** Minimum price. */
+        minPrice?: number;
+        /** Maximum price. */
+        maxPrice?: number;
+        /** Filter by listing type. */
+        listingType?: string;
+        /** Filter by amenities (comma-separated). */
+        amenities?: string[];
+        /**
+         * Pagination - Page number.
+         * @default 1
+         */
+        page?: number;
+        /**
+         * Number of results per page.
+         * @default 10
+         */
+        pageSize?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/v1/search`,
+        method: "GET",
+        query: query,
+        secure: true,
         ...params,
       }),
 

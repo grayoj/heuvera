@@ -1,7 +1,10 @@
 import { Queue, Worker, Job } from "bullmq";
 import { sendEmail } from "./email";
 import { prisma } from "./prisma";
-import { getBookingCancellationMail, getBookingConfirmationMail } from "./email/render";
+import {
+  getBookingCancellationMail,
+  getBookingConfirmationMail,
+} from "./email/render";
 
 const redisUrl = process.env.REDIS_URLS!;
 const url = new URL(redisUrl);
@@ -18,7 +21,9 @@ if (password) {
 }
 
 export const queue = new Queue("booking-confirmation", { connection });
-export const cancellationQueue = new Queue("booking-cancellation", { connection });
+export const cancellationQueue = new Queue("booking-cancellation", {
+  connection,
+});
 
 export const worker = new Worker(
   "booking-confirmation",
@@ -30,7 +35,9 @@ export const worker = new Worker(
     });
 
     if (!booking || !booking.user || !booking.listing) {
-      console.error(`Booking not found or missing user/listing data for ID: ${bookingId}`);
+      console.error(
+        `Booking not found or missing user/listing data for ID: ${bookingId}`,
+      );
       return;
     }
 
@@ -45,7 +52,11 @@ export const worker = new Worker(
       `https://heuvera.com/bookings/${booking.id}`,
     );
 
-    await sendEmail(booking.user.email ?? "", "Booking Confirmed", emailContent);
+    await sendEmail(
+      booking.user.email ?? "",
+      "Booking Confirmed",
+      emailContent,
+    );
   },
   { connection },
 );
@@ -61,7 +72,7 @@ export const cancellationWorker = new Worker(
       propertyLocation: string;
       checkInDate: string;
       checkOutDate: string;
-    }>
+    }>,
   ) => {
     const emailTemplate = await getBookingCancellationMail(
       job.data.guestName,

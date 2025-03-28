@@ -946,20 +946,31 @@
         }
       },
       "post": {
-        "summary": "Create a new property listing",
+        "summary": "Create a new listing",
         "description": "Allows an approved host to create a new property listing.",
         "tags": ["Listings"],
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "title",
+                  "description",
+                  "price",
+                  "listingType",
+                  "category",
+                  "address",
+                  "city",
+                  "country",
+                  "latitude",
+                  "longitude",
+                  "checkInTime",
+                  "checkOutTime",
+                  "amenities",
+                  "images"
+                ],
                 "properties": {
                   "title": {
                     "type": "string",
@@ -1030,7 +1041,7 @@
                   "type": "object",
                   "properties": {
                     "listing": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/Listing"
                     }
                   }
                 }
@@ -1038,13 +1049,16 @@
             }
           },
           "400": {
-            "description": "Bad request - Validation failed"
+            "description": "Bad request, validation error"
           },
           "401": {
-            "description": "Unauthorized - User not found"
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden - User is not an approved host"
+            "description": "User is not approved as a host"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -1086,6 +1100,111 @@
           },
           "404": {
             "description": "Listing not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/v1/listings/search": {
+      "get": {
+        "summary": "Search listings",
+        "description": "Search for listings based on filters like title, category, city, country, price range, and amenities.",
+        "tags": ["Listings"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "title",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search by title (case-insensitive)."
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by category."
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by city."
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by country."
+          },
+          {
+            "in": "query",
+            "name": "minPrice",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Minimum price."
+          },
+          {
+            "in": "query",
+            "name": "maxPrice",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Maximum price."
+          },
+          {
+            "in": "query",
+            "name": "listingType",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by listing type."
+          },
+          {
+            "in": "query",
+            "name": "amenities",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter by amenities (comma-separated)."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number",
+              "default": 1
+            },
+            "description": "Pagination - Page number."
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "description": "Number of results per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved listings."
+          },
+          "400": {
+            "description": "Invalid query parameters."
           },
           "500": {
             "description": "Internal server error."
@@ -1364,6 +1483,111 @@
           },
           "400": {
             "description": "Listing ID is required."
+          }
+        }
+      }
+    },
+    "/api/v1/search": {
+      "get": {
+        "summary": "Search listings",
+        "description": "Search for listings based on filters like title, category, city, country, price range, and amenities.",
+        "tags": ["Listings"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "title",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search by title (case-insensitive)."
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by category."
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by city."
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by country."
+          },
+          {
+            "in": "query",
+            "name": "minPrice",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Minimum price."
+          },
+          {
+            "in": "query",
+            "name": "maxPrice",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Maximum price."
+          },
+          {
+            "in": "query",
+            "name": "listingType",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by listing type."
+          },
+          {
+            "in": "query",
+            "name": "amenities",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter by amenities (comma-separated)."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number",
+              "default": 1
+            },
+            "description": "Pagination - Page number."
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "description": "Number of results per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved listings."
+          },
+          "400": {
+            "description": "Invalid query parameters."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       }
