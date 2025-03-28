@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { IoBed, IoPerson } from 'react-icons/io5';
-import { FaBath, FaStar } from 'react-icons/fa6';
-import PropertyDescription from './PropertyDescription';
-import Divider from '../Divider';
+import { IoBed, IoPerson } from "react-icons/io5";
+import { FaBath, FaStar } from "react-icons/fa6";
+import PropertyDescription from "./PropertyDescription";
+import Divider from "../Divider";
 
 export default function PropertyDetails() {
   return (
@@ -33,7 +33,7 @@ export default function PropertyDetails() {
         <h1 className="text-xl md:text-xl lg:text-xl xl:text-2xl 2xl:text-2xl text-[#3F3B2B] font-semibold font-serif">
           ₦50,000
           <span className="text-sm text-[#3E3E3E] font-serif font-normal">
-            {' '}
+            {" "}
             /night
           </span>
         </h1>

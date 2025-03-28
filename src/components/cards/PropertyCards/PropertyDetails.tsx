@@ -1,7 +1,7 @@
-import { IoBed, IoPerson } from 'react-icons/io5';
-import { FaBath } from 'react-icons/fa';
-import { FaStar } from 'react-icons/fa6';
-import BadgeCheck from '@heuvera/components/icons/svgs/badgeCheck';
+import { IoBed, IoPerson } from "react-icons/io5";
+import { FaBath } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
+import BadgeCheck from "@heuvera/components/icons/svgs/badgeCheck";
 
 export default function PropertyDetails({
   price,
@@ -27,7 +27,7 @@ export default function PropertyDetails({
         <h1 className="text-2xl md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl text-[#3F3B2B] font-semibold font-serif">
           ₦{(price ?? 0).toLocaleString()}
           <span className="text-sm text-[#898989] font-serif font-normal">
-            {' '}
+            {" "}
             /night
           </span>
         </h1>

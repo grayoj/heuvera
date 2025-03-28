@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 import {
   LucideSearch,
   LucideX,
@@ -6,9 +6,9 @@ import {
   LucideCalendar,
   LucideUsers,
   LucideTrash,
-} from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import LeaseRentStays from '../categories/LeaseRentStays';
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import LeaseRentStays from "../categories/LeaseRentStays";
 
 interface SearchBarProps {
   isMobile: boolean;
@@ -17,7 +17,7 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
@@ -35,21 +35,21 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isSearchModalOpen]);
 
   useEffect(() => {
     if (isSearchModalOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
 
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, [isSearchModalOpen]);
 
@@ -65,9 +65,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
   const clearAll = () => {
     setActiveFilter(null);
     if (inputRef.current) {
-      inputRef.current.value = '';
+      inputRef.current.value = "";
     }
-    setSearchText('');
+    setSearchText("");
   };
 
   const toggleFilter = (filter: string) => {
@@ -134,12 +134,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
         <div className="flex items-center">
           {/* Where section in navbar - becomes input when active */}
           <div
-            className={`flex-1 p-4 cursor-pointer ${activeFilter === 'location' ? 'bg-[#F8F7F2]' : ''}`}
-            onClick={() => toggleFilter('location')}
+            className={`flex-1 p-4 cursor-pointer ${activeFilter === "location" ? "bg-[#F8F7F2]" : ""}`}
+            onClick={() => toggleFilter("location")}
           >
             <div className="flex flex-col">
               <span className="text-xs font-medium text-[#7B4F3A]">Where</span>
-              {activeFilter === 'location' ? (
+              {activeFilter === "location" ? (
                 <input
                   ref={inputRef}
                   type="text"
@@ -162,8 +162,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
 
           {/* When section */}
           <div
-            className={`flex-1 p-4 cursor-pointer ${activeFilter === 'dates' ? 'bg-[#F8F7F2]' : ''}`}
-            onClick={() => toggleFilter('dates')}
+            className={`flex-1 p-4 cursor-pointer ${activeFilter === "dates" ? "bg-[#F8F7F2]" : ""}`}
+            onClick={() => toggleFilter("dates")}
           >
             <div className="flex flex-col">
               <span className="text-xs font-medium text-[#7B4F3A]">When</span>
@@ -178,8 +178,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
 
           {/* Who section */}
           <div
-            className={`flex-1 p-4 cursor-pointer ${activeFilter === 'guests' ? 'bg-[#F8F7F2]' : ''}`}
-            onClick={() => toggleFilter('guests')}
+            className={`flex-1 p-4 cursor-pointer ${activeFilter === "guests" ? "bg-[#F8F7F2]" : ""}`}
+            onClick={() => toggleFilter("guests")}
           >
             <div className="flex flex-col">
               <span className="text-xs font-medium text-[#7B4F3A]">Who</span>
@@ -211,9 +211,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             {/* Dropdown header */}
             <div className="p-4 px-6 flex justify-between items-center border-b border-[#E3E2D9]">
               <span className="font-serif font-medium text-[#323232]">
-                {activeFilter === 'location' && 'Search destinations'}
-                {activeFilter === 'dates' && 'Select dates'}
-                {activeFilter === 'guests' && "Who's coming?"}
+                {activeFilter === "location" && "Search destinations"}
+                {activeFilter === "dates" && "Select dates"}
+                {activeFilter === "guests" && "Who's coming?"}
               </span>
               <button
                 onClick={() => setActiveFilter(null)}
@@ -225,7 +225,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
 
             {/* Dropdown content */}
             <div className="p-6 max-h-[70vh] overflow-y-auto">
-              {activeFilter === 'location' && (
+              {activeFilter === "location" && (
                 <motion.div
                   className="space-y-4"
                   initial={{ opacity: 0 }}
@@ -237,11 +237,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {[
-                      'Malibu, California',
-                      'Miami, Florida',
-                      'Aspen, Colorado',
-                      'New York, New York',
-                      'Las Vegas, Nevada',
+                      "Malibu, California",
+                      "Miami, Florida",
+                      "Aspen, Colorado",
+                      "New York, New York",
+                      "Las Vegas, Nevada",
                     ].map((location, idx) => (
                       <motion.div
                         key={location}
@@ -260,7 +260,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                 </motion.div>
               )}
 
-              {activeFilter === 'dates' && (
+              {activeFilter === "dates" && (
                 <motion.div
                   className="space-y-4"
                   initial={{ opacity: 0 }}
@@ -301,7 +301,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                 </motion.div>
               )}
 
-              {activeFilter === 'guests' && (
+              {activeFilter === "guests" && (
                 <motion.div
                   className="space-y-4"
                   initial={{ opacity: 0 }}
@@ -312,7 +312,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                     Who will be there?
                   </h3>
                   <div className="space-y-3">
-                    {['Adults', 'Children', 'Infants', 'Pets'].map(
+                    {["Adults", "Children", "Infants", "Pets"].map(
                       (guestType, idx) => (
                         <motion.div
                           key={guestType}
@@ -323,15 +323,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                         >
                           <div>
                             <p className="font-serif">{guestType}</p>
-                            {guestType === 'Adults' && (
+                            {guestType === "Adults" && (
                               <p className="text-sm text-[#7B4F3A]">Ages 13+</p>
                             )}
-                            {guestType === 'Children' && (
+                            {guestType === "Children" && (
                               <p className="text-sm text-[#7B4F3A]">
                                 Ages 2-12
                               </p>
                             )}
-                            {guestType === 'Infants' && (
+                            {guestType === "Infants" && (
                               <p className="text-sm text-[#7B4F3A]">Under 2</p>
                             )}
                           </div>
@@ -420,24 +420,24 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
           <div className="px-2 pt-2 flex gap-2 overflow-x-auto no-scrollbar rounded-t-xl bg-[#F8F7F2]">
             {[
               {
-                id: 'location',
-                label: 'Where',
+                id: "location",
+                label: "Where",
                 icon: <LucideMapPin size={16} />,
               },
               {
-                id: 'dates',
-                label: 'When',
+                id: "dates",
+                label: "When",
                 icon: <LucideCalendar size={16} />,
               },
-              { id: 'guests', label: 'Who', icon: <LucideUsers size={16} /> },
+              { id: "guests", label: "Who", icon: <LucideUsers size={16} /> },
             ].map((filter) => (
               <motion.button
                 key={filter.id}
                 onClick={() => toggleFilter(filter.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${
                   activeFilter === filter.id
-                    ? 'border-[#7B4F3A] bg-[#F8F7F2] text-[#7B4F3A]'
-                    : 'border-[#E3E2D9] text-[#323232]'
+                    ? "border-[#7B4F3A] bg-[#F8F7F2] text-[#7B4F3A]"
+                    : "border-[#E3E2D9] text-[#323232]"
                 }`}
                 whileTap={{ scale: 0.95 }}
               >
@@ -471,7 +471,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
           {/* Content area that changes based on filter selection */}
           <div className="flex-1 py-4 px-2 overflow-y-auto">
             <AnimatePresence mode="wait">
-              {activeFilter === 'location' && (
+              {activeFilter === "location" && (
                 <motion.div
                   className="space-y-4"
                   key="location"
@@ -485,11 +485,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {[
-                      'Malibu, California',
-                      'Miami, Florida',
-                      'Aspen, Colorado',
-                      'New York, New York',
-                      'Las Vegas, Nevada',
+                      "Malibu, California",
+                      "Miami, Florida",
+                      "Aspen, Colorado",
+                      "New York, New York",
+                      "Las Vegas, Nevada",
                     ].map((location, idx) => (
                       <motion.div
                         key={location}
@@ -508,7 +508,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                 </motion.div>
               )}
 
-              {activeFilter === 'dates' && (
+              {activeFilter === "dates" && (
                 <motion.div
                   className="space-y-4"
                   key="dates"
@@ -551,7 +551,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                 </motion.div>
               )}
 
-              {activeFilter === 'guests' && (
+              {activeFilter === "guests" && (
                 <motion.div
                   className="space-y-4"
                   key="guests"
@@ -564,7 +564,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                     Who's coming?
                   </h3>
                   <div className="space-y-3">
-                    {['Adults', 'Children', 'Infants', 'Pets'].map(
+                    {["Adults", "Children", "Infants", "Pets"].map(
                       (guestType, idx) => (
                         <motion.div
                           key={guestType}
@@ -575,15 +575,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                         >
                           <div>
                             <p className="font-serif">{guestType}</p>
-                            {guestType === 'Adults' && (
+                            {guestType === "Adults" && (
                               <p className="text-sm text-[#7B4F3A]">Ages 13+</p>
                             )}
-                            {guestType === 'Children' && (
+                            {guestType === "Children" && (
                               <p className="text-sm text-[#7B4F3A]">
                                 Ages 2-12
                               </p>
                             )}
-                            {guestType === 'Infants' && (
+                            {guestType === "Infants" && (
                               <p className="text-sm text-[#7B4F3A]">Under 2</p>
                             )}
                           </div>
@@ -625,9 +625,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {[
-                      'Malibu Beach House - 2 nights',
-                      'Downtown Loft - 3 nights',
-                      'Mountain Cabin - Weekend',
+                      "Malibu Beach House - 2 nights",
+                      "Downtown Loft - 3 nights",
+                      "Mountain Cabin - Weekend",
                     ].map((search, idx) => (
                       <motion.div
                         key={search}

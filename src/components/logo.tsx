@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface HeuveraLogoProps {
   width?: number;
@@ -9,7 +9,7 @@ interface HeuveraLogoProps {
 export const HeuveraLogo: React.FC<HeuveraLogoProps> = ({
   width = 241,
   height = 288,
-  color = '#7B4F3A',
+  color = "#7B4F3A",
 }) => {
   return (
     <svg

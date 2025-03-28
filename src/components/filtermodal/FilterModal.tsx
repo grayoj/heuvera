@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '../ui/button';
-import { Slider } from '../ui/slider';
-import { Switch } from '../ui/switch';
+import { useState } from "react";
+import { Button } from "../ui/button";
+import { Slider } from "../ui/slider";
+import { Switch } from "../ui/switch";
 import {
   X,
   SlidersHorizontal,
@@ -14,22 +14,22 @@ import {
   Utensils,
   Shield,
   Refrigerator,
-} from 'lucide-react';
-import { cn } from '@heuvera/lib/utils';
+} from "lucide-react";
+import { cn } from "@heuvera/lib/utils";
 
-type TabType = 'price' | 'rooms' | 'type' | 'amenities' | 'book';
+type TabType = "price" | "rooms" | "type" | "amenities" | "book";
 
 export default function FilterModal() {
   const [showModal, setShowModal] = useState(false);
-  const [activeTab, setActiveTab] = useState<TabType>('price');
+  const [activeTab, setActiveTab] = useState<TabType>("price");
   const [priceRange, setPriceRange] = useState([45000, 105000]);
   const [bedrooms, setBedrooms] = useState<string | null>(null);
   const [beds, setBeds] = useState<string | null>(null);
   const [bathrooms, setBathrooms] = useState<string | null>(null);
   const [amenities, setAmenities] = useState<string[]>([
-    'Wifi',
-    'Kitchen',
-    'Washer',
+    "Wifi",
+    "Kitchen",
+    "Washer",
   ]);
   const [instantBooking, setInstantBooking] = useState(true);
   const [selfCheckIn, setSelfCheckIn] = useState(false);
@@ -43,7 +43,7 @@ export default function FilterModal() {
     setBedrooms(null);
     setBeds(null);
     setBathrooms(null);
-    setAmenities(['Wifi', 'Kitchen', 'Washer']);
+    setAmenities(["Wifi", "Kitchen", "Washer"]);
     setInstantBooking(true);
     setSelfCheckIn(false);
   };
@@ -57,17 +57,17 @@ export default function FilterModal() {
   };
 
   const handleNumberSelect = (
-    type: 'bedrooms' | 'beds' | 'bathrooms',
+    type: "bedrooms" | "beds" | "bathrooms",
     value: string,
   ) => {
     switch (type) {
-      case 'bedrooms':
+      case "bedrooms":
         setBedrooms(value === bedrooms ? null : value);
         break;
-      case 'beds':
+      case "beds":
         setBeds(value === beds ? null : value);
         break;
-      case 'bathrooms':
+      case "bathrooms":
         setBathrooms(value === bathrooms ? null : value);
         break;
     }
@@ -110,10 +110,10 @@ export default function FilterModal() {
             <div className="w-full">
               <div className="grid grid-cols-5 border-b">
                 <button
-                  onClick={() => handleTabChange('price')}
+                  onClick={() => handleTabChange("price")}
                   className={cn(
-                    'flex items-center justify-center gap-1 py-4 rounded-none',
-                    activeTab === 'price' ? 'border-b-2 border-[#8B4513]' : '',
+                    "flex items-center justify-center gap-1 py-4 rounded-none",
+                    activeTab === "price" ? "border-b-2 border-[#8B4513]" : "",
                   )}
                 >
                   <span className="bg-[#8B4513] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
@@ -122,42 +122,42 @@ export default function FilterModal() {
                   <span>Price</span>
                 </button>
                 <button
-                  onClick={() => handleTabChange('rooms')}
+                  onClick={() => handleTabChange("rooms")}
                   className={cn(
-                    'flex items-center justify-center gap-1 py-4 rounded-none',
-                    activeTab === 'rooms' ? 'border-b-2 border-[#8B4513]' : '',
+                    "flex items-center justify-center gap-1 py-4 rounded-none",
+                    activeTab === "rooms" ? "border-b-2 border-[#8B4513]" : "",
                   )}
                 >
                   <Bed className="h-4 w-4" />
                   <span className="hidden sm:inline">Rooms</span>
                 </button>
                 <button
-                  onClick={() => handleTabChange('type')}
+                  onClick={() => handleTabChange("type")}
                   className={cn(
-                    'flex items-center justify-center gap-1 py-4 rounded-none',
-                    activeTab === 'type' ? 'border-b-2 border-[#8B4513]' : '',
+                    "flex items-center justify-center gap-1 py-4 rounded-none",
+                    activeTab === "type" ? "border-b-2 border-[#8B4513]" : "",
                   )}
                 >
                   <Home className="h-4 w-4" />
                   <span>Type</span>
                 </button>
                 <button
-                  onClick={() => handleTabChange('amenities')}
+                  onClick={() => handleTabChange("amenities")}
                   className={cn(
-                    'flex items-center justify-center gap-1 py-4 rounded-none',
-                    activeTab === 'amenities'
-                      ? 'border-b-2 border-[#8B4513]'
-                      : '',
+                    "flex items-center justify-center gap-1 py-4 rounded-none",
+                    activeTab === "amenities"
+                      ? "border-b-2 border-[#8B4513]"
+                      : "",
                   )}
                 >
                   <Bath className="h-4 w-4" />
                   <span>Amenities</span>
                 </button>
                 <button
-                  onClick={() => handleTabChange('book')}
+                  onClick={() => handleTabChange("book")}
                   className={cn(
-                    'flex items-center justify-center gap-1 py-4 rounded-none',
-                    activeTab === 'book' ? 'border-b-2 border-[#8B4513]' : '',
+                    "flex items-center justify-center gap-1 py-4 rounded-none",
+                    activeTab === "book" ? "border-b-2 border-[#8B4513]" : "",
                   )}
                 >
                   <span className="border rounded p-0.5">
@@ -202,7 +202,7 @@ export default function FilterModal() {
 
               {/* Tab Content */}
               <div className="p-4">
-                {activeTab === 'price' && (
+                {activeTab === "price" && (
                   <div className="space-y-6">
                     <h3 className="font-medium mb-4">Price range</h3>
                     <div className="space-y-6">
@@ -233,21 +233,21 @@ export default function FilterModal() {
                   </div>
                 )}
 
-                {activeTab === 'rooms' && (
+                {activeTab === "rooms" && (
                   <div className="space-y-6">
                     <div>
                       <h3 className="font-medium mb-4">Bedrooms</h3>
                       <div className="flex gap-2 flex-wrap">
-                        {['Any', '1', '2', '3', '4', '5', '5+'].map((num) => (
+                        {["Any", "1", "2", "3", "4", "5", "5+"].map((num) => (
                           <button
                             key={`bedroom-${num}`}
                             className={cn(
-                              'rounded-full py-2 px-4 border',
+                              "rounded-full py-2 px-4 border",
                               bedrooms === num
-                                ? 'bg-white ring-1 ring-[#8B4513]'
-                                : 'bg-[#f0efe9]',
+                                ? "bg-white ring-1 ring-[#8B4513]"
+                                : "bg-[#f0efe9]",
                             )}
-                            onClick={() => handleNumberSelect('bedrooms', num)}
+                            onClick={() => handleNumberSelect("bedrooms", num)}
                           >
                             {num}
                           </button>
@@ -258,17 +258,17 @@ export default function FilterModal() {
                     <div>
                       <h3 className="font-medium mb-4">Bed</h3>
                       <div className="flex gap-2 flex-wrap">
-                        {['Any', '1', '2', '3', '4', '5', '5+', '6'].map(
+                        {["Any", "1", "2", "3", "4", "5", "5+", "6"].map(
                           (num) => (
                             <button
                               key={`bed-${num}`}
                               className={cn(
-                                'rounded-full py-2 px-4 border',
+                                "rounded-full py-2 px-4 border",
                                 beds === num
-                                  ? 'bg-white ring-1 ring-[#8B4513]'
-                                  : 'bg-[#f0efe9]',
+                                  ? "bg-white ring-1 ring-[#8B4513]"
+                                  : "bg-[#f0efe9]",
                               )}
-                              onClick={() => handleNumberSelect('beds', num)}
+                              onClick={() => handleNumberSelect("beds", num)}
                             >
                               {num}
                             </button>
@@ -280,16 +280,16 @@ export default function FilterModal() {
                     <div>
                       <h3 className="font-medium mb-4">Bathrooms</h3>
                       <div className="flex gap-2 flex-wrap">
-                        {['Any', '1', '2', '3', '4', '5', '5+'].map((num) => (
+                        {["Any", "1", "2", "3", "4", "5", "5+"].map((num) => (
                           <button
                             key={`bathroom-${num}`}
                             className={cn(
-                              'rounded-full py-2 px-4 border',
+                              "rounded-full py-2 px-4 border",
                               bathrooms === num
-                                ? 'bg-white ring-1 ring-[#8B4513]'
-                                : 'bg-[#f0efe9]',
+                                ? "bg-white ring-1 ring-[#8B4513]"
+                                : "bg-[#f0efe9]",
                             )}
-                            onClick={() => handleNumberSelect('bathrooms', num)}
+                            onClick={() => handleNumberSelect("bathrooms", num)}
                           >
                             {num}
                           </button>
@@ -299,92 +299,92 @@ export default function FilterModal() {
                   </div>
                 )}
 
-                {activeTab === 'type' && (
+                {activeTab === "type" && (
                   <div className="min-h-[200px] flex items-center justify-center text-muted-foreground">
                     Type filters would go here
                   </div>
                 )}
 
-                {activeTab === 'amenities' && (
+                {activeTab === "amenities" && (
                   <div className="space-y-4">
                     <h3 className="font-medium mb-2">Amenities</h3>
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         className={cn(
-                          'flex items-center gap-2 rounded-full py-3 px-4 border',
-                          amenities.includes('Wifi')
-                            ? 'bg-[#f8efe9] border-[#8B4513]'
-                            : 'bg-[#f0efe9]',
+                          "flex items-center gap-2 rounded-full py-3 px-4 border",
+                          amenities.includes("Wifi")
+                            ? "bg-[#f8efe9] border-[#8B4513]"
+                            : "bg-[#f0efe9]",
                         )}
-                        onClick={() => toggleAmenity('Wifi')}
+                        onClick={() => toggleAmenity("Wifi")}
                       >
                         <Wifi className="h-5 w-5" />
                         <span>Wifi</span>
-                        {amenities.includes('Wifi') && (
+                        {amenities.includes("Wifi") && (
                           <span className="ml-auto">✓</span>
                         )}
                       </button>
 
                       <button
                         className={cn(
-                          'flex items-center gap-2 rounded-full py-3 px-4 border',
-                          amenities.includes('Washer')
-                            ? 'bg-[#f8efe9] border-[#8B4513]'
-                            : 'bg-[#f0efe9]',
+                          "flex items-center gap-2 rounded-full py-3 px-4 border",
+                          amenities.includes("Washer")
+                            ? "bg-[#f8efe9] border-[#8B4513]"
+                            : "bg-[#f0efe9]",
                         )}
-                        onClick={() => toggleAmenity('Washer')}
+                        onClick={() => toggleAmenity("Washer")}
                       >
                         <Bath className="h-5 w-5" />
                         <span>Washer</span>
-                        {amenities.includes('Washer') && (
+                        {amenities.includes("Washer") && (
                           <span className="ml-auto">✓</span>
                         )}
                       </button>
 
                       <button
                         className={cn(
-                          'flex items-center gap-2 rounded-full py-3 px-4 border',
-                          amenities.includes('Kitchen')
-                            ? 'bg-[#f8efe9] border-[#8B4513]'
-                            : 'bg-[#f0efe9]',
+                          "flex items-center gap-2 rounded-full py-3 px-4 border",
+                          amenities.includes("Kitchen")
+                            ? "bg-[#f8efe9] border-[#8B4513]"
+                            : "bg-[#f0efe9]",
                         )}
-                        onClick={() => toggleAmenity('Kitchen')}
+                        onClick={() => toggleAmenity("Kitchen")}
                       >
                         <Utensils className="h-5 w-5" />
                         <span>Kitchen</span>
-                        {amenities.includes('Kitchen') && (
+                        {amenities.includes("Kitchen") && (
                           <span className="ml-auto">✓</span>
                         )}
                       </button>
 
                       <button
                         className={cn(
-                          'flex items-center gap-2 rounded-full py-3 px-4 border',
-                          amenities.includes('Security cameras')
-                            ? 'bg-[#f8efe9] border-[#8B4513]'
-                            : 'bg-[#f0efe9]',
+                          "flex items-center gap-2 rounded-full py-3 px-4 border",
+                          amenities.includes("Security cameras")
+                            ? "bg-[#f8efe9] border-[#8B4513]"
+                            : "bg-[#f0efe9]",
                         )}
-                        onClick={() => toggleAmenity('Security cameras')}
+                        onClick={() => toggleAmenity("Security cameras")}
                       >
                         <Shield className="h-5 w-5" />
                         <span>Security cameras</span>
-                        {amenities.includes('Security cameras') && (
+                        {amenities.includes("Security cameras") && (
                           <span className="ml-auto">✓</span>
                         )}
                       </button>
 
                       <button
                         className={cn(
-                          'flex items-center gap-2 rounded-full py-3 px-4 border',
-                          amenities.includes('Refrigerator')
-                            ? 'bg-[#f8efe9] border-[#8B4513]'
-                            : 'bg-[#f0efe9]',
+                          "flex items-center gap-2 rounded-full py-3 px-4 border",
+                          amenities.includes("Refrigerator")
+                            ? "bg-[#f8efe9] border-[#8B4513]"
+                            : "bg-[#f0efe9]",
                         )}
-                        onClick={() => toggleAmenity('Refrigerator')}
+                        onClick={() => toggleAmenity("Refrigerator")}
                       >
                         <Refrigerator className="h-5 w-5" />
                         <span>Refrigerator</span>
-                        {amenities.includes('Refrigerator') && (
+                        {amenities.includes("Refrigerator") && (
                           <span className="ml-auto">✓</span>
                         )}
                       </button>
@@ -411,7 +411,7 @@ export default function FilterModal() {
                   </div>
                 )}
 
-                {activeTab === 'book' && (
+                {activeTab === "book" && (
                   <div className="space-y-4">
                     <h3 className="font-medium mb-2">Book options</h3>
                     <div className="space-y-3">

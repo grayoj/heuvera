@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { Facebook, Twitter, Instagram } from 'lucide-react';
+import React from "react";
+import Link from "next/link";
+import { Facebook, Twitter, Instagram } from "lucide-react";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();

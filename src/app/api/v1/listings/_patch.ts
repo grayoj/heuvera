@@ -1,7 +1,7 @@
-import { getOrCreateUser } from '@heuvera/lib/auth';
-import { prisma } from '@heuvera/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { getOrCreateUser } from "@heuvera/lib/auth";
+import { prisma } from "@heuvera/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 const updateListingSchema = z.object({
   title: z.string().min(5).optional(),
@@ -102,7 +102,7 @@ export async function PATCH(req: NextRequest) {
   try {
     const user = await getOrCreateUser(req);
     if (!user)
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const dbUser = await prisma.user.findUnique({
       where: { id: user.id },
@@ -111,17 +111,17 @@ export async function PATCH(req: NextRequest) {
 
     if (!dbUser?.isHostApproved) {
       return NextResponse.json(
-        { error: 'User is not approved as a host' },
+        { error: "User is not approved as a host" },
         { status: 403 },
       );
     }
 
     const { searchParams } = new URL(req.url);
-    const listingId = searchParams.get('id');
+    const listingId = searchParams.get("id");
 
     if (!listingId) {
       return NextResponse.json(
-        { error: 'Listing ID is required' },
+        { error: "Listing ID is required" },
         { status: 400 },
       );
     }
@@ -136,9 +136,9 @@ export async function PATCH(req: NextRequest) {
 
     return NextResponse.json({ listing }, { status: 200 });
   } catch (error: any) {
-    console.error('Error updating listing:', error);
+    console.error("Error updating listing:", error);
     return NextResponse.json(
-      { error: error.message || 'Internal Server Error' },
+      { error: error.message || "Internal Server Error" },
       { status: 400 },
     );
   }

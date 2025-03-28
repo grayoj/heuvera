@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { IoBed, IoPerson } from 'react-icons/io5';
-import { FaBath, FaStar } from 'react-icons/fa6';
+import { IoBed, IoPerson } from "react-icons/io5";
+import { FaBath, FaStar } from "react-icons/fa6";
 
 export default function PropertyDetailsSkeletalPreloader() {
   return (
@@ -41,12 +41,12 @@ export default function PropertyDetailsSkeletalPreloader() {
 
           <div className="flex flex-row gap-5">
             {[
-              { icon: <IoBed className="text-gray-200" />, label: 'Bedrooms' },
+              { icon: <IoBed className="text-gray-200" />, label: "Bedrooms" },
               {
                 icon: <FaBath className="text-gray-200" />,
-                label: 'Bathrooms',
+                label: "Bathrooms",
               },
-              { icon: <IoPerson className="text-gray-200" />, label: 'Guests' },
+              { icon: <IoPerson className="text-gray-200" />, label: "Guests" },
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 {item.icon}

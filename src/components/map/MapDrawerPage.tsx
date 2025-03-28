@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
-import { LatLngTuple } from 'leaflet';
-import { IoHome } from 'react-icons/io5';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { LatLngTuple } from "leaflet";
+import { IoHome } from "react-icons/io5";
 import {
   Search,
   X,
@@ -13,8 +13,8 @@ import {
   Filter,
   Heart,
   LucideSearch,
-} from 'lucide-react';
-import dynamic from 'next/dynamic';
+} from "lucide-react";
+import dynamic from "next/dynamic";
 
 import {
   Drawer,
@@ -22,17 +22,17 @@ import {
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-} from '../ui/drawer';
+} from "../ui/drawer";
 
-import { Button } from '../../components/ui/button';
-import { getCenterAndRadius } from '@heuvera/utils/map';
-import { Property, MapComponentsProps } from '@heuvera/types/map';
-import CategoryList from '../categories/CategoryList';
-import FilterButton from '../categories/FilterButton';
-import { FaHome } from 'react-icons/fa';
-import useIsMobile from '@heuvera/hooks/IsMobile';
+import { Button } from "../../components/ui/button";
+import { getCenterAndRadius } from "@heuvera/utils/map";
+import { Property, MapComponentsProps } from "@heuvera/types/map";
+import CategoryList from "../categories/CategoryList";
+import FilterButton from "../categories/FilterButton";
+import { FaHome } from "react-icons/fa";
+import useIsMobile from "@heuvera/hooks/IsMobile";
 
-const MapComponents = dynamic(() => import('./MapComponent'), {
+const MapComponents = dynamic(() => import("./MapComponent"), {
   loading: () => null,
   ssr: false,
 }) as React.ComponentType<MapComponentsProps>;
@@ -41,27 +41,27 @@ const MapComponents = dynamic(() => import('./MapComponent'), {
 const properties: Property[] = [
   {
     id: 1,
-    name: 'Luxury Apartment',
-    price: '$1,200/mo',
+    name: "Luxury Apartment",
+    price: "$1,200/mo",
     rating: 4.8,
     position: [9.0579, 7.4951] as LatLngTuple,
     image:
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format',
-    description: 'Modern luxury apartment with panoramic city views.',
+      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format",
+    description: "Modern luxury apartment with panoramic city views.",
     icon: <IoHome className="text-sm text-[#7B4F3A]" />,
-    propertyType: 'apartment',
+    propertyType: "apartment",
   },
   {
     id: 2,
-    name: 'Family House',
-    price: '$950/mo',
+    name: "Family House",
+    price: "$950/mo",
     rating: 4.5,
     position: [9.06, 7.49] as LatLngTuple,
     image:
-      'https://images.unsplash.com/photo-1579656592043-6a47e332b902?q=80&w=1974&auto=format',
-    description: 'Cozy family home with a large backyard.',
+      "https://images.unsplash.com/photo-1579656592043-6a47e332b902?q=80&w=1974&auto=format",
+    description: "Cozy family home with a large backyard.",
     icon: <FaHome className="text-sm text-[#7B4F3A]" />,
-    propertyType: 'house',
+    propertyType: "house",
   },
 ];
 
@@ -75,7 +75,7 @@ export default function MapDrawerPage({
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(
     null,
   );
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const router = useRouter();
@@ -95,7 +95,7 @@ export default function MapDrawerPage({
           !isNaN(Number(property.position[0])) &&
           !isNaN(Number(property.position[1]))
         );
-      } else if (typeof property.position === 'object') {
+      } else if (typeof property.position === "object") {
         const pos = property.position as { lat?: number; lng?: number };
         return (
           pos.lat !== undefined &&
@@ -138,20 +138,20 @@ export default function MapDrawerPage({
               <motion.form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  console.log('Searching:', searchQuery);
+                  console.log("Searching:", searchQuery);
                 }}
                 className="w-full max-w-80"
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
                 <div
                   className={`
                     relative w-full h-10 
                     ${
                       isSearchFocused
-                        ? 'bg-white border-[#7B4F3A] shadow-sm'
-                        : 'bg-[#F8F7F2] border-[#E3E2D9]'
+                        ? "bg-white border-[#7B4F3A] shadow-sm"
+                        : "bg-[#F8F7F2] border-[#E3E2D9]"
                     } 
                     border rounded-full flex items-center transition-all duration-300
                 `}
@@ -179,7 +179,7 @@ export default function MapDrawerPage({
                           variant="ghost"
                           size="icon"
                           className="h-8 w-8 rounded-full"
-                          onClick={() => setSearchQuery('')}
+                          onClick={() => setSearchQuery("")}
                           asChild
                         >
                           <div>

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   useMemo,
@@ -8,17 +8,15 @@ import {
   JSX,
   useRef,
   useEffect,
-} from 'react';
-import { LucideHeart, LucideCompass } from 'lucide-react';
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
-import { HeuveraLogo } from '@heuvera/components/logo';
-import useIsMobile from '@heuvera/hooks/IsMobile';
-import { GoHeart, GoHeartFill, GoHome, GoHomeFill } from 'react-icons/go';
-import React from 'react';
-import { IoCompass, IoCompassOutline } from 'react-icons/io5';
-import { motion } from 'framer-motion';
-import SearchBar from '../components/search/SearchBar';
-import { useRouter } from 'next/navigation';
+} from "react";
+import { LucideHeart, LucideCompass } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { HeuveraLogo } from "@heuvera/components/logo";
+import useIsMobile from "@heuvera/hooks/IsMobile";
+import { GoHeart, GoHeartFill, GoHome, GoHomeFill } from "react-icons/go";
+import React from "react";
+import { IoCompass, IoCompassOutline } from "react-icons/io5";
+import { useRouter } from "next/navigation";
 
 interface MarketplaceContextType {
   selected: string;
@@ -32,13 +30,12 @@ const MarketplaceContext = createContext<MarketplaceContextType | undefined>(
 
 export function MarketplaceProvider({
   children,
-  showSearch = true,
 }: {
   children: React.ReactNode;
   className?: string;
   showSearch?: boolean;
 }) {
-  const [selected, setSelected] = useState<string>('Explore');
+  const [selected, setSelected] = useState<string>("Explore");
   const isMobile = useIsMobile();
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const navRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -47,10 +44,10 @@ export function MarketplaceProvider({
 
   const NavigationContent = useMemo(
     () => [
-      { title: 'Explore', link: '/explore', icon: <GoHomeFill /> },
-      { title: 'Favorites', link: '/favorites', icon: <LucideHeart /> },
-      { title: 'Discover', link: '/discover', icon: <LucideCompass /> },
-      { title: 'Profile', link: '#profile', icon: null },
+      { title: "Explore", link: "/explore", icon: <GoHomeFill /> },
+      { title: "Favorites", link: "/favorites", icon: <LucideHeart /> },
+      { title: "Discover", link: "/discover", icon: <LucideCompass /> },
+      { title: "Profile", link: "#profile", icon: null },
     ],
     [],
   );
@@ -145,8 +142,8 @@ export function MarketplaceProvider({
                   }}
                   className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
                     selected === content.title
-                      ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'
-                      : 'text-[#323232] hover:text-[#7B4F3A]'
+                      ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
+                      : "text-[#323232] hover:text-[#7B4F3A]"
                   }`}
                 >
                   {content.title}
@@ -191,9 +188,9 @@ export function MarketplaceProvider({
                     }}
                     className="flex flex-col items-center justify-center min-w-[60px] h-full transition-all duration-300"
                   >
-                    {content.title === 'Profile' ? (
+                    {content.title === "Profile" ? (
                       <span
-                        className={`text-2xl ${isSelected ? 'text-[#7B4F3A] border-2 border-[#7B4F3A] bg-[#7B4F3A] rounded-full' : 'text-[#323232]'}`}
+                        className={`text-2xl ${isSelected ? "text-[#7B4F3A] border-2 border-[#7B4F3A] bg-[#7B4F3A] rounded-full" : "text-[#323232]"}`}
                       >
                         <div className="size-6">
                           <Avatar className="rounded-full overflow-hidden block">
@@ -207,7 +204,7 @@ export function MarketplaceProvider({
                       </span>
                     ) : (
                       <span
-                        className={`text-2xl ${isSelected ? 'text-[#7B4F3A]' : 'text-[#323232]'}`}
+                        className={`text-2xl ${isSelected ? "text-[#7B4F3A]" : "text-[#323232]"}`}
                       >
                         {isSelected
                           ? iconMapping[content.title]?.filled
@@ -216,7 +213,7 @@ export function MarketplaceProvider({
                     )}
 
                     <span
-                      className={`text-xs font-medium ${isSelected ? 'text-[#7B4F3A]' : 'text-[#323232]'}`}
+                      className={`text-xs font-medium ${isSelected ? "text-[#7B4F3A]" : "text-[#323232]"}`}
                     >
                       {content.title}
                     </span>
@@ -234,7 +231,7 @@ export function MarketplaceProvider({
 export function useMarketplace() {
   const context = useContext(MarketplaceContext);
   if (!context) {
-    throw new Error('useMarketplace must be used within a MarketplaceProvider');
+    throw new Error("useMarketplace must be used within a MarketplaceProvider");
   }
   return context;
 }

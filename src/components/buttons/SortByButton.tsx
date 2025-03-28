@@ -1,5 +1,5 @@
-'use client';
-import * as React from 'react';
+"use client";
+import * as React from "react";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -7,24 +7,24 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
-import { ArrowUpDown } from 'lucide-react';
-import { Button } from '../ui/button';
+} from "../ui/dropdown-menu";
+import { ArrowUpDown } from "lucide-react";
+import { Button } from "../ui/button";
 
 type SortOption =
-  | 'Price Low to High'
-  | 'Price High to Low'
-  | 'Rating'
-  | 'Newest';
+  | "Price Low to High"
+  | "Price High to Low"
+  | "Rating"
+  | "Newest";
 
 export function SortByDropdown() {
-  const [sortBy, setSortBy] = React.useState<SortOption>('Newest');
+  const [sortBy, setSortBy] = React.useState<SortOption>("Newest");
 
   const sortOptions: SortOption[] = [
-    'Price Low to High',
-    'Price High to Low',
-    'Rating',
-    'Newest',
+    "Price Low to High",
+    "Price High to Low",
+    "Rating",
+    "Newest",
   ];
 
   return (

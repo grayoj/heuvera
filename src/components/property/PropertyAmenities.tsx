@@ -5,9 +5,9 @@ import {
   LucideBone,
   LucideWashingMachine,
   LucideVideo,
-} from 'lucide-react';
-import Divider from '../Divider';
-import SectionHeaderText from '../text/SectionHeaderText';
+} from "lucide-react";
+import Divider from "../Divider";
+import SectionHeaderText from "../text/SectionHeaderText";
 
 export default function PropertyAmenities() {
   const amenities = [
@@ -15,37 +15,37 @@ export default function PropertyAmenities() {
       icon: (
         <LucideLeaf className="text-xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-[#3e3e3e]" />
       ),
-      name: 'Garden View',
+      name: "Garden View",
     },
     {
       icon: (
         <LucideWifi className="text-xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-[#3e3e3e]" />
       ),
-      name: 'Wifi',
+      name: "Wifi",
     },
     {
       icon: (
         <LucideUtensils className="text-xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-[#3e3e3e]" />
       ),
-      name: 'Kitchen',
+      name: "Kitchen",
     },
     {
       icon: (
         <LucideBone className="text-xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-[#3e3e3e]" />
       ),
-      name: 'Pets allowed',
+      name: "Pets allowed",
     },
     {
       icon: (
         <LucideWashingMachine className="text-xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-[#3e3e3e]" />
       ),
-      name: 'Free Washer - in building',
+      name: "Free Washer - in building",
     },
     {
       icon: (
         <LucideVideo className="text-xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-[#3e3e3e]" />
       ),
-      name: 'Security Cameras on property',
+      name: "Security Cameras on property",
     },
   ];
 

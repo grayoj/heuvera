@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -8,23 +8,23 @@ import {
   Popup,
   Circle,
   useMap,
-} from 'react-leaflet';
-import { divIcon, LatLngTuple } from 'leaflet';
-import L from 'leaflet';
-import Image from 'next/image';
-import { FaBuilding, FaStar, FaTree, FaWarehouse } from 'react-icons/fa6';
-import ReactDOMServer from 'react-dom/server';
-import { GoHomeFill } from 'react-icons/go';
+} from "react-leaflet";
+import { divIcon, LatLngTuple } from "leaflet";
+import L from "leaflet";
+import Image from "next/image";
+import { FaBuilding, FaStar, FaTree, FaWarehouse } from "react-icons/fa6";
+import ReactDOMServer from "react-dom/server";
+import { GoHomeFill } from "react-icons/go";
 
 // Leaflet CSS Import (crucial for map rendering)
-import 'leaflet/dist/leaflet.css';
+import "leaflet/dist/leaflet.css";
 
 // Fix for default marker icon
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { FaHome } from 'react-icons/fa';
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { FaHome } from "react-icons/fa";
 
 let DefaultIcon = L.icon({
   iconUrl: icon.src,
@@ -81,7 +81,7 @@ interface Property {
   description: string;
   icon: React.ReactNode;
   [key: string]: any;
-  propertyType: 'apartment' | 'house' | 'office' | 'land';
+  propertyType: "apartment" | "house" | "office" | "land";
 }
 
 interface MapComponentsProps {
@@ -95,13 +95,13 @@ interface MapComponentsProps {
 }
 const getPropertyIcon = (type: string) => {
   switch (type) {
-    case 'apartment':
+    case "apartment":
       return <FaBuilding size={20} color="#7B4F3A" />;
-    case 'house':
+    case "house":
       return <FaHome size={20} color="#7B4F3A" />;
-    case 'office':
+    case "office":
       return <FaWarehouse size={20} color="#7B4F3A" />;
-    case 'land':
+    case "land":
       return <FaTree size={20} color="#7B4F3A" />;
     default:
       return <GoHomeFill size={20} color="#7B4F3A" />;
@@ -126,9 +126,9 @@ const MapComponents = ({
         scrollWheelZoom={true}
         className="w-full h-full z-0 rounded-lg shadow-lg"
         style={{
-          height: '100%',
-          width: '100%',
-          position: 'absolute',
+          height: "100%",
+          width: "100%",
+          position: "absolute",
           top: 0,
           left: 0,
         }}
@@ -145,7 +145,7 @@ const MapComponents = ({
           center={center_radius}
           radius={radius}
           pathOptions={{
-            color: 'rgba(123, 79, 58, 0.9)',
+            color: "rgba(123, 79, 58, 0.9)",
             weight: 3,
             fillOpacity: 0.1,
           }}
@@ -159,11 +159,11 @@ const MapComponents = ({
               click: () => setSelectedProperty(property),
             }}
             icon={divIcon({
-              className: '',
+              className: "",
               html: ReactDOMServer.renderToString(
                 <div
                   className="bg-white p-1 rounded-full shadow-md flex items-center justify-center"
-                  style={{ width: '32px', height: '32px' }}
+                  style={{ width: "32px", height: "32px" }}
                 >
                   {getPropertyIcon(property.propertyType)}
                 </div>,
@@ -185,7 +185,7 @@ const MapComponents = ({
                     height={500}
                     width={500}
                     className="rounded-t-lg object-cover"
-                    style={{ width: '100%', height: 'auto' }}
+                    style={{ width: "100%", height: "auto" }}
                   />
                   <div className="px-2">
                     <h3 className="font-bold text-[#3e3e3e] text-xs">

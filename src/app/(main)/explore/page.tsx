@@ -1,15 +1,13 @@
-'use client';
+"use client";
 
-import PropertyCard from '@heuvera/components/cards/PropertyCards/PropertyCard';
-import Categories from '@heuvera/components/categories/Categories';
-import { PropertyData } from '@heuvera/components/data/PropertyData';
-import Footer from '@heuvera/components/footer';
-import SearchBar from '@heuvera/components/search/SearchBar';
-import useIsMobile from '@heuvera/hooks/IsMobile';
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
+import Categories from "@heuvera/components/categories/Categories";
+import { PropertyData } from "@heuvera/components/data/PropertyData";
+import SearchBar from "@heuvera/components/search/SearchBar";
+import useIsMobile from "@heuvera/hooks/IsMobile";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
-// Skeletal Preloader Component
 const SkeletalPreloader = () => {
   return (
     <div className="pt-5 md:pt-10 lg:pt-10 xl:pt-10 2xl:pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-x-6 gap-y-8 justify-center">
@@ -42,7 +40,6 @@ export default function Explore() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Filter properties based on selected category
   useEffect(() => {
     if (selectedCategory) {
       const filtered = PropertyData.filter(
@@ -89,7 +86,7 @@ export default function Explore() {
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0 },
               }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="w-full flex justify-center"
             >
               <PropertyCard property={property} />
@@ -97,7 +94,6 @@ export default function Explore() {
           ))}
         </motion.div>
       )}
-      {/* <Footer/> */}
     </div>
   );
 }

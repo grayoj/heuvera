@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 // Define the type for sort options
-export type SortOption = 'recent' | 'price-low' | 'price-high';
+export type SortOption = "recent" | "price-low" | "price-high";
 
 interface SortDropdownProps {
   value: SortOption;
