@@ -132,8 +132,8 @@ export const PropertyData = [
   },
   {
     id: 6,
-    propertyName: 'Luxury Villa',
-    propertyCategory: 'Island',
+    propertyName: "Luxury Villa",
+    propertyCategory: "Island",
     propertyDetails: {
       price: 50000,
       currency: "₦",

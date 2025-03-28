@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Button } from '@heuvera/components/ui/button';
-import { LucideSlidersHorizontal } from 'lucide-react';
-import { useState } from 'react';
-import { FilterModal } from '../filtermodal';
+import { Button } from "@heuvera/components/ui/button";
+import { LucideSlidersHorizontal } from "lucide-react";
+import { useState } from "react";
+import { FilterModal } from "../filtermodal";
 
 interface FilterButtonProps {
   setActiveFilters: (filters: {
@@ -17,6 +17,7 @@ interface FilterButtonProps {
     selfCheckIn: boolean;
   }) => void;
 }
+
 type FilterProps = {
   priceRange: [number, number];
   bedrooms: string | null;
@@ -32,28 +33,13 @@ export function FilterButton({ setActiveFilters }: FilterButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleApplyFilters = (newFilters: FilterProps) => {
-    setActiveFilters(newFilters); // Now updates Explore's state
+    setActiveFilters(newFilters);
     setIsModalOpen(false);
   };
-  const [filters, setFilters] = useState<{
-    priceRange: [number, number];
-    bedrooms: string | null;
-    beds: string | null;
-    bathrooms: string | null;
-    amenities: string[];
-    propertyTypes: string[];
-    instantBooking: boolean;
-    selfCheckIn: boolean;
-  } | null>(null);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
 
   return (
     <>
@@ -67,7 +53,14 @@ export function FilterButton({ setActiveFilters }: FilterButtonProps) {
         Filter
       </Button>
 
-      {isModalOpen && <FilterModal onApplyFilters={handleApplyFilters} />}
+      {isModalOpen && (
+        <FilterModal
+          onApplyFilters={handleApplyFilters}
+          initialFilters={{}}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from 'react';
-import * as SliderPrimitive from '@radix-ui/react-slider';
-import { cn } from '@heuvera/lib/utils';
+import * as React from "react";
+import * as SliderPrimitive from "@radix-ui/react-slider";
+import { cn } from "@heuvera/lib/utils";
 
 function Slider({
   className,
@@ -38,13 +38,13 @@ function Slider({
       <SliderPrimitive.Track
         data-slot="slider-track"
         className={cn(
-          'bg-[#F3F2EC] relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5',
+          "bg-[#F3F2EC] relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5",
         )}
       >
         <SliderPrimitive.Range
           data-slot="slider-range"
           className={cn(
-            'bg-[#7A3B10] absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full hover:bg-[#A0522D]', // Change hover color for the range
+            "bg-[#7A3B10] absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full hover:bg-[#A0522D]", // Change hover color for the range
           )}
         />
       </SliderPrimitive.Track>

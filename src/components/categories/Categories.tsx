@@ -23,7 +23,10 @@ interface CategoriesProps {
   >;
 }
 
-const Categories: React.FC<CategoriesProps> = ({ onCategorySelect, setActiveFilters }) => {
+const Categories: React.FC<CategoriesProps> = ({
+  onCategorySelect,
+  setActiveFilters,
+}) => {
   const router = useRouter();
   const isMobile = useIsMobile();
 
@@ -34,7 +37,9 @@ const Categories: React.FC<CategoriesProps> = ({ onCategorySelect, setActiveFilt
   return (
     <div
       className={`w-full border-b border-[#E3E2D9] ${
-        isMobile ? 'h-[130px]' : 'h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t'
+        isMobile
+          ? "h-[130px]"
+          : "h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t"
       } flex items-center`}
     >
       {isMobile ? (

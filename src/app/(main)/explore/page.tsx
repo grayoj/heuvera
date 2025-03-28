@@ -1,14 +1,14 @@
 "use client";
 
-import PropertyCard from '@heuvera/components/cards/PropertyCards/PropertyCard';
-import Categories from '@heuvera/components/categories/Categories';
-import FilterModal from '@heuvera/components/categories/FilterButton';
-import { PropertyData } from '@heuvera/components/data/PropertyData';
-import SearchBar from '@heuvera/components/search/SearchBar';
-import useIsMobile from '@heuvera/hooks/IsMobile';
-import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
+import Categories from "@heuvera/components/categories/Categories";
+import FilterModal from "@heuvera/components/categories/FilterButton";
+import { PropertyData } from "@heuvera/components/data/PropertyData";
+import SearchBar from "@heuvera/components/search/SearchBar";
+import useIsMobile from "@heuvera/hooks/IsMobile";
+import { motion } from "framer-motion";
+import { X } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const SkeletalPreloader = () => {
   return (
@@ -36,14 +36,14 @@ export default function Explore() {
   const [filteredProperties, setFilteredProperties] = useState(PropertyData);
 
   const [activeFilters, setActiveFilters] = useState<{
-    priceRange?: [number, number],
-    bedrooms?: string | null,
-    beds?: string | null,
-    bathrooms?: string | null,
-    amenities?: string[],
-    propertyTypes?: string[],
-    instantBooking?: boolean,
-    selfCheckIn?: boolean
+    priceRange?: [number, number];
+    bedrooms?: string | null;
+    beds?: string | null;
+    bathrooms?: string | null;
+    amenities?: string[];
+    propertyTypes?: string[];
+    instantBooking?: boolean;
+    selfCheckIn?: boolean;
   }>({});
 
   useEffect(() => {
@@ -69,32 +69,35 @@ export default function Explore() {
     if (activeFilters.priceRange) {
       const [min, max] = activeFilters.priceRange;
       result = result.filter(
-        property => property.propertyDetails.price >= min && property.propertyDetails.price <= max
+        (property) =>
+          property.propertyDetails.price >= min &&
+          property.propertyDetails.price <= max,
       );
     }
 
     // Property type filter
     if (activeFilters.propertyTypes && activeFilters.propertyTypes.length > 0) {
-      result = result.filter(property =>
-        activeFilters.propertyTypes?.includes(property.propertyCategory)
+      result = result.filter((property) =>
+        activeFilters.propertyTypes?.includes(property.propertyCategory),
       );
     }
 
     // Rooms filters
-    if (activeFilters.bedrooms && activeFilters.bedrooms !== 'Any') {
-      result = result.filter(property =>
-        activeFilters.bedrooms === '5+'
+    if (activeFilters.bedrooms && activeFilters.bedrooms !== "Any") {
+      result = result.filter((property) =>
+        activeFilters.bedrooms === "5+"
           ? property.propertyDetails.bedrooms >= 5
-          : property.propertyDetails.bedrooms === parseInt(activeFilters.bedrooms || '0')
+          : property.propertyDetails.bedrooms ===
+            parseInt(activeFilters.bedrooms || "0"),
       );
     }
 
     // Amenities filter
     if (activeFilters.amenities && activeFilters.amenities.length > 0) {
-      result = result.filter(property =>
-        activeFilters.amenities?.every(amenity =>
-          property.amenities.includes(amenity)
-        )
+      result = result.filter((property) =>
+        activeFilters.amenities?.every((amenity) =>
+          property.amenities.includes(amenity),
+        ),
       );
     }
 
@@ -120,28 +123,28 @@ export default function Explore() {
     const newFilters = { ...activeFilters };
 
     switch (filterKey) {
-      case 'priceRange':
+      case "priceRange":
         newFilters.priceRange = undefined;
         break;
-      case 'bedrooms':
+      case "bedrooms":
         newFilters.bedrooms = undefined;
         break;
-      case 'beds':
+      case "beds":
         newFilters.beds = undefined;
         break;
-      case 'bathrooms':
+      case "bathrooms":
         newFilters.bathrooms = undefined;
         break;
-      case 'amenities':
+      case "amenities":
         newFilters.amenities = [];
         break;
-      case 'propertyTypes':
+      case "propertyTypes":
         newFilters.propertyTypes = [];
         break;
-      case 'instantBooking':
+      case "instantBooking":
         newFilters.instantBooking = undefined;
         break;
-      case 'selfCheckIn':
+      case "selfCheckIn":
         newFilters.selfCheckIn = undefined;
         break;
     }
@@ -156,18 +159,21 @@ export default function Explore() {
       bedrooms: (val: string) => `${val} Bedrooms`,
       beds: (val: string) => `${val} Beds`,
       bathrooms: (val: string) => `${val} Bathrooms`,
-      amenities: (val: string[]) => val.join(', '),
-      propertyTypes: (val: string[]) => val.join(', '),
-      instantBooking: () => 'Instant Booking',
-      selfCheckIn: () => 'Self Check-in'
+      amenities: (val: string[]) => val.join(", "),
+      propertyTypes: (val: string[]) => val.join(", "),
+      instantBooking: () => "Instant Booking",
+      selfCheckIn: () => "Self Check-in",
     };
 
     return (
       <div className="flex flex-wrap gap-2 my-2">
         {Object.entries(activeFilters).map(([key, value]) => {
-          if (!value || (Array.isArray(value) && value.length === 0)) return null;
+          if (!value || (Array.isArray(value) && value.length === 0))
+            return null;
 
-          const display = filterDisplayMap[key as keyof typeof filterDisplayMap]?.(value as any);
+          const display = filterDisplayMap[
+            key as keyof typeof filterDisplayMap
+          ]?.(value as any);
 
           return display ? (
             <div
@@ -175,7 +181,9 @@ export default function Explore() {
               className="flex items-center bg-[#f8efe9] rounded-full px-3 py-1 text-xs sm:text-sm"
             >
               <span className="mr-2">{display}</span>
-              <button onClick={() => removeFilter(key as keyof typeof activeFilters)}>
+              <button
+                onClick={() => removeFilter(key as keyof typeof activeFilters)}
+              >
                 <X className="h-4 w-4 text-[#8B4513]" />
               </button>
             </div>

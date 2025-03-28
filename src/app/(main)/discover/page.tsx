@@ -1,7 +1,8 @@
 export default function Discover() {
-  return <>
-{/*   <section className="relative bg-[#8b5d3b] py-16 md:py-24 overflow-hidden">
-      {/* Background Images */}
+  return (
+    <>
+      {/*   <section className="relative bg-[#8b5d3b] py-16 md:py-24 overflow-hidden">
+      
       <div className="absolute inset-0 z-0">
         <div className="absolute top-8 left-24 w-64 h-40 rounded-lg overflow-hidden">
           <Image
@@ -41,7 +42,7 @@ export default function Discover() {
         </div>
       </div>
 
-      {/* Content */}
+      
       <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6">
           Find <span className="text-[#e8a87c]">exclusive homes</span> that
@@ -49,7 +50,7 @@ export default function Discover() {
           fit your life style
         </h1>
 
-        {/* Search Box */}
+        
         <div className="mt-16">
           <div className="inline-flex bg-white rounded-lg p-1 mb-8">
             {["Lease", "Rent", "Stays"].map((tab) => (
@@ -100,5 +101,6 @@ export default function Discover() {
         </div>
       </div>
     </section> */}
-  </>;
+    </>
+  );
 }
