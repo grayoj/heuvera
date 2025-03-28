@@ -7,9 +7,9 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import { IoBedOutline } from "react-icons/io5";
-import Currency from "../icons/svgs/currency";
-import { Button } from "../ui/button";
-import { Slider } from "../ui/slider";
+import Currency from "./icons/svgs/currency";
+import { Button } from "./ui/button";
+import { Slider } from "./ui/slider";
 
 // Type definitions
 type TabType = 'price' | 'rooms' | 'type' | 'amenities' | 'book';
@@ -192,7 +192,7 @@ export function FilterModal({
                                 {TABS_CONFIG.map(({ id, icon: Icon, label, mobileLabel }) => {
                                     const isActive = activeTab === id;
                                     const IconComponent = typeof Icon === 'function' && Icon.length > 0
-                                        ? () => <Icon data-isactive={isActive} />
+                                        ? () => <Icon data-isactive={isActive} color={""} className={""} />
                                         : () => (
                                             <Icon
                                                 className={cn(
@@ -200,8 +200,7 @@ export function FilterModal({
                                                     isActive
                                                         ? 'text-[#7B4F3A]'
                                                         : 'text-[#323223]'
-                                                )}
-                                            />
+                                                )} color={""}                                            />
                                         );
 
                                     return (
