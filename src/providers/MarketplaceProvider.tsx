@@ -123,7 +123,7 @@ export function MarketplaceProvider({
       value={{ selected, setSelected, openSearchModal }}
     >
       <div className="w-full h-full flex flex-col">
-        <div className="px-4 md:px-8 lg:px-16 xl:px-20 2xl:px-20 h-20 w-full flex items-center justify-between">
+        <div className="px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 h-20 w-full flex items-center justify-between">
           {isMobile ? (
             <div className="w-full flex items-center justify-center">
               <HeuveraLogo width={35} height={35} />
