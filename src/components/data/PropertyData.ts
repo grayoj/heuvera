@@ -131,7 +131,7 @@ export const PropertyData = [
     isVerified: false,
   },
   {
-    id: 1,
+    id: 6,
     propertyName: 'Luxury Villa',
     propertyCategory: 'Island',
     propertyDetails: {
