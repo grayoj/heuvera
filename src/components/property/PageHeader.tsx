@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { BsArrowLeft } from 'react-icons/bs';
-import { useRouter } from 'next/navigation'; // Import useRouter
-import { IoShareSocialOutline } from 'react-icons/io5';
+import { BsArrowLeft } from "react-icons/bs";
+import { useRouter } from "next/navigation"; // Import useRouter
+import { IoShareSocialOutline } from "react-icons/io5";
 
 export default function PageHeader() {
   const router = useRouter(); // Initialize router
@@ -12,7 +12,7 @@ export default function PageHeader() {
         onClick={() => router.back()}
         className="cursor-pointer flex flex-row gap-5 items-center"
       >
-        {' '}
+        {" "}
         {/* Clickable for navigation */}
         <BsArrowLeft className="text-[#898989] text-xl" />
         <h1 className="text-base font-serif text-[#898989]">Island</h1>

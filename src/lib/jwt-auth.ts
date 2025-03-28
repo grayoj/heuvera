@@ -1,7 +1,7 @@
-import { NextRequest } from 'next/server';
-import jwt from 'jsonwebtoken';
-import jwksClient from 'jwks-rsa';
-import { prisma } from './prisma';
+import { NextRequest } from "next/server";
+import jwt from "jsonwebtoken";
+import jwksClient from "jwks-rsa";
+import { prisma } from "./prisma";
 
 const AUTH0_ISSUER = process.env.AUTH0_ISSUER!;
 const AUTH0_AUDIENCE = process.env.AUTH0_AUDIENCE!;
@@ -19,12 +19,12 @@ async function getKey(header: any, callback: any) {
 
 export async function getOrCreateUser(req: NextRequest) {
   try {
-    const authHeader = req.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return null;
     }
 
-    const token = authHeader.split(' ')[1];
+    const token = authHeader.split(" ")[1];
 
     const decoded: any = await new Promise((resolve, reject) => {
       jwt.verify(
@@ -33,7 +33,7 @@ export async function getOrCreateUser(req: NextRequest) {
         {
           audience: AUTH0_AUDIENCE,
           issuer: AUTH0_ISSUER,
-          algorithms: ['RS256'],
+          algorithms: ["RS256"],
         },
         (err, decoded) => {
           if (err) reject(err);
@@ -52,7 +52,7 @@ export async function getOrCreateUser(req: NextRequest) {
       user = await prisma.user.create({
         data: {
           auth0_id,
-          email: email ?? '',
+          email: email ?? "",
           name: name || null,
           picture: picture || null,
         },
@@ -61,7 +61,7 @@ export async function getOrCreateUser(req: NextRequest) {
 
     return user;
   } catch (error) {
-    console.error('Error verifying user:', error);
+    console.error("Error verifying user:", error);
     return null;
   }
 }

@@ -48,7 +48,7 @@ export async function GET(req: NextRequest) {
     const session = await getSession(req, res);
 
     if (!session || !session.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const { sub: auth0_id, email, name, picture } = session.user;
@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
       user = await prisma.user.create({
         data: {
           auth0_id,
-          email: email ?? '',
+          email: email ?? "",
           name: name || null,
           picture: picture || null,
         },
@@ -77,16 +77,16 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(
       {
-        message: newUser ? 'User created successfully' : 'User already exists',
+        message: newUser ? "User created successfully" : "User already exists",
         newUser,
         user,
       },
       { status: 200 },
     );
   } catch (error) {
-    console.error('Error handling user request:', error);
+    console.error("Error handling user request:", error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 },
     );
   }

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import ReviewCard from './ReviewCard';
+import { useState } from "react";
+import ReviewCard from "./ReviewCard";
 
 export default function ReviewsSection() {
   const [showAll, setShowAll] = useState(false);
@@ -33,7 +33,7 @@ export default function ReviewsSection() {
           onClick={toggleReviews}
           className="text-base font-serif font-medium text-[#3E3E3E] underline px-2"
         >
-          {showAll ? 'See less reviews' : 'See all reviews'}
+          {showAll ? "See less reviews" : "See all reviews"}
         </button>
       </div>
     </div>

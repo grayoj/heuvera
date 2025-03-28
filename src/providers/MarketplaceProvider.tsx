@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   useMemo,
@@ -8,21 +8,21 @@ import {
   JSX,
   useRef,
   useEffect,
-} from 'react';
+} from "react";
 import {
   LucideSearch,
   LucideMail,
   LucideHeart,
   LucideCompass,
-} from 'lucide-react';
-import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
-import { HeuveraLogo } from '@heuvera/components/logo';
-import useIsMobile from '@heuvera/hooks/IsMobile';
-import { GoHeart, GoHeartFill, GoHome, GoHomeFill } from 'react-icons/go';
-import React from 'react';
-import { IoCompass, IoCompassOutline } from 'react-icons/io5';
-import { MdMail, MdMailOutline } from 'react-icons/md';
-import { motion } from 'framer-motion';
+} from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { HeuveraLogo } from "@heuvera/components/logo";
+import useIsMobile from "@heuvera/hooks/IsMobile";
+import { GoHeart, GoHeartFill, GoHome, GoHomeFill } from "react-icons/go";
+import React from "react";
+import { IoCompass, IoCompassOutline } from "react-icons/io5";
+import { MdMail, MdMailOutline } from "react-icons/md";
+import { motion } from "framer-motion";
 
 interface MarketplaceContextType {
   selected: string;
@@ -41,7 +41,7 @@ export function MarketplaceProvider({
   className?: string;
   showSearch?: boolean;
 }) {
-  const [selected, setSelected] = useState<string>('Explore');
+  const [selected, setSelected] = useState<string>("Explore");
   const isMobile = useIsMobile();
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const navRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -50,10 +50,10 @@ export function MarketplaceProvider({
 
   const NavigationContent = useMemo(
     () => [
-      { title: 'Explore', link: '/marketplace/explore', icon: <GoHomeFill /> },
-      { title: 'Favorites', link: '#favorites', icon: <LucideHeart /> },
-      { title: 'Discover', link: '#discover', icon: <LucideCompass /> },
-      { title: 'Contact', link: '#contact', icon: <LucideMail /> },
+      { title: "Explore", link: "/marketplace/explore", icon: <GoHomeFill /> },
+      { title: "Favorites", link: "#favorites", icon: <LucideHeart /> },
+      { title: "Discover", link: "#discover", icon: <LucideCompass /> },
+      { title: "Contact", link: "#contact", icon: <LucideMail /> },
     ],
     [],
   );
@@ -116,8 +116,8 @@ export function MarketplaceProvider({
                       onClick={() => setSelected(content.title)}
                       className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
                         selected === content.title
-                          ? 'text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2'
-                          : 'text-[#323232] hover:text-primary'
+                          ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
+                          : "text-[#323232] hover:text-primary"
                       }`}
                     >
                       {content.title}
@@ -133,9 +133,9 @@ export function MarketplaceProvider({
               <div className="relative flex-1 flex justify-center">
                 <motion.div
                   className="relative flex items-center"
-                  initial={{ width: '40px' }}
-                  animate={{ width: isSearchOpen ? '250px' : '40px' }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  initial={{ width: "40px" }}
+                  animate={{ width: isSearchOpen ? "250px" : "40px" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   <motion.button
                     onClick={() => setIsSearchOpen((prev) => !prev)}
@@ -153,7 +153,7 @@ export function MarketplaceProvider({
                       placeholder="Search properties..."
                       className="pl-10 pr-3 py-2 w-full bg-[#F8F7F2] border border-[#C4C3B8] rounded-full outline-none text-[#323232] font-serif text-md placeholder:text-[#C4C3B8]"
                       initial={{ opacity: 0, width: 0 }}
-                      animate={{ opacity: 1, width: '100%' }}
+                      animate={{ opacity: 1, width: "100%" }}
                       exit={{ opacity: 0, width: 0 }}
                       transition={{ duration: 0.3 }}
                     />
@@ -214,7 +214,7 @@ export function MarketplaceProvider({
                     className="flex flex-col items-center justify-center min-w-[60px] h-full transition-all duration-300"
                   >
                     <span
-                      className={`text-2xl ${isSelected ? 'text-[#7B4F3A]' : 'text-[#323232]'}`}
+                      className={`text-2xl ${isSelected ? "text-[#7B4F3A]" : "text-[#323232]"}`}
                     >
                       {isSelected
                         ? iconMapping[content.title].filled
@@ -222,7 +222,7 @@ export function MarketplaceProvider({
                     </span>
 
                     <span
-                      className={`text-xs font-medium ${isSelected ? 'text-[#7B4F3A]' : 'text-[#323232]'}`}
+                      className={`text-xs font-medium ${isSelected ? "text-[#7B4F3A]" : "text-[#323232]"}`}
                     >
                       {content.title}
                     </span>
@@ -240,7 +240,7 @@ export function MarketplaceProvider({
 export function useMarketplace() {
   const context = useContext(MarketplaceContext);
   if (!context) {
-    throw new Error('useMarketplace must be used within a MarketplaceProvider');
+    throw new Error("useMarketplace must be used within a MarketplaceProvider");
   }
   return context;
 }

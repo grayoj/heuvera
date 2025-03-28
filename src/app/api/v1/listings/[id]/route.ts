@@ -1,5 +1,5 @@
-import { prisma } from '@heuvera/lib/prisma';
-import { NextResponse } from 'next/server';
+import { prisma } from "@heuvera/lib/prisma";
+import { NextResponse } from "next/server";
 
 /**
  * @swagger
@@ -40,7 +40,7 @@ export async function GET(context: unknown): Promise<NextResponse> {
     const { id } = params;
     if (!id) {
       return NextResponse.json(
-        { error: 'Listing ID is required' },
+        { error: "Listing ID is required" },
         { status: 400 },
       );
     }
@@ -51,14 +51,14 @@ export async function GET(context: unknown): Promise<NextResponse> {
     });
 
     if (!listing) {
-      return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+      return NextResponse.json({ error: "Listing not found" }, { status: 404 });
     }
 
     return NextResponse.json({ listing }, { status: 200 });
   } catch (error) {
-    console.error('Error fetching listing by ID:', error);
+    console.error("Error fetching listing by ID:", error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 },
     );
   }
