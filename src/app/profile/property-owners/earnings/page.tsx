@@ -10,10 +10,10 @@ export default function Page() {
     <div>
       <AccountHeader
         heading="Earnings & Payout"
-        subheading="Track upcoming, ongoing, and past bookings in one place"
+        subheading="Monitor your earnings, track pending payments, and manage payout preferences"
       >
-        <div className="flex">
-          <Link href="#">Setup Payment Method</Link>
+        <div className="flex justify-center items-center underline space-x-6">
+          <Link className='text-[10px] text-[#898989] font-medium ' href="#">Setup Payment Method</Link>
           <Button
             variant="default"
             className="cursor-pointer bg-[#7B4F3A] rounded-xl"

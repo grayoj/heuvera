@@ -191,18 +191,17 @@ export const earnings = [
   },
 ];
 
-
-export const earningsTable=[
+export const earningsTable = [
   {
     method: 'Bank Transfer',
     date: 'Mar 12, 2025',
     amount: '₦2,500,000',
-    status: 'Pending'
+    status: 'Pending',
   },
   {
     method: 'Bank Transfer',
     date: 'Mar 12, 2025',
     amount: '₦2,500,000',
-    status: 'Completed'
-  }
-]
+    status: 'Completed',
+  },
+];

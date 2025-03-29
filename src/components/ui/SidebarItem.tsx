@@ -4,27 +4,26 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-interface Item{
+interface Item {
+  icon?: React.FC;
   name: string;
   route: string;
   description: string;
-  icon: React.FC
 }
 
 function SidebarItem({
   children,
   route,
-  item
+  item,
 }: {
   children: React.ReactNode;
   route: string;
-  basePath: string;
-  item: Item
+  item: Item;
 }) {
   const pathname = usePathname();
   const fullRoute =
-    route === "/"
-      ? "/profile/property-owners"
+    route === '/'
+      ? '/profile/property-owners'
       : `/profile/property-owners/${route}`;
   const isActive = pathname === fullRoute;
 
@@ -39,7 +38,7 @@ function SidebarItem({
       }`}
     >
       <div
-        className={`${isActive ? "bg-[#7B4F3A] text-white " : "bg-[#F8F7F2] text-black"} rounded-full size-12 flex justify-center items-center shadow-[#00000040] shadow-[0px_2px_2px]`}
+        className={`${isActive ? 'bg-[#7B4F3A] text-white ' : 'bg-[#F8F7F2] text-black'} rounded-full size-12 flex justify-center items-center shadow-[#00000040] shadow-[0px_2px_2px]`}
       >
         <item.icon />
       </div>
