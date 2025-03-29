@@ -4,6 +4,8 @@ import Help from "@heuvera/components/ui/Help";
 import { useState } from "react";
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import PersonalForm from "@heuvera/components/personal-info/PersonalForm";
+import ProfileLayout from "../../page";
+import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
 
 export default function PersonInfo() {
   const [userImage, setUserImage] = useState("");
@@ -26,20 +28,23 @@ export default function PersonInfo() {
   }
   return (
     <>
-      <AccountHeader
-        heading="Personal Info"
-        subheading="Update your profile, contact details, and preferences to personalize
+      <ProfileLayout>
+        <ProfileBanner />
+        <div className="flex flex-col gap-5">
+          <AccountHeader
+            heading="Personal Info"
+            subheading="Update your profile, contact details, and preferences to personalize
           your experience."
-      />
-
-      <div className="flex justify-between">
-        <PersonalForm
-          userImage={userImage}
-          handleImageUpload={handleImageUpload}
-        />
-
-        <Help />
-      </div>
+          />
+          <div className="flex justify-between">
+            <PersonalForm
+              userImage={userImage}
+              handleImageUpload={handleImageUpload}
+            />
+            <Help />
+          </div>
+        </div>
+      </ProfileLayout>
     </>
   );
 }

@@ -22,7 +22,7 @@ export default function Input({
       <input
         type="text"
         id={label}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-full p-2.5"
+        className="bg-[#F8F7F2] border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 md:p-1 lg:p-2.5 xl:p-2.5"
         placeholder={placeholder}
         value={value}
         onChange={(e) => console.log(e.target.value)}

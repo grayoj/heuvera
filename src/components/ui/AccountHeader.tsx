@@ -8,8 +8,8 @@ export default function AccountHeader({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="flex justify-between border-b mb-5">
-      <div className="pb-5">
+    <div className="flex justify-between border-b items-center h-20">
+      <div className="">
         <h2 className="text-[20px] font-medium-">{heading}</h2>
         <p className="text-[#898989] font-normal text-[14px]">{subheading}</p>
       </div>

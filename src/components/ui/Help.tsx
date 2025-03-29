@@ -29,7 +29,7 @@ export default function Help() {
             </p>
             <Button
               variant="outline"
-              className="rounded-full  hover:cursor-pointer"
+              className="hover:cursor-pointer bg-[#F8F7F2]"
             >
               <CircleHelp />
               Further Help{" "}

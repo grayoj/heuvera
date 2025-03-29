@@ -97,7 +97,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#F3F2EC] py-16 px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 relative overflow-hidden">
+    <footer className="bg-[#F8F7F2] py-16 px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 relative overflow-hidden">
       <style jsx global>{`
         .animated-underline {
           position: relative;

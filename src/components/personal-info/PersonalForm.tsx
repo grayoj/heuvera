@@ -26,10 +26,10 @@ export default function PersonalForm({
             <h2 className="text-[1rem] font-medium">Profile Picture</h2>
             <p className="text-[#898989] text-[14px] ">PNG, JPEG under 15mb </p>
           </div>
-          <div className="flex space-x-8">
+          <div className="flex space-x-5">
             <Button
               variant="default"
-              className="bg-[#7B4F3A] rounded-full hover:bg-[#664130] hover:cursor-pointer"
+              className="bg-[#7B4F3A] hover:bg-[#664130] hover:cursor-pointer"
               onClick={handleImageUpload}
             >
               <Upload />
@@ -37,7 +37,7 @@ export default function PersonalForm({
             </Button>
             <Button
               variant="outline"
-              className="rounded-full  hover:cursor-pointer"
+              className="bg-[#F8F7F2] hover:cursor-pointer"
             >
               Remove
             </Button>
@@ -56,7 +56,7 @@ export default function PersonalForm({
               {index >= 1 && (
                 <Button
                   variant="outline"
-                  className="w-fit rounded-full  hover:cursor-pointer"
+                  className="w-fit bg-[#F8F7F2] hover:cursor-pointer"
                 >
                   <Plus />
                   {item.secondaryBtn}
@@ -71,7 +71,7 @@ export default function PersonalForm({
               />
             )}
             {index >= 1 && (
-              <Button variant="outline" className=" hover:cursor-pointer">
+              <Button variant="outline" className=" hover:cursor-pointer bg-[#F8F7F2]">
                 {item.primaryBtn}
               </Button>
             )}

@@ -1,12 +1,12 @@
 "use client";
 
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, LucideHelpCircle } from "lucide-react";
 import { Button } from "./button";
 import Input from "./Input";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 
-export default function AccountBanner() {
+export default function ProfileBanner() {
   const pathname = usePathname();
 
   // Function to format the pathname for display
@@ -31,29 +31,21 @@ export default function AccountBanner() {
   }, [pathname]);
 
   return (
-    <div className="w-full h-[3.4rem] bg-[#F8F7F2] flex border-b-[1px] border-[#E3E2D9] sticky top-0 z-10">
-      <div className="border-r-[1px] w-[25%] flex items-center justify-center">
-        <Button
-          variant="outline"
-          className="bg-[#F8F7F2]  hover:cursor-pointer"
-        >
-          <ArrowLeft />
-          Back
-        </Button>
-      </div>
-      <div className="flex justify-around w-[75%] items-center text-sm">
-        <p>
+    <div className="w-full h-16 md:h-16 lg:h-12 xl:h-16 2xl:h-16 bg-[#F8F7F2] items-center flex border-b-[1px] border-[#E3E2D9] sticky top-0 z-10">
+      <div className="flex justify-between w-full h-full items-center text-sm">
+        <p className="font-serif text-base md:text-base lg:text-xs xl:text-base 2xl:text-base">
           Account {">"}{" "}
           <span className="font-semibold">{formattedPathSegment}</span>
         </p>
         <Input
-          className="w-[19rem] flex items-center justify-center text-center"
+          className="w-[19rem] md:w-[19rem] lg:w-[15rem] xl:w-[19rem] 2xl:w-[19rem] flex items-center justify-center text-center font-serif"
           placeholder="Search"
         />
         <Button
           variant="outline"
-          className="bg-[#F8F7F2]  hover:cursor-pointer"
+          className="bg-[#F8F7F2] hover:cursor-pointer font-serif"
         >
+          <LucideHelpCircle />
           Help
         </Button>
       </div>
