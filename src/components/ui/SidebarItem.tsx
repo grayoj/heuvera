@@ -14,7 +14,6 @@ interface Item {
 function SidebarItem({
   children,
   route,
-  item,
 }: {
   children: React.ReactNode;
   route: string;
@@ -40,7 +39,7 @@ function SidebarItem({
       <div
         className={`${isActive ? 'bg-[#7B4F3A] text-white ' : 'bg-[#F8F7F2] text-black'} rounded-full size-12 flex justify-center items-center shadow-[#00000040] shadow-[0px_2px_2px]`}
       >
-        <item.icon />
+        {/* <item.icon /> */}
       </div>
       {children}
     </Link>
