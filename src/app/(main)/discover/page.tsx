@@ -7,6 +7,8 @@ import Hero from '@heuvera/components/hero';
 import SearchBar from '@heuvera/components/search/SearchBar';
 import useIsMobile from '@heuvera/hooks/IsMobile';
 import { LucideCircleChevronLeft, LucideCircleChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useRef } from 'react';
 
 interface DiscoverProps {
   onCategorySelect: (category: string | null) => void;
@@ -16,6 +18,7 @@ const Discover: React.FC<DiscoverProps> = ({
   onCategorySelect
 }) => {
   const isMobile = useIsMobile();
+  const categoriesRef = useRef<HTMLDivElement>(null);
 
   const propertyCategories = [
     { id: 1, category: 'Town House', count: 2, imageUrl: '/town.jpg' },
@@ -26,107 +29,203 @@ const Discover: React.FC<DiscoverProps> = ({
   ];
 
   const propertyLocation = [
-    { id: 1, category: 'New York', count: 158, imageUrl: '/newyork.jpg' },
-    { id: 2, category: 'Los Angeles', count: 94, imageUrl: '/losangeles.jpg' },
-    { id: 3, category: 'Miami', count: 76, imageUrl: '/miami.jpg' },
+    { id: 1, category: 'Abuja', count: 158, imageUrl: '/abuja.jpg' },
+    { id: 2, category: 'Lagos', count: 94, imageUrl: '/lagos.jpg' },
+    { id: 3, category: 'Kano', count: 76, imageUrl: '/kano.jpg' },
     { id: 4, category: 'Chicago', count: 63, imageUrl: '/chicago.jpg' },
     { id: 5, category: 'San Francisco', count: 52, imageUrl: '/sanfrancisco.jpg' },
     { id: 6, category: 'Austin', count: 47, imageUrl: '/austin.jpg' }
   ];
 
+  const scrollCategories = (direction: 'left' | 'right') => {
+    if (categoriesRef.current) {
+      const scrollAmount = direction === 'left' ? -200 : 200;
+      categoriesRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const cardAnimation = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.3 }
+    },
+    hover: {
+      scale: 1.05,
+      boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)",
+      transition: { duration: 0.2 }
+    }
+  };
+
   return (
     <>
       <div className='w-full h-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 flex flex-col gap-20'>
-        <div className='w-full h-full relative'>
+        <motion.div
+          className='w-full h-full relative'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
           <Hero />
-          <div className="absolute bottom-0 left-0 right-0 transform translate-y-1/3 px-4 z-10">
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 transform translate-y-1/3 px-4 z-10"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
             <SearchBar isMobile={isMobile} />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
+
         <div className='w-full flex items-center justify-center gap-3'>
-          <LucideCircleChevronLeft className='text-[#A7A7A7]' />
-          <div className='border-b overflow-hidden'>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => scrollCategories('left')}
+          >
+            <LucideCircleChevronLeft className='text-[#A7A7A7] cursor-pointer' />
+          </motion.div>
+          <div className='border-b overflow-hidden' ref={categoriesRef}>
             <CategoryList onCategorySelect={onCategorySelect} />
           </div>
-          <LucideCircleChevronRight className='text-[#A7A7A7]' />
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => scrollCategories('right')}
+          >
+            <LucideCircleChevronRight className='text-[#A7A7A7] cursor-pointer' />
+          </motion.div>
         </div>
-        <div className='w-full flex flex-col items-center justify-center'>
-          <h1 className='text-3xl font-semibold font-serif text-[#323232]'>Feature Categories</h1>
-          <h1 className='text-xl font-normal font-serif text-[#323232]'>Discover your perfect property by the features that matter most to you</h1>
-          <div className='w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 pt-10'>
-            {propertyCategories.map((item) => (
-              <PropertyCategoryCard
-                key={item.id}
-                category={item.category}
-                count={item.count}
-                imageUrl={item.imageUrl}
-              />
-            ))}
-          </div>
-        </div>
-        <div className='w-full flex flex-col items-center justify-center'>
-          <h1 className='text-3xl font-semibold font-serif text-[#323232]'>Find Properties in These Cities</h1>
-          <h1 className='text-xl font-normal font-serif text-[#323232]'>Based on your viewing history, we think you'll love these locations</h1>
-          <div className='w-full flex flex-col gap-5 pt-10'>
-            <div className='w-12/12 flex flex-row gap-5'>
-              <div className='w-6/12'>
-                <FindPropertyCard
-                  category={propertyLocation[0].category}
-                  count={propertyLocation[0].count}
-                  imageUrl={propertyLocation[0].imageUrl}
-                  width="w-12/12"
-                />
-              </div>
-              <div className='w-6/12 flex flex-row gap-5'>
-                <div className='w-6/12'>
-                  <FindPropertyCard
-                    category={propertyLocation[1].category}
-                    count={propertyLocation[1].count}
-                    imageUrl={propertyLocation[1].imageUrl}
-                    width="w-12/12"
-                  />
-                </div>
-                <div className='w-6/12'>
-                  <FindPropertyCard
-                    category={propertyLocation[2].category}
-                    count={propertyLocation[2].count}
-                    imageUrl={propertyLocation[2].imageUrl}
-                    width="w-12/12"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className='w-12/12 flex flex-row gap-5'>
 
-              <div className='w-6/12 flex flex-row gap-5'>
-                <div className='w-6/12'>
-                  <FindPropertyCard
-                    category={propertyLocation[1].category}
-                    count={propertyLocation[1].count}
-                    imageUrl={propertyLocation[1].imageUrl}
-                    width="w-12/12"
-                  />
-                </div>
-                <div className='w-6/12'>
-                  <FindPropertyCard
-                    category={propertyLocation[2].category}
-                    count={propertyLocation[2].count}
-                    imageUrl={propertyLocation[2].imageUrl}
-                    width="w-12/12"
-                  />
-                </div>
-              </div>
-              <div className='w-6/12'>
+        <motion.div
+          className='w-full flex flex-col items-center justify-center'
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInUp}
+        >
+          <motion.h1 variants={fadeInUp} className='text-3xl font-semibold font-serif text-[#323232]'>
+            Feature Categories
+          </motion.h1>
+          <motion.h1 variants={fadeInUp} className='text-xl font-normal font-serif text-[#323232]'>
+            Discover your perfect property by the features that matter most to you
+          </motion.h1>
+          <motion.div
+            className='w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 pt-10'
+            variants={staggerContainer}
+          >
+            {propertyCategories.map((item) => (
+              <motion.div
+                key={item.id}
+                variants={cardAnimation}
+                whileHover="hover"
+              >
+                <PropertyCategoryCard
+                  category={item.category}
+                  count={item.count}
+                  imageUrl={item.imageUrl}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className='w-full flex flex-col items-center justify-center'
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInUp}
+        >
+          <motion.h1 variants={fadeInUp} className='text-3xl font-semibold font-serif text-[#323232]'>
+            Find Properties in These Cities
+          </motion.h1>
+          <motion.h1 variants={fadeInUp} className='text-xl font-normal font-serif text-[#323232]'>
+            Based on your viewing history, we think you'll love these locations
+          </motion.h1>
+          <motion.div
+            className='w-full flex flex-col gap-5 pt-10'
+            variants={staggerContainer}
+          >
+            <motion.div className='w-12/12 flex flex-row gap-5' variants={fadeInUp}>
+              <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
                 <FindPropertyCard
                   category={propertyLocation[0].category}
                   count={propertyLocation[0].count}
                   imageUrl={propertyLocation[0].imageUrl}
                   width="w-12/12"
                 />
+              </motion.div>
+              <div className='w-6/12 flex flex-row gap-5'>
+                <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
+                  <FindPropertyCard
+                    category={propertyLocation[1].category}
+                    count={propertyLocation[1].count}
+                    imageUrl={propertyLocation[1].imageUrl}
+                    width="w-12/12"
+                  />
+                </motion.div>
+                <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
+                  <FindPropertyCard
+                    category={propertyLocation[2].category}
+                    count={propertyLocation[2].count}
+                    imageUrl={propertyLocation[2].imageUrl}
+                    width="w-12/12"
+                  />
+                </motion.div>
               </div>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+            <motion.div className='w-12/12 flex flex-row gap-5' variants={fadeInUp}>
+              <div className='w-6/12 flex flex-row gap-5'>
+                <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
+                  <FindPropertyCard
+                    category={propertyLocation[1].category}
+                    count={propertyLocation[1].count}
+                    imageUrl={propertyLocation[1].imageUrl}
+                    width="w-12/12"
+                  />
+                </motion.div>
+                <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
+                  <FindPropertyCard
+                    category={propertyLocation[2].category}
+                    count={propertyLocation[2].count}
+                    imageUrl={propertyLocation[2].imageUrl}
+                    width="w-12/12"
+                  />
+                </motion.div>
+              </div>
+              <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
+                <FindPropertyCard
+                  category={propertyLocation[0].category}
+                  count={propertyLocation[0].count}
+                  imageUrl={propertyLocation[0].imageUrl}
+                  width="w-12/12"
+                />
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
     </>
   );
