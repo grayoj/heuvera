@@ -13,10 +13,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const isAdminRoute = pathname.startsWith('/profile/property-owners');
     console.log(isAdminRoute)
     const items = isAdminRoute ? sideBarAdmin : sideBar;
-    const basePath = isAdminRoute ? 'property-owners' : 'property-renters';
 
     return items.map((item) => (
-      <SidebarItem key={item.route} route={item.route} basePath={basePath}>
+      <SidebarItem item={item} key={item.route} route={item.route}>
         <div className="flex flex-col ml-3">
           <h2 className="font-medium text-sm">{item.name}</h2>
           <p className="text-[#898989] text-xs w-[12.5rem]">

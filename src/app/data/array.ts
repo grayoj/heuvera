@@ -1,4 +1,12 @@
-import { Calendar, GitGraph, House, LifeBuoy, Star, User, Wallet } from 'lucide-react';
+import {
+  Calendar,
+  GitGraph,
+  House,
+  LifeBuoy,
+  Star,
+  User,
+  Wallet,
+} from 'lucide-react';
 
 export const sideBar = [
   {
@@ -30,7 +38,7 @@ export const sideBar = [
 export const sideBarAdmin = [
   {
     name: 'Personal Info',
-    route: '',
+    route: '/',
     description:
       'Update your profile, contact details, and preferences to personalize your experience.',
     icon: User,
@@ -121,6 +129,21 @@ export const pastBookings = [
   },
 ];
 
+export const adminBookings = [
+  {
+    guestName: 'Godiwn Praise',
+    date: 'Mar 12, 2025 - Mar 21, 2025',
+    propertyName: 'George duplex',
+    status: 'Pending',
+  },
+  {
+    guestName: 'Godiwn Praise',
+    date: 'Mar 12, 2025 - Mar 21, 2025',
+    propertyName: 'George duplex',
+    status: 'Pending',
+  },
+];
+
 export const help = [
   {
     title: 'Some information isn’t displayed',
@@ -149,3 +172,37 @@ export const propertyListings = [
     measurement: '60m^2',
   },
 ];
+
+export const earnings = [
+  {
+    heading: 'Total Earnings',
+    amount: '₦2,500,000',
+    percent: 45,
+  },
+  {
+    heading: 'Pending Payout',
+    amount: '₦2,500,000',
+    percent: 35,
+  },
+  {
+    heading: 'Available Balance',
+    amount: '₦2,500,000',
+    percent: 47,
+  },
+];
+
+
+export const earningsTable=[
+  {
+    method: 'Bank Transfer',
+    date: 'Mar 12, 2025',
+    amount: '₦2,500,000',
+    status: 'Pending'
+  },
+  {
+    method: 'Bank Transfer',
+    date: 'Mar 12, 2025',
+    amount: '₦2,500,000',
+    status: 'Completed'
+  }
+]

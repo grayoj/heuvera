@@ -1,5 +1,5 @@
 import AccountHeader from '@heuvera/components/ui/AccountHeader';
-import BookingTable from '@heuvera/components/ui/Table';
+import BookingTable from '@heuvera/components/ui/BookingTable';
 import { Button } from '@heuvera/components/ui/button';
 import { ArrowDown, Newspaper } from 'lucide-react';
 
