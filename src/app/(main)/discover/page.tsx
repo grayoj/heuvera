@@ -6,19 +6,34 @@ import CategoryList from '@heuvera/components/categories/CategoryList';
 import Hero from '@heuvera/components/hero';
 import SearchBar from '@heuvera/components/search/SearchBar';
 import useIsMobile from '@heuvera/hooks/IsMobile';
-import { LucideCircleChevronLeft, LucideCircleChevronRight } from 'lucide-react';
+import { LucideCircleChevronLeft, LucideCircleChevronRight, X } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { PropertyData } from '@heuvera/components/data/PropertyData';
+import PropertyCard from '@heuvera/components/cards/PropertyCards/PropertyCard';
 
 interface DiscoverProps {
   onCategorySelect: (category: string | null) => void;
 }
+
 
 const Discover: React.FC<DiscoverProps> = ({
   onCategorySelect
 }) => {
   const isMobile = useIsMobile();
   const categoriesRef = useRef<HTMLDivElement>(null);
+  const [selectedCategory, setSelectedCategory] = useState<{ type: string, name: string } | null>(null);
+
+
+  // Location-based properties
+  const locationProperties = {
+    "Abuja": [1, 3, 5, 7],
+    "Lagos": [2, 4, 6],
+    "Kano": [1, 8],
+    "Chicago": [2, 5],
+    "San Francisco": [3, 7],
+    "Austin": [4, 6]
+  };
 
   const propertyCategories = [
     { id: 1, category: 'Town House', count: 2, imageUrl: '/town.jpg' },
@@ -42,6 +57,18 @@ const Discover: React.FC<DiscoverProps> = ({
       const scrollAmount = direction === 'left' ? -200 : 200;
       categoriesRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
+  };
+
+  const handlePropertyCategoryClick = (category: string) => {
+    setSelectedCategory({ type: "property", name: category });
+  };
+
+  const handleLocationClick = (location: string) => {
+    setSelectedCategory({ type: "location", name: location });
+  };
+
+  const handleCloseFiltered = () => {
+    setSelectedCategory(null);
   };
 
   // Animation variants
@@ -73,6 +100,44 @@ const Discover: React.FC<DiscoverProps> = ({
     },
     hover: {
       scale: 1.05,
+      boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)",
+      transition: { duration: 0.2 }
+    }
+  };
+
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        duration: 0.6
+      }
+    },
+    hover: {
+      scale: 1.03,
+      boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)",
+      transition: { duration: 0.2 }
+    }
+  };
+
+  const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        duration: 0.6
+      }
+    },
+    hover: {
+      scale: 1.03,
       boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)",
       transition: { duration: 0.2 }
     }
@@ -118,114 +183,203 @@ const Discover: React.FC<DiscoverProps> = ({
           </motion.div>
         </div>
 
-        <motion.div
-          className='w-full flex flex-col items-center justify-center'
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeInUp}
-        >
-          <motion.h1 variants={fadeInUp} className='text-3xl font-semibold font-serif text-[#323232]'>
-            Feature Categories
-          </motion.h1>
-          <motion.h1 variants={fadeInUp} className='text-xl font-normal font-serif text-[#323232]'>
-            Discover your perfect property by the features that matter most to you
-          </motion.h1>
+        {selectedCategory ? (
           <motion.div
-            className='w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 pt-10'
-            variants={staggerContainer}
+            className='w-full'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            {propertyCategories.map((item) => (
-              <motion.div
-                key={item.id}
-                variants={cardAnimation}
-                whileHover="hover"
+            <div className='w-full flex justify-between items-center mb-6'>
+              <motion.h1
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                className='text-2xl font-semibold font-serif text-[#323232]'
               >
-                <PropertyCategoryCard
-                  category={item.category}
-                  count={item.count}
-                  imageUrl={item.imageUrl}
-                />
+                {selectedCategory.type === "property" ? selectedCategory.name : `Properties in ${selectedCategory.name}`}
+              </motion.h1>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={handleCloseFiltered}
+                className="cursor-pointer"
+              >
+                <X size={24} className="text-[#323232]" />
               </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
+            </div>
 
-        <motion.div
-          className='w-full flex flex-col items-center justify-center'
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeInUp}
-        >
-          <motion.h1 variants={fadeInUp} className='text-3xl font-semibold font-serif text-[#323232]'>
-            Find Properties in These Cities
-          </motion.h1>
-          <motion.h1 variants={fadeInUp} className='text-xl font-normal font-serif text-[#323232]'>
-            Based on your viewing history, we think you'll love these locations
-          </motion.h1>
-          <motion.div
-            className='w-full flex flex-col gap-5 pt-10'
-            variants={staggerContainer}
-          >
-            <motion.div className='w-12/12 flex flex-row gap-5' variants={fadeInUp}>
-              <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
-                <FindPropertyCard
-                  category={propertyLocation[0].category}
-                  count={propertyLocation[0].count}
-                  imageUrl={propertyLocation[0].imageUrl}
-                  width="w-12/12"
-                />
-              </motion.div>
-              <div className='w-6/12 flex flex-row gap-5'>
-                <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
-                  <FindPropertyCard
-                    category={propertyLocation[1].category}
-                    count={propertyLocation[1].count}
-                    imageUrl={propertyLocation[1].imageUrl}
-                    width="w-12/12"
-                  />
+            <motion.div
+              className="pt-5 md:pt-10 lg:pt-10 xl:pt-10 2xl:pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 gap-y-8 justify-center"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.15 },
+                },
+              }}
+            >
+              {PropertyData.map((property) => (
+                <motion.div
+                  key={`property-${property.id}`}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="w-full flex justify-center"
+                >
+                  <PropertyCard property={property} />
                 </motion.div>
-                <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
-                  <FindPropertyCard
-                    category={propertyLocation[2].category}
-                    count={propertyLocation[2].count}
-                    imageUrl={propertyLocation[2].imageUrl}
-                    width="w-12/12"
-                  />
-                </motion.div>
-              </div>
-            </motion.div>
-            <motion.div className='w-12/12 flex flex-row gap-5' variants={fadeInUp}>
-              <div className='w-6/12 flex flex-row gap-5'>
-                <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
-                  <FindPropertyCard
-                    category={propertyLocation[1].category}
-                    count={propertyLocation[1].count}
-                    imageUrl={propertyLocation[1].imageUrl}
-                    width="w-12/12"
-                  />
-                </motion.div>
-                <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
-                  <FindPropertyCard
-                    category={propertyLocation[2].category}
-                    count={propertyLocation[2].count}
-                    imageUrl={propertyLocation[2].imageUrl}
-                    width="w-12/12"
-                  />
-                </motion.div>
-              </div>
-              <motion.div className='w-6/12' variants={cardAnimation} whileHover="hover">
-                <FindPropertyCard
-                  category={propertyLocation[0].category}
-                  count={propertyLocation[0].count}
-                  imageUrl={propertyLocation[0].imageUrl}
-                  width="w-12/12"
-                />
-              </motion.div>
+              ))}
             </motion.div>
           </motion.div>
-        </motion.div>
+        ) : (
+          <>
+            <motion.div
+              className='w-full flex flex-col items-center justify-center'
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeInUp}
+            >
+              <motion.h1 variants={fadeInUp} className='text-3xl font-semibold font-serif text-[#323232]'>
+                Feature Categories
+              </motion.h1>
+              <motion.h1 variants={fadeInUp} className='text-xl font-normal font-serif text-[#323232]'>
+                Discover your perfect property by the features that matter most to you
+              </motion.h1>
+              <motion.div
+                className='w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 pt-10'
+                variants={staggerContainer}
+              >
+                {propertyCategories.map((item) => (
+                  <motion.div
+                    key={item.id}
+                    variants={cardAnimation}
+                    whileHover="hover"
+                    onClick={() => handlePropertyCategoryClick(item.category)}
+                    className="cursor-pointer"
+                  >
+                    <PropertyCategoryCard
+                      category={item.category}
+                      count={item.count}
+                      imageUrl={item.imageUrl}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              className='w-full flex flex-col items-center justify-center'
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeInUp}
+            >
+              <motion.h1 variants={fadeInUp} className='text-3xl font-semibold font-serif text-[#323232]'>
+                Find Properties in These Cities
+              </motion.h1>
+              <motion.h1 variants={fadeInUp} className='text-xl font-normal font-serif text-[#323232]'>
+                Based on your viewing history, we think you'll love these locations
+              </motion.h1>
+              <motion.div
+                className='w-full flex flex-col gap-5 pt-10'
+                variants={staggerContainer}
+              >
+                <motion.div className='w-12/12 flex flex-row gap-5' variants={fadeInUp}>
+                  <motion.div
+                    className='w-6/12 cursor-pointer'
+                    variants={slideInLeft}
+                    whileHover="hover"
+                    onClick={() => handleLocationClick(propertyLocation[0].category)}
+                  >
+                    <FindPropertyCard
+                      category={propertyLocation[0].category}
+                      count={propertyLocation[0].count}
+                      imageUrl={propertyLocation[0].imageUrl}
+                      width="w-12/12"
+                    />
+                  </motion.div>
+                  <div className='w-6/12 flex flex-row gap-5'>
+                    <motion.div
+                      className='w-6/12 cursor-pointer'
+                      variants={cardAnimation}
+                      whileHover="hover"
+                      onClick={() => handleLocationClick(propertyLocation[1].category)}
+                    >
+                      <FindPropertyCard
+                        category={propertyLocation[1].category}
+                        count={propertyLocation[1].count}
+                        imageUrl={propertyLocation[1].imageUrl}
+                        width="w-12/12"
+                      />
+                    </motion.div>
+                    <motion.div
+                      className='w-6/12 cursor-pointer'
+                      variants={cardAnimation}
+                      whileHover="hover"
+                      onClick={() => handleLocationClick(propertyLocation[2].category)}
+                    >
+                      <FindPropertyCard
+                        category={propertyLocation[2].category}
+                        count={propertyLocation[2].count}
+                        imageUrl={propertyLocation[2].imageUrl}
+                        width="w-12/12"
+                      />
+                    </motion.div>
+                  </div>
+                </motion.div>
+                <motion.div className='w-12/12 flex flex-row gap-5' variants={fadeInUp}>
+                  <div className='w-6/12 flex flex-row gap-5'>
+                    <motion.div
+                      className='w-6/12 cursor-pointer'
+                      variants={cardAnimation}
+                      whileHover="hover"
+                      onClick={() => handleLocationClick(propertyLocation[1].category)}
+                    >
+                      <FindPropertyCard
+                        category={propertyLocation[1].category}
+                        count={propertyLocation[1].count}
+                        imageUrl={propertyLocation[1].imageUrl}
+                        width="w-12/12"
+                      />
+                    </motion.div>
+                    <motion.div
+                      className='w-6/12 cursor-pointer'
+                      variants={cardAnimation}
+                      whileHover="hover"
+                      onClick={() => handleLocationClick(propertyLocation[2].category)}
+                    >
+                      <FindPropertyCard
+                        category={propertyLocation[2].category}
+                        count={propertyLocation[2].count}
+                        imageUrl={propertyLocation[2].imageUrl}
+                        width="w-12/12"
+                      />
+                    </motion.div>
+                  </div>
+                  <motion.div
+                    className='w-6/12 cursor-pointer'
+                    variants={slideInRight}
+                    whileHover="hover"
+                    onClick={() => handleLocationClick(propertyLocation[0].category)}
+                  >
+                    <FindPropertyCard
+                      category={propertyLocation[0].category}
+                      count={propertyLocation[0].count}
+                      imageUrl={propertyLocation[0].imageUrl}
+                      width="w-12/12"
+                    />
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
       </div>
     </>
   );
