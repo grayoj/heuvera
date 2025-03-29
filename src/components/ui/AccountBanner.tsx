@@ -38,7 +38,7 @@ export default function AccountBanner() {
           <ArrowLeft />
           Back</Button>
       </div>
-      <div className="flex justify-around w-[80%] items-center text-sm">
+      <div className="flex justify-around w-[75%] items-center text-sm">
         <p>Account {">"} <span className="font-semibold">{formattedPathSegment}</span></p>
         <Input className="w-[19rem] flex items-center justify-center text-center" placeholder="Search" />
         <Button variant='outline' className='bg-[#F8F7F2]  hover:cursor-pointer'>Help</Button>
