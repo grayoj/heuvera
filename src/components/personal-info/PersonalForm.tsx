@@ -71,7 +71,10 @@ export default function PersonalForm({
               />
             )}
             {index >= 1 && (
-              <Button variant="outline" className=" hover:cursor-pointer bg-[#F8F7F2]">
+              <Button
+                variant="outline"
+                className=" hover:cursor-pointer bg-[#F8F7F2]"
+              >
                 {item.primaryBtn}
               </Button>
             )}

@@ -4,7 +4,7 @@ import Help from "@heuvera/components/ui/Help";
 import { useState } from "react";
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import PersonalForm from "@heuvera/components/personal-info/PersonalForm";
-import ProfileLayout from "../../page";
+import ProfileLayout from "../../layout";
 import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
 
 export default function PersonInfo() {

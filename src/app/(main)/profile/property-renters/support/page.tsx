@@ -4,7 +4,7 @@ import Help from "@heuvera/components/ui/Help";
 import Input from "@heuvera/components/ui/Input";
 import Textarea from "@heuvera/components/ui/Textarea";
 import { Button } from "@heuvera/components/ui/button";
-import ProfileLayout from "../../page";
+import ProfileLayout from "../../layout";
 
 export default function Support() {
   return (

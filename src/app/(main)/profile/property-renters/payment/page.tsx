@@ -6,7 +6,7 @@ import CreditPayment from "@heuvera/components/payment/CreditPayment";
 import PaymentSecurity from "@heuvera/components/payment/PaymentSecurity";
 import BankPayment from "@heuvera/components/payment/BankPayment";
 import PaymentMethod from "@heuvera/components/payment/PaymentMethod";
-import ProfileLayout from "../../page";
+import ProfileLayout from "../../layout";
 
 export default function PaymentMethods() {
   const [paymentMethod, setPaymentMethod] = useState("credit");
