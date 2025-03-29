@@ -48,7 +48,7 @@ export function MarketplaceProvider({
       { title: "Explore", link: "/explore", icon: <GoHomeFill /> },
       { title: "Favorites", link: "/favorites", icon: <LucideHeart /> },
       { title: "Discover", link: "/discover", icon: <LucideCompass /> },
-      { title: "Profile", link: "#profile", icon: null },
+      { title: "Profile", link: "/profile", icon: null },
     ],
     [],
   );

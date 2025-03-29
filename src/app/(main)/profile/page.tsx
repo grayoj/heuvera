@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { sideBar } from "../data/array";
-import SidebarItem from "../../components/ui/SidebarItem";
+
 import AccountBanner from "@heuvera/components/ui/AccountBanner";
+import SidebarItem from "@heuvera/components/ui/SidebarItem";
+import { sideBar } from "@heuvera/app/data/array";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const sidebarItems = useMemo(() => {
-    return sideBar.map((item) => (
+    return sideBar.map((item: any) => (
       <SidebarItem item={item} key={item.route} route={item.route}>
         <div className="flex items-center ml-3">
           <div className="flex flex-col ml-3">
