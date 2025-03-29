@@ -127,7 +127,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3, delay: 0.2 }}
     >
-      <div className="bg-[#FBFAF6] p-1 rounded-t-lg">
+      <div className="bg-[#FBFAF6] px-1 pt-1 rounded-t-lg">
         <LeaseRentStays />
       </div>
       <div className="w-full max-w-3xl bg-[#FBFAF6] rounded-full shadow-md overflow-hidden">
