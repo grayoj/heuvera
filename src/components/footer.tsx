@@ -103,18 +103,18 @@ export default function Footer() {
           position: relative;
           display: inline-block;
         }
-        
+
         .animated-underline::after {
-          content: '';
+          content: "";
           position: absolute;
           width: 0;
           height: 1px;
           bottom: -2px;
           left: 0;
-          background-color: #7B4F3A;
+          background-color: #7b4f3a;
           transition: width 0.3s ease-in-out;
         }
-        
+
         .animated-underline:hover::after {
           width: 100%;
         }
@@ -157,7 +157,12 @@ export default function Footer() {
               className="text-[#A7A7A7] hover:text-[#7B4F3A] transition-colors"
               aria-label={social.name}
             >
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <svg
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 {social.icon}
               </svg>
             </Link>
@@ -172,14 +177,19 @@ export default function Footer() {
           <div>
             <h3 className="font-medium mb-4">{platformInfo.about.title}</h3>
             {platformInfo.about.paragraphs.map((paragraph, index) => (
-              <p key={index} className="text-sm text-[#A7A7A7] mb-4 leading-relaxed">
+              <p
+                key={index}
+                className="text-sm text-[#A7A7A7] mb-4 leading-relaxed"
+              >
                 {paragraph}
               </p>
             ))}
           </div>
 
           <div>
-            <h3 className="font-medium mb-4">{platformInfo.howItWorks.title}</h3>
+            <h3 className="font-medium mb-4">
+              {platformInfo.howItWorks.title}
+            </h3>
             <ol className="text-sm text-[#A7A7A7] space-y-2">
               {platformInfo.howItWorks.steps.map((step, index) => (
                 <li key={index} className="flex items-start">
@@ -189,7 +199,9 @@ export default function Footer() {
               ))}
             </ol>
 
-            <h3 className="font-medium mt-8 mb-4">{platformInfo.whyChooseUs.title}</h3>
+            <h3 className="font-medium mt-8 mb-4">
+              {platformInfo.whyChooseUs.title}
+            </h3>
             <ul className="text-sm text-[#A7A7A7] space-y-2">
               {platformInfo.whyChooseUs.benefits.map((benefit, index) => (
                 <li key={index} className="flex items-start">

@@ -5,10 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { LatLngTuple } from "leaflet";
 import { IoHome } from "react-icons/io5";
-import {
-  X,
-  LucideSearch,
-} from "lucide-react";
+import { X, LucideSearch } from "lucide-react";
 import dynamic from "next/dynamic";
 
 import { Button } from "../../components/ui/button";
@@ -110,7 +107,6 @@ export default function MapDrawerPage({
         className="z-[1000] bg-white shadow-subtle w-full"
       >
         <div className="container mx-auto w-full py-4 flex flex-col items-center justify-between space-x-4 px-4">
-
           <div className="w-full flex items-center justify-between px-4">
             <div className="flex-grow flex justify-center">
               <motion.form
@@ -126,9 +122,10 @@ export default function MapDrawerPage({
                 <div
                   className={`
                     relative w-full h-10 
-                    ${isSearchFocused
-                      ? "bg-white border-[#7B4F3A] shadow-sm"
-                      : "bg-[#F8F7F2] border-[#E3E2D9]"
+                    ${
+                      isSearchFocused
+                        ? "bg-white border-[#7B4F3A] shadow-sm"
+                        : "bg-[#F8F7F2] border-[#E3E2D9]"
                     } 
                     border rounded-full flex items-center transition-all duration-300
                 `}
@@ -170,7 +167,7 @@ export default function MapDrawerPage({
               </motion.form>
             </div>
             <div className="">
-              <FilterButton setActiveFilters={() => { }} />
+              <FilterButton setActiveFilters={() => {}} />
             </div>
           </div>
         </div>

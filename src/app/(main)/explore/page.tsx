@@ -10,7 +10,6 @@ import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 
-
 export default function Explore() {
   const isMobile = useIsMobile();
   const [loading, setLoading] = useState(true);
@@ -66,7 +65,7 @@ export default function Explore() {
         activeFilters.bedrooms === "5+"
           ? property.propertyDetails.bedrooms >= 5
           : property.propertyDetails.bedrooms ===
-          parseInt(activeFilters.bedrooms || "0"),
+            parseInt(activeFilters.bedrooms || "0"),
       );
     }
 

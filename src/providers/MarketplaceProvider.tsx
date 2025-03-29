@@ -142,10 +142,11 @@ export function MarketplaceProvider({
                     setSelected(content.title);
                     router.push(content.link);
                   }}
-                  className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
-                    ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
-                    : "text-[#323232] hover:text-[#7B4F3A]"
-                    }`}
+                  className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
+                    selected === content.title
+                      ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
+                      : "text-[#323232] hover:text-[#7B4F3A]"
+                  }`}
                 >
                   {content.title}
                 </button>

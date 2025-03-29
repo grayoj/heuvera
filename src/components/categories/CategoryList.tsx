@@ -3,7 +3,10 @@
 import { useState, useRef } from "react";
 import { categories } from "./categoriesData";
 import CategoryItem from "./CategoryItem";
-import { LucideCircleChevronLeft, LucideCircleChevronRight } from "lucide-react";
+import {
+  LucideCircleChevronLeft,
+  LucideCircleChevronRight,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 interface CategoryListProps {
@@ -28,9 +31,14 @@ const CategoryList: React.FC<CategoryListProps> = ({ onCategorySelect }) => {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
       const scrollAmount = 200;
       const newScrollLeft =
-        direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
+        direction === "left"
+          ? scrollLeft - scrollAmount
+          : scrollLeft + scrollAmount;
 
-      scrollRef.current.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" });
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
 
       setTimeout(() => {
         setShowLeftArrow(newScrollLeft > 0);
@@ -45,9 +53,9 @@ const CategoryList: React.FC<CategoryListProps> = ({ onCategorySelect }) => {
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => scroll('left')}
+          onClick={() => scroll("left")}
         >
-          <LucideCircleChevronLeft className='text-[#A7A7A7] cursor-pointer' />
+          <LucideCircleChevronLeft className="text-[#A7A7A7] cursor-pointer" />
         </motion.div>
       )}
 
@@ -70,9 +78,9 @@ const CategoryList: React.FC<CategoryListProps> = ({ onCategorySelect }) => {
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => scroll('right')}
+          onClick={() => scroll("right")}
         >
-          <LucideCircleChevronRight className='text-[#A7A7A7] cursor-pointer' />
+          <LucideCircleChevronRight className="text-[#A7A7A7] cursor-pointer" />
         </motion.div>
       )}
     </div>
