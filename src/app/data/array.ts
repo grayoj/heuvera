@@ -3,7 +3,7 @@ import { User, Calendar, CreditCard, HelpCircle } from "lucide-react";
 export const sideBar = [
   {
     name: "Personal Info",
-    route: "/",
+    route: "personal",
     description:
       "Update your profile, contact details, and preferences to personalize your experience.",
     icon: User,

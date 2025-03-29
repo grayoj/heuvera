@@ -18,6 +18,7 @@ import React from "react";
 import { IoCompass, IoCompassOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Footer from "@heuvera/components/footer";
+import Link from "next/link";
 
 interface MarketplaceContextType {
   selected: string;
@@ -142,8 +143,8 @@ export function MarketplaceProvider({
                     router.push(content.link);
                   }}
                   className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
-                      ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
-                      : "text-[#323232] hover:text-[#7B4F3A]"
+                    ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
+                    : "text-[#323232] hover:text-[#7B4F3A]"
                     }`}
                 >
                   {content.title}
@@ -152,24 +153,26 @@ export function MarketplaceProvider({
             </div>
           )}
           {!isMobile && (
-            <div className="flex-shrink-0 flex items-center">
-              <div className="size-10 md:size-8">
-                <Avatar className="rounded-full overflow-hidden block">
-                  <AvatarImage
-                    src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
-                    alt="avatar"
-                  />
-                  <AvatarFallback>FG</AvatarFallback>
-                </Avatar>
+            <Link href={`/profile`}>
+              <div className="flex-shrink-0 flex items-center">
+                <div className="size-10 md:size-8">
+                  <Avatar className="rounded-full overflow-hidden block">
+                    <AvatarImage
+                      src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
+                      alt="avatar"
+                    />
+                    <AvatarFallback>FG</AvatarFallback>
+                  </Avatar>
+                </div>
               </div>
-            </div>
+            </Link>
           )}
         </div>
 
         {/* Main Content */}
         <div className="pb-32 w-full flex-1 flex flex-col gap-32">
           {children}
-          <Footer/>
+          <Footer />
         </div>
 
         {/* Mobile Navigation Bar */}
