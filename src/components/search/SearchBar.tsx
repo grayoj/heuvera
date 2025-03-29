@@ -22,7 +22,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Close expanded search when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
       if (
         searchContainerRef.current &&
@@ -78,7 +77,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
     }
   };
 
-  // Mobile search button
   if (isMobile) {
     return (
       <div className="flex-1">
@@ -110,7 +108,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             <LucideSearch className="text-[#FBFAF6] text-2xl" />
           </div>
         </div>
-        {/* Search Modal - Will only show on mobile */}
         <AnimatePresence>
           {isSearchModalOpen && renderSearchModal()}
         </AnimatePresence>
@@ -118,7 +115,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
     );
   }
 
-  // Desktop/Tablet search component - Airbnb style with dropdowns
   return (
     <motion.div
       ref={searchContainerRef}
@@ -132,7 +128,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
       </div>
       <div className="w-full max-w-3xl bg-[#FBFAF6] rounded-full shadow-md overflow-hidden">
         <div className="flex items-center">
-          {/* Where section in navbar - becomes input when active */}
           <div
             className={`flex-1 p-4 cursor-pointer ${activeFilter === "location" ? "bg-[#F8F7F2]" : ""}`}
             onClick={() => toggleFilter("location")}
@@ -157,10 +152,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             </div>
           </div>
 
-          {/* Divider */}
           <div className="h-8 w-px bg-[#DDDDDD]"></div>
 
-          {/* When section */}
           <div
             className={`flex-1 p-4 cursor-pointer ${activeFilter === "dates" ? "bg-[#F8F7F2]" : ""}`}
             onClick={() => toggleFilter("dates")}
@@ -173,10 +166,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             </div>
           </div>
 
-          {/* Divider */}
           <div className="h-8 w-px bg-[#DDDDDD]"></div>
 
-          {/* Who section */}
           <div
             className={`flex-1 p-4 cursor-pointer ${activeFilter === "guests" ? "bg-[#F8F7F2]" : ""}`}
             onClick={() => toggleFilter("guests")}
@@ -189,7 +180,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             </div>
           </div>
 
-          {/* Search button */}
           <div className="p-2 pr-3">
             <button className="bg-[#7B4F3A] text-white rounded-full p-3 hover:bg-[#6A4331] transition-colors">
               <LucideSearch className="text-lg" />
@@ -198,7 +188,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
         </div>
       </div>
 
-      {/* Desktop Dropdown Panel - Appears below the search bar */}
       <AnimatePresence>
         {activeFilter && (
           <motion.div
@@ -208,7 +197,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
           >
-            {/* Dropdown header */}
             <div className="p-4 px-6 flex justify-between items-center border-b border-[#E3E2D9]">
               <span className="font-serif font-medium text-[#323232]">
                 {activeFilter === "location" && "Search destinations"}
@@ -223,7 +211,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
               </button>
             </div>
 
-            {/* Dropdown content */}
             <div className="p-6 max-h-[70vh] overflow-y-auto">
               {activeFilter === "location" && (
                 <motion.div
@@ -360,7 +347,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
               )}
             </div>
 
-            {/* Dropdown footer with buttons */}
             <div className="p-4 border-t border-[#E3E2D9] flex justify-between gap-3">
               <button
                 onClick={clearAll}
@@ -383,7 +369,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
     </motion.div>
   );
 
-  // Shared Search Modal render function (for mobile only)
   function renderSearchModal() {
     return (
       <motion.div
@@ -393,7 +378,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-        {/* Header */}
         <motion.div
           className="flex items-center justify-between p-4 px-2"
           initial={{ y: -20, opacity: 0 }}
@@ -407,10 +391,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             <LucideX className="text-[#323232]" />
           </button>
           <span className="font-serif font-medium text-[#323232]">Search</span>
-          <div className="w-8 h-8"></div> {/* Empty div for centering */}
+          <div className="w-8 h-8"></div>
         </motion.div>
 
-        {/* Filter tabs */}
         <motion.div
           className="w-full flex items-center justify-center"
           initial={{ y: -20, opacity: 0 }}
@@ -448,7 +431,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
           </div>
         </motion.div>
 
-        {/* Main search content */}
         <motion.div
           className="py-4 px-2 shadow-md bg-[#F8F7F2] rounded-xl flex-1 overflow-hidden flex flex-col mb-10"
           initial={{ y: -30, opacity: 0 }}
@@ -468,7 +450,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             />
           </div>
 
-          {/* Content area that changes based on filter selection */}
           <div className="flex-1 py-4 px-2 overflow-y-auto">
             <AnimatePresence mode="wait">
               {activeFilter === "location" && (
@@ -648,7 +629,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             </AnimatePresence>
           </div>
 
-          {/* Footer with search and clear all buttons */}
           <motion.div
             className="py-2 px-2 sticky bottom-0 w-full"
             initial={{ y: 50, opacity: 0 }}

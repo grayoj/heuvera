@@ -22,7 +22,6 @@ export default function PropertyDetails({
 }) {
   return (
     <div className="h-24 md:h-24 lg:h-24 xl:h-24 2xl:h-28 flex flex-col justify-evenly">
-      {/* Price and Badge */}
       <div className="flex flex-row justify-between items-center">
         <h1 className="text-2xl md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl text-[#3F3B2B] font-semibold font-serif">
           ₦{(price ?? 0).toLocaleString()}
@@ -38,15 +37,11 @@ export default function PropertyDetails({
           />
         )}
       </div>
-
-      {/* Address */}
       <div className="flex flex-row">
         <h1 className="text-sm md:text-sm lg:text-xs xl:text-xs 2xl:text-sm text-[#505050] font-normal font-serif">
           {address}
         </h1>
       </div>
-
-      {/* Icons */}
       <div className="flex flex-row justify-between">
         <div className="flex flex-row gap-5 md:gap-5 lg:gap-3 xl:gap-3 2xl:gap-5">
           <div className="gap-1 flex items-center">
@@ -74,7 +69,6 @@ export default function PropertyDetails({
           </h1>
           <FaStar className="text-yellow-400 text-base md:text-sm lg:text-xs xl:text-sm 2xl:text-base md:text-sm lg:text-base xl:text-base 2xl:text-base" />
         </div>
-        {/* <BookmarkButton /> */}
       </div>
     </div>
   );

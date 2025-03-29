@@ -157,5 +157,4 @@ export const PropertyData = [
     isBookmarked: false,
     isVerified: true,
   },
-  // ... (continue generating properties up to 35)
 ];

@@ -6,7 +6,7 @@ import CategoryList from '@heuvera/components/categories/CategoryList';
 import Hero from '@heuvera/components/hero';
 import SearchBar from '@heuvera/components/search/SearchBar';
 import useIsMobile from '@heuvera/hooks/IsMobile';
-import { LucideCircleChevronLeft, LucideCircleChevronRight, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { PropertyData } from '@heuvera/components/data/PropertyData';

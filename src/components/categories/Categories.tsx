@@ -36,11 +36,10 @@ const Categories: React.FC<CategoriesProps> = ({
 
   return (
     <div
-      className={`w-full border-b border-[#E3E2D9] ${
-        isMobile
+      className={`w-full border-b border-[#E3E2D9] ${isMobile
           ? "h-[130px]"
           : "h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t"
-      } flex items-center`}
+        } flex items-center`}
     >
       {isMobile ? (
         <div className="w-full flex flex-col gap-4">
@@ -57,15 +56,12 @@ const Categories: React.FC<CategoriesProps> = ({
             <MapButton onClick={ToMap} />
           </div>
 
-          {/* Divider */}
           <div className="h-8 border-[#E3E2D9] border-l" />
 
-          {/* Categories List */}
           <div className="min-w-0 overflow-hidden">
             <CategoryList onCategorySelect={onCategorySelect} />
           </div>
 
-          {/* Divider */}
           <div className="h-8 border-[#E3E2D9] border-l" />
 
           <div className="">

@@ -5,9 +5,6 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import SectionHeaderText from "../text/SectionHeaderText";
-
-// Fix for default marker icons in React Leaflet
-// Using a different approach to avoid the _getIconUrl TypeScript error
 const defaultIcon = new L.Icon({
   iconUrl:
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
@@ -22,14 +19,12 @@ const defaultIcon = new L.Icon({
 });
 
 export default function LocationSection() {
-  // Coordinates for Maitama, Abuja, Nigeria
-  // Explicitly typed as LatLngTuple to fix the TypeScript error
   const position: [number, number] = [9.0765, 7.4815];
 
   return (
     <div className="w-full flex flex-col gap-2">
       <SectionHeaderText title="Where you're staying" />
-      {/* React Leaflet Map */}
+
       <div className="w-full h-52 md:h-90 lg:h-90 xl:h-90 2xl:h-90 rounded-xl overflow-hidden">
         <MapContainer
           center={position}

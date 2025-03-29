@@ -63,14 +63,10 @@ export default function MapDrawerPage({
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  const router = useRouter();
-  const isMobile = useIsMobile();
 
-  // Use provided properties or fall back to sample data
   const displayProperties =
     propProperties.length > 0 ? propProperties : properties;
 
-  // Filter and map marker positions
   const markerPositions = displayProperties
     .filter((property) => {
       if (!property.position) return false;
@@ -100,16 +96,13 @@ export default function MapDrawerPage({
       }
     });
 
-  // Calculate map center and radius
   const { center, radius } = getCenterAndRadius(markerPositions);
 
-  // Ensure default values if center is undefined
   const mapCenter = center || ([9.0579, 7.4951] as LatLngTuple);
-  const mapRadius = radius || 1; // Default radius if not calculated
+  const mapRadius = radius || 1;
 
   return (
     <div className="relative w-full h-screen bg-[#F8F7F2] flex flex-col">
-      {/* Responsive Header */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -117,7 +110,7 @@ export default function MapDrawerPage({
         className="z-[1000] bg-white shadow-subtle w-full"
       >
         <div className="container mx-auto w-full py-4 flex flex-col items-center justify-between space-x-4 px-4">
-          {/* Search Input */}
+
           <div className="w-full flex items-center justify-between px-4">
             <div className="flex-grow flex justify-center">
               <motion.form
@@ -176,17 +169,13 @@ export default function MapDrawerPage({
                 </div>
               </motion.form>
             </div>
-
             <div className="">
-
               <FilterButton setActiveFilters={() => { }} />
-
             </div>
           </div>
         </div>
       </motion.div>
 
-      {/* Full-Screen Map */}
       <div className="flex-grow relative w-full h-[calc(100vh-4rem)]">
         <MapComponents
           center={mapCenter}

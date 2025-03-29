@@ -16,7 +16,6 @@ import { FaBuilding, FaStar, FaTree, FaWarehouse } from "react-icons/fa6";
 import ReactDOMServer from "react-dom/server";
 import { GoHomeFill } from "react-icons/go";
 
-// Leaflet CSS Import (crucial for map rendering)
 import "leaflet/dist/leaflet.css";
 
 import { useRouter } from "next/navigation";
@@ -31,7 +30,6 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
-// FitMapToBounds Component
 const FitMapToBounds = ({
   positions,
   isTrayOpen,
@@ -57,7 +55,6 @@ const FitMapToBounds = ({
   return null;
 };
 
-// MapRecenter Component
 const MapRecenter = ({ center }: { center: LatLngTuple }) => {
   const map = useMap();
 

@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Filter, Grid, List, LucideListFilter } from "lucide-react";
+import { Grid, List, LucideListFilter } from "lucide-react";
 import { ViewMode, SortOption } from "@heuvera/types/map";
-import { FaSort } from "react-icons/fa6";
 import SortDropdown from "../SortDropdown";
 
 interface FavoritesHeaderProps {
@@ -25,7 +23,6 @@ const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
   const [sortData, setSortData] = useState<SortOption>("recent");
   return (
     <div className="w-full flex items-center justify-between">
-      {/* Sort Options */}
       <div
         className={`
         flex items-center 
@@ -42,8 +39,6 @@ const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
           }}
         />
       </div>
-
-      {/* View Mode Toggle */}
       <div
         className={`flex items-center ${isMobile ? "w-full justify-center mt-2" : "ml-auto"}`}
       >

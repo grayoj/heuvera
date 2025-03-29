@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import { categories } from "./categoriesData";
 import CategoryItem from "./CategoryItem";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { LucideCircleChevronLeft, LucideCircleChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 

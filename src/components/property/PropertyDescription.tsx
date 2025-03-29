@@ -17,14 +17,11 @@ export default function PropertyDescription() {
         Whether you seek the vibrance of city life or the tranquility of a
         serene retreat, this is the perfect place to call home...`;
 
-  // Define the word limit for truncation
   const wordLimit = 30;
 
-  // Split the description into words and get the truncated version
   const words = fullDescription.split(" ");
   const truncatedDescription = words.slice(0, wordLimit).join(" ") + "...";
 
-  // Toggle the expanded state
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
