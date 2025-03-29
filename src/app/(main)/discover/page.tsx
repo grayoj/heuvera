@@ -24,17 +24,6 @@ const Discover: React.FC<DiscoverProps> = ({
   const categoriesRef = useRef<HTMLDivElement>(null);
   const [selectedCategory, setSelectedCategory] = useState<{ type: string, name: string } | null>(null);
 
-
-  // Location-based properties
-  const locationProperties = {
-    "Abuja": [1, 3, 5, 7],
-    "Lagos": [2, 4, 6],
-    "Kano": [1, 8],
-    "Chicago": [2, 5],
-    "San Francisco": [3, 7],
-    "Austin": [4, 6]
-  };
-
   const propertyCategories = [
     { id: 1, category: 'Town House', count: 2, imageUrl: '/town.jpg' },
     { id: 2, category: 'Apartment', count: 5, imageUrl: '/apartment.jpg' },
@@ -52,13 +41,6 @@ const Discover: React.FC<DiscoverProps> = ({
     { id: 6, category: 'Austin', count: 47, imageUrl: '/austin.jpg' }
   ];
 
-  const scrollCategories = (direction: 'left' | 'right') => {
-    if (categoriesRef.current) {
-      const scrollAmount = direction === 'left' ? -200 : 200;
-      categoriesRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
-
   const handlePropertyCategoryClick = (category: string) => {
     setSelectedCategory({ type: "property", name: category });
   };
@@ -71,7 +53,6 @@ const Discover: React.FC<DiscoverProps> = ({
     setSelectedCategory(null);
   };
 
-  // Animation variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -145,7 +126,7 @@ const Discover: React.FC<DiscoverProps> = ({
 
   return (
     <>
-      <div className='w-full h-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 flex flex-col gap-20'>
+      <div className='w-full h-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 flex flex-col gap-10 md:gap-20'>
         <motion.div
           className='w-full h-full relative'
           initial={{ opacity: 0 }}
@@ -164,23 +145,9 @@ const Discover: React.FC<DiscoverProps> = ({
         </motion.div>
 
         <div className='w-full flex items-center justify-center gap-3'>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => scrollCategories('left')}
-          >
-            <LucideCircleChevronLeft className='text-[#A7A7A7] cursor-pointer' />
-          </motion.div>
           <div className='border-b overflow-hidden' ref={categoriesRef}>
             <CategoryList onCategorySelect={onCategorySelect} />
           </div>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => scrollCategories('right')}
-          >
-            <LucideCircleChevronRight className='text-[#A7A7A7] cursor-pointer' />
-          </motion.div>
         </div>
 
         {selectedCategory ? (
@@ -245,10 +212,10 @@ const Discover: React.FC<DiscoverProps> = ({
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeInUp}
             >
-              <motion.h1 variants={fadeInUp} className='text-3xl font-semibold font-serif text-[#323232]'>
+              <motion.h1 variants={fadeInUp} className='text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232]'>
                 Feature Categories
               </motion.h1>
-              <motion.h1 variants={fadeInUp} className='text-xl font-normal font-serif text-[#323232]'>
+              <motion.h1 variants={fadeInUp} className='text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232]'>
                 Discover your perfect property by the features that matter most to you
               </motion.h1>
               <motion.div
@@ -280,19 +247,19 @@ const Discover: React.FC<DiscoverProps> = ({
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeInUp}
             >
-              <motion.h1 variants={fadeInUp} className='text-3xl font-semibold font-serif text-[#323232]'>
+              <motion.h1 variants={fadeInUp} className='text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232]'>
                 Find Properties in These Cities
               </motion.h1>
-              <motion.h1 variants={fadeInUp} className='text-xl font-normal font-serif text-[#323232]'>
+              <motion.h1 variants={fadeInUp} className='text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232]'>
                 Based on your viewing history, we think you'll love these locations
               </motion.h1>
               <motion.div
                 className='w-full flex flex-col gap-5 pt-10'
                 variants={staggerContainer}
               >
-                <motion.div className='w-12/12 flex flex-row gap-5' variants={fadeInUp}>
+                <motion.div className='w-12/12 flex flex-col md:flex-row gap-5' variants={fadeInUp}>
                   <motion.div
-                    className='w-6/12 cursor-pointer'
+                    className='w-full md:w-6/12 cursor-pointer'
                     variants={slideInLeft}
                     whileHover="hover"
                     onClick={() => handleLocationClick(propertyLocation[0].category)}
@@ -304,9 +271,9 @@ const Discover: React.FC<DiscoverProps> = ({
                       width="w-12/12"
                     />
                   </motion.div>
-                  <div className='w-6/12 flex flex-row gap-5'>
+                  <div className='w-full md:w-6/12 flex flex-col md:flex-row gap-5'>
                     <motion.div
-                      className='w-6/12 cursor-pointer'
+                      className='w-full md:w-6/12 cursor-pointer'
                       variants={cardAnimation}
                       whileHover="hover"
                       onClick={() => handleLocationClick(propertyLocation[1].category)}
@@ -319,7 +286,7 @@ const Discover: React.FC<DiscoverProps> = ({
                       />
                     </motion.div>
                     <motion.div
-                      className='w-6/12 cursor-pointer'
+                      className='w-full md:w-6/12 cursor-pointer'
                       variants={cardAnimation}
                       whileHover="hover"
                       onClick={() => handleLocationClick(propertyLocation[2].category)}
@@ -333,10 +300,10 @@ const Discover: React.FC<DiscoverProps> = ({
                     </motion.div>
                   </div>
                 </motion.div>
-                <motion.div className='w-12/12 flex flex-row gap-5' variants={fadeInUp}>
-                  <div className='w-6/12 flex flex-row gap-5'>
+                <motion.div className='w-12/12 flex flex-col md:flex-row gap-5' variants={fadeInUp}>
+                  <div className='w-full md:w-6/12 flex flex-col md:flex-row gap-5'>
                     <motion.div
-                      className='w-6/12 cursor-pointer'
+                      className='w-full md:w-6/12 cursor-pointer'
                       variants={cardAnimation}
                       whileHover="hover"
                       onClick={() => handleLocationClick(propertyLocation[1].category)}
@@ -345,11 +312,11 @@ const Discover: React.FC<DiscoverProps> = ({
                         category={propertyLocation[1].category}
                         count={propertyLocation[1].count}
                         imageUrl={propertyLocation[1].imageUrl}
-                        width="w-12/12"
+                        width="w-full md:w-12/12"
                       />
                     </motion.div>
                     <motion.div
-                      className='w-6/12 cursor-pointer'
+                      className='w-full md:w-6/12 cursor-pointer'
                       variants={cardAnimation}
                       whileHover="hover"
                       onClick={() => handleLocationClick(propertyLocation[2].category)}
@@ -363,7 +330,7 @@ const Discover: React.FC<DiscoverProps> = ({
                     </motion.div>
                   </div>
                   <motion.div
-                    className='w-6/12 cursor-pointer'
+                    className='w-full md:w-6/12 cursor-pointer'
                     variants={slideInRight}
                     whileHover="hover"
                     onClick={() => handleLocationClick(propertyLocation[0].category)}

@@ -97,7 +97,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#F3F2EC] py-16 px-6 relative overflow-hidden">
+    <footer className="bg-[#F3F2EC] py-16 px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 relative overflow-hidden">
       <style jsx global>{`
         .animated-underline {
           position: relative;
@@ -127,7 +127,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {footerLinks.map((section) => (
             <div key={section.title}>
               <h3 className="text-xs font-semibold text-[#323232] uppercase tracking-wider mb-4">
