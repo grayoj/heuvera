@@ -64,7 +64,7 @@ export const sideBarAdmin = [
     icon: Wallet,
   },
   {
-    route: 'review',
+    route: 'reviews',
     name: 'Reviews & Ratings',
     description:
       'View guest feedback, monitor your ratings, and maintain your reputation.',
@@ -165,7 +165,7 @@ export const inputs = [
 export const propertyListings = [
   {
     image: '',
-    price: '#50,000',
+    price: '₦50,000',
     address: '3617 W.Gray St. Utica',
     noOfBeds: 2,
     noOfBaths: 2,
@@ -205,3 +205,19 @@ export const earningsTable = [
     status: 'Completed',
   },
 ];
+
+export const reviews=[
+  {
+    guestName: 'Godwin Praise Tochi',
+    date: 'Mar 12, 2025',
+    rating: 5,
+    content: 'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presently...  read more'
+  },
+  {
+    guestName: 'Edward Mfon Sarah',
+    date: 'Mar 12, 2025',
+    rating: 3,
+    content: 'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presently...  read more'
+  },
+  {}
+]

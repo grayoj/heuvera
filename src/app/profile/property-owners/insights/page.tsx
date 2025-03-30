@@ -11,13 +11,20 @@ export default function Page() {
         heading="Property Insights"
         subheading="Analyze booking trends, occupancy rates, and performance metrics for your listings."
       >
-        <Button variant='default' className='bg-[#7B4F3A] font-medium cursor-pointer text-xs'>Export Analytics Report</Button>
+        <Button
+          variant="default"
+          className="bg-[#7B4F3A] font-medium cursor-pointer text-xs"
+        >
+          Export Analytics Report
+        </Button>
       </AccountHeader>
 
-      <div className="flex space-x-4 h-[60%]  ">
-        <BookingContainer className='border w-[70%] text-xl pt-5 pl-5'>Booking Trend</BookingContainer>
-        <BookingContainer className='border w-[30%]'>
-            <PropertyCard property={propertyListings[0]} />
+      <div className="flex space-x-4 h-[60%]">
+        <BookingContainer className="border w-[70%] text-xl pt-5 pl-5">
+          Booking Trend
+        </BookingContainer>
+        <BookingContainer className="border w-[30%] h-full p-4">
+          <PropertyCard showActBtns={false} className='w-fit h-fit' property={propertyListings[0]} />
         </BookingContainer>
       </div>
     </>

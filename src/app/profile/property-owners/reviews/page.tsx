@@ -4,11 +4,13 @@ export default function Page() {
   return (
     <div>
       <AccountHeader
-        heading="Earnings & Payout"
-        subheading="Monitor your earnings, track pending payments, and manage payout preferences"
+        heading="Reviews & Payout"
+        subheading="View guest feedback, monitor your ratings, and maintain your reputation."
       >
         3.5
       </AccountHeader>
+
+      
     </div>
   );
 }
