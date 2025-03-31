@@ -36,6 +36,7 @@
     "bullmq": "^5.43.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.6.2",
     "jsonwebtoken": "^9.0.2",
     "lucia": "^3.2.2",
     "lucide-react": "^0.482.0",
