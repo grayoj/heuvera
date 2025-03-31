@@ -20,6 +20,7 @@ model User {
   name           String?
   picture        String?
   isHostApproved Boolean           @default(false)
+  accountStatus  AccountStatus     @default(ENABLED)
   profile        Profile?          @relation()
   listings       Listing[]
   host           Host?
@@ -127,6 +128,12 @@ enum VerificationStatus {
   PENDING
   VERIFIED
   REJECTED
+}
+
+enum AccountStatus {
+  ENABLED
+  SUSPENDED
+  BANNED
 }
 
 model Booking {
