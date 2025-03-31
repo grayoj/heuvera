@@ -47,8 +47,8 @@ export function MarketplaceProvider({
   const NavigationContent = useMemo(
     () => [
       { title: "Explore", link: "/explore", icon: <GoHomeFill /> },
-      { title: "Favorites", link: "/favorites", icon: <LucideHeart /> },
       { title: "Discover", link: "/discover", icon: <LucideCompass /> },
+      { title: "Favorites", link: "/favorites", icon: <LucideHeart /> },
       { title: "Profile", link: "/profile", icon: null },
     ],
     [],
@@ -121,7 +121,7 @@ export function MarketplaceProvider({
     <MarketplaceContext.Provider
       value={{ selected, setSelected, openSearchModal }}
     >
-      <div className="w-full h-full flex flex-col">
+      <div className="w-full h-full flex flex-col bg-[#F8F7F2]">
         <div className="px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 h-20 w-full flex items-center justify-between">
           {isMobile ? (
             <div className="w-full flex items-center justify-center">

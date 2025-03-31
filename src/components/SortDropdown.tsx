@@ -13,7 +13,7 @@ const SortDropdown: React.FC<SortDropdownProps> = ({
   onValueChange,
 }) => {
   return (
-    <div className="relative w-full max-w-xl bg-[#F3F2EC] flex items-center">
+    <div className="relative w-full max-w-xl flex items-center">
       <select
         value={value}
         onChange={(e) => onValueChange(e.target.value as SortOption)}
@@ -22,7 +22,6 @@ const SortDropdown: React.FC<SortDropdownProps> = ({
                     w-full 
                     px-3 
                     py-2 
-                    bg-[#F3F2EC] 
                     text-[#323232]
                     outline-none
                     pr-8 // Add right padding to make space for the arrow

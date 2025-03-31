@@ -21,7 +21,9 @@ const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
   isMobile = false,
 }) => {
   return (
-    <div className={`w-full ${isMobile ? "flex flex-col space-y-4" : "flex items-center justify-between"}`}>
+    <div
+      className={`w-full ${isMobile ? "flex flex-col space-y-4" : "flex items-center justify-between"}`}
+    >
       <div className="flex items-center">
         <LucideListFilter className="text-[#323232] mr-1" />
         <SortDropdown
