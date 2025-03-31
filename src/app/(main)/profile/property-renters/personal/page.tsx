@@ -5,6 +5,7 @@ import { useState } from "react";
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import PersonalForm from "@heuvera/components/personal-info/PersonalForm";
 import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
+import ProfileLayout from "../../layout";
 
 export default function PersonInfo() {
   const [userImage, setUserImage] = useState("");
@@ -34,7 +35,7 @@ export default function PersonInfo() {
           subheading="Update your profile, contact details, and preferences to personalize
           your experience."
         />
-        <div className="flex justify-between">
+        <div className="flex justify-between flex-col md:flex-col lg:flex-row">
           <PersonalForm
             userImage={userImage}
             handleImageUpload={handleImageUpload}

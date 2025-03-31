@@ -12,24 +12,28 @@ export default function PersonalForm({
   handleImageUpload: () => void;
 }) {
   return (
-    <form className="flex flex-col justify-between w-full pr-5">
+    <form className="flex flex-col justify-start gap-5 w-full pr-5">
       <div className="pb-5 border-b">
         <Avatar className="">
           <AvatarImage
-            className="object-cover rounded-full size-20"
+            className="object-cover rounded-full size-20 md:size-20 lg:size-14 xl:size-20"
             src={userImage || "https://github.com/shadcn.png"}
           />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <div className="flex mt-5 justify-between">
+        <div className="flex mt-5 gap-3 md:gap-3 lg:gap-0 flex-col md:flex-col lg:flex-row justify-between">
           <div>
-            <h2 className="text-[1rem] font-medium">Profile Picture</h2>
-            <p className="text-[#898989] text-[14px] ">PNG, JPEG under 15mb </p>
+            <h2 className="text-xl md:text-xl lg:text-base xl:text-xl font-medium">
+              Profile Picture
+            </h2>
+            <p className="text-[#898989] text-base md:text-base lg:text-xs xl:text-base ">
+              PNG, JPEG under 15mb{" "}
+            </p>
           </div>
           <div className="flex space-x-5">
             <Button
               variant="default"
-              className="bg-[#7B4F3A] hover:bg-[#664130] hover:cursor-pointer"
+              className="bg-[#7B4F3A] hover:bg-[#664130] hover:cursor-pointer text-sm md:text-sm lg:text-xs xl:text-sm"
               onClick={handleImageUpload}
             >
               <Upload />
@@ -37,50 +41,83 @@ export default function PersonalForm({
             </Button>
             <Button
               variant="outline"
-              className="bg-[#F8F7F2] hover:cursor-pointer"
+              className="bg-[#F8F7F2] hover:cursor-pointer text-sm md:text-sm lg:text-xs xl:text-sm"
             >
               Remove
             </Button>
           </div>
         </div>
       </div>
-
-      {personInput.map((item, index) => (
-        <div
-          key={index}
-          className={`${item.label2 && "flex-row"} flex flex-col space-y-4`}
-        >
-          <div className="flex justify-between items-center space-x-4 space-y-5 border-b w-full">
-            <div className="flex flex-col justify-center mt-3 space-y-4 w-[40%]">
-              <Input label={item.label || ""} value={item.value || ""} />
-              {index >= 1 && (
-                <Button
-                  variant="outline"
-                  className="w-fit bg-[#F8F7F2] hover:cursor-pointer"
-                >
-                  <Plus />
-                  {item.secondaryBtn}
-                </Button>
-              )}
-            </div>
-            {item.label2 && (
-              <Input
-                className="w-[40%]"
-                label={item.label2 || ""}
-                value={item.value || ""}
-              />
-            )}
-            {index >= 1 && (
-              <Button
-                variant="outline"
-                className=" hover:cursor-pointer bg-[#F8F7F2]"
-              >
-                {item.primaryBtn}
-              </Button>
-            )}
-          </div>
+      <div className="w-full flex flex-row w-full gap-5 space-y-6 border-b">
+        <Input label="First name" placeholder="John" className="w-full" />
+        <Input label="Last name" placeholder="Doe" className="w-full" />
+      </div>
+      <div className="w-full flex flex-row w-full gap-5 space-y-6 border-b items-center justify-between">
+        <div className="flex flex-col w-full gap-5">
+          <Input
+            label="Email"
+            placeholder="example@gmail.com"
+            className="w-6/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
+          />
+          <Button
+            variant="outline"
+            className="bg-[#F8F7F2] max-w-fit text-sm md:text-sm lg:text-xs xl:text-sm"
+          >
+            Add another email
+            <Plus />
+          </Button>
         </div>
-      ))}
+        <Button
+          variant="outline"
+          className="bg-[#F8F7F2] text-sm md:text-sm lg:text-xs xl:text-sm"
+        >
+          Change email
+        </Button>
+      </div>
+      <div className="w-full flex flex-row w-full gap-5 space-y-6 border-b items-center justify-between">
+        <div className="flex flex-col w-full gap-5">
+          <Input
+            label="Phone number"
+            placeholder="0000-0000-0000"
+            className="w-6/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
+          />
+          <Button
+            variant="outline"
+            className="bg-[#F8F7F2] max-w-fit text-sm md:text-sm lg:text-xs xl:text-sm"
+          >
+            Add another phone number
+            <Plus />
+          </Button>
+        </div>
+        <Button
+          variant="outline"
+          className="bg-[#F8F7F2] text-sm md:text-sm lg:text-xs xl:text-sm"
+        >
+          Change phone number
+        </Button>
+      </div>
+      <div className="w-full flex flex-row w-full gap-5 space-y-6 border-b items-center justify-between">
+        <div className="flex flex-col w-full gap-5">
+          <Input
+            label="Address"
+            placeholder="plot 24 room 1254 BC, Abuja"
+            className="w-6/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
+          />
+          <Button
+            variant="outline"
+            className="bg-[#F8F7F2] max-w-fit text-sm md:text-sm lg:text-xs xl:text-sm"
+          >
+            Add another address
+            <Plus />
+          </Button>
+        </div>
+        <Button
+          variant="outline"
+          className="bg-[#F8F7F2] text-sm md:text-sm lg:text-xs xl:text-sm"
+        >
+          Change address
+        </Button>
+      </div>
     </form>
   );
 }

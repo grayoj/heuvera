@@ -32,7 +32,12 @@ export const sideBar = [
 ];
 
 export const personInput = [
-  { label: "First name", value1: "George", label2: "Last name", value2: "Doe" },
+  {
+    label: "First name",
+    value1: "George",
+    label2: "Last name",
+    value2: "Doe",
+  },
   {
     label: "Email",
     value: "ftgeorgean@gmail.com",

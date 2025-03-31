@@ -38,7 +38,7 @@ export default function ProfileBanner() {
           <span className="font-semibold">{formattedPathSegment}</span>
         </p>
         <Input
-          className="w-[19rem] md:w-[19rem] lg:w-[15rem] xl:w-[19rem] 2xl:w-[19rem] flex items-center justify-center text-center font-serif"
+          className="w-72 flex items-center justify-center text-center font-serif"
           placeholder="Search"
         />
         <Button

@@ -19,7 +19,7 @@ export default function ProfileLayout({
         <div className="flex items-center">
           <div className="flex flex-col ml-3">
             <h2 className="font-medium text-sm">{item.name}</h2>
-            <p className="text-[#898989] text-xs w-[12.5rem]">
+            <p className="text-[#898989] text-xs w-[12.5rem] md:w-full lg:w-[8.5rem] xl:w-[10rem] 2xl:w-[12.5rem] line-clamp-2 overflow-hidden text-ellipsis">
               {item.description}
             </p>
           </div>
@@ -32,20 +32,19 @@ export default function ProfileLayout({
   return (
     <div className="flex flex-col h-screen">
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-[25%] bg-[#F8F7F2] border-r-[1px] overflow-y-auto flex flex-col gap-2">
+        <aside className="w-[25%] md:w-[30%] lg:w-[25%] xl:w-[25%] 2xl:w-[25%] bg-[#F8F7F2] border-r-[1px] overflow-y-auto overflow-x-hidden flex flex-col gap-2">
           <div className="w-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 py-4">
             <Button
               variant="outline"
-              className="bg-[#F8F7F2]  hover:cursor-pointer"
+              className="bg-[#F8F7F2] hover:cursor-pointer"
               onClick={() => router.push("/explore")}
             >
               <ArrowLeft />
               Back
             </Button>
           </div>
-          {sidebarItems}
+          <div className="w-full">{sidebarItems}</div>
         </aside>
-
         <main className="flex-1 pl-4 pr-4 md:pr-8 lg:pr-12 xl:pr-14 2xl:pr-20 pb-4 bg-[#F8F7F2] overflow-y-auto">
           {children}
         </main>

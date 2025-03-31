@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface Item {
-  icon: React.FC;
+  icon: React.ComponentType<{ className?: string }>;
   name: string;
   description: string;
   route: string;
@@ -21,7 +21,6 @@ function SidebarItem({
   item: Item;
 }) {
   const pathname = usePathname();
-  // Adjust fullRoute to handle the root route correctly
   const fullRoute =
     route === "/"
       ? "/profile/property-renters"
@@ -29,31 +28,31 @@ function SidebarItem({
   const isActive = pathname === fullRoute;
 
   return (
-    <>
-      <Link
-        href={fullRoute}
-        className={`flex justify-start gap-5 px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 left-[1px] top-[145px]  py-3.5 ${
-          isActive
-            ? "bg-[#E3E2D966] border-2 border-t-0 border-l-[#7B4F3A] "
-            : "border-b-2 border-[#E3E2D9] "
-        }`}
+    <Link
+      href={fullRoute}
+      className={`flex items-center gap-4 md:gap-0 lg:gap-1 xl:gap-0 2xl:gap-8 px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 py-3 md:py-4 
+        ${isActive ? "bg-[#E3E2D966] border-2 border-l-[#7B4F3A]" : "border-b-2 border-[#E3E2D9]"}
+      `}
+    >
+      <div
+        className={`rounded-full flex justify-center items-center shadow-[0px_2px_2px] shadow-[#00000040] 
+          ${isActive ? "bg-[#7B4F3A] text-white" : "bg-[#F8F7F2] text-black"} 
+          size-10 md:size-8 lg:size-10 xl:size-16 aspect-square
+        `}
       >
-        <div
-          className={`${isActive ? "bg-[#7B4F3A] text-white " : "bg-[#F8F7F2] text-black"} rounded-full size-12 md:size-12 lg:size-12 xl:size-8 2xl:size-12 flex justify-center items-center shadow-[#00000040] shadow-[0px_2px_2px]`}
-        >
-          <item.icon />
-        </div>
-        {children}
-      </Link>
-    </>
+        <item.icon className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+      </div>
+
+      <div className="flex-1">{children}</div>
+    </Link>
   );
 }
 
-// Use a proper comparison function with React.memo to prevent unnecessary re-renders
+// Optimize React.memo with a deep comparison
 export default React.memo(SidebarItem, (prevProps, nextProps) => {
   return (
     prevProps.route === nextProps.route &&
     prevProps.children === nextProps.children &&
-    prevProps.item === nextProps.item // Include item in the comparison
+    JSON.stringify(prevProps.item) === JSON.stringify(nextProps.item) // Deep comparison for item
   );
 });
