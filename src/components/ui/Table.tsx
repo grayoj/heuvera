@@ -14,7 +14,7 @@ export default function BookingTable() {
   ];
 
   return (
-    <div className="relative lg:overflow-x-auto shadow-md">
+    <div className="relative 2xl:w-full xl:w-full lg:overflow-x-auto md:overflow-x-auto sm:overflow-x-auto shadow-md">
       {/* Responsive Table (Hidden on Mobile) */}
       <div className="hidden md:block">
         <table className="w-full text-sm text-left rtl:text-right text-tableText">
@@ -23,8 +23,11 @@ export default function BookingTable() {
               {tableHeadings.map((heading, index) => (
                 <th
                   key={index}
-                  className={`py-4 px-3 min-w-[120px] border-x ${index === tableHeadings.length - 1 ? "border-r" : ""
-                    }`}
+                  className={`py-4 px-3 border-x ${
+                    index === 2 || index === 3
+                      ? "break-words"
+                      : "whitespace-nowrap"
+                  } ${index === tableHeadings.length - 1 ? "border-r" : ""}`}
                 >
                   {heading}
                 </th>
@@ -37,8 +40,8 @@ export default function BookingTable() {
                 key={index}
                 className="bg-[#F8F7F2] border-b text-center border-gray-200 hover:bg-gray-50"
               >
-                <td className="border-x">{index + 1}</td>
-                <td className="border-x flex justify-center items-center">
+                <td className="border-x py-2">{index + 1}</td>
+                <td className="border-x flex justify-center items-center py-2">
                   <Image
                     src="https://picsum.photos/50/36"
                     className="rounded-sm my-1.5"
@@ -47,12 +50,24 @@ export default function BookingTable() {
                     alt="booking history"
                   />
                 </td>
-                <td className="border-x">{booking.name}</td>
-                <td className="border-x">{booking.location}</td>
-                <td className="border-x">{booking.date}</td>
-                <td className="border-x">{booking.status}</td>
-                <td className="border-x">{booking.pricePaid}</td>
-                <td className="border-x">{booking.noOfGuests}</td>
+                <td className="border-x py-2 px-2 break-words">
+                  {booking.name}
+                </td>
+                <td className="border-x py-2 px-2 break-words">
+                  {booking.location}
+                </td>
+                <td className="border-x py-2 whitespace-nowrap">
+                  {booking.date}
+                </td>
+                <td className="border-x py-2 whitespace-nowrap">
+                  {booking.status}
+                </td>
+                <td className="border-x py-2 whitespace-nowrap">
+                  {booking.pricePaid}
+                </td>
+                <td className="border-x py-2 whitespace-nowrap">
+                  {booking.noOfGuests}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -78,16 +93,19 @@ export default function BookingTable() {
             </div>
             <div className="mt-2 text-sm space-y-1">
               <p>
-                <span className="font-medium">Check-In & Out:</span> {booking.date}
+                <span className="font-medium">Check-In & Out:</span>{" "}
+                {booking.date}
               </p>
               <p>
                 <span className="font-medium">Status:</span> {booking.status}
               </p>
               <p>
-                <span className="font-medium">Price Paid:</span> {booking.pricePaid}
+                <span className="font-medium">Price Paid:</span>{" "}
+                {booking.pricePaid}
               </p>
               <p>
-                <span className="font-medium">Guests:</span> {booking.noOfGuests}
+                <span className="font-medium">Guests:</span>{" "}
+                {booking.noOfGuests}
               </p>
             </div>
           </div>

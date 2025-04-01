@@ -17,19 +17,19 @@ export default function PaymentMethods() {
         subheading="Securely manage and update your preferred payment options for smooth transactions."
       />
 
-      <div className="flex justify-between">
-        <div className="flex-grow mr-5">
+      <div className="">
+        <div className="my-5">
           <PaymentMethod
             paymentMethod={paymentMethod}
             setPaymentMethod={setPaymentMethod}
           />
-
+        </div>
+        <div className="flex justify-between flex-grow flex-col md:flex-col lg:flex-col xl:flex-row mr-5">
           {paymentMethod === "credit" && <CreditPayment />}
 
           {paymentMethod === "bank" && <BankPayment />}
+          <PaymentSecurity />
         </div>
-
-        <PaymentSecurity />
       </div>
     </>
   );

@@ -8,7 +8,7 @@ export default function AccountHeader({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="flex justify-between border-b items-center h-20">
+    <div className="flex justify-between border-b items-center py-4 font-serif">
       <div className="">
         <h2 className="text-xl md:text-xl lg:text-base xl:text-xl 2xl:text-xl font-medium-">
           {heading}

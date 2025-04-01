@@ -20,7 +20,7 @@ export default function BookingHistory() {
             className="bg-[#7B4F3A] hover:bg-[#664130] hover:cursor-pointer"
           >
             Rebook
-          <RotateCw/>
+            <RotateCw />
           </Button>
           <Button
             variant="outline"

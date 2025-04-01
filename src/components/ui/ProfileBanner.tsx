@@ -5,8 +5,17 @@ import { Button } from "./button";
 import Input from "./Input";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
+import { motion } from "framer-motion";
 
-export default function ProfileBanner() {
+interface ProfileBannerProps {
+  toggleHelp: () => void;
+  isHelpVisible: boolean;
+}
+
+export default function ProfileBanner({
+  toggleHelp,
+  isHelpVisible,
+}: ProfileBannerProps) {
   const pathname = usePathname();
 
   // Function to format the pathname for display
@@ -41,13 +50,16 @@ export default function ProfileBanner() {
           className="w-72 flex items-center justify-center text-center font-serif"
           placeholder="Search"
         />
-        <Button
-          variant="outline"
-          className="bg-[#F8F7F2] hover:cursor-pointer font-serif"
-        >
-          <LucideHelpCircle />
-          Help
-        </Button>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Button
+            variant="outline"
+            className="bg-[#F8F7F2] hover:cursor-pointer font-serif"
+            onClick={toggleHelp}
+          >
+            <LucideHelpCircle />
+            {isHelpVisible ? "Close Help" : "Help"}
+          </Button>
+        </motion.div>
       </div>
     </div>
   );
