@@ -1,21 +1,55 @@
 import { Lock } from "lucide-react";
 import { Button } from "../ui/button";
 import Input from "../ui/Input";
+import { motion } from "framer-motion";
 
 export default function CreditPayment() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+      },
+    },
+  };
+
+  const buttonVariants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.05 },
+    tap: { scale: 0.95 },
+  };
+
   return (
-    <form className="flex flex-col space-y-4 h-full w-full max-w-[28rem]">
-      <div className="flex space-x-4">
+    <motion.form
+      className="flex flex-col space-y-4 h-full w-full max-w-md"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div className="flex space-x-4" variants={itemVariants}>
         <div className="flex-grow">
           <Input label="Cardholder Name" placeholder="John Smith" />
         </div>
-      </div>
+      </motion.div>
 
-      <div>
+      <motion.div variants={itemVariants}>
         <Input label="Card Number" placeholder="XXXX XXXX XXXX XXXX" />
-      </div>
+      </motion.div>
 
-      <div className="flex space-x-4">
+      <motion.div className="flex space-x-4" variants={itemVariants}>
         <div className="flex-1">
           <Input label="Expiry Date" placeholder="MM/YY" />
         </div>
@@ -26,9 +60,13 @@ export default function CreditPayment() {
             // type="password"
           />
         </div>
-      </div>
+      </motion.div>
 
-      <div className="flex items-center space-x-2 mt-2">
+      <motion.div
+        className="flex items-center space-x-2 mt-2"
+        variants={itemVariants}
+        whileHover={{ x: 5 }}
+      >
         <input
           type="checkbox"
           id="saveCard"
@@ -37,21 +75,30 @@ export default function CreditPayment() {
         <label htmlFor="saveCard" className="text-[14px] text-gray-700">
           Save card for future payments
         </label>
-      </div>
+      </motion.div>
 
-      <div className="flex items-center space-x-2 p-3 bg-[#f9f5f3] rounded-lg text-[14px] text-gray-600 mt-2">
+      <motion.div
+        className="flex items-center space-x-2 p-3 bg-[#f9f5f3] rounded-lg text-[14px] text-gray-600 mt-2"
+        variants={itemVariants}
+        whileHover={{ backgroundColor: "#f2ebe7" }}
+      >
         <Lock size={16} className="text-[#7B4F3A]" />
         <span>
           Your payment information is secured with end-to-end encryption
         </span>
-      </div>
+      </motion.div>
 
-      <Button
-        variant="default"
-        className="bg-[#7B4F3A] py-[0.6875rem] px-[2.5rem] rounded-full hover:bg-[#664130] hover:cursor-pointer mt-4"
-      >
-        Save Payment Method
-      </Button>
-    </form>
+      <motion.div variants={itemVariants}>
+        <motion.button
+          type="button"
+          className="w-full bg-[#7B4F3A] py-3 px-6 text-white rounded-lg hover:bg-[#664130] hover:cursor-pointer mt-4"
+          variants={buttonVariants}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          Save Payment Method
+        </motion.button>
+      </motion.div>
+    </motion.form>
   );
 }

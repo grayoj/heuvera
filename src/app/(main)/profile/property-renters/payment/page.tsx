@@ -6,12 +6,17 @@ import CreditPayment from "@heuvera/components/payment/CreditPayment";
 import PaymentSecurity from "@heuvera/components/payment/PaymentSecurity";
 import BankPayment from "@heuvera/components/payment/BankPayment";
 import PaymentMethod from "@heuvera/components/payment/PaymentMethod";
+import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
 
 export default function PaymentMethods() {
   const [paymentMethod, setPaymentMethod] = useState("credit");
-
+  const [isHelpVisible, setIsHelpVisible] = useState(false);
+  const toggleHelp = () => {
+    setIsHelpVisible(!isHelpVisible);
+  };
   return (
     <>
+      <ProfileBanner toggleHelp={toggleHelp} isHelpVisible={isHelpVisible} />
       <AccountHeader
         heading="Payment Method"
         subheading="Securely manage and update your preferred payment options for smooth transactions."

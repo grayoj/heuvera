@@ -5,8 +5,7 @@ import { useState } from "react";
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import PersonalForm from "@heuvera/components/personal-info/PersonalForm";
 import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
-import ProfileLayout from "../../layout";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function PersonInfo() {
   const [userImage, setUserImage] = useState("");

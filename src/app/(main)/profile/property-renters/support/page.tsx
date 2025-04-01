@@ -1,9 +1,9 @@
 "use client";
 
-import { inputs } from "@heuvera/app/data/array";
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import Help from "@heuvera/components/ui/Help";
 import Input from "@heuvera/components/ui/Input";
+import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
 import Textarea from "@heuvera/components/ui/Textarea";
 import { Button } from "@heuvera/components/ui/button";
 import { useState } from "react";
@@ -16,6 +16,7 @@ export default function Support() {
   };
   return (
     <>
+      <ProfileBanner toggleHelp={toggleHelp} isHelpVisible={isHelpVisible} />
       <AccountHeader
         heading="Support & Assistance"
         subheading="Get help, contact support, and access resources to enhance your experience."

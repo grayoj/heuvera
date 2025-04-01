@@ -14,8 +14,7 @@ export default function BookingTable() {
   ];
 
   return (
-    <div className="relative 2xl:w-full xl:w-full lg:overflow-x-auto md:overflow-x-auto sm:overflow-x-auto shadow-md">
-      {/* Responsive Table (Hidden on Mobile) */}
+    <div className="relative 2xl:w-full xl:w-full lg:overflow-x-auto md:overflow-x-auto sm:overflow-x-auto shadow-none md:shadow-md">
       <div className="hidden md:block">
         <table className="w-full text-sm text-left rtl:text-right text-tableText">
           <thead className="bg-[#E3E2D966] text-[#898989]">
@@ -43,10 +42,10 @@ export default function BookingTable() {
                 <td className="border-x py-2">{index + 1}</td>
                 <td className="border-x flex justify-center items-center py-2">
                   <Image
-                    src="https://picsum.photos/50/36"
+                    src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     className="rounded-sm my-1.5"
                     height={36}
-                    width={70}
+                    width={72}
                     alt="booking history"
                   />
                 </td>
@@ -75,7 +74,7 @@ export default function BookingTable() {
       </div>
 
       {/* Mobile View: Cards (Visible on Small Screens) */}
-      <div className="block md:hidden space-y-4 p-4">
+      <div className="block md:hidden space-y-4 gap-5">
         {pastBookings.map((booking, index) => (
           <div key={index} className="bg-[#F8F7F2] p-4 rounded-lg shadow-md">
             <div className="flex items-center space-x-4">

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LeaseRentStays from "../categories/LeaseRentStays";
+import { Calendar } from "../ui/calendar";
 
 interface SearchBarProps {
   isMobile: boolean;
@@ -20,6 +21,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
   const [searchText, setSearchText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
+  const [checkInDate, setCheckInDate] = useState<Date | undefined>(new Date());
+  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(
+    new Date(),
+  );
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -269,7 +274,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                       <p className="text-sm text-[#7B4F3A] font-medium">
                         Check in
                       </p>
-                      <p className="font-serif">Add date</p>
+                      <Calendar
+                        mode="single"
+                        selected={checkInDate}
+                        onSelect={setCheckInDate}
+                        numberOfMonths={1}
+                        className="bg-transparent scale-110 origin-center"
+                        styles={{
+                          day: { width: "40px", height: "40px" },
+                          month: { width: "100%" },
+                          caption_label: { fontSize: "1rem" },
+                          head_cell: { fontSize: "0.9rem", width: "40px" },
+                        }}
+                      />
                     </motion.div>
                     <motion.div
                       className="p-4 border border-[#E3E2D9] rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow"
@@ -282,7 +299,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                       <p className="text-sm text-[#7B4F3A] font-medium">
                         Check out
                       </p>
-                      <p className="font-serif">Add date</p>
+                      <Calendar
+                        mode="single"
+                        selected={checkOutDate}
+                        onSelect={setCheckOutDate}
+                        numberOfMonths={1}
+                        className="bg-transparent scale-110 origin-center"
+                        styles={{
+                          day: { width: "40px", height: "40px" },
+                          month: { width: "100%" },
+                          caption_label: { fontSize: "1rem" },
+                          head_cell: { fontSize: "0.9rem", width: "40px" },
+                        }}
+                      />
                     </motion.div>
                   </div>
                 </motion.div>

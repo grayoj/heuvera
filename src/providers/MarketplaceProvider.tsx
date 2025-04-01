@@ -157,7 +157,11 @@ export function MarketplaceProvider({
             <Link href={`/profile`}>
               <div className="flex-shrink-0 flex items-center">
                 <div className="size-10 md:size-8">
-                  <Avatar className="rounded-full overflow-hidden block">
+                  <Avatar
+                    className={`rounded-full overflow-hidden block ${
+                      selected === "Profile" ? "ring-2 ring-[#7B4F3A]" : ""
+                    }`}
+                  >
                     <AvatarImage
                       src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
                       alt="avatar"

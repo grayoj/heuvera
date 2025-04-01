@@ -40,14 +40,14 @@ export default function ProfileBanner({
   }, [pathname]);
 
   return (
-    <div className="w-full h-16 md:h-16 lg:h-12 xl:h-16 2xl:h-16 bg-[#F8F7F2] items-center flex border-b-[1px] border-[#E3E2D9] sticky top-0 z-10">
-      <div className="flex justify-between w-full h-full items-center text-sm">
-        <p className="font-serif text-base md:text-base lg:text-xs xl:text-base 2xl:text-base">
+    <div className="w-full h-12 md:h-16 lg:h-12 xl:h-16 2xl:h-16 bg-[#F8F7F2] items-center flex border-b-[1px] border-[#E3E2D9] sticky top-0 z-10 hidden md:block">
+      <div className="flex justify-between w-full h-full items-center">
+        <p className="font-serif text-xs md:text-base lg:text-xs xl:text-base 2xl:text-base">
           Account {">"}{" "}
           <span className="font-semibold">{formattedPathSegment}</span>
         </p>
         <Input
-          className="w-72 flex items-center justify-center text-center font-serif"
+          className="w-48 md:w-72 flex items-center justify-center text-center font-serif"
           placeholder="Search"
         />
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
