@@ -1,10 +1,11 @@
 import SupportForm from '@heuvera/components/support/SupportForm';
 import AccountHeader from '@heuvera/components/ui/AccountHeader';
 import Help from '@heuvera/components/ui/Help';
+import PageLayout from '@heuvera/components/ui/PageLayout';
 
 export default function Page() {
   return (
-    <>
+    <PageLayout>
       <AccountHeader
         heading="Support & Assistance"
         subheading="Get help, contact support, and access resources to enhance your
@@ -20,6 +21,6 @@ export default function Page() {
         </div>
         <Help />
       </div>
-    </>
+    </PageLayout>
   );
 }

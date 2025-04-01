@@ -1,8 +1,8 @@
 import {
   Bath,
   BedDouble,
-  BookMarked,
-  CheckCircle,
+  Bookmark,
+  CheckCircle2,
   Pencil,
   RectangleVertical,
   Trash,
@@ -16,7 +16,7 @@ import {
   CardDescription,
   CardFooter,
 } from '@heuvera/components/ui/card';
-import PropertyIcon from './PropertyIcon'; // Adjust the import path if necessary
+import PropertyIcon from './PropertyIcon'; 
 
 interface Property {
   price: string;
@@ -26,9 +26,22 @@ interface Property {
   measurement: string;
 }
 
-export default function PropertyCard({ property, className, showActBtns }: { property: Property, className?: string, showActBtns?: boolean }) {
+export default function PropertyCard({
+  property,
+  className,
+  showActBtns,
+  setOpen,
+}: {
+  property: Property;
+  className?: string;
+  showActBtns?: boolean;
+  open?: string;
+  setOpen?: (value: string) => void;
+}) {
   return (
-    <Card className={`${className ? className: 'w-[30%]'} pt-0 px-0 gap-0  bg-transparent`}>
+    <Card
+      className={`${className ? className : 'w-[30%]'} pt-0 px-0 gap-0  bg-transparent`}
+    >
       <Image
         src="https://picsum.photos/303/172"
         className="rounded-tl-xl rounded-tr-xl mb-[0.69rem]"
@@ -42,7 +55,7 @@ export default function PropertyCard({ property, className, showActBtns }: { pro
             {property.price}{' '}
             <span className="text-[#898989] text-sm">/night</span>
           </div>
-          <CheckCircle />
+          <CheckCircle2 className="bg-[#7B4F3A] text-white" />
         </CardTitle>
         <CardDescription className="text-[#505050] text-[0.69rem] flex justify-between">
           <div>
@@ -62,25 +75,28 @@ export default function PropertyCard({ property, className, showActBtns }: { pro
               </PropertyIcon>
             </div>
           </div>
-          <BookMarked />
+          <Bookmark className="text-gray-300" />
         </CardDescription>
       </CardHeader>
-      {showActBtns &&<CardFooter className="flex space-x-2 mt-5">
-        <Button
-          variant="outline"
-          className="bg-[#F8F7F2] rounded-full cursor-pointer"
-        >
-          <Pencil />
-          Edit
-        </Button>
-        <Button
-          variant="default"
-          className="bg-[#CB2517] hover:bg-[#a71e11] rounded-full cursor-pointer"
-        >
-          <Trash />
-          Delete
-        </Button>
-      </CardFooter>}
+      {showActBtns && (
+        <CardFooter className="flex space-x-2 mt-5">
+          <Button
+            onClick={() => setOpen && setOpen('edit')}
+            variant="outline"
+            className="bg-[#F8F7F2] rounded-full cursor-pointer"
+          >
+            <Pencil />
+            Edit
+          </Button>
+          <Button
+            variant="default"
+            className="bg-[#CB2517] hover:bg-[#a71e11] rounded-full cursor-pointer"
+          >
+            <Trash />
+            Delete
+          </Button>
+        </CardFooter>
+      )}
     </Card>
   );
 }

@@ -3,10 +3,11 @@ import BookingContainer from '@heuvera/components/booking/BookingContainer';
 import PropertyCard from '@heuvera/components/property/PropertyCard';
 import AccountHeader from '@heuvera/components/ui/AccountHeader';
 import { Button } from '@heuvera/components/ui/button';
+import PageLayout from '@heuvera/components/ui/PageLayout';
 
 export default function Page() {
   return (
-    <>
+    <PageLayout>
       <AccountHeader
         heading="Property Insights"
         subheading="Analyze booking trends, occupancy rates, and performance metrics for your listings."
@@ -27,6 +28,6 @@ export default function Page() {
           <PropertyCard showActBtns={false} className='w-fit h-fit' property={propertyListings[0]} />
         </BookingContainer>
       </div>
-    </>
+    </PageLayout>
   );
 }

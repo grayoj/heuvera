@@ -8,7 +8,7 @@ export default function SupportForm() {
     <form className="flex flex-col space-y-4 h-full w-full">
             {inputs.map((input, index) => (
               <div key={index} className="flex flex-col space-y-4">
-                <Input label={input.name} value={input.value} />
+                <Input label={input.name}  />
               </div>
             ))}
             <Textarea

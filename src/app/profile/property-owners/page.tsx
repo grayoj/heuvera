@@ -12,6 +12,7 @@ import Help from '@heuvera/components/ui/Help';
 import { Plus, Upload } from 'lucide-react';
 import { useState } from 'react';
 import AccountHeader from '@heuvera/components/ui/AccountHeader';
+import PageLayout from '@heuvera/components/ui/PageLayout';
 
 export default function PersonInfo() {
   const [userImage, setUserImage] = useState('');
@@ -33,7 +34,7 @@ export default function PersonInfo() {
     fileInput.click();
   }
   return (
-    <>
+    <PageLayout>
       <AccountHeader
         heading="Admin Info"
         subheading="Update your profile, contact details, and preferences to personalize
@@ -90,7 +91,7 @@ export default function PersonInfo() {
             >
               <div className="flex justify-between items-center space-x-4 space-y-5 border-b w-full">
                 <div className="flex flex-col justify-center mt-3 space-y-4 w-[40%]">
-                  <Input label={item.label || ''} value={item.value || ''} />
+                  <Input label={item.label || ''}  />
                   {index >= 1 && (
                     <Button
                       variant="outline"
@@ -105,7 +106,7 @@ export default function PersonInfo() {
                   <Input
                     className="w-[40%]"
                     label={item.label2 || ''}
-                    value={item.value || ''}
+                    
                   />
                 )}
                 {index >= 1 && (
@@ -120,6 +121,7 @@ export default function PersonInfo() {
 
         <Help />
       </div>
-    </>
+
+    </PageLayout>
   );
 }

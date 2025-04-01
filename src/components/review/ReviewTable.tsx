@@ -1,6 +1,6 @@
 import { reviews } from '../../app/data/array';
 
-export default function EarningTable() {
+export default function ReviewTable() {
   const tableHeadings = [
     'S/N',
     'Guest Name',
@@ -36,7 +36,7 @@ export default function EarningTable() {
               <td className="border-x py-3 px-14">{review.guestName}</td>
               <td className="border-x ">{review.date}</td>
               <td className="border-x">{review.rating}</td>
-              <td className="border-x">{review.content}</td>
+              <td className="border-x px-4">{review.content}...<span className="text-[#323232] underline ml-1.5">  read more</span></td>
             </tr>
           ))}
           {/* Default last row */}
@@ -46,9 +46,7 @@ export default function EarningTable() {
             <td className="border-x"></td>
             <td className="border-x"></td>
             <td className="border-x"></td>
-            <td className="border-x"></td>
-            <td className="border-x"></td>
-            <td className="border-x"></td>
+           
           </tr>
         </tbody>
       </table>

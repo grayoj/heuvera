@@ -1,6 +1,6 @@
-import { adminBookings } from '../../app/data/array';
+import { upcomingBookings } from '../../app/data/array';
 
-export default function AdminBookingTable() {
+export default function UpcomingBookingTable() {
   const tableHeadings = [
     'S/N',
     'Guest Name',
@@ -27,7 +27,7 @@ export default function AdminBookingTable() {
           </tr>
         </thead>
         <tbody>
-          {adminBookings.map((booking, index) => (
+          {upcomingBookings.map((booking, index) => (
             <tr
               key={index}
               className="bg-[#F8F7F2] border-b text-center border-gray-200 hover:bg-gray-50 "

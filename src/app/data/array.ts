@@ -1,11 +1,18 @@
 import {
+  BedDouble,
   Calendar,
+  Camera,
   GitGraph,
   House,
   LifeBuoy,
+  Microwave,
+  Refrigerator,
+  ShowerHead,
   Star,
   User,
   Wallet,
+  WashingMachine,
+  Wifi,
 } from 'lucide-react';
 
 export const sideBar = [
@@ -129,7 +136,7 @@ export const pastBookings = [
   },
 ];
 
-export const adminBookings = [
+export const upcomingBookings = [
   {
     guestName: 'Godiwn Praise',
     date: 'Mar 12, 2025 - Mar 21, 2025',
@@ -141,6 +148,26 @@ export const adminBookings = [
     date: 'Mar 12, 2025 - Mar 21, 2025',
     propertyName: 'George duplex',
     status: 'Pending',
+  },
+];
+export const pastAdminBookings = [
+  {
+    image: 'hheye',
+    name: 'George’s Semi Detached',
+    location: 'Behind Block C, Abuja',
+    date: 'Mar 12, 2025 - Mar 21, 2025',
+    status: 'Pending',
+    pricePaid: '50,000',
+    noOfGuests: 3,
+  },
+  {
+    image: 'hheye',
+    name: 'Emma Semi Detached',
+    location: 'Behind Block C, Abuja',
+    date: 'Mar 12, 2025 - Mar 21, 2025',
+    status: 'Pending',
+    pricePaid: '50,000',
+    noOfGuests: 3,
   },
 ];
 
@@ -206,18 +233,64 @@ export const earningsTable = [
   },
 ];
 
-export const reviews=[
+export const reviews = [
   {
     guestName: 'Godwin Praise Tochi',
     date: 'Mar 12, 2025',
     rating: 5,
-    content: 'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presently...  read more'
+    content:
+      'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presently',
   },
   {
     guestName: 'Edward Mfon Sarah',
     date: 'Mar 12, 2025',
     rating: 3,
-    content: 'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presently...  read more'
+    content:
+      'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presently',
   },
-  {}
-]
+];
+
+export const amenities = [
+  {
+    name: 'Wifi',
+    icon: Wifi,
+  },
+  { 
+    name: 'Video Cam', 
+    icon: Camera 
+  },
+  { 
+    name: 'Washer', 
+    icon: WashingMachine 
+  },
+  { 
+    name: 'Kitchen', 
+    icon: Microwave 
+  },
+  { 
+    name: 'Refrigerator', 
+    icon: Refrigerator 
+  },
+  { 
+    name: 'Wifi', 
+    icon: Wifi 
+  },
+];
+
+export   const features = [
+  {
+    type: 'guest',
+    icon: User ,
+    label: 'Guest',
+  },
+  {
+    type: 'bed',
+    icon: BedDouble,
+    label: 'Bedroom',
+  },
+  {
+    type: 'bath',
+    icon: ShowerHead,
+    label: 'Bathroom',
+  },
+];

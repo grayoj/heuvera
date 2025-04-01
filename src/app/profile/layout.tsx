@@ -11,7 +11,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const sidebarItems = useMemo(() => {
     const isAdminRoute = pathname.startsWith('/profile/property-owners');
-    console.log(isAdminRoute)
     const items = isAdminRoute ? sideBarAdmin : sideBar;
 
     return items.map((item) => (
