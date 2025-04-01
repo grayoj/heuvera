@@ -1,8 +1,8 @@
 import {
+  BadgeCheck,
   Bath,
   BedDouble,
   Bookmark,
-  CheckCircle2,
   Pencil,
   RectangleVertical,
   Trash,
@@ -55,7 +55,7 @@ export default function PropertyCard({
             {property.price}{' '}
             <span className="text-[#898989] text-sm">/night</span>
           </div>
-          <CheckCircle2 className="bg-[#7B4F3A] text-white" />
+          <BadgeCheck color="#7b4f3a" />
         </CardTitle>
         <CardDescription className="text-[#505050] text-[0.69rem] flex justify-between">
           <div>

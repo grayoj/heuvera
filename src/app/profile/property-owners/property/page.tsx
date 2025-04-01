@@ -21,7 +21,7 @@ export default function Page() {
         <Button
           onClick={() => setOpen('add')}
           variant="outline"
-          className="rounded-full bg-transparent"
+          className="rounded-full bg-transparent cursor-pointer"
         >
           + Add another property
         </Button>
