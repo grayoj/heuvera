@@ -24,9 +24,7 @@
       "post": {
         "summary": "Create a user",
         "description": "This endpoint creates a new user based on the provided Auth0 ID.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "security": [
           {
             "BearerAuth": []
@@ -38,11 +36,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "auth0_id",
-                  "email",
-                  "created_at"
-                ],
+                "required": ["auth0_id", "email", "created_at"],
                 "properties": {
                   "auth0_id": {
                     "type": "string",
@@ -179,9 +173,7 @@
       "get": {
         "summary": "Retrieve or create a user from the session",
         "description": "Fetches an existing user or creates a new one if they do not exist in the database.",
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "responses": {
           "200": {
             "description": "User retrieved or created successfully",
@@ -234,9 +226,7 @@
       "delete": {
         "summary": "Cancel a booking",
         "description": "Allows an authenticated user to cancel their booking if it hasn't started yet.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "security": [
           {
             "bearerAuth": []
@@ -287,9 +277,7 @@
       "get": {
         "summary": "Get user bookings",
         "description": "Fetches all bookings made by the authenticated user.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "security": [
           {
             "bearerAuth": []
@@ -368,9 +356,7 @@
       "post": {
         "summary": "Create a new booking",
         "description": "Users can book a listing by providing the listing ID, start date, end date, and the number of guests.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "requestBody": {
           "required": true,
           "content": {
@@ -469,9 +455,7 @@
       "get": {
         "summary": "Get booking details",
         "description": "Retrieves details of a specific booking for an authenticated user.",
-        "tags": [
-          "Bookings"
-        ],
+        "tags": ["Bookings"],
         "security": [
           {
             "bearerAuth": []
@@ -527,9 +511,7 @@
       "delete": {
         "summary": "Remove a listing from favorites",
         "description": "Deletes a listing from the authenticated user's favorites.",
-        "tags": [
-          "Favorites"
-        ],
+        "tags": ["Favorites"],
         "security": [
           {
             "BearerAuth": []
@@ -582,9 +564,7 @@
       "get": {
         "summary": "Get user's favorite listings",
         "description": "Retrieves all favorite listings for the authenticated user.",
-        "tags": [
-          "Favorites"
-        ],
+        "tags": ["Favorites"],
         "security": [
           {
             "BearerAuth": []
@@ -615,9 +595,7 @@
       "post": {
         "summary": "Add a listing to favorites",
         "description": "Adds a listing to the authenticated user's favorites.",
-        "tags": [
-          "Favorites"
-        ],
+        "tags": ["Favorites"],
         "security": [
           {
             "BearerAuth": []
@@ -661,9 +639,7 @@
       "patch": {
         "summary": "Update host details",
         "description": "Updates host profile details. Only approved hosts can update their information.",
-        "tags": [
-          "Host"
-        ],
+        "tags": ["Host"],
         "security": [
           {
             "BearerAuth": []
@@ -689,11 +665,7 @@
                   },
                   "idVerificationStatus": {
                     "type": "string",
-                    "enum": [
-                      "PENDING",
-                      "VERIFIED",
-                      "REJECTED"
-                    ]
+                    "enum": ["PENDING", "VERIFIED", "REJECTED"]
                   },
                   "businessName": {
                     "type": "string"
@@ -754,9 +726,7 @@
       "delete": {
         "summary": "Delete a property listing",
         "description": "Allows an approved host to delete one of their property listings.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "query",
@@ -801,9 +771,7 @@
       "get": {
         "summary": "Retrieve paginated property listings",
         "description": "Fetches a paginated list of property listings, sorted by creation date in descending order.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "query",
@@ -868,9 +836,7 @@
       "patch": {
         "summary": "Update a property listing",
         "description": "Allows an approved host to update an existing property listing.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "security": [
           {
             "BearerAuth": []
@@ -982,9 +948,7 @@
       "post": {
         "summary": "Create a new listing",
         "description": "Allows an approved host to create a new property listing.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "requestBody": {
           "required": true,
           "content": {
@@ -1103,9 +1067,7 @@
       "get": {
         "summary": "Get a listing by ID",
         "description": "Retrieve details of a specific listing by its ID, including host details.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "path",
@@ -1149,9 +1111,7 @@
       "get": {
         "summary": "Search listings",
         "description": "Search for listings based on filters like title, category, city, country, price range, and amenities.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "query",
@@ -1256,9 +1216,7 @@
       "patch": {
         "summary": "Update or create user profile",
         "description": "Updates the user's profile if it exists, otherwise creates a new one.",
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "requestBody": {
           "required": true,
           "content": {
@@ -1354,9 +1312,7 @@
       "get": {
         "summary": "Get reviews for a property listing",
         "description": "Fetches all reviews for a given property listing.",
-        "tags": [
-          "Reviews"
-        ],
+        "tags": ["Reviews"],
         "parameters": [
           {
             "in": "query",
@@ -1417,19 +1373,14 @@
       "post": {
         "summary": "Add a review for a property listing",
         "description": "Users can review a property only if they have booked it.",
-        "tags": [
-          "Reviews"
-        ],
+        "tags": ["Reviews"],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "listingId",
-                  "rating"
-                ],
+                "required": ["listingId", "rating"],
                 "properties": {
                   "listingId": {
                     "type": "string",
@@ -1497,9 +1448,7 @@
       "get": {
         "summary": "Get average rating for a property listing",
         "description": "Retrieves the average rating and total review count for a given property listing.",
-        "tags": [
-          "Reviews"
-        ],
+        "tags": ["Reviews"],
         "parameters": [
           {
             "in": "query",
@@ -1542,9 +1491,7 @@
       "get": {
         "summary": "Search listings",
         "description": "Search for listings based on filters like title, category, city, country, price range, and amenities.",
-        "tags": [
-          "Listings"
-        ],
+        "tags": ["Listings"],
         "parameters": [
           {
             "in": "query",
@@ -1649,9 +1596,7 @@
       "get": {
         "summary": "Get logged-in user",
         "description": "Retrieves details of the currently authenticated user.",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "security": [
           {
             "bearerAuth": []

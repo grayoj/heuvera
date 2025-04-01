@@ -59,7 +59,11 @@ export default function ProfileLayout({
     <div className="flex h-screen">
       <aside className="w-[25%] md:w-[30%] lg:w-[25%] xl:w-[25%] 2xl:w-[25%] bg-[#F8F7F2] border-r-[1px] flex flex-col gap-2 overflow-y-auto">
         <div className="w-full px-4 py-4">
-          <Button variant="outline" className="bg-[#F8F7F2]" onClick={() => router.push("/explore")}>
+          <Button
+            variant="outline"
+            className="bg-[#F8F7F2]"
+            onClick={() => router.push("/explore")}
+          >
             <ArrowLeft /> Back
           </Button>
         </div>
