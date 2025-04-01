@@ -3,6 +3,7 @@ import { Button } from '../../ui/button';
 import { DialogHeader } from '../../ui/dialog';
 import Input from '../../ui/Input';
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import PropertyFeature from '../PropertyFeature';
 import Amenities from '../Amenities';
 import PropertyImage from '../PropertyImage';
@@ -21,35 +22,47 @@ export default function AddPropertyModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-[#00000080]  flex items-center justify-center z-50 ">
-      <div className="bg-white rounded-xl p-4  my-10 space-y-6">
-        <Dialog open={open === 'add'} onOpenChange={handleOpenChange}>
-          <DialogContent className=" max-h-[80vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle  className='font-semibold text-xl mb-4'>Edit Property</DialogTitle>
-            </DialogHeader>
+    <div className="fixed inset-0 bg-[#00000080] flex items-center justify-center z-50">
+      <AnimatePresence>
+        {open === 'add' && (
+          <motion.div
+            className="bg-white rounded-xl p-4 my-10 space-y-6"
+            initial={{ opacity: 0, scale: 0.9 }} 
+            animate={{ opacity: 1, scale: 1 }} 
+            exit={{ opacity: 0, scale: 0.9 }} 
+            transition={{ duration: 0.3 }}
+          >
+            <Dialog open={open === 'add'} onOpenChange={handleOpenChange}>
+              <DialogContent className="max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="font-semibold text-xl mb-4">
+                    Edit Property
+                  </DialogTitle>
+                </DialogHeader>
 
-            <div className="flex gap-8">
-              <div className="flex flex-col gap-6 pr-8 border-r-2">
-                <PropertyForm />
+                <div className="flex gap-8">
+                  <div className="flex flex-col gap-6 pr-8 border-r-2">
+                    <PropertyForm />
 
-                <PropertyFeature />
+                    <PropertyFeature />
 
-                <Amenities active={active} setActive={setActive} />
-                <Input label="Price /night" prefix="₦"  />
-              </div>
+                    <Amenities active={active} setActive={setActive} />
+                    <Input label="Price /night" prefix="₦" />
+                  </div>
 
-              <PropertyImage />
-            </div>
-          </DialogContent>
-        </Dialog>
-        <Button
-          variant="default"
-          className="bg-[#7B4F3A] text-center w-full rounded-full font-semibold"
-        >
-          Add Property
-        </Button>
-      </div>
+                  <PropertyImage />
+                </div>
+              </DialogContent>
+            </Dialog>
+            <Button
+              variant="default"
+              className="bg-[#7B4F3A] text-center w-full rounded-full font-semibold"
+            >
+              Add Property
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

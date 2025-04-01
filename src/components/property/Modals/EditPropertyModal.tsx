@@ -3,6 +3,7 @@ import { Button } from '../../ui/button';
 import { DialogHeader } from '../../ui/dialog';
 import Input from '../../ui/Input';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import PropertyFeature from '../PropertyFeature';
 import Amenities from '../Amenities';
 import PropertyImage from '../PropertyImage';
@@ -23,7 +24,13 @@ export default function EditPropertyModal({
 
   return (
     <div className="fixed inset-0 bg-[#00000080]  flex items-center justify-center z-50 ">
-      <div className="bg-white rounded-xl p-4  my-10 space-y-6">
+      <motion.div
+            className="bg-white rounded-xl p-4 my-10 space-y-6"
+            initial={{ opacity: 0, scale: 0.9 }} 
+            animate={{ opacity: 1, scale: 1 }} 
+            exit={{ opacity: 0, scale: 0.9 }} 
+            transition={{ duration: 0.3 }} 
+            >
         <Dialog open={open === 'edit'} onOpenChange={handleOpenChange}>
           <DialogContent className=" max-h-[80vh] overflow-y-auto">
             <DialogHeader>
@@ -50,7 +57,7 @@ export default function EditPropertyModal({
         >
           Edit Property
         </Button>
-      </div>
+      </motion.div>
     </div>
   );
 }
