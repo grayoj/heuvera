@@ -2,16 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Heart, LucideStar } from "lucide-react";
+import { LucideStar } from "lucide-react";
 import { PropertyData } from "@heuvera/components/data/PropertyData";
 import FavoritesHeader from "@heuvera/components/header/FavoritesHeader";
 import useIsMobile from "@heuvera/hooks/IsMobile";
 import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
-import { Property, ViewMode, SortOption } from "@heuvera/types/map";
+import { ViewMode, SortOption } from "@heuvera/types/map";
 
 export default function Favorites() {
   const isMobile = useIsMobile();
-  const [favorites, setFavorites] = useState<Property[]>();
   const [loading, setLoading] = useState<boolean>(true);
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [sortOption, setSortOption] = useState<SortOption>("recent");
@@ -23,24 +22,6 @@ export default function Favorites() {
     return () => clearTimeout(timer);
   }, []);
 
-  const sortProperties = (properties: Property[]): Property[] => {
-    switch (sortOption) {
-      case "price-low":
-        return [...properties].sort(
-          (a, b) =>
-            (a.propertyDetails?.price || 0) - (b.propertyDetails?.price || 0),
-        );
-      case "price-high":
-        return [...properties].sort(
-          (a, b) =>
-            (b.propertyDetails?.price || 0) - (a.propertyDetails?.price || 0),
-        );
-      case "recent":
-      default:
-        return properties;
-    }
-  };
-
   // const handleRemoveFavorite = (propertyId: number | string) => {
   //     setFavorites(prev => prev.filter(property => property.id !== propertyId));
   // };
@@ -49,7 +30,6 @@ export default function Favorites() {
 
   return (
     <div className="flex flex-col flex-1 h-full w-full px-4 md:px-8 lg:px-16 xl:px-20 2xl:px-20">
-      {/* Header Section */}
       <div
         className={`
                     w-full 
@@ -67,7 +47,6 @@ export default function Favorites() {
         />
       </div>
 
-      {/* Favorites Grid */}
       {PropertyData.length === 0 ? (
         <motion.div
           initial={{ opacity: 0 }}
