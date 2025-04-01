@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@heuvera/lib/prisma";
 import { authMiddleware } from "@heuvera/lib/admin/middleware";
+import { sendEmail } from "@heuvera/lib/email";
+import { getHostApprovalMail } from "@heuvera/lib/email/render";
 
 /**
  * @swagger
@@ -28,6 +30,14 @@ import { authMiddleware } from "@heuvera/lib/admin/middleware";
  *     responses:
  *       200:
  *         description: User status updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "User status updated to SUSPENDED"
  *       400:
  *         description: Invalid input
  *       401:
@@ -37,18 +47,27 @@ import { authMiddleware } from "@heuvera/lib/admin/middleware";
  *       500:
  *         description: Internal Server Error
  */
-export async function PATCH(req: NextRequest) {
+export async function PATCH(req: NextRequest): Promise<NextResponse> {
   try {
-    const admin = authMiddleware(req);
-    if (!admin) return admin;
+    const adminResult = authMiddleware(req);
+    // If authMiddleware returns a falsy value or a string, return an Unauthorized response.
+    if (!adminResult || typeof adminResult === "string") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     const { userId, status } = await req.json();
     if (!userId || !status) {
-      return NextResponse.json({ error: "User ID and status are required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "User ID and status are required" },
+        { status: 400 },
+      );
     }
 
     if (!["ENABLED", "SUSPENDED", "BANNED"].includes(status)) {
-      return NextResponse.json({ error: "Invalid status value" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid status value" },
+        { status: 400 },
+      );
     }
 
     const user = await prisma.user.findUnique({ where: { id: userId } });
@@ -61,10 +80,21 @@ export async function PATCH(req: NextRequest) {
       data: { accountStatus: status },
     });
 
-    return NextResponse.json({ message: `User status updated to ${status}` }, { status: 200 });
+    const emailBody = await getHostApprovalMail(
+      user.name ?? "there",
+      "https://heuvera.com/dashboard",
+    );
+    await sendEmail(user.email, "Host Approval Confirmation", emailBody);
+
+    return NextResponse.json(
+      { message: `User status updated to ${status}` },
+      { status: 200 },
+    );
   } catch (error: any) {
     console.error("Error updating user status:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
-

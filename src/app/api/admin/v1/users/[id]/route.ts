@@ -29,13 +29,22 @@ import { authMiddleware } from "@heuvera/lib/admin/middleware";
  *       500:
  *         description: Internal Server Error
  */
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest): Promise<Response> {
   try {
     const admin = authMiddleware(req);
-    if (!admin) return admin;
+    if (admin instanceof NextResponse) {
+      return admin;
+    }
 
-    const id = req.url.split("/").pop();
-    if (!id) return NextResponse.json({ error: "User ID is required" }, { status: 400 });
+    const { pathname } = new URL(req.url);
+    const segments = pathname.split("/");
+    const id = segments[segments.length - 1];
+    if (!id) {
+      return NextResponse.json(
+        { error: "User ID is required" },
+        { status: 400 },
+      );
+    }
 
     const user = await prisma.user.findUnique({
       where: { id },
@@ -49,12 +58,16 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
 
     return NextResponse.json(user);
   } catch (error) {
     console.error("Error fetching user by ID:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
-

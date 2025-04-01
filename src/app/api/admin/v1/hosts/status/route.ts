@@ -6,7 +6,7 @@ import { getHostApprovalMail } from "@heuvera/lib/email/render";
 
 /**
  * @swagger
- * /api/admin/v1/status/hosts:
+ * /api/admin/v1/hosts/status:
  *   patch:
  *     summary: Approve a host
  *     description: Admins can approve users as hosts by setting isHostApproved to true.
@@ -38,11 +38,15 @@ import { getHostApprovalMail } from "@heuvera/lib/email/render";
 export async function PATCH(req: NextRequest) {
   try {
     const admin = authMiddleware(req);
-    if (!admin) return admin;
+    if (!admin)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const { userId } = await req.json();
     if (!userId) {
-      return NextResponse.json({ error: "User ID is required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "User ID is required" },
+        { status: 400 },
+      );
     }
 
     const user = await prisma.user.findUnique({ where: { id: userId } });
@@ -61,10 +65,15 @@ export async function PATCH(req: NextRequest) {
     );
     await sendEmail(user.email, "Host Approval Confirmation", emailBody);
 
-    return NextResponse.json({ message: "Host approved successfully" }, { status: 200 });
-  } catch (error: any) {
+    return NextResponse.json(
+      { message: "Host approved successfully" },
+      { status: 200 },
+    );
+  } catch (error) {
     console.error("Error approving host:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
-

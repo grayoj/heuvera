@@ -32,10 +32,12 @@ import { authMiddleware } from "@heuvera/lib/admin/middleware";
  *       500:
  *         description: Internal Server Error
  */
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest): Promise<Response> {
   try {
     const admin = authMiddleware(req);
-    if (!admin) return admin;
+    if (admin instanceof NextResponse) {
+      return admin;
+    }
 
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") ?? "1", 10);
@@ -65,7 +67,9 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ totalListings, listings });
   } catch (error) {
     console.error("Error fetching listings:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
-

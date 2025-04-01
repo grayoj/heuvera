@@ -35,7 +35,8 @@ import { authMiddleware } from "@heuvera/lib/admin/middleware";
 export async function GET(req: NextRequest) {
   try {
     const admin = authMiddleware(req);
-    if (!admin) return admin;
+    if (!admin)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") ?? "1", 10);
@@ -70,17 +71,27 @@ export async function GET(req: NextRequest) {
               createdAt: true,
             },
           },
-          _count: {
-            select: { listings: true },
-          },
+          _count: { select: { listings: true } },
         },
       }),
       prisma.user.count({ where: { host: { isNot: null } } }),
     ]);
 
-    return NextResponse.json({ totalHosts, hosts });
+    return NextResponse.json({
+      totalHosts,
+      hosts: hosts.map((host) => ({
+        ...host,
+        createdAt: host.createdAt.toISOString(),
+        host: host.host
+          ? { ...host.host, createdAt: host.host.createdAt.toISOString() }
+          : null,
+      })),
+    });
   } catch (error) {
     console.error("Error fetching hosts:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }

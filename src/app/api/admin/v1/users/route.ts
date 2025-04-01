@@ -24,6 +24,12 @@ import { authMiddleware } from "@heuvera/lib/admin/middleware";
  *           type: integer
  *           example: 10
  *         description: Number of users per page (default is 10)
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *           enum: [ENABLED, SUSPENDED, BANNED]
+ *         description: Filter users by account status
  *     responses:
  *       200:
  *         description: A paginated list of users with total count
@@ -52,20 +58,32 @@ import { authMiddleware } from "@heuvera/lib/admin/middleware";
  *                       isHostApproved:
  *                         type: boolean
  *                         example: true
+ *                       accountStatus:
+ *                         type: string
+ *                         example: "ENABLED"
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
  *       401:
  *         description: Unauthorized
  *       500:
  *         description: Internal Server Error
  */
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
     const admin = authMiddleware(req);
-    if (!admin) return admin;
+    if (admin instanceof NextResponse) {
+      return admin;
+    }
 
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") ?? "1", 10);
     const limit = parseInt(searchParams.get("limit") ?? "10", 10);
-    const status = searchParams.get("status") as "ENABLED" | "SUSPENDED" | "BANNED" | null;
+    const status = searchParams.get("status") as
+      | "ENABLED"
+      | "SUSPENDED"
+      | "BANNED"
+      | null;
     const skip = (page - 1) * limit;
 
     const whereClause = status ? { accountStatus: status } : {};
@@ -88,10 +106,12 @@ export async function GET(req: NextRequest) {
       prisma.user.count({ where: whereClause }),
     ]);
 
-    return NextResponse.json({ totalUsers, users }, { status: 200 });
+    return NextResponse.json({ totalUsers, users });
   } catch (error: any) {
     console.error("Error fetching users:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
-

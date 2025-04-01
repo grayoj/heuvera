@@ -32,10 +32,17 @@ import { authMiddleware } from "@heuvera/lib/admin/middleware";
  *       500:
  *         description: Internal Server Error
  */
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest): Promise<Response> {
   try {
-    const admin = authMiddleware(req);
-    if (!admin) return admin;
+    const adminResult = authMiddleware(req);
+
+    if (typeof adminResult !== "object" || adminResult instanceof String) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    if (adminResult instanceof NextResponse) {
+      return adminResult;
+    }
 
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") ?? "1", 10);
@@ -60,10 +67,16 @@ export async function GET(req: NextRequest) {
       prisma.review.aggregate({ _avg: { rating: true } }),
     ]);
 
-    return NextResponse.json({ totalReviews, averageRating: averageRating._avg.rating ?? 0, reviews });
+    return NextResponse.json({
+      totalReviews,
+      averageRating: averageRating._avg.rating ?? 0,
+      reviews,
+    });
   } catch (error) {
     console.error("Error fetching reviews:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
-

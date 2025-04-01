@@ -16,7 +16,9 @@ export function authMiddleware(req: NextRequest) {
     const decoded = jwt.verify(token, JWT_SECRET);
     return decoded;
   } catch (error) {
-    return NextResponse.json({ error: "Invalid or expired token" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Invalid or expired token" },
+      { status: 401 },
+    );
   }
 }
-

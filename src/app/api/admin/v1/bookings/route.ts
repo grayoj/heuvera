@@ -35,7 +35,8 @@ import { authMiddleware } from "@heuvera/lib/admin/middleware";
 export async function GET(req: NextRequest) {
   try {
     const admin = authMiddleware(req);
-    if (!admin) return admin;
+    if (!admin)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") ?? "1", 10);
@@ -62,10 +63,18 @@ export async function GET(req: NextRequest) {
       prisma.booking.aggregate({ _sum: { totalPrice: true } }),
     ]);
 
-    return NextResponse.json({ totalBookings, totalRevenue: totalRevenue._sum.totalPrice ?? 0, bookings });
+    return NextResponse.json({
+      totalBookings,
+      totalRevenue: totalRevenue._sum.totalPrice
+        ? Number(totalRevenue._sum.totalPrice)
+        : 0, // Ensure it's a number
+      bookings,
+    });
   } catch (error) {
     console.error("Error fetching bookings:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
-
