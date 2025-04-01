@@ -33,6 +33,7 @@
         "react-dom": "^19.0.0",
         "react-icons": "^5.5.0",
         "react-leaflet": "^5.0.0",
+        "remixicon": "^4.6.0",
         "remixicons": "^4.6.1",
         "swagger-jsdoc": "^6.2.8",
         "swagger-typescript-api": "^13.0.23",
@@ -1755,6 +1756,8 @@
     "regexp.prototype.flags": ["regexp.prototype.flags@1.5.4", "", { "dependencies": { "call-bind": "^1.0.8", "define-properties": "^1.2.1", "es-errors": "^1.3.0", "get-proto": "^1.0.1", "gopd": "^1.2.0", "set-function-name": "^2.0.2" } }, "sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA=="],
 
     "remarkable": ["remarkable@2.0.1", "", { "dependencies": { "argparse": "^1.0.10", "autolinker": "^3.11.0" }, "bin": { "remarkable": "bin/remarkable.js" } }, "sha512-YJyMcOH5lrR+kZdmB0aJJ4+93bEojRZ1HGDn9Eagu6ibg7aVZhc3OWbbShRid+Q5eAfsEqWxpe+g5W5nYNfNiA=="],
+
+    "remixicon": ["remixicon@4.6.0", "", {}, "sha512-bKM5odjqE1yzVxEZGJE7F79WHhNrJFIKHXR+GG+P1IWXn8AnJZhl8SbIRDJsNAvIqx4VPkNwjuHfc42tutMDpQ=="],
 
     "remixicons": ["remixicons@4.6.1", "", {}, "sha512-ZAgOUi62SP94NzcgJK60HHCsV4zk7b9l+2Vtcc33InT3XfwyPL6wiLG9FEofSfFdL6T0RoOrnUCUMNllgxrjEA=="],
 
