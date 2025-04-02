@@ -3,22 +3,9 @@
 import { Button } from "@heuvera/components/ui/button";
 import { LucideSlidersHorizontal } from "lucide-react";
 import { useState } from "react";
-import { FilterModal } from "../filtermodal";
+import { FilterModal } from "../FilterModal";
 
-interface FilterButtonProps {
-  setActiveFilters: (filters: {
-    priceRange: [number, number];
-    bedrooms: string | null;
-    beds: string | null;
-    bathrooms: string | null;
-    amenities: string[];
-    propertyTypes: string[];
-    instantBooking: boolean;
-    selfCheckIn: boolean;
-  }) => void;
-}
-
-type FilterProps = {
+export interface FilterProps {
   priceRange: [number, number];
   bedrooms: string | null;
   beds: string | null;
@@ -27,18 +14,32 @@ type FilterProps = {
   propertyTypes: string[];
   instantBooking: boolean;
   selfCheckIn: boolean;
+}
+
+interface FilterButtonProps {
+  setActiveFilters: React.Dispatch<React.SetStateAction<Partial<FilterProps>>>;
+}
+
+const defaultFilters: FilterProps = {
+  priceRange: [0, 1000],
+  bedrooms: null,
+  beds: null,
+  bathrooms: null,
+  amenities: [],
+  propertyTypes: [],
+  instantBooking: false,
+  selfCheckIn: false,
 };
 
 export function FilterButton({ setActiveFilters }: FilterButtonProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleApplyFilters = (newFilters: FilterProps) => {
-    setActiveFilters(newFilters);
+  const handleApplyFilters = (newFilters: Partial<FilterProps>) => {
+    setActiveFilters((prevFilters) => ({
+      ...prevFilters,
+      ...newFilters,
+    }));
     setIsModalOpen(false);
-  };
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
   };
 
   return (
@@ -47,7 +48,7 @@ export function FilterButton({ setActiveFilters }: FilterButtonProps) {
         variant="outline"
         className="bg-transparent border border-[#E3E2D9] dark:border-[#555555] text-[#555555] dark:text-[#E3E2D9] shadow-none text-xs sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-serif h-10 sm:h-9 md:h-10 px-3 sm:px-4"
         size="default"
-        onClick={handleOpenModal}
+        onClick={() => setIsModalOpen(true)}
       >
         <LucideSlidersHorizontal className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-xl mr-1 sm:mr-2" />
         Filter
@@ -56,7 +57,7 @@ export function FilterButton({ setActiveFilters }: FilterButtonProps) {
       {isModalOpen && (
         <FilterModal
           onApplyFilters={handleApplyFilters}
-          initialFilters={{}}
+          initialFilters={defaultFilters}
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
         />

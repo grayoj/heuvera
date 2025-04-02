@@ -18,7 +18,7 @@ import React from "react";
 import { IoCompass, IoCompassOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Footer from "@heuvera/components/footer";
-import Link from "next/link";
+import { ProfileDropdown } from "@heuvera/components/ProfileDropdown";
 
 interface MarketplaceContextType {
   selected: string;
@@ -132,7 +132,6 @@ export function MarketplaceProvider({
               <HeuveraLogo width={35} height={35} />
             </div>
           )}
-          {/* Desktop Navigation Items */}
           {!isMobile && (
             <div className="flex items-center space-x-8">
               {NavigationContent.slice(0, 3).map((content, index) => (
@@ -153,36 +152,14 @@ export function MarketplaceProvider({
               ))}
             </div>
           )}
-          {!isMobile && (
-            <Link href={`/profile`}>
-              <div className="flex-shrink-0 flex items-center">
-                <div className="size-10 md:size-8">
-                  <Avatar
-                    className={`rounded-full overflow-hidden block ${
-                      selected === "Profile"
-                        ? "ring-2 ring-[#7B4F3A] dark:ring-[#8B5F4D]"
-                        : ""
-                    }`}
-                  >
-                    <AvatarImage
-                      src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
-                      alt="avatar"
-                    />
-                    <AvatarFallback>FG</AvatarFallback>
-                  </Avatar>
-                </div>
-              </div>
-            </Link>
-          )}
+          {!isMobile && <ProfileDropdown selected="Profile" />}
         </div>
 
-        {/* Main Content */}
         <div className="pb-32 w-full flex-1 flex flex-col gap-32">
           {children}
           <Footer />
         </div>
 
-        {/* Mobile Navigation Bar */}
         {isMobile && (
           <div className="w-full h-[90px] fixed bottom-3 left-0 px-4 z-[1000]">
             <div className="w-full bg-[#E3E2D9] dark:bg-[#555555] shadow-md rounded-2xl px-4 flex items-center h-[70px] justify-between">

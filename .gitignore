@@ -20,6 +20,8 @@
 # production
 /build
 
+src/client/
+
 # misc
 .DS_Store
 *.pem

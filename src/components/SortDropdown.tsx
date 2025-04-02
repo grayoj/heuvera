@@ -1,6 +1,5 @@
 import React from "react";
 
-// Define the type for sort options
 export type SortOption = "recent" | "price-low" | "price-high";
 
 interface SortDropdownProps {
@@ -33,7 +32,6 @@ const SortDropdown: React.FC<SortDropdownProps> = ({
         <option value="price-low text-[#323232]">Price: Low to High</option>
         <option value="price-high text-[#323232]">Price: High to Low</option>
       </select>
-      {/* Custom dropdown arrow */}
       <div
         className="
                 absolute 
