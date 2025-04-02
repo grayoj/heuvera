@@ -10,9 +10,8 @@ const LeaseRentStays = () => {
       {["Rent", "Stays"].map((option) => (
         <button
           key={option}
-          className={`h-8 md:h-7 lg:h-7 xl:h-7 2xl:h-7 px-0 w-full md:w-auto md:px-2 lg:px-2 xl:px-4 2xl:px-4 rounded-[4px] text-sm md:text-sm lg:text-sm xl:text-sm 2xl:text-sm font-serif font-medium transition-all ${
-            selected === option ? "bg-[#FBFAF6] text-black" : "text-gray-600"
-          }`}
+          className={`h-8 md:h-7 lg:h-7 xl:h-7 2xl:h-7 px-0 w-full md:w-auto md:px-2 lg:px-2 xl:px-4 2xl:px-4 rounded-[4px] text-sm md:text-sm lg:text-sm xl:text-sm 2xl:text-sm font-serif font-medium transition-all cursor-pointer ${selected === option ? "bg-[#FBFAF6] text-black" : "text-gray-600"
+            }`}
           onClick={() => setSelected(option)}
         >
           {option}
