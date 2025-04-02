@@ -17,7 +17,7 @@ export default function BookingTable() {
     <div className="relative 2xl:w-full xl:w-full lg:overflow-x-auto md:overflow-x-auto sm:overflow-x-auto shadow-none md:shadow-md">
       <div className="hidden md:block">
         <table className="w-full text-sm text-left rtl:text-right text-tableText">
-          <thead className="bg-[#E3E2D966] text-[#898989]">
+          <thead className="bg-[#E3E2D966] dark:bg-[#55555566] text-[#898989] dark:text-[#666666]">
             <tr className="text-center">
               {tableHeadings.map((heading, index) => (
                 <th
@@ -37,7 +37,7 @@ export default function BookingTable() {
             {pastBookings.map((booking, index) => (
               <tr
                 key={index}
-                className="bg-[#F8F7F2] border-b text-center border-gray-200 hover:bg-gray-50"
+                className="bg-[#F8F7F2] dark:bg-[#333333] border-b text-center border-gray-200 dark:border-[#555555] hover:bg-gray-50"
               >
                 <td className="border-x py-2">{index + 1}</td>
                 <td className="border-x flex justify-center items-center py-2">

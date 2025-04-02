@@ -26,21 +26,21 @@ export default function BookingHistory() {
         <div className="flex space-x-3 md:space-x-5 py-3 items-center">
           <Button
             variant="default"
-            className="bg-[#7B4F3A] hover:bg-[#664130] hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+            className="bg-[#7B4F3A] hover:bg-[#664130] text-white hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
           >
             Rebook
             <RotateCw />
           </Button>
           <Button
             variant="outline"
-            className="hover:cursor-pointer bg-[#F8F7F2] px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+            className="hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
           >
             Export booking report
             <Newspaper />
           </Button>
           <Button
             variant="outline"
-            className="hover:cursor-pointer bg-[#F8F7F2] px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+            className="hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
           >
             Sort by:
             <ArrowDown />
