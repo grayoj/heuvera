@@ -165,7 +165,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             </div>
           </div>
 
-          <div className="h-8 w-px bg-[#DDDDDD]"></div>
+          <div className="h-8 w-px bg-[#DDDDDD] dark:bg-[#555555]" />
 
           <div
             className={`flex-1 p-4 cursor-pointer ${activeFilter === "dates" ? "bg-[#F8F7F2] dark:bg-[#333333]" : ""}`}
@@ -181,7 +181,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             </div>
           </div>
 
-          <div className="h-8 w-px bg-[#DDDDDD]"></div>
+          <div className="h-8 w-px bg-[#DDDDDD] dark:bg-[#555555]" />
 
           <div
             className={`flex-1 p-4 cursor-pointer ${activeFilter === "guests" ? "bg-[#F8F7F2] dark:bg-[#323232]" : ""}`}
@@ -465,11 +465,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
               <motion.button
                 key={filter.id}
                 onClick={() => toggleFilter(filter.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${
-                  activeFilter === filter.id
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${activeFilter === filter.id
                     ? "border-[#7B4F3A] dark:border-[#8B5F4D] bg-[#F8F7F2] dark:bg-[#333333] text-[#7B4F3A] dark:text-[#8B5F4D]"
                     : "border-[#E3E2D9] dark:border-[#555555] text-[#323232]"
-                }`}
+                  }`}
                 whileTap={{ scale: 0.95 }}
               >
                 {filter.icon}

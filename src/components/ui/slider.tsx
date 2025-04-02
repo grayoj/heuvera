@@ -38,13 +38,13 @@ function Slider({
       <SliderPrimitive.Track
         data-slot="slider-track"
         className={cn(
-          "bg-[#F3F2EC] relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5",
+          "bg-[#F3F2EC] dark:bg-[#555555] relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5",
         )}
       >
         <SliderPrimitive.Range
           data-slot="slider-range"
           className={cn(
-            "bg-[#7A3B10] absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full hover:bg-[#A0522D]", // Change hover color for the range
+            "bg-[#7B4F3A] dark:bg-[#8B5F4D] absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full hover:bg-[#A0522D]", // Change hover color for the range
           )}
         />
       </SliderPrimitive.Track>
@@ -52,7 +52,7 @@ function Slider({
         <SliderPrimitive.Thumb
           data-slot="slider-thumb"
           key={index}
-          className="border-[#F3F2EC] bg-[#7A3B10] block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:bg-[#A0522D] focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50" // Change hover color for the thumb
+          className="border-[#F3F2EC] bg-[#7B4F3A] dark:bg-[#8B5F4D] block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:bg-[#A0522D] focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50" // Change hover color for the thumb
         />
       ))}
     </SliderPrimitive.Root>

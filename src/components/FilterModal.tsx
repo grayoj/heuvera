@@ -15,6 +15,8 @@ import {
   CheckIcon,
   LucideSlidersHorizontal,
   X,
+  LucideSearch,
+  LucideRotateCw,
 } from "lucide-react";
 import {
   IoBedOutline,
@@ -112,7 +114,7 @@ export function FilterModal({
   );
   const [amenities, setAmenities] = useState<string[]>(
     initialFilters?.amenities ||
-      AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
+    AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
   );
   const [propertyTypes, setPropertyTypes] = useState<string[]>(
     initialFilters?.propertyTypes || [],
@@ -172,7 +174,7 @@ export function FilterModal({
     <>
       <div className="fixed inset-0 bg-black/50 z-50" onClick={onClose}></div>
 
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] xl:w-[60%] 2xl:w-[35%] h-[60%] sm:h-3/5 bg-[#f8f7f2] rounded-lg shadow-lg z-50 flex flex-col">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] xl:w-[60%] 2xl:w-[35%] h-[60%] sm:h-3/5 bg-[#F8F7F2] dark:bg-[#333333] rounded-lg shadow-lg z-50 flex flex-col">
         <div className="flex items-center justify-between border-b p-4 sm:p-5 md:p-6">
           <div className="flex items-center">
             <LucideSlidersHorizontal className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
@@ -182,7 +184,7 @@ export function FilterModal({
           </div>
           <button
             onClick={onClose}
-            className="rounded-full h-6 w-6 sm:h-8 sm:w-8 flex items-center justify-center hover:bg-gray-100"
+            className="rounded-full h-6 w-6 sm:h-8 sm:w-8 flex items-center justify-center hover:bg-gray-100 hover:dark:bg-[#444444]"
           >
             <X className="h-3 w-3 sm:h-4 sm:w-4" />
           </button>
@@ -197,7 +199,7 @@ export function FilterModal({
                   color=""
                   className={cn(
                     "h-4 w-4 sm:h-5 sm:w-5",
-                    isActive ? "text-[#7B4513]" : "text-[#323223]",
+                    isActive ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323223] dark:text-[#F8F7F2]",
                   )}
                 />
               );
@@ -207,21 +209,19 @@ export function FilterModal({
                   onClick={() => handleTabChange(id as TabType)}
                   className={cn(
                     "flex items-center justify-center gap-1 sm:gap-2 h-14 sm:h-16 md:h-20 max-w-fit rounded-none text-xs sm:text-sm",
-                    isActive ? "border-b-2 border-[#7B4513]" : "",
+                    isActive ? "border-b-2 border-[#7B4F3A] dark:border-[#8B5F4D]" : "",
                   )}
                 >
                   <IconComponent />
                   <span
-                    className={`hidden sm:inline ${
-                      isActive ? "text-[#7B4513]" : "text-[#323223]"
-                    }`}
+                    className={`hidden sm:inline ${isActive ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323223] dark:text-[#F8F7F2]"
+                      }`}
                   >
                     {label}
                   </span>
                   <span
-                    className={`sm:hidden ${
-                      isActive ? "text-[#7B4513]" : "text-[#323223]"
-                    }`}
+                    className={`sm:hidden ${isActive ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323223] dark:text-[#F8F7F2]"
+                      }`}
                   >
                     {mobileLabel || label}
                   </span>
@@ -268,12 +268,13 @@ export function FilterModal({
             <Button
               variant="outline"
               onClick={handleReset}
-              className="rounded-full bg-[#f0efe9] hover:bg-[#e8e7e1] text-xs sm:text-sm"
+              className="rounded-lg bg-[#f0efe9] hover:bg-[#e8e7e1] text-xs sm:text-sm"
             >
+              <LucideRotateCw />
               Reset
             </Button>
             <Button
-              className="rounded-full bg-[#8B4513] hover:bg-[#7a3b10] text-white text-xs sm:text-sm"
+              className="rounded-lg bg-[#7B4F3A] dark:bg-[#8B5F4D] hover:bg-[#7a3b10] text-white text-xs sm:text-sm"
               onClick={() => {
                 onApplyFilters({
                   priceRange,
@@ -288,6 +289,7 @@ export function FilterModal({
                 onClose();
               }}
             >
+              <LucideSearch />
               Search
             </Button>
           </div>
@@ -326,13 +328,13 @@ function PriceTab({ priceRange, setPriceRange }: PriceTabProps) {
             {isEditing ? "Save" : "Edit"}
           </button>
         </div>
-        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 rounded-full p-[1px] bg-[#E3E2D9]">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-2 rounded-full p-[1px] bg-[#E3E2D9] dark:bg-[#555555]">
           {isEditing ? (
             <>
-              <div className="w-1/2 rounded-full bg-[#E3E2D9] p-0.5">
-                <div className="w-full rounded-full bg-[#F3F2EC] flex items-center justify-center gap-1 font-serif">
+              <div className="w-1/2 rounded-full bg-[#E3E2D9] dark:bg-[#555555] p-0.5">
+                <div className="w-full rounded-full bg-[#F3F2EC] dark:bg-[#444444] gap-0.5 flex items-center justify-center font-serif">
                   <Currency
-                    className="h-3 w-3 sm:h-4 sm:w-4"
+                    className="h-3 w-3 sm:h-4 sm:w-4 mr-0.5"
                     color="[#323223]"
                   />
                   <span className="text-xs sm:text-sm">Min:</span>
@@ -342,15 +344,15 @@ function PriceTab({ priceRange, setPriceRange }: PriceTabProps) {
                     onChange={(e) =>
                       setPriceRange([Number(e.target.value), priceRange[1]])
                     }
-                    className="w-1/2 rounded-full bg-[#F3F2EC] sm:p-2 font-serif"
+                    className="w-1/2 rounded-full bg-[#F3F2EC] dark:bg-[#444444] sm:py-2 font-serif font-semibold h-9"
                   />
                 </div>
               </div>
               <span className="text-xs sm:text-sm">to</span>
-              <div className="w-1/2 rounded-full bg-[#E3E2D9] p-0.5">
-                <div className="w-full rounded-full bg-[#F3F2EC] flex items-center justify-center gap-1 font-serif">
+              <div className="w-1/2 rounded-full bg-[#E3E2D9] dark:bg-[#555555] p-0.5">
+                <div className="w-full rounded-full bg-[#F3F2EC] dark:bg-[#444444] flex items-center justify-center gap-0.5 font-serif">
                   <Currency
-                    className="h-3 w-3 sm:h-4 sm:w-4"
+                    className="h-3 w-3 sm:h-4 sm:w-4 mr-0.5"
                     color="[#323223]"
                   />
                   <span className="text-xs sm:text-sm">Max:</span>
@@ -360,15 +362,15 @@ function PriceTab({ priceRange, setPriceRange }: PriceTabProps) {
                     onChange={(e) =>
                       setPriceRange([priceRange[0], Number(e.target.value)])
                     }
-                    className="w-1/2 rounded-full bg-[#F3F2EC] sm:p-2 font-serif"
+                    className="w-1/2 rounded-full bg-[#F3F2EC] dark:bg-[#444444] sm:py-2 font-serif font-semibold h-9"
                   />
                 </div>
               </div>
             </>
           ) : (
             <>
-              <div className="w-1/2 rounded-full bg-[#E3E2D9] p-0.5">
-                <div className="w-full rounded-full bg-[#F3F2EC] p-1 sm:p-2 flex items-center justify-center gap-1 sm:gap-2 font-serif">
+              <div className="w-1/2 rounded-full bg-[#E3E2D9] dark:bg-[#555555] p-0.5">
+                <div className="w-full rounded-full bg-[#F3F2EC] dark:bg-[#444444] p-1 sm:p-2 flex items-center justify-center gap-1 sm:gap-2 font-serif">
                   <Currency
                     className="h-3 w-3 sm:h-4 sm:w-4"
                     color="[#323223]"
@@ -381,8 +383,9 @@ function PriceTab({ priceRange, setPriceRange }: PriceTabProps) {
                   </span>
                 </div>
               </div>
-              <div className="w-1/2 rounded-full bg-[#E3E2D9] p-0.5">
-                <div className="w-full rounded-full bg-[#F3F2EC] p-1 sm:p-2 flex items-center justify-center gap-1 sm:gap-2 font-serif">
+              <div className="border-b border-b-1 border-b-[#E3E2D9] dark:border-b-[#444444] w-6" />
+              <div className="w-1/2 rounded-full bg-[#E3E2D9] dark:bg-[#555555] p-0.5">
+                <div className="w-full rounded-full bg-[#F3F2EC] dark:bg-[#444444] p-1 sm:p-2 flex items-center justify-center gap-1 sm:gap-2 font-serif">
                   <Currency
                     className="h-3 w-3 sm:h-4 sm:w-4"
                     color="[#323223]"
@@ -416,15 +419,15 @@ function RoomsTab({ bedrooms, beds, bathrooms, onSelect }: RoomsTabProps) {
       {Object.entries(NUMBER_OPTIONS).map(([type, options], index, array) => (
         <div key={type}>
           <h3 className="font-medium mb-2 text-sm capitalize">{type}</h3>
-          <div className="flex gap-1 sm:gap-2 flex-wrap bg-[#E3E2D9] rounded-full min-w-fit max-w-fit p-1">
+          <div className="flex gap-1 sm:gap-2 flex-wrap bg-[#E3E2D9] dark:bg-[#555555] rounded-full min-w-fit max-w-fit p-1">
             {options.map((num) => (
               <button
                 key={`${type}-${num}`}
                 className={cn(
-                  "rounded-full py-1 px-1 sm:py-2 sm:px-2 md:py-1 md:px-3 text-xs sm:text-sm border",
+                  "rounded-full py-1 px-1 sm:py-2 sm:px-2 md:py-1 md:px-3 text-xs sm:text-sm",
                   { bedrooms, beds, bathrooms }[type] === num
-                    ? "bg-[#F3F2EC] shadow shadow-lg"
-                    : "bg-[#E3E2D9]",
+                    ? "bg-[#F3F2EC] dark:bg-[#444444] shadow shadow-lg"
+                    : "bg-[#E3E2D9] dark:bg-[#555555]",
                 )}
                 onClick={() =>
                   onSelect(type as "bedrooms" | "beds" | "bathrooms", num)
@@ -435,7 +438,7 @@ function RoomsTab({ bedrooms, beds, bathrooms, onSelect }: RoomsTabProps) {
             ))}
           </div>
           {index < array.length - 1 && (
-            <div className="border-b border-[#E3E2D9] w-full my-3 sm:my-4 md:my-5" />
+            <div className="border-b border-[#E3E2D9] dark:border-[#555555] w-full my-3 sm:my-4 md:my-5" />
           )}
         </div>
       ))}
@@ -461,30 +464,30 @@ function TypeTab({ propertyTypes, togglePropertyType }: TypeTabProps) {
             className={cn(
               "flex items-center gap-1 sm:gap-2 rounded-full py-2 px-3 sm:py-3 sm:px-4 border text-xs sm:text-sm",
               propertyTypes.includes(name)
-                ? "bg-[#f8efe9] border-[#8B4513]"
-                : "bg-[#f0efe9]",
+                ? "bg-[#7B4F3A44] dark:bg-[#8B5F4D44] border-[#7B4F3A] dark:border-[#8B5F4D]"
+                : "bg-[#f0efe9] dark:bg-[#555555]",
             )}
             onClick={() => togglePropertyType(name)}
           >
             <div
               className={cn(
                 "flex items-center justify-center",
-                propertyTypes.includes(name) ? "bg-[#f8efe9]" : "",
+                propertyTypes.includes(name) ? "bg-[#f8efe9] dark:bg-[#555555]" : "",
               )}
             >
               <Icon
                 className={cn(
-                  "h-4 w-4 sm:h-5 sm:w-5",
+                  "h-4 w-4 sm:h-5 sm:w-5 bg-none",
                   propertyTypes.includes(name)
-                    ? "text-[#8B4513]"
-                    : "text-black",
+                    ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                    : "text-black dark:text-gray-100",
                 )}
               />
             </div>
             <span
               className={cn(
                 "",
-                propertyTypes.includes(name) ? "text-[#8B4513]" : "text-black",
+                propertyTypes.includes(name) ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-black dark:text-gray-100",
               )}
             >
               {name}
@@ -494,8 +497,8 @@ function TypeTab({ propertyTypes, togglePropertyType }: TypeTabProps) {
                 className={cn(
                   "ml-auto h-4 w-4 sm:h-5 sm:w-5",
                   propertyTypes.includes(name)
-                    ? "text-[#8B4513]"
-                    : "text-[#8B4513]",
+                    ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                    : "text-[#7B4F3A] dark:text-[#8B5F4D]",
                 )}
               />
             )}
@@ -524,28 +527,28 @@ function AmenitiesTab({ amenities, toggleAmenity }: AmenitiesTabProps) {
             className={cn(
               "flex items-center gap-1 sm:gap-2 rounded-full py-2 px-3 sm:py-3 sm:px-4 border text-xs sm:text-sm",
               amenities.includes(name)
-                ? "bg-[#f8efe9] border-[#8B4513]"
-                : "bg-[#f0efe9]",
+                ? "bg-[#7B4F3A44] dark:bg-[#8B5F4D44] border-[#7B4F3A] dark:border-[#8B5F4D]"
+                : "bg-[#f0efe9] dark:bg-[#555555]",
             )}
             onClick={() => toggleAmenity(name)}
           >
             <div
               className={cn(
                 "flex items-center justify-center",
-                amenities.includes(name) ? "bg-[#f8efe9]" : "",
+                amenities.includes(name) ? "bg-[#f8efe9] dark:bg-[#555555]" : "",
               )}
             >
               <Icon
                 className={cn(
                   "h-4 w-4 sm:h-5 sm:w-5",
-                  amenities.includes(name) ? "text-[#8B4513]" : "text-black",
+                  amenities.includes(name) ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-black dark:text-gray-100",
                 )}
               />
             </div>
             <span
               className={cn(
                 "",
-                amenities.includes(name) ? "text-[#8B4513]" : "text-black",
+                amenities.includes(name) ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-black dark:text-gray-100",
               )}
             >
               {name}
@@ -555,8 +558,8 @@ function AmenitiesTab({ amenities, toggleAmenity }: AmenitiesTabProps) {
                 className={cn(
                   "ml-auto h-4 w-4 sm:h-5 sm:w-5",
                   amenities.includes(name)
-                    ? "text-[#8B4513]"
-                    : "text-[#8B4513]",
+                    ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                    : "text-[#7B4F3A] dark:text-[#8B5F4D]",
                 )}
               />
             )}
@@ -664,12 +667,12 @@ function BookTab({
               "flex items-center justify-between rounded-full py-2 px-3 sm:py-3 sm:px-4 w-full border text-xs sm:text-sm",
               (label === "Instant booking" && instantBooking) ||
                 (label === "Self check-in" && selfCheckIn)
-                ? "bg-[#f8efe9] border-[#8B4513]"
-                : "bg-[#f0efe9]",
+                ? "bg-[#7B4F3A44] dark:bg-[#8B5F4D44] border-[#7B4F3A] dark:border-[#8B5F4D]"
+                : "bg-[#f0efe9] dark:bg-[#555555]",
             )}
           >
             <div className="flex items-center gap-1 sm:gap-2">
-              <div className="h-4 w-4 sm:h-6 sm:w-6 rounded-full bg-white border flex items-center justify-center">
+              <div className="h-4 w-4 sm:h-6 sm:w-6 rounded-full bg-white dark:bg-[#666666] border flex items-center justify-center">
                 <Icon />
               </div>
               <span>{label}</span>
@@ -679,7 +682,7 @@ function BookTab({
                 label === "Instant booking" ? instantBooking : selfCheckIn
               }
               onCheckedChange={() => handleOptionClick(label)}
-              className="data-[state=checked]:bg-[#8B4513] scale-75 sm:scale-100"
+              className="data-[state=checked]:bg-[#7B4F3A] dark:bg-[#8B5F4D] scale-75 sm:scale-100"
             />
           </button>
         ))}

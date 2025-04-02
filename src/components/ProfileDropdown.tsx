@@ -49,7 +49,7 @@ export function ProfileDropdown({
         <DropdownMenuItem asChild>
           <Link
             href="/profile"
-            className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md"
+            className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-[#444444] rounded-md"
           >
             <RiSettings3Line className="text-lg" />
             <span>Settings</span>
@@ -59,7 +59,7 @@ export function ProfileDropdown({
         <DropdownMenuItem asChild>
           <Link
             href="/host/dashboard"
-            className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md"
+            className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-[#444444] rounded-md"
           >
             <RiHomeSmileLine className="text-lg" />
             <span>Switch to Host</span>
@@ -68,7 +68,7 @@ export function ProfileDropdown({
 
         <DropdownMenuItem
           onClick={() => console.log("Logging out...")}
-          className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md cursor-pointer"
+          className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-[#444444] rounded-md cursor-pointer"
         >
           <RiLogoutBoxRLine className="text-lg text-red-500" />
           <span className="text-red-500">Logout</span>
