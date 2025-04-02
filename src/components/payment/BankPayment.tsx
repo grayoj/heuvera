@@ -56,18 +56,18 @@ export default function BankPayment() {
       </motion.div>
 
       <motion.div
-        className="flex items-center space-x-2 p-3 bg-[#f9f5f3] rounded-lg text-[14px] text-gray-600 mt-2"
+        className="flex items-center space-x-2 p-3 bg-[#f9f5f3] dark:bg-[#444444] rounded-lg text-[14px] text-gray-600 dark:text-[#A7A7A7] mt-2"
         variants={itemVariants}
         whileHover={{ backgroundColor: "#f2ebe7" }}
       >
-        <Clock size={16} className="text-[#7B4F3A]" />
+        <Clock size={16} className="text-[#7B4F3A] dark:text-[#8B5F4D]" />
         <span>Bank transfers typically take 2-3 business days to process</span>
       </motion.div>
 
       <motion.div variants={itemVariants}>
         <motion.button
           type="button"
-          className="w-full bg-[#7B4F3A] py-3 px-6 text-white rounded-full hover:bg-[#664130] hover:cursor-pointer mt-4"
+          className="w-full bg-[#7B4F3A] dark:bg-[#8B5F4D] py-3 px-6 text-white rounded-lg hover:bg-[#664130] hover:cursor-pointer mt-4"
           variants={buttonVariants}
           whileHover="hover"
           whileTap="tap"

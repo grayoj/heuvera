@@ -28,7 +28,7 @@ export default function PaymentSecurity() {
 
   return (
     <motion.div
-      className="w-72 bg-[#f9f5f3] p-6 rounded-lg h-fit"
+      className="w-72 bg-[#f9f5f3] dark:bg-[#444444] p-6 rounded-lg h-fit"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -44,11 +44,11 @@ export default function PaymentSecurity() {
           animate={{ rotate: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <AlertCircle size={18} className="mr-2 text-[#7B4F3A]" />
+          <AlertCircle size={18} className="mr-2 text-[#7B4F3A] dark:text-[#8B5F4D]" />
         </motion.div>
         Payment Security
       </motion.h3>
-      <ul className="space-y-3 text-sm text-gray-700">
+      <ul className="space-y-3 text-sm text-gray-700 dark:text-[#A7A7A7]">
         {[
           "All transactions are secured with 256-bit encryption",
           "We never store your complete card details on our servers",
@@ -61,7 +61,7 @@ export default function PaymentSecurity() {
             variants={itemVariants}
           >
             <motion.div
-              className="h-6 w-6 flex-shrink-0 rounded-full bg-[#7B4F3A] text-white flex items-center justify-center text-base leading-none mr-2"
+              className="h-6 w-6 flex-shrink-0 rounded-full bg-[#7B4F3A] dark:bg-[#8B5F4D] text-white flex items-center justify-center text-base leading-none mr-2"
               whileHover={{ scale: 1.1 }}
             >
               ✓
@@ -76,7 +76,7 @@ export default function PaymentSecurity() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.5 }}
       >
-        <p className="text-sm text-gray-600">Need help with payments?</p>
+        <p className="text-sm text-gray-600 dark:text-[#A7A7A7]">Need help with payments?</p>
         <motion.div
           variants={buttonVariants}
           initial="initial"
@@ -84,7 +84,7 @@ export default function PaymentSecurity() {
         >
           <Button
             variant="outline"
-            className="mt-2 w-full border-[#7B4F3A] text-[#7B4F3A] hover:bg-[#f9f5f3]"
+            className="mt-2 w-full border-[#7B4F3A] border-[#7B4F3A] hover:bg-[#f9f5f3] hover:bg-[#444444]"
           >
             Contact Support
           </Button>

@@ -72,17 +72,17 @@ export default function CreditPayment() {
           id="saveCard"
           className="rounded text-[#7B4F3A]"
         />
-        <label htmlFor="saveCard" className="text-[14px] text-gray-700">
+        <label htmlFor="saveCard" className="text-[14px] text-gray-700 dark:text-[#A7A7A7]">
           Save card for future payments
         </label>
       </motion.div>
 
       <motion.div
-        className="flex items-center space-x-2 p-3 bg-[#f9f5f3] rounded-lg text-[14px] text-gray-600 mt-2"
+        className="flex items-center space-x-2 p-3 bg-[#f9f5f3] dark:bg-[#444444] rounded-lg text-[14px] text-gray-600 dark:text-[#A7A7A7] mt-2"
         variants={itemVariants}
         whileHover={{ backgroundColor: "#f2ebe7" }}
       >
-        <Lock size={16} className="text-[#7B4F3A]" />
+        <Lock size={16} className="text-[#7B4F3A] dark:text-[#8B5F4D]" />
         <span>
           Your payment information is secured with end-to-end encryption
         </span>
@@ -91,7 +91,7 @@ export default function CreditPayment() {
       <motion.div variants={itemVariants}>
         <motion.button
           type="button"
-          className="w-full bg-[#7B4F3A] py-3 px-6 text-white rounded-lg hover:bg-[#664130] hover:cursor-pointer mt-4"
+          className="w-full bg-[#7B4F3A] dark:bg-[#8B5F4D] py-3 px-6 text-white rounded-lg hover:bg-[#664130] hover:cursor-pointer mt-4"
           variants={buttonVariants}
           whileHover="hover"
           whileTap="tap"
