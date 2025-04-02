@@ -7,6 +7,7 @@ import { PropertyData } from "@heuvera/components/data/PropertyData";
 import FavoritesHeader from "@heuvera/components/header/FavoritesHeader";
 import useIsMobile from "@heuvera/hooks/IsMobile";
 import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
+import PropertyListView from "@heuvera/components/cards/PropertyCards/PropertyList";
 import { Property, ViewMode, SortOption } from "@heuvera/types/map";
 
 export default function Favorites() {
@@ -45,19 +46,10 @@ export default function Favorites() {
   //     setFavorites(prev => prev.filter(property => property.id !== propertyId));
   // };
 
-  // const sortedFavorites = sortProperties(favorites);
-
   return (
     <div className="flex flex-col flex-1 h-full w-full px-4 md:px-8 lg:px-16 xl:px-20 2xl:px-20">
-      {/* Header Section */}
       <div
-        className={`
-                    w-full 
-                    border-b border-[#E3E2D9] 
-                    ${isMobile ? "h-[130px]" : "h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t"} 
-                    flex items-center 
-                    relative 
-                `}
+        className={`w-full border-b border-[#E3E2D9] dark:border-[#555555] ${isMobile ? "h-[130px]" : "h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t"} flex items-center relative`}
       >
         <FavoritesHeader
           setSortOption={setSortOption}
@@ -67,7 +59,7 @@ export default function Favorites() {
         />
       </div>
 
-      {/* Favorites Grid */}
+      {/* No Favorites Message */}
       {PropertyData.length === 0 ? (
         <motion.div
           initial={{ opacity: 0 }}
@@ -84,32 +76,75 @@ export default function Favorites() {
           </p>
         </motion.div>
       ) : (
-        <motion.div
-          className="pt-5 md:pt-10 lg:pt-10 xl:pt-10 2xl:pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 gap-y-8 justify-center"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.15 },
-            },
-          }}
-        >
-          {PropertyData.map((property) => (
-            <motion.div
-              key={property.id}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="w-full flex justify-center"
-            >
-              <PropertyCard property={property} />
-            </motion.div>
-          ))}
-        </motion.div>
+        <>
+          {loading ? (
+            <div className="flex justify-center items-center h-[70vh]">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+            </div>
+          ) : (
+            <>
+              {/* Grid View */}
+              {viewMode === "grid" && (
+                <motion.div
+                  className="pt-5 md:pt-10 lg:pt-10 xl:pt-10 2xl:pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 gap-y-8 justify-center"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.15 },
+                    },
+                  }}
+                >
+                  {PropertyData.map((property) => (
+                    <motion.div
+                      key={property.id}
+                      variants={{
+                        hidden: { opacity: 0, y: 30 },
+                        visible: { opacity: 1, y: 0 },
+                      }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      className="w-full flex justify-center"
+                    >
+                      <PropertyCard property={property} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+
+              {/* List View */}
+              {viewMode === "list" && (
+                <motion.div
+                  className="pt-5 md:pt-10 lg:pt-10 xl:pt-10 2xl:pt-10 flex flex-col gap-y-6"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.15 },
+                    },
+                  }}
+                >
+                  {PropertyData.map((property) => (
+                    <motion.div
+                      key={property.id}
+                      variants={{
+                        hidden: { opacity: 0, y: 30 },
+                        visible: { opacity: 1, y: 0 },
+                      }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      className="w-full"
+                    >
+                      <PropertyListView property={property} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </>
+          )}
+        </>
       )}
     </div>
   );

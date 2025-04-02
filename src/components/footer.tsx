@@ -69,7 +69,6 @@ export default function Footer() {
     },
   ];
 
-  // Platform info content
   const platformInfo = {
     about: {
       title: "About Our Platform",
@@ -97,7 +96,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#F8F7F2] py-16 px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 relative overflow-hidden">
+    <footer className="bg-[#F8F7F2] dark:bg-[#333333] py-16 px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 relative overflow-hidden">
       <style jsx global>{`
         .animated-underline {
           position: relative;
@@ -138,7 +137,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-gray-700 hover:text-[#7B4F3A] text-sm animated-underline"
+                      className="text-[#A7A7A7] hover:text-[#7B4F3A] text-sm animated-underline"
                     >
                       {link.text}
                     </Link>

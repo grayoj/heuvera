@@ -18,7 +18,7 @@ export default function PropertyImage({ imageUrl }: { imageUrl?: string }) {
         </div>
       )}
 
-      <div className="absolute top-3 right-3 size-8 md:size-8 lg:size-6 xl:size-6 2xl:size-8 bg-[#F3F2EC] text-[#3e3e3e] font-bold flex items-center justify-center rounded-full shadow-md">
+      <div className="absolute top-3 right-3 size-8 md:size-8 lg:size-6 xl:size-6 2xl:size-8 bg-[#F8F7F2] dark:bg-[#333333] text-[#3e3e3e] dark:text-[#F8F7F2] font-bold flex items-center justify-center rounded-full shadow-md">
         <BookmarkButton />
       </div>
     </div>

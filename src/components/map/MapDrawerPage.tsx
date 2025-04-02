@@ -30,7 +30,7 @@ const properties: Property[] = [
     image:
       "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format",
     description: "Modern luxury apartment with panoramic city views.",
-    icon: <IoHome className="text-sm text-[#7B4F3A]" />,
+    icon: <IoHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />,
     propertyType: "apartment",
   },
   {
@@ -42,7 +42,7 @@ const properties: Property[] = [
     image:
       "https://images.unsplash.com/photo-1579656592043-6a47e332b902?q=80&w=1974&auto=format",
     description: "Cozy family home with a large backyard.",
-    icon: <FaHome className="text-sm text-[#7B4F3A]" />,
+    icon: <FaHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />,
     propertyType: "house",
   },
 ];
@@ -99,12 +99,12 @@ export default function MapDrawerPage({
   const mapRadius = radius || 1;
 
   return (
-    <div className="relative w-full h-screen bg-[#F8F7F2] flex flex-col">
+    <div className="relative w-full h-screen bg-[#F8F7F2] dark:bg-[#333333] flex flex-col">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="z-[1000] bg-white shadow-subtle w-full"
+        className="z-[1000] bg-white dark:bg-[#333333] shadow-subtle w-full"
       >
         <div className="container mx-auto w-full py-4 flex flex-col items-center justify-between space-x-4 px-4">
           <div className="w-full flex items-center justify-between px-4">
@@ -124,13 +124,13 @@ export default function MapDrawerPage({
                     relative w-full h-10 
                     ${
                       isSearchFocused
-                        ? "bg-white border-[#7B4F3A] shadow-sm"
-                        : "bg-[#F8F7F2] border-[#E3E2D9]"
+                        ? "bg-white dark:bg-[#333333] border-[#7B4F3A] dark:border-[#8B5F4D] shadow-sm"
+                        : "bg-[#F8F7F2] dark:bg-[#333333] border-[#E3E2D9] dark:border-[#555555]"
                     } 
                     border rounded-full flex items-center transition-all duration-300
                 `}
                 >
-                  <div className="flex items-center pl-3 text-[#898989]">
+                  <div className="flex items-center pl-3 text-[#898989] dark:text-[#666666]">
                     <LucideSearch size={16} />
                   </div>
                   <input

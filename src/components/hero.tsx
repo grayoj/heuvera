@@ -6,7 +6,7 @@ export default function Hero() {
     <div className="relative">
       <div className="bg-[#7B4F3A] rounded-3xl w-full h-[600px] md:h-[300px] lg:h-[350px] xl:h-[500px] 2xl:h-[600px] flex flex-col flex-1 justify-center items-center relative overflow-hidden">
         <motion.h1
-          className="text-[#F8F7F2] text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif text-center z-10"
+          className="text-[#F8F7F2] dark:text-[#323232] text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif text-center z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}

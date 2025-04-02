@@ -29,11 +29,11 @@ export default function PropertyDescription() {
   return (
     <div className="flex flex-col">
       <SectionHeaderText title="Description" />
-      <p className="text-base font-serif font-normal text-[#3E3E3E]">
+      <p className="text-base font-serif font-normal text-[#3E3E3E] dark:text-[#666666]">
         {isExpanded ? fullDescription : truncatedDescription}
       </p>
       <button
-        className="text-base font-serif font-normal text-[#3E3E3E] underline self-start mt-2"
+        className="text-base font-serif font-normal text-[#3E3E3E] dark:text-[#666666] underline self-start mt-2"
         onClick={toggleExpanded}
       >
         {isExpanded ? "Show Less" : "Show More"}

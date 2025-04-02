@@ -121,7 +121,7 @@ export function MarketplaceProvider({
     <MarketplaceContext.Provider
       value={{ selected, setSelected, openSearchModal }}
     >
-      <div className="w-full h-full flex flex-col bg-[#F8F7F2]">
+      <div className="w-full h-full flex flex-col bg-[#F8F7F2] dark:bg-[#333333]">
         <div className="px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 h-20 w-full flex items-center justify-between">
           {isMobile ? (
             <div className="w-full flex items-center justify-center">
@@ -144,8 +144,8 @@ export function MarketplaceProvider({
                   }}
                   className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
                     selected === content.title
-                      ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
-                      : "text-[#323232] hover:text-[#7B4F3A]"
+                      ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
+                      : "text-[#323232] dark:text-[#F8F7F2] hover:text-[#7B4F3A] dark:text-[#8B5F4D]"
                   }`}
                 >
                   {content.title}
@@ -159,7 +159,9 @@ export function MarketplaceProvider({
                 <div className="size-10 md:size-8">
                   <Avatar
                     className={`rounded-full overflow-hidden block ${
-                      selected === "Profile" ? "ring-2 ring-[#7B4F3A]" : ""
+                      selected === "Profile"
+                        ? "ring-2 ring-[#7B4F3A] dark:ring-[#8B5F4D]"
+                        : ""
                     }`}
                   >
                     <AvatarImage
@@ -183,7 +185,7 @@ export function MarketplaceProvider({
         {/* Mobile Navigation Bar */}
         {isMobile && (
           <div className="w-full h-[90px] fixed bottom-3 left-0 px-4 z-[1000]">
-            <div className="w-full bg-[#E3E2D9] shadow-md rounded-2xl px-4 flex items-center h-[70px] justify-between">
+            <div className="w-full bg-[#E3E2D9] dark:bg-[#555555] shadow-md rounded-2xl px-4 flex items-center h-[70px] justify-between">
               {NavigationContent.map((content, index) => {
                 const isSelected = selected === content.title;
 
@@ -201,7 +203,7 @@ export function MarketplaceProvider({
                   >
                     {content.title === "Profile" ? (
                       <span
-                        className={`text-2xl ${isSelected ? "text-[#7B4F3A] border-2 border-[#7B4F3A] bg-[#7B4F3A] rounded-full" : "text-[#323232]"}`}
+                        className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D] border-2 border-[#7B4F3A] dark:border-[#8B5F4D] bg-[#7B4F3A] dark:bg-[#8B5F4D] rounded-full" : "text-[#323232]"}`}
                       >
                         <div className="size-6">
                           <Avatar className="rounded-full overflow-hidden block">
@@ -215,7 +217,7 @@ export function MarketplaceProvider({
                       </span>
                     ) : (
                       <span
-                        className={`text-2xl ${isSelected ? "text-[#7B4F3A]" : "text-[#323232]"}`}
+                        className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323232] dark:text-[#F8F7F2]"}`}
                       >
                         {isSelected
                           ? iconMapping[content.title]?.filled
@@ -224,7 +226,7 @@ export function MarketplaceProvider({
                     )}
 
                     <span
-                      className={`text-xs font-medium ${isSelected ? "text-[#7B4F3A]" : "text-[#323232]"}`}
+                      className={`text-xs font-medium ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323232] dark:text-[#F8F7F2]"}`}
                     >
                       {content.title}
                     </span>

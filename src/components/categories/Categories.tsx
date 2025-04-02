@@ -36,7 +36,7 @@ const Categories: React.FC<CategoriesProps> = ({
 
   return (
     <div
-      className={`w-full border-b border-[#E3E2D9] ${
+      className={`w-full border-b border-[#E3E2D9] dark:border-[#555555] ${
         isMobile
           ? "h-[130px]"
           : "h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t"
@@ -57,13 +57,13 @@ const Categories: React.FC<CategoriesProps> = ({
             <MapButton onClick={ToMap} />
           </div>
 
-          <div className="h-8 border-[#E3E2D9] border-l" />
+          <div className="h-8 border-[#E3E2D9] dark:border-[#555555] border-l" />
 
           <div className="min-w-0 overflow-hidden">
             <CategoryList onCategorySelect={onCategorySelect} />
           </div>
 
-          <div className="h-8 border-[#E3E2D9] border-l" />
+          <div className="h-8 border-[#E3E2D9] dark:border-[#555555] border-l" />
 
           <div className="">
             <FilterButton setActiveFilters={setActiveFilters} />

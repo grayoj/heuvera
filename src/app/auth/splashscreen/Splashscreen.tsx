@@ -62,7 +62,7 @@ const SplashScreen = () => {
                 ease: "easeInOut",
               },
             }}
-            className="absolute w-96 h-96 bg-[#F8F7F2] rounded-full opacity-10"
+            className="absolute w-96 h-96 bg-[#F8F7F2] bg-[#333333] rounded-full opacity-10"
           />
 
           <motion.div

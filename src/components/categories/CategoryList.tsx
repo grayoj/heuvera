@@ -55,7 +55,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ onCategorySelect }) => {
           whileTap={{ scale: 0.95 }}
           onClick={() => scroll("left")}
         >
-          <LucideCircleChevronLeft className="text-[#A7A7A7] cursor-pointer" />
+          <LucideCircleChevronLeft className="text-[#A7A7A7] dark:text-[#666666] cursor-pointer" />
         </motion.div>
       )}
 
@@ -80,7 +80,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ onCategorySelect }) => {
           whileTap={{ scale: 0.95 }}
           onClick={() => scroll("right")}
         >
-          <LucideCircleChevronRight className="text-[#A7A7A7] cursor-pointer" />
+          <LucideCircleChevronRight className="text-[#A7A7A7] dark:text-[#666666] cursor-pointer" />
         </motion.div>
       )}
     </div>

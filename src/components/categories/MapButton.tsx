@@ -40,7 +40,7 @@ const MapButton = ({ className }: MapButtonProps) => {
         <Button
           variant="outline"
           size="sm"
-          className={`h-10 px-4 bg-[#F8F7F2] border border-[#E3E2D9] text-[#3E3E3E] shadow-none hover:bg-[#E3E2D9] ${className}`}
+          className={`bg-transparent border border-[#E3E2D9] dark:border-[#555555] text-[#555555] dark:text-[#E3E2D9] shadow-none text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-serif h-10 sm:h-9 md:h-10 px-3 sm:px-4 ${className}`}
         >
           <Map className="mr-2 h-4 w-4" />
           Map
@@ -65,7 +65,7 @@ const MapButton = ({ className }: MapButtonProps) => {
     <Button
       variant="outline"
       size="sm"
-      className={`h-10 px-4 bg-[#F8F7F2] border border-[#E3E2D9] text-[#3E3E3E] shadow-none hover:bg-[#E3E2D9] ${className}`}
+      className={`bg-transparent border border-[#E3E2D9] dark:border-[#555555] text-[#555555] dark:text-[#E3E2D9] shadow-none text-xs sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-serif h-8 sm:h-9 md:h-10 px-3 sm:px-4 ${className}`}
       onClick={handleClick}
     >
       <Map className="mr-2 h-4 w-4" />

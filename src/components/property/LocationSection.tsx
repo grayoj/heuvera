@@ -44,8 +44,10 @@ export default function LocationSection() {
       </div>
 
       <div className="pt-2">
-        <p className="text-sm text-gray-600">Maitama, Abuja, Nigeria</p>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-600 dark:text-gray-200">
+          Maitama, Abuja, Nigeria
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           5 minutes to city center, 20 minutes to airport
         </p>
       </div>
