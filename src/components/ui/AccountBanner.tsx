@@ -9,18 +9,13 @@ import { useMemo } from "react";
 export default function AccountBanner() {
   const pathname = usePathname();
 
-  // Function to format the pathname for display
   const formattedPathSegment = useMemo(() => {
     if (!pathname) return "";
 
-    // Extract the relevant part from the URL
-    // Remove the leading slash and split by '/'
     const pathSegments = pathname.slice(1).split("/");
 
-    // If URL contains 'profile', use the next segment if available
-    const index = pathSegments.indexOf("property-renters");
+    const index = pathSegments.indexOf("property-owners");
     if (index !== -1 && index + 1 < pathSegments.length) {
-      // Convert kebab-case to Title Case (e.g., property-renters -> Property Renters)
       return pathSegments[index + 1]
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

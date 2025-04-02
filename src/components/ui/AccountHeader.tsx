@@ -10,8 +10,8 @@ export default function AccountHeader({
   className?: string;
 }) {
   return (
-    <div className={` flex justify-between border-b  ${className}`}>
-      <div className="pb-5">
+    <div className={` flex justify-between border-b pb-5  ${className}`}>
+      <div className="">
         <h2 className="text-[20px] font-medium-">{heading}</h2>
         <p className="text-[#898989] font-normal text-[14px]">{subheading}</p>
       </div>

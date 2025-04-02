@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react';
 import { reviews } from '../../app/data/array';
 
 export default function ReviewTable() {
@@ -8,6 +11,7 @@ export default function ReviewTable() {
     'Rating',
     'Review Content',
   ];
+  const [expand,setExpand]=useState(false)
   return (
     <div className="relative overflow-x-auto ">
       <table className="text-14px w-full text-sm text-left rtl:text-right text-tableText">
@@ -36,7 +40,21 @@ export default function ReviewTable() {
               <td className="border-x py-3 px-14">{review.guestName}</td>
               <td className="border-x ">{review.date}</td>
               <td className="border-x">{review.rating}</td>
-              <td className="border-x px-4">{review.content}...<span className="text-[#323232] underline ml-1.5">  read more</span></td>
+                <td className="border-x px-4">
+                {review.content.length > 50 ? (
+                  <>
+                  {expand ? review.content : `${review.content.slice(0, 50)} ...`}...
+                  <span
+                    className="text-[#323232] underline ml-1.5 cursor-pointer"
+                    onClick={() => setExpand((expand) => !expand)}
+                  >
+                    read {expand ? 'less': 'more'}
+                  </span>
+                  </>
+                ) : (
+                  review.content
+                )}
+                </td>
             </tr>
           ))}
           {/* Default last row */}

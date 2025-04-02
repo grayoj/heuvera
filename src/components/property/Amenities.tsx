@@ -7,6 +7,14 @@ export default function Amenities({
   active: number[];
   setActive: (value: number[]) => void;
 }) {
+  const handleToggle = (index: number) => {
+    if (active.includes(index)) {
+      setActive(active.filter((i) => i !== index));
+    } else {
+      setActive([...active, index]); 
+    }
+  };
+
   return (
     <div className="">
       <h3 className="">Amenities</h3>
@@ -14,7 +22,7 @@ export default function Amenities({
       <div className="grid grid-cols-3 gap-2">
         {amenities.map((amenity, index) => (
           <div
-            onClick={() => setActive([...active, index])}
+            onClick={() => handleToggle(index)}
             key={index}
             className={`${
               active.includes(index) &&

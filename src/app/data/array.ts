@@ -239,7 +239,7 @@ export const reviews = [
     date: 'Mar 12, 2025',
     rating: 5,
     content:
-      'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presently',
+      'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presentlydvndsbhbvahbnjib nfuvbfmxbifbnakuvfb nb oiubgnbjetuhnybviubdnu',
   },
   {
     guestName: 'Edward Mfon Sarah',

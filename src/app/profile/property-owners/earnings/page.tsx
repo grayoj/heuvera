@@ -14,7 +14,7 @@ export default function Page() {
         subheading="Monitor your earnings, track pending payments, and manage payout preferences"
       >
         <div className="flex justify-center items-center  space-x-6">
-          <Link className='text-[10px] text-[#898989] underline font-medium ' href="#">Setup Payment Method</Link>
+          <Link className='text-xs text-[#898989] underline font-medium ' href="#">Setup Payment Method</Link>
           <Button
             variant="default"
             className="cursor-pointer bg-[#7B4F3A] rounded-xl"
