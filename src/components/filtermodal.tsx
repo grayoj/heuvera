@@ -16,7 +16,7 @@ import {
   LucideSlidersHorizontal,
   X,
 } from "lucide-react";
-import { IoBedOutline, IoHomeOutline, IoWaterOutline, IoTicketOutline } from "react-icons/io5";
+import { IoBedOutline, IoTicketOutline, IoWaterOutline, IoHomeOutline } from "react-icons/io5";
 import Currency from "./icons/svgs/currency";
 import { Button } from "./ui/button";
 import { Slider } from "./ui/slider";
@@ -53,7 +53,6 @@ const TABS_CONFIG = [
   },
   { id: "book", icon: IoTicketOutline, label: "Book", mobileLabel: "Book" },
 ];
-
 
 const PROPERTY_TYPES = [
   { name: "Entire place", icon: Home },
@@ -243,10 +242,7 @@ export function FilterModal({
               />
             )}
             {activeTab === "amenities" && (
-              <AmenitiesTab
-                amenities={amenities}
-                toggleAmenity={toggleAmenity}
-              />
+              <AmenitiesTab amenities={amenities} toggleAmenity={toggleAmenity} />
             )}
             {activeTab === "book" && (
               <BookTab
@@ -306,7 +302,9 @@ function PriceTab({ priceRange, setPriceRange }: PriceTabProps) {
       <div className="space-y-4 sm:space-y-6">
         <Slider
           value={priceRange}
-          onValueChange={(value) => setPriceRange(value as [number, number])}
+          onValueChange={(value) =>
+            setPriceRange(value as [number, number])
+          }
           min={0}
           max={200000}
           step={1000}
@@ -325,10 +323,7 @@ function PriceTab({ priceRange, setPriceRange }: PriceTabProps) {
             <>
               <div className="w-1/2 rounded-full bg-[#E3E2D9] p-0.5">
                 <div className="w-full rounded-full bg-[#F3F2EC] flex items-center justify-center gap-1 font-serif">
-                  <Currency
-                    className="h-3 w-3 sm:h-4 sm:w-4"
-                    color="[#323223]"
-                  />
+                  <Currency className="h-3 w-3 sm:h-4 sm:w-4" color="[#323223]" />
                   <span className="text-xs sm:text-sm">Min:</span>
                   <input
                     type="number"
@@ -343,10 +338,7 @@ function PriceTab({ priceRange, setPriceRange }: PriceTabProps) {
               <span className="text-xs sm:text-sm">to</span>
               <div className="w-1/2 rounded-full bg-[#E3E2D9] p-0.5">
                 <div className="w-full rounded-full bg-[#F3F2EC] flex items-center justify-center gap-1 font-serif">
-                  <Currency
-                    className="h-3 w-3 sm:h-4 sm:w-4"
-                    color="[#323223]"
-                  />
+                  <Currency className="h-3 w-3 sm:h-4 sm:w-4" color="[#323223]" />
                   <span className="text-xs sm:text-sm">Max:</span>
                   <input
                     type="number"
@@ -363,10 +355,7 @@ function PriceTab({ priceRange, setPriceRange }: PriceTabProps) {
             <>
               <div className="w-1/2 rounded-full bg-[#E3E2D9] p-0.5">
                 <div className="w-full rounded-full bg-[#F3F2EC] p-1 sm:p-2 flex items-center justify-center gap-1 sm:gap-2 font-serif">
-                  <Currency
-                    className="h-3 w-3 sm:h-4 sm:w-4"
-                    color="[#323223]"
-                  />
+                  <Currency className="h-3 w-3 sm:h-4 sm:w-4" color="[#323223]" />
                   <span className="text-xs sm:text-sm">
                     Min:{" "}
                     <span className="font-semibold font-serif">
@@ -377,10 +366,7 @@ function PriceTab({ priceRange, setPriceRange }: PriceTabProps) {
               </div>
               <div className="w-1/2 rounded-full bg-[#E3E2D9] p-0.5">
                 <div className="w-full rounded-full bg-[#F3F2EC] p-1 sm:p-2 flex items-center justify-center gap-1 sm:gap-2 font-serif">
-                  <Currency
-                    className="h-3 w-3 sm:h-4 sm:w-4"
-                    color="[#323223]"
-                  />
+                  <Currency className="h-3 w-3 sm:h-4 sm:w-4" color="[#323223]" />
                   <span className="text-xs sm:text-sm">
                     Max:{" "}
                     <span className="font-semibold font-serif">
@@ -401,7 +387,10 @@ interface RoomsTabProps {
   bedrooms: string | null;
   beds: string | null;
   bathrooms: string | null;
-  onSelect: (type: "bedrooms" | "beds" | "bathrooms", value: string) => void;
+  onSelect: (
+    type: "bedrooms" | "beds" | "bathrooms",
+    value: string,
+  ) => void;
 }
 
 function RoomsTab({ bedrooms, beds, bathrooms, onSelect }: RoomsTabProps) {
@@ -417,7 +406,7 @@ function RoomsTab({ bedrooms, beds, bathrooms, onSelect }: RoomsTabProps) {
                 className={cn(
                   "rounded-full py-1 px-1 sm:py-2 sm:px-2 md:py-1 md:px-3 text-xs sm:text-sm border",
                   { bedrooms, beds, bathrooms }[type] === num
-                    ? "bg-[#F3F2EC] shadow-lg"
+                    ? "bg-[#F3F2EC] shadow shadow-lg"
                     : "bg-[#E3E2D9]",
                 )}
                 onClick={() =>
@@ -429,7 +418,7 @@ function RoomsTab({ bedrooms, beds, bathrooms, onSelect }: RoomsTabProps) {
             ))}
           </div>
           {index < array.length - 1 && (
-            <div className="border-b border-[#E3E2D9] w-full my-3 sm:my-4 md:my-5 my-10" />
+            <div className="border-b border-[#E3E2D9] w-full my-3 sm:my-4 md:my-5" />
           )}
         </div>
       ))}
@@ -478,7 +467,9 @@ function TypeTab({ propertyTypes, togglePropertyType }: TypeTabProps) {
             <span
               className={cn(
                 "",
-                propertyTypes.includes(name) ? "text-[#8B4513]" : "text-black",
+                propertyTypes.includes(name)
+                  ? "text-[#8B4513]"
+                  : "text-black",
               )}
             >
               {name}
@@ -532,7 +523,9 @@ function AmenitiesTab({ amenities, toggleAmenity }: AmenitiesTabProps) {
               <Icon
                 className={cn(
                   "h-4 w-4 sm:h-5 sm:w-5",
-                  amenities.includes(name) ? "text-[#8B4513]" : "text-black",
+                  amenities.includes(name)
+                    ? "text-[#8B4513]"
+                    : "text-black",
                 )}
               />
             </div>
@@ -623,7 +616,13 @@ function BookTab({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2" />
+          <circle
+            cx="12"
+            cy="8"
+            r="4"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
           <path
             d="M20 19C20 16.7909 16.4183 15 12 15C7.58172 15 4 16.7909 4 19"
             stroke="currentColor"
@@ -681,3 +680,4 @@ function BookTab({
     </div>
   );
 }
+
