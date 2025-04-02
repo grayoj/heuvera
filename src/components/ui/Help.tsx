@@ -38,9 +38,9 @@ export default function Help({ isVisible }: HelpProps) {
                 ease: "easeInOut",
               }}
             >
-              <Card className="w-74 md:w-74 lg:w-52 xl:w-74 2xl:w-74 bg-[#F8F7F2] min-h-[200px] flex flex-col">
+              <Card className="w-74 md:w-74 lg:w-52 xl:w-74 2xl:w-74 bg-[#F8F7F2] dark:bg-[#333333] min-h-[200px] flex flex-col">
                 <CardContent className="flex flex-col flex-1 gap-2.5">
-                  <div className="text-[#7B4F3A] bg-[#7B4F3A80] w-fit p-2 rounded-full">
+                  <div className="text-[#7B4F3A] dark:text-[#8B5F4D] dark:bg-[#8B5F4D80] bg-[#7B4F3A80] w-fit p-2 rounded-full">
                     {index === 0 ? (
                       <EyeOff className="h-6 w-6" />
                     ) : index === 2 ? (
@@ -55,7 +55,7 @@ export default function Help({ isVisible }: HelpProps) {
                   </p>
                   <Button
                     variant="outline"
-                    className="hover:cursor-pointer bg-[#F8F7F2] max-w-fit mt-auto"
+                    className="hover:cursor-pointer max-w-fit mt-auto"
                   >
                     <CircleHelp />
                     Further Help
