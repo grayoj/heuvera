@@ -18,7 +18,6 @@ import React from "react";
 import { IoCompass, IoCompassOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Footer from "@heuvera/components/footer";
-import Link from "next/link";
 import { ProfileDropdown } from "@heuvera/components/ProfileDropdown";
 
 interface MarketplaceContextType {
@@ -133,7 +132,6 @@ export function MarketplaceProvider({
               <HeuveraLogo width={35} height={35} />
             </div>
           )}
-          {/* Desktop Navigation Items */}
           {!isMobile && (
             <div className="flex items-center space-x-8">
               {NavigationContent.slice(0, 3).map((content, index) => (
@@ -143,11 +141,10 @@ export function MarketplaceProvider({
                     setSelected(content.title);
                     router.push(content.link);
                   }}
-                  className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
-                    selected === content.title
-                      ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
-                      : "text-[#323232] hover:text-[#7B4F3A]"
-                  }`}
+                  className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 cursor-pointer ${selected === content.title
+                    ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
+                    : "text-[#323232] hover:text-[#7B4F3A]"
+                    }`}
                 >
                   {content.title}
                 </button>
@@ -157,13 +154,11 @@ export function MarketplaceProvider({
           {!isMobile && <ProfileDropdown selected="Profile" />}
         </div>
 
-        {/* Main Content */}
         <div className="pb-32 w-full flex-1 flex flex-col gap-32">
           {children}
           <Footer />
         </div>
 
-        {/* Mobile Navigation Bar */}
         {isMobile && (
           <div className="w-full h-[90px] fixed bottom-3 left-0 px-4 z-[1000]">
             <div className="w-full bg-[#E3E2D9] shadow-md rounded-2xl px-4 flex items-center h-[70px] justify-between">
