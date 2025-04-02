@@ -73,7 +73,7 @@ const MobileProfileSettings = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-[#F8F7F2]">
+    <div className="h-screen flex flex-col bg-[#F8F7F2] dark:bg-[#333333]">
       <div className="flex-1 overflow-y-auto px-4 space-y-2 py-2">
         <h1 className="text-xl font-semibold mb-4 pt-2">Profile Settings</h1>
         {sideBarItems.map((item) => (
@@ -98,7 +98,7 @@ const MobileProfileSettings = () => {
       </div>
 
       <Dialog open={isModalOpen} onOpenChange={handleCloseModal}>
-        <DialogContentNoClose className="p-0 sm:max-w-md max-w-full w-full mx-auto bg-[#F8F7F2] sm:h-auto h-full flex flex-col">
+        <DialogContentNoClose className="p-0 sm:max-w-md max-w-full w-full mx-auto bg-[#F8F7F2] dark:bg-[#333333] sm:h-auto h-full flex flex-col rounded-none">
           <DialogHeader className="px-4 py-3 border-b flex flex-row items-center">
             <Button
               variant="ghost"
@@ -112,7 +112,7 @@ const MobileProfileSettings = () => {
 
           <div className="flex-1 overflow-y-auto w-full max-h-[calc(100vh-6rem)]">
             {selectedItem && (
-              <div className="px-4 bg-red-200 w-full">
+              <div className="px-4 w-full">
                 {React.createElement(selectedItem.component)}
               </div>
             )}
