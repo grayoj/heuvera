@@ -30,11 +30,10 @@ export default function ProfileLayout({
 
   return (
     <div className="flex h-screen">
-      <aside className="w-[25%] md:w-[30%] lg:w-[25%] xl:w-[25%] 2xl:w-[25%] bg-[#F8F7F2] border-r-[1px] flex flex-col gap-2 overflow-y-auto">
+      <aside className="w-[25%] md:w-[30%] lg:w-[25%] xl:w-[25%] 2xl:w-[25%] bg-[#F8F7F2] dark:bg-[#333333] border-r-[1px] flex flex-col gap-2 overflow-y-auto">
         <div className="w-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 py-4">
           <Button
             variant="outline"
-            className="bg-[#F8F7F2]"
             onClick={() => router.push("/explore")}
           >
             <ArrowLeft className="mr-2" /> Back
@@ -58,7 +57,7 @@ export default function ProfileLayout({
         </div>
       </aside>
 
-      <main className="flex-1 min-h-0 overflow-y-auto pl-4 pr-4 md:pr-8 lg:pr-12 xl:pr-14 2xl:pr-20 pb-4 bg-[#F8F7F2]">
+      <main className="flex-1 min-h-0 overflow-y-auto pl-4 pr-4 md:pr-8 lg:pr-12 xl:pr-14 2xl:pr-20 pb-4 bg-[#F8F7F2] dark:bg-[#333333]">
         {children}
       </main>
     </div>

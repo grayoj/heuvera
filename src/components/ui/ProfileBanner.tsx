@@ -40,7 +40,7 @@ export default function ProfileBanner({
   }, [pathname]);
 
   return (
-    <div className="w-full h-12 md:h-16 lg:h-12 xl:h-16 2xl:h-16 bg-[#F8F7F2] items-center flex border-b-[1px] border-[#E3E2D9] sticky top-0 z-10 hidden md:block">
+    <div className="w-full h-12 md:h-16 lg:h-12 xl:h-16 2xl:h-16 bg-[#F8F7F2] dark:bg-[#333333] items-center flex border-b-[1px] border-[#E3E2D9] dark:border-[#555555] sticky top-0 z-10 hidden md:block">
       <div className="flex justify-between w-full h-full items-center">
         <p className="font-serif text-xs md:text-base lg:text-xs xl:text-base 2xl:text-base">
           Account {">"}{" "}
@@ -53,7 +53,7 @@ export default function ProfileBanner({
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Button
             variant="outline"
-            className="bg-[#F8F7F2] hover:cursor-pointer font-serif"
+            className="bg-[#F8F7F2] dark:bg-[#333333] hover:cursor-pointer font-serif"
             onClick={toggleHelp}
           >
             <LucideHelpCircle />

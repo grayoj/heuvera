@@ -57,7 +57,7 @@ export default function PersonalForm({
             <h2 className="text-base md:text-xl lg:text-base xl:text-xl font-medium">
               Profile Picture
             </h2>
-            <p className="text-[#898989] text-sm md:text-base lg:text-xs xl:text-base ">
+            <p className="text-[#898989] dark:text-[#666666] text-sm md:text-base lg:text-xs xl:text-base ">
               PNG, JPEG under 15mb{" "}
             </p>
           </div>
@@ -65,7 +65,7 @@ export default function PersonalForm({
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="default"
-                className="bg-[#7B4F3A] hover:bg-[#664130] hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                className="bg-[#7B4F3A] dark:bg-[#8B5F4D] hover:bg-[#664130] text-white hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
                 onClick={handleImageUpload}
               >
                 <Upload />
@@ -75,7 +75,7 @@ export default function PersonalForm({
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="outline"
-                className="bg-[#F8F7F2] hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                className="hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
               >
                 Remove
               </Button>
@@ -106,7 +106,7 @@ export default function PersonalForm({
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button
                 variant="outline"
-                className="bg-[#F8F7F2] max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                className="max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
               >
                 <motion.div
                   whileHover={{ rotate: 90 }}
@@ -120,7 +120,7 @@ export default function PersonalForm({
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="outline"
-                className="bg-[#F8F7F2] px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
               >
                 Change email
               </Button>
@@ -143,7 +143,7 @@ export default function PersonalForm({
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button
                 variant="outline"
-                className="bg-[#F8F7F2] max-w-fit text-xs px-3 md:px-4 md:text-sm lg:text-xs xl:text-sm"
+                className="max-w-fit text-xs px-3 md:px-4 md:text-sm lg:text-xs xl:text-sm"
               >
                 <motion.div
                   whileHover={{ rotate: 90 }}
@@ -157,7 +157,7 @@ export default function PersonalForm({
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="outline"
-                className="bg-[#F8F7F2] px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
               >
                 Change phone number
               </Button>
@@ -180,7 +180,7 @@ export default function PersonalForm({
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button
                 variant="outline"
-                className="bg-[#F8F7F2] max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                className="max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
               >
                 <motion.div
                   whileHover={{ rotate: 90 }}
@@ -194,7 +194,7 @@ export default function PersonalForm({
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="outline"
-                className="bg-[#F8F7F2] px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
               >
                 Change address
               </Button>
