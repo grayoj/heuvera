@@ -32,9 +32,9 @@ export function ProfileDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center outline-none focus:ring-2 ring-[#7B4F3A] rounded-full">
+        <button className="flex items-center outline-none focus:ring-2 ring-[#7B4F3A] dark:ring-[#8B5F4D] rounded-full">
           <Avatar
-            className={`rounded-full overflow-hidden ${selected === "Profile" ? "ring-2 ring-[#7B4F3A]" : ""}`}
+            className={`rounded-full overflow-hidden ${selected === "Profile" ? "ring-2 ring-[#7B4F3A] dark:ring-[#8B5F4D]" : ""}`}
           >
             <AvatarImage src={avatarUrl} alt="avatar" />
             <AvatarFallback>{fallback}</AvatarFallback>
@@ -44,7 +44,7 @@ export function ProfileDropdown({
 
       <DropdownMenuContent
         align="end"
-        className="w-48 bg-[#F8F7F2] shadow-md rounded-md"
+        className="w-48 bg-[#F8F7F2] dark:bg-[#333333] shadow-md rounded-md"
       >
         <DropdownMenuItem asChild>
           <Link
