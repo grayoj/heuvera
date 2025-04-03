@@ -124,10 +124,11 @@ export default function MapPageContent({
 
           <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-4">
             <div
-              className={`relative w-full h-10 bg-[#F8F7F2] border ${isSearchFocused
+              className={`relative w-full h-10 bg-[#F8F7F2] border ${
+                isSearchFocused
                   ? "border-[#7B4F3A] dark:border-[#8B5F4D]"
                   : "border-[#C4C3B8]"
-                } rounded-full flex items-center transition-all duration-300`}
+              } rounded-full flex items-center transition-all duration-300`}
             >
               <div className="flex items-center pl-3 text-[#898989] dark:text-[#666666]">
                 <Search size={16} />

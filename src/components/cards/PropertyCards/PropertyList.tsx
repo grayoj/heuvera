@@ -10,7 +10,6 @@ import { IoBed, IoPerson } from "react-icons/io5";
 import { Button } from "@heuvera/components/ui/button";
 import { Property } from "@heuvera/utils/props";
 
-
 export default function PropertyListView({ property }: { property: Property }) {
   return (
     <motion.div

@@ -18,11 +18,7 @@ import { TypeTab } from "@heuvera/components/filtermodal/TypeTab";
 import { Button } from "@heuvera/components/ui/button";
 
 export const FilterModal = React.memo(
-  ({
-    onApplyFilters,
-    initialFilters = {},
-    onClose,
-  }: FilterModalProps) => {
+  ({ onApplyFilters, initialFilters = {}, onClose }: FilterModalProps) => {
     const [activeTab, setActiveTab] = useState<TabType>("price");
 
     const [priceRange, setPriceRange] = useState<[number, number]>(
@@ -31,13 +27,15 @@ export const FilterModal = React.memo(
     const [bedrooms, setBedrooms] = useState<string | null>(
       initialFilters?.bedrooms || null,
     );
-    const [beds, setBeds] = useState<string | null>(initialFilters?.beds || null);
+    const [beds, setBeds] = useState<string | null>(
+      initialFilters?.beds || null,
+    );
     const [bathrooms, setBathrooms] = useState<string | null>(
       initialFilters?.bathrooms || null,
     );
     const [amenities, setAmenities] = useState<string[]>(
       initialFilters?.amenities ||
-      AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
+        AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
     );
     const [propertyTypes, setPropertyTypes] = useState<string[]>(
       initialFilters?.propertyTypes || [],
@@ -96,7 +94,9 @@ export const FilterModal = React.memo(
     const tabContent = useMemo(() => {
       switch (activeTab) {
         case "price":
-          return <PriceTab priceRange={priceRange} setPriceRange={setPriceRange} />;
+          return (
+            <PriceTab priceRange={priceRange} setPriceRange={setPriceRange} />
+          );
         case "rooms":
           return (
             <RoomsTab
@@ -192,18 +192,20 @@ export const FilterModal = React.memo(
                   >
                     <IconComponent />
                     <span
-                      className={`hidden sm:inline ${isActive
-                        ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
-                        : "text-[#323223] dark:text-[#F8F7F2]"
-                        }`}
+                      className={`hidden sm:inline ${
+                        isActive
+                          ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                          : "text-[#323223] dark:text-[#F8F7F2]"
+                      }`}
                     >
                       {label}
                     </span>
                     <span
-                      className={`sm:hidden ${isActive
-                        ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
-                        : "text-[#323223] dark:text-[#F8F7F2]"
-                        }`}
+                      className={`sm:hidden ${
+                        isActive
+                          ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                          : "text-[#323223] dark:text-[#F8F7F2]"
+                      }`}
                     >
                       {mobileLabel || label}
                     </span>
@@ -249,6 +251,5 @@ export const FilterModal = React.memo(
         </div>
       </>
     );
-  }
+  },
 );
-

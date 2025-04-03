@@ -5,7 +5,6 @@ import { DesktopSearchBar } from "./desktop/DesktopSearchBar";
 import { FilterType, SearchBarProps } from "@heuvera/utils/props";
 import RenderMobileSearchBar from "./mobile/SearchBarContents";
 
-
 const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
@@ -35,7 +34,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isSearchModalOpen]);
-
 
   useEffect(() => {
     if (isSearchModalOpen) {
@@ -109,7 +107,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
         activeFilter={activeFilter}
         clearAll={clearAll}
       />
-    )
+    );
   }
 };
 

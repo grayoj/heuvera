@@ -31,7 +31,13 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 const FitMapToBounds = React.memo(
-  ({ positions, isTrayOpen }: { positions: LatLngTuple[]; isTrayOpen: boolean }) => {
+  ({
+    positions,
+    isTrayOpen,
+  }: {
+    positions: LatLngTuple[];
+    isTrayOpen: boolean;
+  }) => {
     const map = useMap();
 
     useEffect(() => {
@@ -191,7 +197,11 @@ const MapComponents = ({
             iconAnchor: [16, 16],
           })}
         >
-          <Popup keepInView closeButton={false} className="w-48 p-0 m-0 dark:bg-[#333333]">
+          <Popup
+            keepInView
+            closeButton={false}
+            className="w-48 p-0 m-0 dark:bg-[#333333]"
+          >
             <Link href={`/explore/${property.id}`} key={property.id}>
               <div className="py-1 flex flex-col gap-1 font-serif">
                 <Image
@@ -225,12 +235,24 @@ const MapComponents = ({
 
   return (
     <div className="w-full h-full relative">
-      <MapContainer center={center} zoom={13} scrollWheelZoom className="w-full h-full">
+      <MapContainer
+        center={center}
+        zoom={13}
+        scrollWheelZoom
+        className="w-full h-full"
+      >
         <MapRecenter center={center} />
-        <TileLayer attribution='&copy; <a href="https://www.carto.com/">CartoDB</a>' url={tileLayerUrl} />
+        <TileLayer
+          attribution='&copy; <a href="https://www.carto.com/">CartoDB</a>'
+          url={tileLayerUrl}
+        />
         <ThemeDetector isDarkMode={isDarkMode} />
         <FitMapToBounds positions={markerPositions} isTrayOpen={isTrayOpen} />
-        <Circle center={center_radius} radius={radius} pathOptions={circleOptions} />
+        <Circle
+          center={center_radius}
+          radius={radius}
+          pathOptions={circleOptions}
+        />
         {propertyMarkers}
       </MapContainer>
     </div>

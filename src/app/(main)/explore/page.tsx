@@ -40,7 +40,8 @@ const Explore = React.memo(() => {
     if (selectedCategory) {
       result = result.filter(
         (property) =>
-          property.propertyCategory.toLowerCase() === selectedCategory.toLowerCase()
+          property.propertyCategory.toLowerCase() ===
+          selectedCategory.toLowerCase(),
       );
     }
 
@@ -49,13 +50,13 @@ const Explore = React.memo(() => {
       result = result.filter(
         (property) =>
           property.propertyDetails.price >= min &&
-          property.propertyDetails.price <= max
+          property.propertyDetails.price <= max,
       );
     }
 
     if (activeFilters.propertyTypes && activeFilters.propertyTypes.length > 0) {
       result = result.filter((property) =>
-        activeFilters.propertyTypes?.includes(property.propertyCategory)
+        activeFilters.propertyTypes?.includes(property.propertyCategory),
       );
     }
 
@@ -63,15 +64,16 @@ const Explore = React.memo(() => {
       result = result.filter((property) =>
         activeFilters.bedrooms === "5+"
           ? property.propertyDetails.bedrooms >= 5
-          : property.propertyDetails.bedrooms === parseInt(activeFilters.bedrooms || "0")
+          : property.propertyDetails.bedrooms ===
+            parseInt(activeFilters.bedrooms || "0"),
       );
     }
 
     if (activeFilters.amenities && activeFilters.amenities.length > 0) {
       result = result.filter((property) =>
         activeFilters.amenities?.every((amenity) =>
-          property.amenities.includes(amenity)
-        )
+          property.amenities.includes(amenity),
+        ),
       );
     }
 
@@ -124,7 +126,10 @@ const Explore = React.memo(() => {
           setActiveFilters={setActiveFilters}
         />
         {Object.keys(activeFilters).length > 0 && (
-          <FilterTags activeFilters={activeFilters} removeFilter={removeFilter} />
+          <FilterTags
+            activeFilters={activeFilters}
+            removeFilter={removeFilter}
+          />
         )}
       </div>
 

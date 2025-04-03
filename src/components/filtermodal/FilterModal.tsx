@@ -54,7 +54,7 @@ export function FilterModal({
   );
   const [amenities, setAmenities] = useState<string[]>(
     initialFilters?.amenities ||
-    AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
+      AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
   );
   const [propertyTypes, setPropertyTypes] = useState<string[]>(
     initialFilters?.propertyTypes || [],
@@ -158,18 +158,20 @@ export function FilterModal({
                 >
                   <IconComponent />
                   <span
-                    className={`hidden sm:inline ${isActive
+                    className={`hidden sm:inline ${
+                      isActive
                         ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
                         : "text-[#323223] dark:text-[#F8F7F2]"
-                      }`}
+                    }`}
                   >
                     {label}
                   </span>
                   <span
-                    className={`sm:hidden ${isActive
+                    className={`sm:hidden ${
+                      isActive
                         ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
                         : "text-[#323223] dark:text-[#F8F7F2]"
-                      }`}
+                    }`}
                   >
                     {mobileLabel || label}
                   </span>

@@ -1,7 +1,25 @@
 import Currency from "@heuvera/components/icons/svgs/currency";
 import { FilterOption } from "@heuvera/utils/props";
-import { User, Calendar, CreditCard, HelpCircle, Bed, Home, Refrigerator, Shield, Utensils, Video, WashingMachine, Wifi } from "lucide-react";
-import { IoBedOutline, IoHomeOutline, IoWaterOutline, IoTicketOutline } from "react-icons/io5";
+import {
+  User,
+  Calendar,
+  CreditCard,
+  HelpCircle,
+  Bed,
+  Home,
+  Refrigerator,
+  Shield,
+  Utensils,
+  Video,
+  WashingMachine,
+  Wifi,
+} from "lucide-react";
+import {
+  IoBedOutline,
+  IoHomeOutline,
+  IoWaterOutline,
+  IoTicketOutline,
+} from "react-icons/io5";
 
 export const sideBar = [
   {
@@ -104,20 +122,19 @@ export const FILTER_OPTIONS: FilterOption[] = [
   {
     id: "location",
     label: "Where",
-    placeholder: "Anywhere"
+    placeholder: "Anywhere",
   },
   {
     id: "dates",
     label: "When",
-    placeholder: "Any week"
+    placeholder: "Any week",
   },
   {
     id: "guests",
     label: "Who",
-    placeholder: "Add guests"
-  }
+    placeholder: "Add guests",
+  },
 ];
-
 
 export const NUMBER_OPTIONS = {
   bedrooms: ["Any", "1", "2", "3", "4", "5", "5+"],
@@ -180,4 +197,3 @@ export const propertyLocation = [
   },
   { id: 6, category: "Austin", count: 47, imageUrl: "/austin.jpg" },
 ];
-
