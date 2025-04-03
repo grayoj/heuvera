@@ -420,7 +420,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
   function renderSearchModal() {
     return (
       <motion.div
-        className="fixed inset-0 z-[2000] bg-[#E3E2D9] flex flex-col px-4"
+        className="fixed inset-0 z-[2000] bg-[#E3E2D9] dark:bg-[#555555] flex flex-col px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -436,9 +436,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
             onClick={closeSearchModal}
             className="p-2 rounded-full hover:bg-[#F8F7F2] dark:bg-[#333333]"
           >
-            <LucideX className="text-[#323232]" />
+            <LucideX className="text-[#323232] dark:text-white" />
           </button>
-          <span className="font-serif font-medium text-[#323232]">Search</span>
+          <span className="font-serif font-medium text-[#323232] dark:text-[#F8F7F2]">Search</span>
           <div className="w-8 h-8"></div>
         </motion.div>
 
@@ -453,14 +453,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
               {
                 id: "location",
                 label: "Where",
-                icon: <LucideMapPin size={16} />,
+                icon: <LucideMapPin className="text-black dark:text-[#A7A7A7]" size={16} />,
               },
               {
                 id: "dates",
                 label: "When",
-                icon: <LucideCalendar size={16} />,
+                icon: <LucideCalendar className="text-black dark:text-[#A7A7A7]" size={16} />,
               },
-              { id: "guests", label: "Who", icon: <LucideUsers size={16} /> },
+              { id: "guests", label: "Who", icon: <LucideUsers className="text-black dark:text-[#A7A7A7]" size={16} /> },
             ].map((filter) => (
               <motion.button
                 key={filter.id}
@@ -472,7 +472,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                 whileTap={{ scale: 0.95 }}
               >
                 {filter.icon}
-                <span className="font-serif">{filter.label}</span>
+                <span className="font-serif text-black dark:text-[#A7A7A7]">{filter.label}</span>
               </motion.button>
             ))}
           </div>
@@ -492,7 +492,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
               ref={inputRef}
               type="text"
               placeholder="Where are you going?"
-              className="w-full pl-12 pr-4 py-3 bg-[#F8F7F2] dark:bg-[#333333] border border-[#C4C3B8] rounded-full outline-none text-[#323232] font-serif"
+              className="w-full pl-12 pr-4 py-3 bg-[#F8F7F2] dark:bg-[#333333] border border-[#C4C3B8] dark:border-[#666666] rounded-full outline-none text-[#323232] dark:text-[#A7A7A7] font-serif"
               autoFocus
             />
           </div>
@@ -508,7 +508,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="font-serif font-medium text-lg text-[#323232]">
+                  <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#A7A7A7]">
                     Popular destinations
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -545,7 +545,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="font-serif font-medium text-lg text-[#323232]">
+                  <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#A7A7A7]">
                     When will you be there?
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
@@ -588,7 +588,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="font-serif font-medium text-lg text-[#323232]">
+                  <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#A7A7A7]">
                     Who's coming?
                   </h3>
                   <div className="space-y-3">
@@ -621,7 +621,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                           </div>
                           <div className="flex items-center gap-4">
                             <motion.button
-                              className="w-8 h-8 rounded-full border border-[#C4C3B8] flex items-center justify-center text-[#323232] bg-white dark:bg-[#555555]"
+                              className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#444444] items-center justify-center text-[#323232] bg-white dark:bg-[#555555]"
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
                             >
@@ -629,7 +629,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
                             </motion.button>
                             <span className="w-5 text-center">0</span>
                             <motion.button
-                              className="w-8 h-8 rounded-full border border-[#C4C3B8] flex items-center justify-center text-[#323232] bg-white dark:bg-[#555555]"
+                              className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#444444] flex items-center justify-center text-[#323232] bg-white dark:bg-[#555555]"
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
                             >
