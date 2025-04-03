@@ -180,3 +180,4 @@ export const propertyLocation = [
   },
   { id: 6, category: "Austin", count: 47, imageUrl: "/austin.jpg" },
 ];
+

@@ -23,10 +23,6 @@ export default function Favorites() {
     return () => clearTimeout(timer);
   }, []);
 
-  // const handleRemoveFavorite = (propertyId: number | string) => {
-  //     setFavorites(prev => prev.filter(property => property.id !== propertyId));
-  // };
-
   return (
     <div className="flex flex-col flex-1 h-full w-full px-4 md:px-8 lg:px-16 xl:px-20 2xl:px-20">
       <div
