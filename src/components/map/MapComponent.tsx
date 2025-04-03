@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -65,6 +65,33 @@ const MapRecenter = ({ center }: { center: LatLngTuple }) => {
   return null;
 };
 
+// Component to handle theme switching for map tiles
+const ThemeDetector = ({ isDarkMode }: { isDarkMode: boolean }) => {
+  const map = useMap();
+  
+  useEffect(() => {
+    // Get all existing tile layers
+    map.eachLayer((layer) => {
+      if (layer instanceof L.TileLayer) {
+        map.removeLayer(layer);
+      }
+    });
+    
+    // Add the appropriate tile layer based on current theme
+    if (isDarkMode) {
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+        attribution: '&copy; <a href="https://www.carto.com/">CartoDB</a>',
+      }).addTo(map);
+    } else {
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        attribution: '&copy; <a href="https://www.carto.com/">CartoDB</a>',
+      }).addTo(map);
+    }
+  }, [map, isDarkMode]);
+  
+  return null;
+};
+
 interface Property {
   id: number;
   name: string;
@@ -87,6 +114,7 @@ interface MapComponentsProps {
   isTrayOpen: boolean;
   setSelectedProperty: (property: Property | null) => void;
 }
+
 const getPropertyIcon = (type: string) => {
   switch (type) {
     case "apartment":
@@ -101,6 +129,7 @@ const getPropertyIcon = (type: string) => {
       return <GoHomeFill size={20} color="#7B4F3A" />;
   }
 };
+
 const MapComponents = ({
   center,
   properties,
@@ -111,6 +140,43 @@ const MapComponents = ({
   setSelectedProperty,
 }: MapComponentsProps) => {
   const router = useRouter();
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  // Detect dark mode using media query and document class
+  useEffect(() => {
+    // Initial check for dark mode
+    const isDark = 
+      window.matchMedia('(prefers-color-scheme: dark)').matches ||
+      document.documentElement.classList.contains('dark');
+    
+    setIsDarkMode(isDark);
+    
+    // Set up listeners for system preference changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDarkMode(e.matches);
+    };
+    
+    // Set up mutation observer for class changes (for theme toggle buttons)
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.attributeName === 'class' &&
+          mutation.target === document.documentElement
+        ) {
+          setIsDarkMode(document.documentElement.classList.contains('dark'));
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, { attributes: true });
+    mediaQuery.addEventListener('change', handleChange);
+    
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <div className="w-full h-full relative">
@@ -118,7 +184,7 @@ const MapComponents = ({
         center={center}
         zoom={13}
         scrollWheelZoom={true}
-        className="w-full h-full z-0 rounded-lg shadow-lg"
+        className="w-full h-full z-0 shadow-lg"
         style={{
           height: "100%",
           width: "100%",
@@ -132,6 +198,9 @@ const MapComponents = ({
           attribution='&copy; <a href="https://www.carto.com/">CartoDB</a>'
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
+        
+        {/* Theme detector handles switching the tile layer */}
+        <ThemeDetector isDarkMode={isDarkMode} />
 
         <FitMapToBounds positions={markerPositions} isTrayOpen={isTrayOpen} />
 
@@ -139,7 +208,7 @@ const MapComponents = ({
           center={center_radius}
           radius={radius}
           pathOptions={{
-            color: "rgba(123, 79, 58, 0.9)",
+            color: isDarkMode ? "rgba(158, 122, 106, 0.9)" : "rgba(123, 79, 58, 0.9)",
             weight: 3,
             fillOpacity: 0.1,
           }}
@@ -156,7 +225,7 @@ const MapComponents = ({
               className: "",
               html: ReactDOMServer.renderToString(
                 <div
-                  className="bg-white p-1 rounded-full shadow-md flex items-center justify-center"
+                  className={`${isDarkMode ? 'bg-[#333333]' : 'bg-white'} p-1 rounded-full shadow-md flex items-center justify-center`}
                   style={{ width: "32px", height: "32px" }}
                 >
                   {getPropertyIcon(property.propertyType)}
@@ -169,7 +238,7 @@ const MapComponents = ({
             <Popup
               keepInView={true}
               closeButton={false}
-              className="w-48 p-0 m-0"
+              className="w-48 p-0 m-0 dark:bg-[#333333]"
             >
               <Link href={`/explore/${property.id}`} key={property.id}>
                 <div className="py-1 flex flex-col gap-1 font-serif">
@@ -182,11 +251,11 @@ const MapComponents = ({
                     style={{ width: "100%", height: "auto" }}
                   />
                   <div className="px-2">
-                    <h3 className="font-bold text-[#3e3e3e] text-xs">
+                    <h3 className="font-bold text-[#3e3e3e] dark:text-gray-200 text-xs">
                       {property.name}
                     </h3>
                     <div className="flex justify-between items-center">
-                      <h3 className="font-bold text-[10px] text-[#7B4F3A]">
+                      <h3 className="font-bold text-[10px] text-[#7B4F3A] dark:text-[#9E7A6A]">
                         {property.price}
                       </h3>
                       <div className="flex flex-row gap-1 items-center text-[10px] font-semibold">

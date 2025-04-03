@@ -99,7 +99,7 @@ export default function MapDrawerPage({
   const mapRadius = radius || 1;
 
   return (
-    <div className="relative w-full h-screen bg-[#F8F7F2] dark:bg-[#333333] flex flex-col">
+    <div className="relative w-full h-screen bg-[#F8F7F2] dark:bg-[#333333] flex flex-col mt-4">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
