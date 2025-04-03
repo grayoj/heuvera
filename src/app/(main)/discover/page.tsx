@@ -1,255 +1,52 @@
 "use client";
 
-import React, { useState, useCallback, useMemo } from "react";
-import { cn } from "@heuvera/lib/utils";
-import {
-  LucideSlidersHorizontal,
-  X,
-  LucideSearch,
-  LucideRotateCw,
-} from "lucide-react";
-import { FilterModalProps, TabType } from "@heuvera/utils/props";
-import { AMENITIES_CONFIG, TABS_CONFIG } from "@heuvera/app/data/array";
-import { AmenitiesTab } from "@heuvera/components/filtermodal/AmenitiesTab";
-import { BookTab } from "@heuvera/components/filtermodal/BookTab";
-import { PriceTab } from "@heuvera/components/filtermodal/PriceTab";
-import { RoomsTab } from "@heuvera/components/filtermodal/RoomsTab";
-import { TypeTab } from "@heuvera/components/filtermodal/TypeTab";
-import { Button } from "@heuvera/components/ui/button";
+import { useState, useCallback } from "react";
+import useIsMobile from "@heuvera/hooks/IsMobile";
+import { ListingsSection } from "@heuvera/components/sections/ListingSection";
+import { FeaturedSection } from "@heuvera/components/sections/FeaturedSection";
+import { CategoriesSection } from "@heuvera/components/sections/CategoriesSection";
+import { HeaderSection } from "@heuvera/components/sections/HeaderSection";
+import { propertyCategories, propertyLocation } from "@heuvera/app/data/array";
+import { memo } from "react";
 
-export const FilterModal = React.memo(
-  ({ onApplyFilters, initialFilters = {}, onClose }: FilterModalProps) => {
-    const [activeTab, setActiveTab] = useState<TabType>("price");
 
-    const [priceRange, setPriceRange] = useState<[number, number]>(
-      initialFilters?.priceRange || [20000, 100000],
-    );
-    const [bedrooms, setBedrooms] = useState<string | null>(
-      initialFilters?.bedrooms || null,
-    );
-    const [beds, setBeds] = useState<string | null>(
-      initialFilters?.beds || null,
-    );
-    const [bathrooms, setBathrooms] = useState<string | null>(
-      initialFilters?.bathrooms || null,
-    );
-    const [amenities, setAmenities] = useState<string[]>(
-      initialFilters?.amenities ||
-        AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
-    );
-    const [propertyTypes, setPropertyTypes] = useState<string[]>(
-      initialFilters?.propertyTypes || [],
-    );
-    const [instantBooking, setInstantBooking] = useState(
-      initialFilters?.instantBooking ?? true,
-    );
-    const [selfCheckIn, setSelfCheckIn] = useState(
-      initialFilters?.selfCheckIn ?? false,
-    );
 
-    const handleTabChange = useCallback((value: TabType) => {
-      setActiveTab(value);
-    }, []);
+const Discover = memo(function Discover() {
+  const isMobile = useIsMobile();
+  const [selectedCategory, setSelectedCategory] = useState<{ type: string; name: string } | null>(null);
 
-    const handleReset = useCallback(() => {
-      setPriceRange([45000, 105000]);
-      setBedrooms(null);
-      setBeds(null);
-      setBathrooms(null);
-      setAmenities(
-        AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
-      );
-      setPropertyTypes([]);
-      setInstantBooking(true);
-      setSelfCheckIn(false);
-    }, []);
+  const handleCategorySelect = useCallback((category: string | null) => {
+    console.log("Selected category from CategoryList:", category);
+  }, []);
 
-    const toggleAmenity = useCallback((amenity: string) => {
-      setAmenities((prev) =>
-        prev.includes(amenity)
-          ? prev.filter((a) => a !== amenity)
-          : [...prev, amenity],
-      );
-    }, []);
+  const handlePropertyCategoryClick = useCallback((category: string) => {
+    setSelectedCategory({ type: "property", name: category });
+  }, []);
 
-    const togglePropertyType = useCallback((type: string) => {
-      setPropertyTypes((prev) =>
-        prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type],
-      );
-    }, []);
+  const handleLocationClick = useCallback((location: string) => {
+    setSelectedCategory({ type: "location", name: location });
+  }, []);
 
-    const handleNumberSelect = useCallback(
-      (type: "bedrooms" | "beds" | "bathrooms", value: string) => {
-        const setters = {
-          bedrooms: setBedrooms,
-          beds: setBeds,
-          bathrooms: setBathrooms,
-        };
-        const currentValue = { bedrooms, beds, bathrooms }[type];
-        setters[type](value === currentValue ? null : value);
-      },
-      [bedrooms, beds, bathrooms],
-    );
+  const handleCloseFiltered = useCallback(() => {
+    setSelectedCategory(null);
+  }, []);
 
-    const tabContent = useMemo(() => {
-      switch (activeTab) {
-        case "price":
-          return (
-            <PriceTab priceRange={priceRange} setPriceRange={setPriceRange} />
-          );
-        case "rooms":
-          return (
-            <RoomsTab
-              bedrooms={bedrooms}
-              beds={beds}
-              bathrooms={bathrooms}
-              onSelect={handleNumberSelect}
-            />
-          );
-        case "type":
-          return (
-            <TypeTab
-              propertyTypes={propertyTypes}
-              togglePropertyType={togglePropertyType}
-            />
-          );
-        case "amenities":
-          return (
-            <AmenitiesTab amenities={amenities} toggleAmenity={toggleAmenity} />
-          );
-        case "book":
-          return (
-            <BookTab
-              instantBooking={instantBooking}
-              selfCheckIn={selfCheckIn}
-              setInstantBooking={setInstantBooking}
-              setSelfCheckIn={setSelfCheckIn}
-            />
-          );
-        default:
-          return null;
-      }
-    }, [
-      activeTab,
-      priceRange,
-      bedrooms,
-      beds,
-      bathrooms,
-      amenities,
-      propertyTypes,
-      instantBooking,
-      selfCheckIn,
-      handleNumberSelect,
-      toggleAmenity,
-      togglePropertyType,
-    ]);
+  return (
+    <div className="w-full h-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 flex flex-col gap-10 md:gap-20">
+      <HeaderSection isMobile={isMobile} />
+      <CategoriesSection onCategorySelect={handleCategorySelect} />
+      {selectedCategory ? (
+        <ListingsSection selectedCategory={selectedCategory} handleCloseFiltered={handleCloseFiltered} />
+      ) : (
+        <FeaturedSection
+          propertyCategories={propertyCategories}
+          propertyLocation={propertyLocation}
+          handlePropertyCategoryClick={handlePropertyCategoryClick}
+          handleLocationClick={handleLocationClick}
+        />
+      )}
+    </div>
+  );
+});
 
-    return (
-      <>
-        <div className="fixed inset-0 bg-black/50 z-50" onClick={onClose}></div>
-
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] xl:w-[60%] 2xl:w-[35%] h-[60%] sm:h-3/5 bg-[#F8F7F2] dark:bg-[#333333] rounded-lg shadow-lg z-50 flex flex-col">
-          <div className="flex items-center justify-between border-b p-4 sm:p-5 md:p-6">
-            <div className="flex items-center">
-              <LucideSlidersHorizontal className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              <h2 className="text-sm sm:text-base md:text-lg font-serif font-medium">
-                Filters
-              </h2>
-            </div>
-            <button
-              onClick={onClose}
-              className="rounded-full h-6 w-6 sm:h-8 sm:w-8 flex items-center justify-center hover:bg-gray-100 hover:dark:bg-[#444444]"
-            >
-              <X className="h-3 w-3 sm:h-4 sm:w-4" />
-            </button>
-          </div>
-
-          <div className="w-full flex flex-col flex-grow">
-            <div className="h-14 sm:h-16 md:h-20 flex justify-between border-b px-3 sm:px-4 md:px-6 overflow-x-auto">
-              {TABS_CONFIG.map(({ id, icon: Icon, label, mobileLabel }) => {
-                const isActive = activeTab === id;
-                const IconComponent = () => (
-                  <Icon
-                    color=""
-                    className={cn(
-                      "h-4 w-4 sm:h-5 sm:w-5",
-                      isActive
-                        ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
-                        : "text-[#323223] dark:text-[#F8F7F2]",
-                    )}
-                  />
-                );
-                return (
-                  <button
-                    key={id}
-                    onClick={() => handleTabChange(id as TabType)}
-                    className={cn(
-                      "flex items-center justify-center gap-1 sm:gap-2 h-14 sm:h-16 md:h-20 max-w-fit rounded-none text-xs sm:text-sm",
-                      isActive
-                        ? "border-b-2 border-[#7B4F3A] dark:border-[#8B5F4D]"
-                        : "",
-                    )}
-                  >
-                    <IconComponent />
-                    <span
-                      className={`hidden sm:inline ${
-                        isActive
-                          ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
-                          : "text-[#323223] dark:text-[#F8F7F2]"
-                      }`}
-                    >
-                      {label}
-                    </span>
-                    <span
-                      className={`sm:hidden ${
-                        isActive
-                          ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
-                          : "text-[#323223] dark:text-[#F8F7F2]"
-                      }`}
-                    >
-                      {mobileLabel || label}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="flex-grow overflow-y-auto p-3 sm:p-4 md:p-6">
-              {tabContent}
-            </div>
-
-            <div className="flex items-center justify-between p-3 sm:p-4 md:p-6 border-t">
-              <Button
-                variant="outline"
-                onClick={handleReset}
-                className="rounded-lg bg-[#f0efe9] hover:bg-[#e8e7e1] text-xs sm:text-sm"
-              >
-                <LucideRotateCw />
-                Reset
-              </Button>
-              <Button
-                className="rounded-lg bg-[#7B4F3A] dark:bg-[#8B5F4D] hover:bg-[#7a3b10] text-white text-xs sm:text-sm"
-                onClick={() => {
-                  onApplyFilters({
-                    priceRange,
-                    bedrooms,
-                    beds,
-                    bathrooms,
-                    amenities,
-                    propertyTypes,
-                    instantBooking,
-                    selfCheckIn,
-                  });
-                  onClose();
-                }}
-              >
-                <LucideSearch />
-                Search
-              </Button>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  },
-);
+export default Discover;
