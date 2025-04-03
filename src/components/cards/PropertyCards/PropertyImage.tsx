@@ -7,16 +7,22 @@ interface PropertyImageCarouselProps {
   images?: string[];
 }
 
-export default function PropertyImageCarousel({ images = [] }: PropertyImageCarouselProps) {
+export default function PropertyImageCarousel({
+  images = [],
+}: PropertyImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
 
   const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
+    );
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+    );
   };
 
   const goToSlide = (slideIndex: number) => {
@@ -24,7 +30,7 @@ export default function PropertyImageCarousel({ images = [] }: PropertyImageCaro
   };
 
   return (
-    <div 
+    <div
       className="relative w-full h-60 md:h-36 lg:h-28 xl:h-32 2xl:h-40 overflow-hidden rounded-t-2xl"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -40,31 +46,33 @@ export default function PropertyImageCarousel({ images = [] }: PropertyImageCaro
               className="w-full h-full object-cover transition-all duration-300"
             />
           </div>
-          
+
           {images.length > 1 && (
             <>
-              <button 
+              <button
                 onClick={handlePrevious}
-                className={`absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 dark:bg-[#33333388] rounded-full shadow-md transition-opacity duration-200 ${isHovering ? 'opacity-80' : 'opacity-0'} hover:opacity-100`}
+                className={`absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 dark:bg-[#33333388] rounded-full shadow-md transition-opacity duration-200 ${isHovering ? "opacity-80" : "opacity-0"} hover:opacity-100`}
                 aria-label="Previous image"
               >
                 <ChevronLeft size={20} />
               </button>
-              
-              <button 
+
+              <button
                 onClick={handleNext}
-                className={`absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 dark:bg-[#333333] rounded-full shadow-md transition-opacity duration-200 ${isHovering ? 'opacity-80' : 'opacity-0'} hover:opacity-100`}
+                className={`absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 dark:bg-[#333333] rounded-full shadow-md transition-opacity duration-200 ${isHovering ? "opacity-80" : "opacity-0"} hover:opacity-100`}
                 aria-label="Next image"
               >
                 <ChevronRight size={20} />
               </button>
-              
-              <div className={`absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 transition-opacity duration-200`}>
+
+              <div
+                className={`absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 transition-opacity duration-200`}
+              >
                 {images.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-1.5 h-1.5 rounded-full transition-all ${currentIndex === index ? 'bg-white dark:bg-[#333333] w-3' : 'bg-white/60 dark:bg-[#33333388]'}`}
+                    className={`w-1.5 h-1.5 rounded-full transition-all ${currentIndex === index ? "bg-white dark:bg-[#333333] w-3" : "bg-white/60 dark:bg-[#33333388]"}`}
                     aria-label={`Go to image ${index + 1}`}
                   />
                 ))}

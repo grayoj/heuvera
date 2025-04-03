@@ -68,7 +68,7 @@ const MapRecenter = ({ center }: { center: LatLngTuple }) => {
 // Component to handle theme switching for map tiles
 const ThemeDetector = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const map = useMap();
-  
+
   useEffect(() => {
     // Get all existing tile layers
     map.eachLayer((layer) => {
@@ -76,19 +76,25 @@ const ThemeDetector = ({ isDarkMode }: { isDarkMode: boolean }) => {
         map.removeLayer(layer);
       }
     });
-    
+
     // Add the appropriate tile layer based on current theme
     if (isDarkMode) {
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-        attribution: '&copy; <a href="https://www.carto.com/">CartoDB</a>',
-      }).addTo(map);
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+        {
+          attribution: '&copy; <a href="https://www.carto.com/">CartoDB</a>',
+        },
+      ).addTo(map);
     } else {
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-        attribution: '&copy; <a href="https://www.carto.com/">CartoDB</a>',
-      }).addTo(map);
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+        {
+          attribution: '&copy; <a href="https://www.carto.com/">CartoDB</a>',
+        },
+      ).addTo(map);
     }
   }, [map, isDarkMode]);
-  
+
   return null;
 };
 
@@ -141,39 +147,39 @@ const MapComponents = ({
 }: MapComponentsProps) => {
   const router = useRouter();
   const [isDarkMode, setIsDarkMode] = useState(false);
-  
+
   // Detect dark mode using media query and document class
   useEffect(() => {
     // Initial check for dark mode
-    const isDark = 
-      window.matchMedia('(prefers-color-scheme: dark)').matches ||
-      document.documentElement.classList.contains('dark');
-    
+    const isDark =
+      window.matchMedia("(prefers-color-scheme: dark)").matches ||
+      document.documentElement.classList.contains("dark");
+
     setIsDarkMode(isDark);
-    
+
     // Set up listeners for system preference changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e: MediaQueryListEvent) => {
       setIsDarkMode(e.matches);
     };
-    
+
     // Set up mutation observer for class changes (for theme toggle buttons)
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (
-          mutation.attributeName === 'class' &&
+          mutation.attributeName === "class" &&
           mutation.target === document.documentElement
         ) {
-          setIsDarkMode(document.documentElement.classList.contains('dark'));
+          setIsDarkMode(document.documentElement.classList.contains("dark"));
         }
       });
     });
-    
+
     observer.observe(document.documentElement, { attributes: true });
-    mediaQuery.addEventListener('change', handleChange);
-    
+    mediaQuery.addEventListener("change", handleChange);
+
     return () => {
-      mediaQuery.removeEventListener('change', handleChange);
+      mediaQuery.removeEventListener("change", handleChange);
       observer.disconnect();
     };
   }, []);
@@ -198,7 +204,7 @@ const MapComponents = ({
           attribution='&copy; <a href="https://www.carto.com/">CartoDB</a>'
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
-        
+
         {/* Theme detector handles switching the tile layer */}
         <ThemeDetector isDarkMode={isDarkMode} />
 
@@ -208,7 +214,9 @@ const MapComponents = ({
           center={center_radius}
           radius={radius}
           pathOptions={{
-            color: isDarkMode ? "rgba(158, 122, 106, 0.9)" : "rgba(123, 79, 58, 0.9)",
+            color: isDarkMode
+              ? "rgba(158, 122, 106, 0.9)"
+              : "rgba(123, 79, 58, 0.9)",
             weight: 3,
             fillOpacity: 0.1,
           }}
@@ -225,7 +233,7 @@ const MapComponents = ({
               className: "",
               html: ReactDOMServer.renderToString(
                 <div
-                  className={`${isDarkMode ? 'bg-[#333333]' : 'bg-white'} p-1 rounded-full shadow-md flex items-center justify-center`}
+                  className={`${isDarkMode ? "bg-[#333333]" : "bg-white"} p-1 rounded-full shadow-md flex items-center justify-center`}
                   style={{ width: "32px", height: "32px" }}
                 >
                   {getPropertyIcon(property.propertyType)}

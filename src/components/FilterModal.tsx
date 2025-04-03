@@ -114,7 +114,7 @@ export function FilterModal({
   );
   const [amenities, setAmenities] = useState<string[]>(
     initialFilters?.amenities ||
-    AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
+      AMENITIES_CONFIG.filter((a) => a.defaultSelected).map((a) => a.name),
   );
   const [propertyTypes, setPropertyTypes] = useState<string[]>(
     initialFilters?.propertyTypes || [],
@@ -199,7 +199,9 @@ export function FilterModal({
                   color=""
                   className={cn(
                     "h-4 w-4 sm:h-5 sm:w-5",
-                    isActive ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323223] dark:text-[#F8F7F2]",
+                    isActive
+                      ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                      : "text-[#323223] dark:text-[#F8F7F2]",
                   )}
                 />
               );
@@ -209,19 +211,27 @@ export function FilterModal({
                   onClick={() => handleTabChange(id as TabType)}
                   className={cn(
                     "flex items-center justify-center gap-1 sm:gap-2 h-14 sm:h-16 md:h-20 max-w-fit rounded-none text-xs sm:text-sm",
-                    isActive ? "border-b-2 border-[#7B4F3A] dark:border-[#8B5F4D]" : "",
+                    isActive
+                      ? "border-b-2 border-[#7B4F3A] dark:border-[#8B5F4D]"
+                      : "",
                   )}
                 >
                   <IconComponent />
                   <span
-                    className={`hidden sm:inline ${isActive ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323223] dark:text-[#F8F7F2]"
-                      }`}
+                    className={`hidden sm:inline ${
+                      isActive
+                        ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                        : "text-[#323223] dark:text-[#F8F7F2]"
+                    }`}
                   >
                     {label}
                   </span>
                   <span
-                    className={`sm:hidden ${isActive ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323223] dark:text-[#F8F7F2]"
-                      }`}
+                    className={`sm:hidden ${
+                      isActive
+                        ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                        : "text-[#323223] dark:text-[#F8F7F2]"
+                    }`}
                   >
                     {mobileLabel || label}
                   </span>
@@ -472,7 +482,9 @@ function TypeTab({ propertyTypes, togglePropertyType }: TypeTabProps) {
             <div
               className={cn(
                 "flex items-center justify-center",
-                propertyTypes.includes(name) ? "bg-[#f8efe9] dark:bg-[#555555]" : "",
+                propertyTypes.includes(name)
+                  ? "bg-[#f8efe9] dark:bg-[#555555]"
+                  : "",
               )}
             >
               <Icon
@@ -487,7 +499,9 @@ function TypeTab({ propertyTypes, togglePropertyType }: TypeTabProps) {
             <span
               className={cn(
                 "",
-                propertyTypes.includes(name) ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-black dark:text-gray-100",
+                propertyTypes.includes(name)
+                  ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                  : "text-black dark:text-gray-100",
               )}
             >
               {name}
@@ -535,20 +549,26 @@ function AmenitiesTab({ amenities, toggleAmenity }: AmenitiesTabProps) {
             <div
               className={cn(
                 "flex items-center justify-center",
-                amenities.includes(name) ? "bg-[#f8efe9] dark:bg-[#555555]" : "",
+                amenities.includes(name)
+                  ? "bg-[#f8efe9] dark:bg-[#555555]"
+                  : "",
               )}
             >
               <Icon
                 className={cn(
                   "h-4 w-4 sm:h-5 sm:w-5",
-                  amenities.includes(name) ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-black dark:text-gray-100",
+                  amenities.includes(name)
+                    ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                    : "text-black dark:text-gray-100",
                 )}
               />
             </div>
             <span
               className={cn(
                 "",
-                amenities.includes(name) ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-black dark:text-gray-100",
+                amenities.includes(name)
+                  ? "text-[#7B4F3A] dark:text-[#8B5F4D]"
+                  : "text-black dark:text-gray-100",
               )}
             >
               {name}

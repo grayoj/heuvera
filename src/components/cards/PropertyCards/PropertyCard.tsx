@@ -1,6 +1,5 @@
 "use client";
 
-
 import PropertyDetails from "./PropertyDetails";
 import Link from "next/link";
 import PropertyImageCarousel from "./PropertyImage";

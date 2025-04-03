@@ -72,7 +72,10 @@ export default function CreditPayment() {
           id="saveCard"
           className="rounded text-[#7B4F3A]"
         />
-        <label htmlFor="saveCard" className="text-[14px] text-gray-700 dark:text-[#A7A7A7]">
+        <label
+          htmlFor="saveCard"
+          className="text-[14px] text-gray-700 dark:text-[#A7A7A7]"
+        >
           Save card for future payments
         </label>
       </motion.div>
