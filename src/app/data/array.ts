@@ -158,3 +158,25 @@ export const PROPERTY_TYPES = [
   { name: "House", icon: Home },
   { name: "Loft", icon: Home },
 ];
+
+export const propertyCategories = [
+  { id: 1, category: "Town House", count: 2, imageUrl: "/town.jpg" },
+  { id: 2, category: "Apartment", count: 5, imageUrl: "/apartment.jpg" },
+  { id: 3, category: "Villa", count: 3, imageUrl: "/villa.jpg" },
+  { id: 4, category: "Penthouse", count: 1, imageUrl: "/penthouse.jpg" },
+  { id: 5, category: "Cottage", count: 4, imageUrl: "/cottage.jpg" },
+];
+
+export const propertyLocation = [
+  { id: 1, category: "Abuja", count: 158, imageUrl: "/abuja.jpg" },
+  { id: 2, category: "Lagos", count: 94, imageUrl: "/lagos.jpg" },
+  { id: 3, category: "Kano", count: 76, imageUrl: "/kano.jpg" },
+  { id: 4, category: "Chicago", count: 63, imageUrl: "/chicago.jpg" },
+  {
+    id: 5,
+    category: "San Francisco",
+    count: 52,
+    imageUrl: "/sanfrancisco.jpg",
+  },
+  { id: 6, category: "Austin", count: 47, imageUrl: "/austin.jpg" },
+];
