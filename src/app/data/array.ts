@@ -1,5 +1,7 @@
+import Currency from "@heuvera/components/icons/svgs/currency";
 import { FilterOption } from "@heuvera/utils/props";
-import { User, Calendar, CreditCard, HelpCircle } from "lucide-react";
+import { User, Calendar, CreditCard, HelpCircle, Bed, Home, Refrigerator, Shield, Utensils, Video, WashingMachine, Wifi } from "lucide-react";
+import { IoBedOutline, IoHomeOutline, IoWaterOutline, IoTicketOutline } from "react-icons/io5";
 
 export const sideBar = [
   {
@@ -114,4 +116,45 @@ export const FILTER_OPTIONS: FilterOption[] = [
     label: "Who",
     placeholder: "Add guests"
   }
+];
+
+
+export const NUMBER_OPTIONS = {
+  bedrooms: ["Any", "1", "2", "3", "4", "5", "5+"],
+  bathrooms: ["Any", "1", "2", "3", "4", "5", "5+"],
+};
+
+export const AMENITIES_CONFIG = [
+  { name: "Wifi", icon: Wifi, defaultSelected: true },
+  { name: "Washer", icon: WashingMachine, defaultSelected: true },
+  { name: "Kitchen", icon: Utensils, defaultSelected: true },
+  { name: "Security cameras", icon: Video, defaultSelected: false },
+  { name: "Refrigerator", icon: Refrigerator, defaultSelected: false },
+];
+
+export const TABS_CONFIG = [
+  { id: "price", icon: Currency, label: "Price", mobileLabel: "Price" },
+  {
+    id: "rooms",
+    icon: IoBedOutline,
+    label: "Rooms & Beds",
+    mobileLabel: "Rooms",
+  },
+  { id: "type", icon: IoHomeOutline, label: "Type", mobileLabel: "Type" },
+  {
+    id: "amenities",
+    icon: IoWaterOutline,
+    label: "Amenities",
+    mobileLabel: "Amen.",
+  },
+  { id: "book", icon: IoTicketOutline, label: "Book", mobileLabel: "Book" },
+];
+
+export const PROPERTY_TYPES = [
+  { name: "Entire place", icon: Home },
+  { name: "Private room", icon: Bed },
+  { name: "Shared room", icon: Shield },
+  { name: "Apartment", icon: Home },
+  { name: "House", icon: Home },
+  { name: "Loft", icon: Home },
 ];

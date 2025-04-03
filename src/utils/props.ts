@@ -72,3 +72,59 @@ export interface SearchModalProps {
     toggleFilter: (filterId: string) => void;
     inputRef: RefObject<HTMLInputElement>;
 }
+
+export interface PriceTabProps {
+    priceRange: [number, number];
+    setPriceRange: React.Dispatch<React.SetStateAction<[number, number]>>;
+}
+
+export interface RoomsTabProps {
+    bedrooms: string | null;
+    beds: string | null;
+    bathrooms: string | null;
+    onSelect: (type: "bedrooms" | "beds" | "bathrooms", value: string) => void;
+}
+
+export interface TypeTabProps {
+    propertyTypes: string[];
+    togglePropertyType: (type: string) => void;
+}
+
+export interface AmenitiesTabProps {
+    amenities: string[];
+    toggleAmenity: (amenity: string) => void;
+}
+
+export interface BookTabProps {
+    instantBooking: boolean;
+    selfCheckIn: boolean;
+    setInstantBooking: React.Dispatch<React.SetStateAction<boolean>>;
+    setSelfCheckIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface FilterModalProps {
+    onApplyFilters: (filters: {
+        priceRange: [number, number];
+        bedrooms: string | null;
+        beds: string | null;
+        bathrooms: string | null;
+        amenities: string[];
+        propertyTypes: string[];
+        instantBooking: boolean;
+        selfCheckIn: boolean;
+    }) => void;
+    initialFilters?: Partial<{
+        priceRange: [number, number];
+        bedrooms: string | null;
+        beds: string | null;
+        bathrooms: string | null;
+        amenities: string[];
+        propertyTypes: string[];
+        instantBooking: boolean;
+        selfCheckIn: boolean;
+    }>;
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+export type TabType = "price" | "rooms" | "type" | "amenities" | "book";

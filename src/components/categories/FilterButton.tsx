@@ -3,7 +3,7 @@
 import { Button } from "@heuvera/components/ui/button";
 import { LucideSlidersHorizontal } from "lucide-react";
 import { useState } from "react";
-import { FilterModal } from "../FilterModal";
+import { FilterModal } from "../filtermodal/FilterModal";
 
 export interface FilterProps {
   priceRange: [number, number];
