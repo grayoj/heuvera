@@ -1,3 +1,4 @@
+import { FilterOption } from "@heuvera/utils/props";
 import { User, Calendar, CreditCard, HelpCircle } from "lucide-react";
 
 export const sideBar = [
@@ -95,4 +96,22 @@ export const help = [
 export const inputs = [
   { name: "Full Name", value: "John Doe" },
   { name: "Email", value: "george" },
+];
+
+export const FILTER_OPTIONS: FilterOption[] = [
+  {
+    id: "location",
+    label: "Where",
+    placeholder: "Anywhere"
+  },
+  {
+    id: "dates",
+    label: "When",
+    placeholder: "Any week"
+  },
+  {
+    id: "guests",
+    label: "Who",
+    placeholder: "Add guests"
+  }
 ];
