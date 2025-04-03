@@ -3,6 +3,7 @@
 import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
 import Categories from "@heuvera/components/categories/Categories";
 import { PropertyData } from "@heuvera/components/data/PropertyData";
+import FilterTags from "@heuvera/components/FilterTags";
 import SearchBar from "@heuvera/components/search/SearchBar";
 import { SkeletalPreloader } from "@heuvera/components/skeletalpreloader/propertycards";
 import useIsMobile from "@heuvera/hooks/IsMobile";
@@ -65,7 +66,7 @@ export default function Explore() {
         activeFilters.bedrooms === "5+"
           ? property.propertyDetails.bedrooms >= 5
           : property.propertyDetails.bedrooms ===
-            parseInt(activeFilters.bedrooms || "0"),
+          parseInt(activeFilters.bedrooms || "0"),
       );
     }
 
@@ -76,20 +77,6 @@ export default function Explore() {
         ),
       );
     }
-
-    // // Instant booking filter
-    // if (activeFilters.instantBooking !== undefined) {
-    //   result = result.filter(property =>
-    //     property.bookingOptions.instantBooking === activeFilters.instantBooking
-    //   );
-    // }
-
-    // // Self check-in filter
-    // if (activeFilters.selfCheckIn !== undefined) {
-    //   result = result.filter(property =>
-    //     property.bookingOptions.selfCheckIn === activeFilters.selfCheckIn
-    //   );
-    // }
 
     setFilteredProperties(result);
   }, [selectedCategory, activeFilters]);
@@ -127,45 +114,6 @@ export default function Explore() {
     setActiveFilters(newFilters);
   };
 
-  const renderActiveFilters = () => {
-    const filterDisplayMap = {
-      priceRange: (val: [number, number]) => `$${val[0]} - $${val[1]}`,
-      bedrooms: (val: string) => `${val} Bedrooms`,
-      beds: (val: string) => `${val} Beds`,
-      bathrooms: (val: string) => `${val} Bathrooms`,
-      amenities: (val: string[]) => val.join(", "),
-      propertyTypes: (val: string[]) => val.join(", "),
-      instantBooking: () => "Instant Booking",
-      selfCheckIn: () => "Self Check-in",
-    };
-
-    return (
-      <div className="flex flex-wrap gap-2 my-2">
-        {Object.entries(activeFilters).map(([key, value]) => {
-          if (!value || (Array.isArray(value) && value.length === 0))
-            return null;
-
-          const display = filterDisplayMap[
-            key as keyof typeof filterDisplayMap
-          ]?.(value as any);
-
-          return display ? (
-            <div
-              key={key}
-              className="flex items-center bg-[#f8efe9] rounded-full px-3 py-1 text-xs sm:text-sm"
-            >
-              <span className="mr-2">{display}</span>
-              <button
-                onClick={() => removeFilter(key as keyof typeof activeFilters)}
-              >
-                <X className="h-4 w-4 text-[#8B4513]" />
-              </button>
-            </div>
-          ) : null;
-        })}
-      </div>
-    );
-  };
 
   return (
     <div className="flex flex-col flex-1 h-full w-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20">
@@ -177,10 +125,9 @@ export default function Explore() {
           onCategorySelect={(category) => setSelectedCategory(category)}
           setActiveFilters={setActiveFilters}
         />
-
-        <div>
-          {Object.keys(activeFilters).length > 0 && renderActiveFilters()}
-        </div>
+        {Object.keys(activeFilters).length > 0 && (
+          <FilterTags activeFilters={activeFilters} removeFilter={removeFilter} />
+        )}
       </div>
 
       {loading ? (

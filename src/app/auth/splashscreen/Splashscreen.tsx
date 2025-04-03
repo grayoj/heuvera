@@ -49,7 +49,6 @@ const SplashScreen = () => {
           }}
           className="fixed inset-0 flex items-center justify-center bg-[#7B4F3A]"
         >
-          {/* Circular background effect */}
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{
