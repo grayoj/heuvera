@@ -8,31 +8,8 @@ import BookmarkButton from "@heuvera/components/buttons/BookmarkButton";
 import { FaBath } from "react-icons/fa";
 import { IoBed, IoPerson } from "react-icons/io5";
 import { Button } from "@heuvera/components/ui/button";
+import { Property } from "@heuvera/utils/props";
 
-interface Property {
-  id: number;
-  propertyName: string;
-  propertyDetails: {
-    price: number;
-    currency: string;
-    period: string;
-    location: string;
-    bedrooms: number;
-    bathrooms: number;
-    guests: number;
-    rating: number;
-  };
-  propertyDescription: string;
-  propertyHost: {
-    name: string;
-    profilePicture: string;
-  };
-  images: string[];
-  amenities: string[];
-  isBookmarked: boolean;
-  isVerified: boolean;
-  listedDate: string;
-}
 
 export default function PropertyListView({ property }: { property: Property }) {
   return (

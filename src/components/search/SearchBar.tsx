@@ -36,6 +36,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
     };
   }, [isSearchModalOpen]);
 
+
   useEffect(() => {
     if (isSearchModalOpen) {
       document.body.style.overflow = "hidden";
@@ -85,17 +86,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
   }
 
   return (
-    <DesktopSearchBar
-      activeFilter={activeFilter}
-      toggleFilter={toggleFilter}
-      clearAll={clearAll}
-      searchText={searchText}
-      setSearchText={setSearchText}
-      checkInDate={checkInDate}
-      setCheckInDate={setCheckInDate}
-      checkOutDate={checkOutDate}
-      setCheckOutDate={setCheckOutDate}
-    />
+    <div className="w-full" ref={searchContainerRef}>
+      <DesktopSearchBar
+        activeFilter={activeFilter}
+        toggleFilter={toggleFilter}
+        clearAll={clearAll}
+        searchText={searchText}
+        setSearchText={setSearchText}
+        checkInDate={checkInDate}
+        setCheckInDate={setCheckInDate}
+        checkOutDate={checkOutDate}
+        setCheckOutDate={setCheckOutDate}
+      />
+    </div>
   );
 
   function renderSearchModal() {

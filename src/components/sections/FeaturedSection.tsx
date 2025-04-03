@@ -1,4 +1,5 @@
-import { fadeInUp, staggerContainer, cardAnimation, slideInLeft, slideInRight } from "@heuvera/app/(main)/discover/page";
+
+import { cardAnimation, fadeInUp, slideInLeft, slideInRight, staggerContainer } from "../animations/anim";
 import { FindPropertyCard } from "../cards/DiscoverCards/FindPropertyCard";
 import { PropertyCategoryCard } from "../cards/DiscoverCards/PropertyCategoryCard";
 import { motion } from "framer-motion";

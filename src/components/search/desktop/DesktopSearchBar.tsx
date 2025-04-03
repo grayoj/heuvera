@@ -100,7 +100,7 @@ export const DesktopSearchBar = memo((props: DesktopSearchBarProps) => {
                             </span>
                             <button
                                 onClick={() => toggleFilter(activeFilter)}
-                                className="p-2 rounded-full hover:bg-[#E3E2D9]"
+                                className="p-2 rounded-full hover:bg-[#E3E2D9] dark:hover:bg-[#555555]"
                             >
                                 <LucideX
                                     className="text-[#323232] dark:text-[#F8F7F2]"

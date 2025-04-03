@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { LatLngTuple } from "leaflet";
@@ -20,7 +20,7 @@ const MapComponents = dynamic(() => import("./MapComponent"), {
   ssr: false,
 }) as React.ComponentType<MapComponentsProps>;
 
-const properties: Property[] = [
+const defaultProperties: Property[] = [
   {
     id: 1,
     name: "Luxury Apartment",
@@ -30,7 +30,7 @@ const properties: Property[] = [
     image:
       "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format",
     description: "Modern luxury apartment with panoramic city views.",
-    icon: <IoHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />,
+    icon: <IoHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />, 
     propertyType: "apartment",
   },
   {
@@ -42,7 +42,7 @@ const properties: Property[] = [
     image:
       "https://images.unsplash.com/photo-1579656592043-6a47e332b902?q=80&w=1974&auto=format",
     description: "Cozy family home with a large backyard.",
-    icon: <FaHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />,
+    icon: <FaHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />, 
     propertyType: "house",
   },
 ];
@@ -51,56 +51,34 @@ interface MapDrawerPageProps {
   properties?: Property[];
 }
 
-export default function MapDrawerPage({
-  properties: propProperties = [],
-}: MapDrawerPageProps) {
-  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
-    null,
-  );
+export default function MapDrawerPage({ properties = [] }: MapDrawerPageProps) {
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
-  const displayProperties =
-    propProperties.length > 0 ? propProperties : properties;
+  const displayProperties = useMemo(() => (properties.length > 0 ? properties : defaultProperties), [properties]);
 
-  const markerPositions = displayProperties
-    .filter((property) => {
-      if (!property.position) return false;
-      if (Array.isArray(property.position)) {
-        return (
-          property.position.length === 2 &&
-          !isNaN(Number(property.position[0])) &&
-          !isNaN(Number(property.position[1]))
-        );
-      } else if (typeof property.position === "object") {
-        const pos = property.position as { lat?: number; lng?: number };
-        return (
-          pos.lat !== undefined &&
-          pos.lng !== undefined &&
-          !isNaN(Number(pos.lat)) &&
-          !isNaN(Number(pos.lng))
-        );
-      }
-      return false;
-    })
-    .map((property) => {
-      if (Array.isArray(property.position)) {
-        return property.position as LatLngTuple;
-      } else {
-        const pos = property.position as { lat: number; lng: number };
-        return [pos.lat, pos.lng] as LatLngTuple;
-      }
-    });
+  const markerPositions = useMemo(() =>
+    displayProperties
+      .filter(property => Array.isArray(property.position) && property.position.length === 2)
+      .map(property => property.position as LatLngTuple),
+    [displayProperties]
+  );
 
-  const { center, radius } = getCenterAndRadius(markerPositions);
+  const { center, radius } = useMemo(() => getCenterAndRadius(markerPositions), [markerPositions]);
 
   const mapCenter = center || ([9.0579, 7.4951] as LatLngTuple);
   const mapRadius = radius || 1;
 
+  const handleSearchSubmit = useCallback((e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Searching:", searchQuery);
+  }, [searchQuery]);
+
   return (
     <div className="relative w-full h-screen bg-[#F8F7F2] dark:bg-[#333333] flex flex-col mt-4">
-      <motion.div
+         <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -172,7 +150,6 @@ export default function MapDrawerPage({
           </div>
         </div>
       </motion.div>
-
       <div className="flex-grow relative w-full h-[calc(100vh-4rem)]">
         <MapComponents
           center={mapCenter}

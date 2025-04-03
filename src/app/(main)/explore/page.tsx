@@ -8,15 +8,14 @@ import SearchBar from "@heuvera/components/search/SearchBar";
 import { SkeletalPreloader } from "@heuvera/components/skeletalpreloader/propertycards";
 import useIsMobile from "@heuvera/hooks/IsMobile";
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import React from "react";
 
-export default function Explore() {
+const Explore = React.memo(() => {
   const isMobile = useIsMobile();
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [filteredProperties, setFilteredProperties] = useState(PropertyData);
-
   const [activeFilters, setActiveFilters] = useState<{
     priceRange?: [number, number];
     bedrooms?: string | null;
@@ -41,8 +40,7 @@ export default function Explore() {
     if (selectedCategory) {
       result = result.filter(
         (property) =>
-          property.propertyCategory.toLowerCase() ===
-          selectedCategory.toLowerCase(),
+          property.propertyCategory.toLowerCase() === selectedCategory.toLowerCase()
       );
     }
 
@@ -51,13 +49,13 @@ export default function Explore() {
       result = result.filter(
         (property) =>
           property.propertyDetails.price >= min &&
-          property.propertyDetails.price <= max,
+          property.propertyDetails.price <= max
       );
     }
 
     if (activeFilters.propertyTypes && activeFilters.propertyTypes.length > 0) {
       result = result.filter((property) =>
-        activeFilters.propertyTypes?.includes(property.propertyCategory),
+        activeFilters.propertyTypes?.includes(property.propertyCategory)
       );
     }
 
@@ -65,55 +63,55 @@ export default function Explore() {
       result = result.filter((property) =>
         activeFilters.bedrooms === "5+"
           ? property.propertyDetails.bedrooms >= 5
-          : property.propertyDetails.bedrooms ===
-          parseInt(activeFilters.bedrooms || "0"),
+          : property.propertyDetails.bedrooms === parseInt(activeFilters.bedrooms || "0")
       );
     }
 
     if (activeFilters.amenities && activeFilters.amenities.length > 0) {
       result = result.filter((property) =>
         activeFilters.amenities?.every((amenity) =>
-          property.amenities.includes(amenity),
-        ),
+          property.amenities.includes(amenity)
+        )
       );
     }
 
     setFilteredProperties(result);
   }, [selectedCategory, activeFilters]);
 
-  const removeFilter = (filterKey: keyof typeof activeFilters) => {
-    const newFilters = { ...activeFilters };
+  const removeFilter = useCallback((filterKey: keyof typeof activeFilters) => {
+    setActiveFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
 
-    switch (filterKey) {
-      case "priceRange":
-        newFilters.priceRange = undefined;
-        break;
-      case "bedrooms":
-        newFilters.bedrooms = undefined;
-        break;
-      case "beds":
-        newFilters.beds = undefined;
-        break;
-      case "bathrooms":
-        newFilters.bathrooms = undefined;
-        break;
-      case "amenities":
-        newFilters.amenities = [];
-        break;
-      case "propertyTypes":
-        newFilters.propertyTypes = [];
-        break;
-      case "instantBooking":
-        newFilters.instantBooking = undefined;
-        break;
-      case "selfCheckIn":
-        newFilters.selfCheckIn = undefined;
-        break;
-    }
+      switch (filterKey) {
+        case "priceRange":
+          newFilters.priceRange = undefined;
+          break;
+        case "bedrooms":
+          newFilters.bedrooms = undefined;
+          break;
+        case "beds":
+          newFilters.beds = undefined;
+          break;
+        case "bathrooms":
+          newFilters.bathrooms = undefined;
+          break;
+        case "amenities":
+          newFilters.amenities = [];
+          break;
+        case "propertyTypes":
+          newFilters.propertyTypes = [];
+          break;
+        case "instantBooking":
+          newFilters.instantBooking = undefined;
+          break;
+        case "selfCheckIn":
+          newFilters.selfCheckIn = undefined;
+          break;
+      }
 
-    setActiveFilters(newFilters);
-  };
-
+      return newFilters;
+    });
+  }, []);
 
   return (
     <div className="flex flex-col flex-1 h-full w-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20">
@@ -122,7 +120,7 @@ export default function Explore() {
           <SearchBar isMobile={isMobile} />
         </div>
         <Categories
-          onCategorySelect={(category) => setSelectedCategory(category)}
+          onCategorySelect={setSelectedCategory}
           setActiveFilters={setActiveFilters}
         />
         {Object.keys(activeFilters).length > 0 && (
@@ -162,4 +160,6 @@ export default function Explore() {
       )}
     </div>
   );
-}
+});
+
+export default Explore;

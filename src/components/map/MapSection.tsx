@@ -124,11 +124,10 @@ export default function MapPageContent({
 
           <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-4">
             <div
-              className={`relative w-full h-10 bg-[#F8F7F2] border ${
-                isSearchFocused
+              className={`relative w-full h-10 bg-[#F8F7F2] border ${isSearchFocused
                   ? "border-[#7B4F3A] dark:border-[#8B5F4D]"
                   : "border-[#C4C3B8]"
-              } rounded-full flex items-center transition-all duration-300`}
+                } rounded-full flex items-center transition-all duration-300`}
             >
               <div className="flex items-center pl-3 text-[#898989] dark:text-[#666666]">
                 <Search size={16} />
@@ -154,17 +153,8 @@ export default function MapPageContent({
               )}
             </div>
           </form>
-
-          <Button
-            variant="outline"
-            className="bg-transparent border border-[#E3E2D9] text-[#3E3E3E] bg-[#F3F2EC] shadow-none text-sm font-serif hover:bg-[#E3E2D9]"
-            size="sm"
-          >
-            <LucideSlidersHorizontal className="mr-2 h-4 w-4" /> Filter
-          </Button>
         </div>
       </motion.div>
-
       <motion.div
         className="bg-[#F8F7F2] w-screen h-[calc(100vh-15rem)] overflow-hidden flex-grow relative"
         animate={{

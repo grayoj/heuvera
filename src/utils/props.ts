@@ -128,3 +128,29 @@ export interface FilterModalProps {
 }
 
 export type TabType = "price" | "rooms" | "type" | "amenities" | "book";
+
+
+export interface Property {
+    id: number;
+    propertyName: string;
+    propertyDetails: {
+        price: number;
+        currency: string;
+        period: string;
+        location: string;
+        bedrooms: number;
+        bathrooms: number;
+        guests: number;
+        rating: number;
+    };
+    propertyDescription: string;
+    propertyHost: {
+        name: string;
+        profilePicture: string;
+    };
+    images: string[];
+    amenities: string[];
+    isBookmarked: boolean;
+    isVerified: boolean;
+    listedDate: string;
+}

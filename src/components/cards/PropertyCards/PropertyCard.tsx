@@ -3,30 +3,7 @@
 import PropertyDetails from "./PropertyDetails";
 import Link from "next/link";
 import PropertyImageCarousel from "./PropertyImage";
-
-interface Property {
-  id: number;
-  propertyName: string;
-  propertyDetails: {
-    price: number;
-    currency: string;
-    period: string;
-    location: string;
-    bedrooms: number;
-    bathrooms: number;
-    guests: number;
-    rating: number;
-  };
-  propertyDescription: string;
-  propertyHost: {
-    name: string;
-    profilePicture: string;
-  };
-  images: string[];
-  amenities: string[];
-  isBookmarked: boolean;
-  isVerified: boolean;
-}
+import { Property } from "@heuvera/utils/props";
 
 export default function PropertyCard({ property }: { property: Property }) {
   return (
