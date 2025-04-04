@@ -20,6 +20,421 @@
     }
   ],
   "paths": {
+    "/api/admin/v1/bookings": {
+      "get": {
+        "summary": "Get all bookings with analytics",
+        "description": "Admins can retrieve all bookings with pagination, total bookings, and revenue stats.",
+        "tags": ["Bookings"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "description": "The page number (default is 1)"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            },
+            "description": "Number of bookings per page (default is 10)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of bookings with analytics"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/admin/v1/hosts": {
+      "get": {
+        "summary": "Get all users who are hosts",
+        "description": "Fetches all hosts with their details, including verification status and listings count.",
+        "tags": ["Hosts"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "description": "The page number (default is 1)"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            },
+            "description": "Number of hosts per page (default is 10)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of hosts with their details"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/admin/v1/hosts/status": {
+      "patch": {
+        "summary": "Approve a host",
+        "description": "Admins can approve users as hosts by setting isHostApproved to true.",
+        "tags": ["Hosts"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Host approved successfully"
+          },
+          "400": {
+            "description": "User ID is required"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/admin/v1/listings": {
+      "get": {
+        "summary": "Get all listings with pagination",
+        "description": "Admins can retrieve a paginated list of all property listings along with the total count.",
+        "tags": ["Listings"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "description": "The page number (default is 1)"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            },
+            "description": "Number of listings per page (default is 10)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of listings with total count"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/admin/v1/reviews": {
+      "get": {
+        "summary": "Get all reviews and ratings",
+        "description": "Admins can fetch all reviews along with average rating analytics.",
+        "tags": ["Reviews"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "description": "The page number (default is 1)"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            },
+            "description": "Number of reviews per page (default is 10)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of reviews with analytics"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/admin/v1/users/{id}": {
+      "get": {
+        "summary": "Get user details by ID",
+        "description": "Fetches a user along with all their related data.",
+        "tags": ["Users"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "123e4567-e89b-12d3-a456-426614174000"
+            },
+            "description": "The user ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User details with linked data"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/admin/v1/users": {
+      "get": {
+        "summary": "Get all users with pagination",
+        "description": "Admins can retrieve a paginated list of all users along with the total count.",
+        "tags": ["Users"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "description": "The page number (default is 1)"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            },
+            "description": "Number of users per page (default is 10)"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string",
+              "enum": ["ENABLED", "SUSPENDED", "BANNED"]
+            },
+            "description": "Filter users by account status"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated list of users with total count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalUsers": {
+                      "type": "integer",
+                      "example": 100
+                    },
+                    "users": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "123e4567-e89b-12d3-a456-426614174000"
+                          },
+                          "email": {
+                            "type": "string",
+                            "example": "user@example.com"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "John Doe"
+                          },
+                          "isHostApproved": {
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "accountStatus": {
+                            "type": "string",
+                            "example": "ENABLED"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/admin/v1/users/status": {
+      "patch": {
+        "summary": "Update user account status",
+        "description": "Admins can change a user's account status (Enabled, Suspended, Banned).",
+        "tags": ["Users"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174000"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["ENABLED", "SUSPENDED", "BANNED"],
+                    "example": "SUSPENDED"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User status updated to SUSPENDED"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/auth/user": {
       "post": {
         "summary": "Create a user",
