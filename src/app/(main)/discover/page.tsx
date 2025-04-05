@@ -9,11 +9,12 @@ import { HeaderSection } from "@heuvera/components/sections/HeaderSection";
 import { propertyCategories, propertyLocation } from "@heuvera/app/data/array";
 import { memo } from "react";
 
-
-
 const Discover = memo(function Discover() {
   const isMobile = useIsMobile();
-  const [selectedCategory, setSelectedCategory] = useState<{ type: string; name: string } | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<{
+    type: string;
+    name: string;
+  } | null>(null);
 
   const handleCategorySelect = useCallback((category: string | null) => {
     console.log("Selected category from CategoryList:", category);
@@ -36,7 +37,10 @@ const Discover = memo(function Discover() {
       <HeaderSection isMobile={isMobile} />
       <CategoriesSection onCategorySelect={handleCategorySelect} />
       {selectedCategory ? (
-        <ListingsSection selectedCategory={selectedCategory} handleCloseFiltered={handleCloseFiltered} />
+        <ListingsSection
+          selectedCategory={selectedCategory}
+          handleCloseFiltered={handleCloseFiltered}
+        />
       ) : (
         <FeaturedSection
           propertyCategories={propertyCategories}

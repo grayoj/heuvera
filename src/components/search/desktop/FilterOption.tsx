@@ -36,7 +36,6 @@ export const FilterOption = memo(
           </span>
           {isActive && type === "location" && onChange ? (
             <input
-              ref={inputRef}
               type="text"
               value={value}
               onChange={(e) => onChange(e.target.value)}

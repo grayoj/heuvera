@@ -79,7 +79,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       totalHosts,
-      hosts: hosts.map((host) => ({
+      hosts: hosts.map((host: any) => ({
         ...host,
         createdAt: host.createdAt.toISOString(),
         host: host.host
