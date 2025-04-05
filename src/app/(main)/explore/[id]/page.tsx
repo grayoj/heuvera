@@ -1,5 +1,6 @@
 "use client";
 
+import { memo, useState, useEffect } from "react";
 import BookingSection from "@heuvera/components/property/BookingSection";
 import ImportantInfo from "@heuvera/components/property/ImportantInfo";
 import LocationSection from "@heuvera/components/property/LocationSection";
@@ -9,10 +10,9 @@ import PropertyDetails from "@heuvera/components/property/PropertyDetails";
 import HostInfo from "@heuvera/components/property/PropertyHost";
 import PropertyImages from "@heuvera/components/property/PropertyImages";
 import ReviewsSection from "@heuvera/components/property/ReviewsSection";
-import { useState, useEffect } from "react";
 import PropertyDetailsSkeletalPreloader from "@heuvera/components/skeletalpreloader/propertydetails";
 
-export default function ExploreViewPage() {
+const ExploreViewPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function ExploreViewPage() {
           <div className="w-full flex flex-col">
             <PropertyDetails />
             <BookingSection />
-            <div className="">
+            <div>
               <HostInfo />
             </div>
             <div className="flex flex-col">
@@ -46,15 +46,17 @@ export default function ExploreViewPage() {
           </div>
         </div>
       </div>
-      <div className="">
+      <div>
         <ReviewsSection />
       </div>
-      <div className="">
+      <div>
         <LocationSection />
       </div>
-      <div className="">
+      <div>
         <ImportantInfo />
       </div>
     </div>
   );
-}
+};
+
+export default memo(ExploreViewPage);

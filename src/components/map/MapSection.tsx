@@ -33,7 +33,7 @@ const properties: Property[] = [
     image:
       "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format",
     description: "Modern luxury apartment with panoramic city views.",
-    icon: <IoHome className="text-sm text-[#7B4F3A]" />,
+    icon: <IoHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />,
     propertyType: "apartment",
   },
   {
@@ -45,7 +45,7 @@ const properties: Property[] = [
     image:
       "https://images.unsplash.com/photo-1579656592043-6a47e332b902?q=80&w=1974&auto=format",
     description: "Cozy family home with a large backyard.",
-    icon: <FaHome className="text-sm text-[#7B4F3A]" />,
+    icon: <FaHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />,
     propertyType: "house",
   },
 ];
@@ -119,16 +119,18 @@ export default function MapPageContent({
             onClick={() => router.back()}
             className="w-10 h-10 rounded-full hover:bg-[#E3E2D9]"
           >
-            <BsArrowLeft className="text-[#898989] text-xl" />
+            <BsArrowLeft className="text-[#898989] dark:text-[#666666] text-xl" />
           </Button>
 
           <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-4">
             <div
               className={`relative w-full h-10 bg-[#F8F7F2] border ${
-                isSearchFocused ? "border-[#7B4F3A]" : "border-[#C4C3B8]"
+                isSearchFocused
+                  ? "border-[#7B4F3A] dark:border-[#8B5F4D]"
+                  : "border-[#C4C3B8]"
               } rounded-full flex items-center transition-all duration-300`}
             >
-              <div className="flex items-center pl-3 text-[#898989]">
+              <div className="flex items-center pl-3 text-[#898989] dark:text-[#666666]">
                 <Search size={16} />
               </div>
               <input
@@ -147,22 +149,13 @@ export default function MapPageContent({
                   className="h-6 w-6 mr-2"
                   onClick={() => setSearchQuery("")}
                 >
-                  <X size={14} className="text-[#898989]" />
+                  <X size={14} className="text-[#898989] dark:text-[#666666]" />
                 </Button>
               )}
             </div>
           </form>
-
-          <Button
-            variant="outline"
-            className="bg-transparent border border-[#E3E2D9] text-[#3E3E3E] bg-[#F3F2EC] shadow-none text-sm font-serif hover:bg-[#E3E2D9]"
-            size="sm"
-          >
-            <LucideSlidersHorizontal className="mr-2 h-4 w-4" /> Filter
-          </Button>
         </div>
       </motion.div>
-
       <motion.div
         className="bg-[#F8F7F2] w-screen h-[calc(100vh-15rem)] overflow-hidden flex-grow relative"
         animate={{

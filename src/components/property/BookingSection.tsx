@@ -37,24 +37,24 @@ export default function BookingSection() {
       <div className="flex flex-col gap-8 mt-1">
         <div className="w-full gap-8 flex flex-col md:flex-col lg:flex-col xl:flex-row 2xl:flex-row justify-between">
           <div className="flex flex-col gap-2 md:gap-4 w-12/12 md:w-12/12 lg:w-12/12 xl:w-6/12 2xl:w-6/12 relative">
-            <h1 className="text-sm md:text-base font-normal text-[#3E3E3E]">
+            <h1 className="text-sm md:text-base font-normal text-[#3E3E3E] dark:text-[#666666]">
               Check Availability
             </h1>
-            <div className="h-14 w-full border border-[#3E3E3E] rounded-full flex items-center justify-between relative px-6">
-              <h1 className="text-[#3E3E3E] text-base font-serif">
+            <div className="h-14 w-full border border-[#3E3E3E] dark:border-[#555555] rounded-full flex items-center justify-between relative px-6">
+              <h1 className="text-[#3E3E3E] dark:text-[#555555] text-base font-serif">
                 {formatDateRange()}
               </h1>
               <button
-                className="rounded-full size-10 bg-[#7B4F3A] absolute right-2 flex items-center justify-center"
+                className="rounded-full size-10 bg-[#7B4F3A] dark:bg-[#8B5F4D] absolute right-2 flex items-center justify-center"
                 onClick={() => setIsCalendarOpen(!isCalendarOpen)}
                 type="button"
               >
-                <IoCalendarOutline className="text-xl text-white" />
+                <IoCalendarOutline className="text-xl text-white dark:text-[#333333]" />
               </button>
             </div>
 
             {isCalendarOpen && (
-              <div className="absolute top-[100px] left-0 bg-[#F3F2EC] border border-[#3E3E3E] rounded-xl shadow-lg z-20 p-4 pt-6">
+              <div className="absolute top-[100px] left-0 bg-[#F3F2EC] dark:bg-[#323232] border border-[#3E3E3E] dark:border-[#666666] rounded-xl shadow-lg z-20 p-4 pt-6">
                 <Calendar
                   mode="range"
                   selected={dateRange}
@@ -70,7 +70,7 @@ export default function BookingSection() {
                 />
                 <div className="mt-6 flex justify-end">
                   <Button
-                    className="bg-[#7B4F3A] text-white hover:bg-[#6a4331] h-12 w-full text-base rounded-full"
+                    className="bg-[#7B4F3A] dark:bg-[#8B5F4D] text-white hover:bg-[#6a4331] h-12 w-full text-base rounded-lg"
                     onClick={() => setIsCalendarOpen(false)}
                   >
                     Apply
@@ -81,19 +81,19 @@ export default function BookingSection() {
           </div>
 
           <div className="flex flex-col gap-2 md:gap-4 relative w-12/12 md:w-12/12 lg:w-12/12 xl:w-6/12 2xl:w-6/12">
-            <h1 className="text-sm md:text-base font-serif font-normal text-[#3E3E3E]">
+            <h1 className="text-sm md:text-base font-serif font-normal text-[#3E3E3E] dark:text-[#666666]">
               Guests:
             </h1>
 
             <div
-              className="h-14 w-full border border-[#3E3E3E] rounded-full flex items-center justify-between px-6 cursor-pointer relative"
+              className="h-14 w-full border border-[#3E3E3E] dark:border-[#666666] rounded-full flex items-center justify-between px-6 cursor-pointer relative"
               onClick={() => setIsOpen(!isOpen)}
             >
-              <h1 className="text-[#3E3E3E] text-base font-serif">
+              <h1 className="text-[#3E3E3E] dark:text-[#666666] text-base font-serif">
                 {selectedGuests}
               </h1>
 
-              <div className="text-[#3E3E3E]">
+              <div className="text-[#3E3E3E] dark:text-[#666666]">
                 {isOpen ? (
                   <IoChevronUp className="text-2xl" />
                 ) : (
@@ -103,11 +103,11 @@ export default function BookingSection() {
             </div>
 
             {isOpen && (
-              <div className="absolute top-[100px] w-full bg-[#F3F2EC] border border-[#3E3E3E] rounded-xl shadow-lg py-3 z-10">
+              <div className="absolute top-[100px] w-full bg-[#F3F2EC] dark:bg-[#333333] border border-[#3E3E3E] rounded-xl shadow-lg py-3 z-10">
                 {guestOptions.map((option, index) => (
                   <div
                     key={index}
-                    className="px-6 py-3 text-[#3E3E3E] hover:bg-[#7B4F3A] hover:text-white cursor-pointer transition-colors"
+                    className="px-6 py-3 text-[#3E3E3E] dark:text-[#666666] hover:bg-[#7B4F3A] dark:hover:bg-[#8B5F4D] hover:text-white dark:hover:text-[#F3F2EC] cursor-pointer transition-colors"
                     onClick={() => {
                       setSelectedGuests(option);
                       setIsOpen(false);
@@ -120,7 +120,10 @@ export default function BookingSection() {
             )}
           </div>
         </div>
-        <Button className="h-14 w-full bg-[#7B4F3A] rounded-full font-serif font-semibold hover:bg-[#7B4F3A] transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+        <Button
+          variant="default"
+          className="h-14 w-full bg-[#7B4F3A] dark:bg-[#8B5F4D] rounded-lg font-serif font-semibold hover:bg-[#7B4F3A] transition-transform duration-300 hover:scale-105 hover:shadow-lg text-"
+        >
           Book Now
         </Button>
       </div>

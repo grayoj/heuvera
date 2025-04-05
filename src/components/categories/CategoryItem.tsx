@@ -17,7 +17,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
     onClick={() => onSelect(label)}
     className={`h-[78px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] flex flex-col items-center justify-center gap-2 px-2 border-b-2 transition cursor-pointer ${
       selected
-        ? "border-b-[#7B4F3A] text-[#7B4F3A]"
+        ? "border-b-[#7B4F3A] dark:border-b-[#8B5F4D] text-[#7B4F3A] dark:text-[#8B5F4D]"
         : "border-transparent text-neutral-500"
     }`}
   >
