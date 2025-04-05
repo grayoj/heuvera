@@ -1,6 +1,5 @@
 import React from "react";
 
-// Define the type for sort options
 export type SortOption = "recent" | "price-low" | "price-high";
 
 interface SortDropdownProps {
@@ -13,7 +12,7 @@ const SortDropdown: React.FC<SortDropdownProps> = ({
   onValueChange,
 }) => {
   return (
-    <div className="relative w-full max-w-xl bg-[#F3F2EC] flex items-center">
+    <div className="relative w-full max-w-xl flex items-center">
       <select
         value={value}
         onChange={(e) => onValueChange(e.target.value as SortOption)}
@@ -22,18 +21,17 @@ const SortDropdown: React.FC<SortDropdownProps> = ({
                     w-full 
                     px-3 
                     py-2 
-                    bg-[#F3F2EC] 
-                    text-[#323232]
+                    text-[#323232] dark:text-[#FBFAF6]
+                    bg-[#FBFAF6] dark:bg-[#323232]
                     outline-none
-                    pr-8 // Add right padding to make space for the arrow
+                    pr-8
                     rounded-b-lg
                 "
       >
-        <option value="recent">Recently Added</option>
-        <option value="price-low">Price: Low to High</option>
-        <option value="price-high">Price: High to Low</option>
+        <option value="recent text-[#323232]">Recently Added</option>
+        <option value="price-low text-[#323232]">Price: Low to High</option>
+        <option value="price-high text-[#323232]">Price: High to Low</option>
       </select>
-      {/* Custom dropdown arrow */}
       <div
         className="
                 absolute 
@@ -41,7 +39,7 @@ const SortDropdown: React.FC<SortDropdownProps> = ({
                 pointer-events-none 
                 flex 
                 items-center 
-                text-gray-700
+                text-gray-700 dark:text-gray-200
             "
       >
         <svg

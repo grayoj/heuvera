@@ -25,6 +25,7 @@ export const PropertyData = [
     amenities: ["WiFi", "Pool", "Parking"],
     isBookmarked: false,
     isVerified: true,
+    listedDate: "25 Jan 2025",
   },
   {
     id: 2,
@@ -51,6 +52,7 @@ export const PropertyData = [
     amenities: ["WiFi", "Air Conditioning"],
     isBookmarked: false,
     isVerified: false,
+    listedDate: "25 Mar 2025",
   },
   {
     id: 3,
@@ -77,6 +79,7 @@ export const PropertyData = [
     amenities: ["WiFi", "Beach Access", "BBQ Grill"],
     isBookmarked: false,
     isVerified: true,
+    listedDate: "25 Apr 2025",
   },
   {
     id: 4,
@@ -103,6 +106,7 @@ export const PropertyData = [
     amenities: ["WiFi", "Air Conditioning"],
     isBookmarked: false,
     isVerified: false,
+    listedDate: "25 Jan 2025",
   },
   {
     id: 5,
@@ -129,9 +133,10 @@ export const PropertyData = [
     amenities: ["WiFi", "Air Conditioning"],
     isBookmarked: false,
     isVerified: false,
+    listedDate: "25 Jan 2025",
   },
   {
-    id: 1,
+    id: 6,
     propertyName: "Luxury Villa",
     propertyCategory: "Island",
     propertyDetails: {
@@ -156,6 +161,6 @@ export const PropertyData = [
     amenities: ["WiFi", "Pool", "Parking"],
     isBookmarked: false,
     isVerified: true,
+    listedDate: "25 Jan 2025",
   },
-  // ... (continue generating properties up to 35)
 ];

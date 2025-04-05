@@ -229,6 +229,265 @@ export class HttpClient<SecurityDataType = unknown> {
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   api = {
     /**
+     * @description Admins can retrieve all bookings with pagination, total bookings, and revenue stats.
+     *
+     * @tags Bookings
+     * @name AdminV1BookingsList
+     * @summary Get all bookings with analytics
+     * @request GET:/api/admin/v1/bookings
+     * @secure
+     */
+    adminV1BookingsList: (
+      query?: {
+        /**
+         * The page number (default is 1)
+         * @example 1
+         */
+        page?: number;
+        /**
+         * Number of bookings per page (default is 10)
+         * @example 10
+         */
+        limit?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/admin/v1/bookings`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Fetches all hosts with their details, including verification status and listings count.
+     *
+     * @tags Hosts
+     * @name AdminV1HostsList
+     * @summary Get all users who are hosts
+     * @request GET:/api/admin/v1/hosts
+     * @secure
+     */
+    adminV1HostsList: (
+      query?: {
+        /**
+         * The page number (default is 1)
+         * @example 1
+         */
+        page?: number;
+        /**
+         * Number of hosts per page (default is 10)
+         * @example 10
+         */
+        limit?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/admin/v1/hosts`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Admins can approve users as hosts by setting isHostApproved to true.
+     *
+     * @tags Hosts
+     * @name AdminV1HostsStatusPartialUpdate
+     * @summary Approve a host
+     * @request PATCH:/api/admin/v1/hosts/status
+     * @secure
+     */
+    adminV1HostsStatusPartialUpdate: (
+      data: {
+        /** @example "123e4567-e89b-12d3-a456-426614174000" */
+        userId?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/admin/v1/hosts/status`,
+        method: "PATCH",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * @description Admins can retrieve a paginated list of all property listings along with the total count.
+     *
+     * @tags Listings
+     * @name AdminV1ListingsList
+     * @summary Get all listings with pagination
+     * @request GET:/api/admin/v1/listings
+     * @secure
+     */
+    adminV1ListingsList: (
+      query?: {
+        /**
+         * The page number (default is 1)
+         * @example 1
+         */
+        page?: number;
+        /**
+         * Number of listings per page (default is 10)
+         * @example 10
+         */
+        limit?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/admin/v1/listings`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Admins can fetch all reviews along with average rating analytics.
+     *
+     * @tags Reviews
+     * @name AdminV1ReviewsList
+     * @summary Get all reviews and ratings
+     * @request GET:/api/admin/v1/reviews
+     * @secure
+     */
+    adminV1ReviewsList: (
+      query?: {
+        /**
+         * The page number (default is 1)
+         * @example 1
+         */
+        page?: number;
+        /**
+         * Number of reviews per page (default is 10)
+         * @example 10
+         */
+        limit?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<void, void>({
+        path: `/api/admin/v1/reviews`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Fetches a user along with all their related data.
+     *
+     * @tags Users
+     * @name AdminV1UsersDetail
+     * @summary Get user details by ID
+     * @request GET:/api/admin/v1/users/{id}
+     * @secure
+     */
+    adminV1UsersDetail: (id: string, params: RequestParams = {}) =>
+      this.request<void, void>({
+        path: `/api/admin/v1/users/${id}`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Admins can retrieve a paginated list of all users along with the total count.
+     *
+     * @tags Users
+     * @name AdminV1UsersList
+     * @summary Get all users with pagination
+     * @request GET:/api/admin/v1/users
+     * @secure
+     */
+    adminV1UsersList: (
+      query?: {
+        /**
+         * The page number (default is 1)
+         * @example 1
+         */
+        page?: number;
+        /**
+         * Number of users per page (default is 10)
+         * @example 10
+         */
+        limit?: number;
+        /** Filter users by account status */
+        status?: "ENABLED" | "SUSPENDED" | "BANNED";
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** @example 100 */
+          totalUsers?: number;
+          users?: {
+            /** @example "123e4567-e89b-12d3-a456-426614174000" */
+            id?: string;
+            /** @example "user@example.com" */
+            email?: string;
+            /** @example "John Doe" */
+            name?: string;
+            /** @example true */
+            isHostApproved?: boolean;
+            /** @example "ENABLED" */
+            accountStatus?: string;
+            /** @format date-time */
+            createdAt?: string;
+          }[];
+        },
+        void
+      >({
+        path: `/api/admin/v1/users`,
+        method: "GET",
+        query: query,
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Admins can change a user's account status (Enabled, Suspended, Banned).
+     *
+     * @tags Users
+     * @name AdminV1UsersStatusPartialUpdate
+     * @summary Update user account status
+     * @request PATCH:/api/admin/v1/users/status
+     * @secure
+     */
+    adminV1UsersStatusPartialUpdate: (
+      data: {
+        /** @example "123e4567-e89b-12d3-a456-426614174000" */
+        userId?: string;
+        /** @example "SUSPENDED" */
+        status?: "ENABLED" | "SUSPENDED" | "BANNED";
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** @example "User status updated to SUSPENDED" */
+          message?: string;
+        },
+        void
+      >({
+        path: `/api/admin/v1/users/status`,
+        method: "PATCH",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
      * @description This endpoint creates a new user based on the provided Auth0 ID.
      *
      * @tags Users

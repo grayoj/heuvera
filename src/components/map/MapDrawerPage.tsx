@@ -1,33 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { LatLngTuple } from "leaflet";
 import { IoHome } from "react-icons/io5";
-import {
-  Search,
-  X,
-  MapPin,
-  List,
-  Filter,
-  Heart,
-  LucideSearch,
-} from "lucide-react";
+import { X, LucideSearch } from "lucide-react";
 import dynamic from "next/dynamic";
-
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-} from "../ui/drawer";
 
 import { Button } from "../../components/ui/button";
 import { getCenterAndRadius } from "@heuvera/utils/map";
 import { Property, MapComponentsProps } from "@heuvera/types/map";
-import CategoryList from "../categories/CategoryList";
 import FilterButton from "../categories/FilterButton";
 import { FaHome } from "react-icons/fa";
 import useIsMobile from "@heuvera/hooks/IsMobile";
@@ -37,8 +20,7 @@ const MapComponents = dynamic(() => import("./MapComponent"), {
   ssr: false,
 }) as React.ComponentType<MapComponentsProps>;
 
-// Sample properties data (use your actual data source)
-const properties: Property[] = [
+const defaultProperties: Property[] = [
   {
     id: 1,
     name: "Luxury Apartment",
@@ -48,7 +30,7 @@ const properties: Property[] = [
     image:
       "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format",
     description: "Modern luxury apartment with panoramic city views.",
-    icon: <IoHome className="text-sm text-[#7B4F3A]" />,
+    icon: <IoHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />,
     propertyType: "apartment",
   },
   {
@@ -60,7 +42,7 @@ const properties: Property[] = [
     image:
       "https://images.unsplash.com/photo-1579656592043-6a47e332b902?q=80&w=1974&auto=format",
     description: "Cozy family home with a large backyard.",
-    icon: <FaHome className="text-sm text-[#7B4F3A]" />,
+    icon: <FaHome className="text-sm text-[#7B4F3A] dark:text-[#8B5F4D]" />,
     propertyType: "house",
   },
 ];
@@ -69,70 +51,55 @@ interface MapDrawerPageProps {
   properties?: Property[];
 }
 
-export default function MapDrawerPage({
-  properties: propProperties = [],
-}: MapDrawerPageProps) {
+export default function MapDrawerPage({ properties = [] }: MapDrawerPageProps) {
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(
     null,
   );
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  const router = useRouter();
-  const isMobile = useIsMobile();
 
-  // Use provided properties or fall back to sample data
-  const displayProperties =
-    propProperties.length > 0 ? propProperties : properties;
+  const displayProperties = useMemo(
+    () => (properties.length > 0 ? properties : defaultProperties),
+    [properties],
+  );
 
-  // Filter and map marker positions
-  const markerPositions = displayProperties
-    .filter((property) => {
-      if (!property.position) return false;
-      if (Array.isArray(property.position)) {
-        return (
-          property.position.length === 2 &&
-          !isNaN(Number(property.position[0])) &&
-          !isNaN(Number(property.position[1]))
-        );
-      } else if (typeof property.position === "object") {
-        const pos = property.position as { lat?: number; lng?: number };
-        return (
-          pos.lat !== undefined &&
-          pos.lng !== undefined &&
-          !isNaN(Number(pos.lat)) &&
-          !isNaN(Number(pos.lng))
-        );
-      }
-      return false;
-    })
-    .map((property) => {
-      if (Array.isArray(property.position)) {
-        return property.position as LatLngTuple;
-      } else {
-        const pos = property.position as { lat: number; lng: number };
-        return [pos.lat, pos.lng] as LatLngTuple;
-      }
-    });
+  const markerPositions = useMemo(
+    () =>
+      displayProperties
+        .filter(
+          (property) =>
+            Array.isArray(property.position) && property.position.length === 2,
+        )
+        .map((property) => property.position as LatLngTuple),
+    [displayProperties],
+  );
 
-  // Calculate map center and radius
-  const { center, radius } = getCenterAndRadius(markerPositions);
+  const { center, radius } = useMemo(
+    () => getCenterAndRadius(markerPositions),
+    [markerPositions],
+  );
 
-  // Ensure default values if center is undefined
   const mapCenter = center || ([9.0579, 7.4951] as LatLngTuple);
-  const mapRadius = radius || 1; // Default radius if not calculated
+  const mapRadius = radius || 1;
+
+  const handleSearchSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      console.log("Searching:", searchQuery);
+    },
+    [searchQuery],
+  );
 
   return (
-    <div className="relative w-full h-screen bg-[#F8F7F2] flex flex-col">
-      {/* Responsive Header */}
+    <div className="relative w-full h-screen bg-[#F8F7F2] dark:bg-[#333333] flex flex-col mt-4">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="z-[1000] bg-white shadow-subtle w-full"
+        className="z-[1000] bg-white dark:bg-[#333333] shadow-subtle w-full"
       >
         <div className="container mx-auto w-full py-4 flex flex-col items-center justify-between space-x-4 px-4">
-          {/* Search Input */}
           <div className="w-full flex items-center justify-between px-4">
             <div className="flex-grow flex justify-center">
               <motion.form
@@ -150,13 +117,13 @@ export default function MapDrawerPage({
                     relative w-full h-10 
                     ${
                       isSearchFocused
-                        ? "bg-white border-[#7B4F3A] shadow-sm"
-                        : "bg-[#F8F7F2] border-[#E3E2D9]"
+                        ? "bg-white dark:bg-[#333333] border-[#7B4F3A] dark:border-[#8B5F4D] shadow-sm"
+                        : "bg-[#F8F7F2] dark:bg-[#333333] border-[#E3E2D9] dark:border-[#555555]"
                     } 
                     border rounded-full flex items-center transition-all duration-300
                 `}
                 >
-                  <div className="flex items-center pl-3 text-[#898989]">
+                  <div className="flex items-center pl-3 text-[#898989] dark:text-[#666666]">
                     <LucideSearch size={16} />
                   </div>
                   <input
@@ -192,15 +159,12 @@ export default function MapDrawerPage({
                 </div>
               </motion.form>
             </div>
-
             <div className="">
-              <FilterButton />
+              <FilterButton setActiveFilters={() => {}} />
             </div>
           </div>
         </div>
       </motion.div>
-
-      {/* Full-Screen Map */}
       <div className="flex-grow relative w-full h-[calc(100vh-4rem)]">
         <MapComponents
           center={mapCenter}

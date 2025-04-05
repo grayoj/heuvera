@@ -17,14 +17,11 @@ export default function PropertyDescription() {
         Whether you seek the vibrance of city life or the tranquility of a
         serene retreat, this is the perfect place to call home...`;
 
-  // Define the word limit for truncation
   const wordLimit = 30;
 
-  // Split the description into words and get the truncated version
   const words = fullDescription.split(" ");
   const truncatedDescription = words.slice(0, wordLimit).join(" ") + "...";
 
-  // Toggle the expanded state
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
@@ -32,11 +29,11 @@ export default function PropertyDescription() {
   return (
     <div className="flex flex-col">
       <SectionHeaderText title="Description" />
-      <p className="text-base font-serif font-normal text-[#3E3E3E]">
+      <p className="text-base font-serif font-normal text-[#3E3E3E] dark:text-[#666666]">
         {isExpanded ? fullDescription : truncatedDescription}
       </p>
       <button
-        className="text-base font-serif font-normal text-[#3E3E3E] underline self-start mt-2"
+        className="text-base font-serif font-normal text-[#3E3E3E] dark:text-[#666666] underline self-start mt-2"
         onClick={toggleExpanded}
       >
         {isExpanded ? "Show Less" : "Show More"}

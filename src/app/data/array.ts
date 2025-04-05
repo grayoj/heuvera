@@ -1,9 +1,30 @@
-import { User, Calendar, CreditCard, HelpCircle } from "lucide-react";
+import Currency from "@heuvera/components/icons/svgs/currency";
+import { FilterOption } from "@heuvera/utils/props";
+import {
+  User,
+  Calendar,
+  CreditCard,
+  HelpCircle,
+  Bed,
+  Home,
+  Refrigerator,
+  Shield,
+  Utensils,
+  Video,
+  WashingMachine,
+  Wifi,
+} from "lucide-react";
+import {
+  IoBedOutline,
+  IoHomeOutline,
+  IoWaterOutline,
+  IoTicketOutline,
+} from "react-icons/io5";
 
 export const sideBar = [
   {
     name: "Personal Info",
-    route: "/",
+    route: "personal",
     description:
       "Update your profile, contact details, and preferences to personalize your experience.",
     icon: User,
@@ -32,7 +53,12 @@ export const sideBar = [
 ];
 
 export const personInput = [
-  { label: "First name", value1: "George", label2: "Last name", value2: "Doe" },
+  {
+    label: "First name",
+    value1: "George",
+    label2: "Last name",
+    value2: "Doe",
+  },
   {
     label: "Email",
     value: "ftgeorgean@gmail.com",
@@ -90,4 +116,84 @@ export const help = [
 export const inputs = [
   { name: "Full Name", value: "John Doe" },
   { name: "Email", value: "george" },
+];
+
+export const FILTER_OPTIONS: FilterOption[] = [
+  {
+    id: "location",
+    label: "Where",
+    placeholder: "Anywhere",
+  },
+  {
+    id: "dates",
+    label: "When",
+    placeholder: "Any week",
+  },
+  {
+    id: "guests",
+    label: "Who",
+    placeholder: "Add guests",
+  },
+];
+
+export const NUMBER_OPTIONS = {
+  bedrooms: ["Any", "1", "2", "3", "4", "5", "5+"],
+  bathrooms: ["Any", "1", "2", "3", "4", "5", "5+"],
+};
+
+export const AMENITIES_CONFIG = [
+  { name: "Wifi", icon: Wifi, defaultSelected: true },
+  { name: "Washer", icon: WashingMachine, defaultSelected: true },
+  { name: "Kitchen", icon: Utensils, defaultSelected: true },
+  { name: "Security cameras", icon: Video, defaultSelected: false },
+  { name: "Refrigerator", icon: Refrigerator, defaultSelected: false },
+];
+
+export const TABS_CONFIG = [
+  { id: "price", icon: Currency, label: "Price", mobileLabel: "Price" },
+  {
+    id: "rooms",
+    icon: IoBedOutline,
+    label: "Rooms & Beds",
+    mobileLabel: "Rooms",
+  },
+  { id: "type", icon: IoHomeOutline, label: "Type", mobileLabel: "Type" },
+  {
+    id: "amenities",
+    icon: IoWaterOutline,
+    label: "Amenities",
+    mobileLabel: "Amen.",
+  },
+  { id: "book", icon: IoTicketOutline, label: "Book", mobileLabel: "Book" },
+];
+
+export const PROPERTY_TYPES = [
+  { name: "Entire place", icon: Home },
+  { name: "Private room", icon: Bed },
+  { name: "Shared room", icon: Shield },
+  { name: "Apartment", icon: Home },
+  { name: "House", icon: Home },
+  { name: "Loft", icon: Home },
+];
+
+export const propertyCategories = [
+  { id: 1, category: "Town House", count: 2, imageUrl: "/town.jpg" },
+  { id: 2, category: "Apartment", count: 5, imageUrl: "/apartment.jpg" },
+  { id: 3, category: "Villa", count: 3, imageUrl: "/villa.jpg" },
+  { id: 4, category: "Penthouse", count: 1, imageUrl: "/penthouse.jpg" },
+  { id: 5, category: "Cottage", count: 4, imageUrl: "/cottage.jpg" },
+];
+
+export const propertyLocation = [
+  { id: 1, category: "Abuja", count: 158, imageUrl: "/abuja.jpg" },
+  { id: 2, category: "Lagos", count: 94, imageUrl: "/lagos.jpg" },
+  { id: 3, category: "Kano", count: 76, imageUrl: "/kano.jpg" },
+  { id: 4, category: "Chicago", count: 63, imageUrl: "/chicago.jpg" },
+  {
+    id: 5,
+    category: "San Francisco",
+    count: 52,
+    imageUrl: "/sanfrancisco.jpg",
+  },
+  { id: 6, category: "Austin", count: 47, imageUrl: "/austin.jpg" },
 ];
