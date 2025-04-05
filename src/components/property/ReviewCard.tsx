@@ -1,12 +1,11 @@
 import { Button } from "@heuvera/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import { IoStar } from "react-icons/io5";
 import { LucideMoreVertical } from "lucide-react";
 import { FaStar } from "react-icons/fa6";
 
 export default function ReviewCard() {
   return (
-    <div className="w-full flex flex-col gap-5 rounded-xl border border-[#E3E2D9] p-6">
+    <div className="w-full flex flex-col gap-5 rounded-xl border border-[#E3E2D9] dark:border-[#555555] p-6">
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row">
           <div className="flex gap-2 items-center">
@@ -16,13 +15,13 @@ export default function ReviewCard() {
                   src="https://github.com/shadcn.png"
                   alt="@shadcn"
                 />
-                <AvatarFallback className="bg-[#E3E2D9] font-serif">
+                <AvatarFallback className="bg-[#E3E2D9] dark:border-[#555555] font-serif">
                   FG
                 </AvatarFallback>
               </Avatar>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-base font-medium font-serif text-[#323232]">
+              <h1 className="text-base font-medium font-serif text-[#323232] dark:text-[#666666]">
                 Gerald Maduabubuhari
               </h1>
               <div className="flex flex-row gap-2">
@@ -34,17 +33,17 @@ export default function ReviewCard() {
           </div>
         </div>
         <div className="">
-          <LucideMoreVertical className="text-[#3e3e3e] text-2xl" />
+          <LucideMoreVertical className="text-[#3e3e3e] dark:text-[#666666] text-2xl" />
         </div>
       </div>
-      <h1 className="text-base font-serif text-[#3e3e3e]">
+      <h1 className="text-base font-serif text-[#3e3e3e] dark:text-[#666666]">
         Absolutely stunning! The apartment exceeded my expectations. The
         interiors are elegant, the view is breathtaking, and the staff is
         incredibly professional. I felt safe and comfortable throughout my
         stay."
       </h1>
       <div className="flex flex-row justify-between">
-        <h1 className="text-[#3e3e3e] text-base font-serif">
+        <h1 className="text-[#3e3e3e] dark:text-[#666666] text-base font-serif">
           Was this review helpful?
         </h1>
         <div className="flex flex-row gap-2">

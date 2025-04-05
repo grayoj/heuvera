@@ -14,12 +14,12 @@ export default function HostInfo() {
           <div className="size-10 rounded-full">
             <Avatar className="rounded-full overflow-hidden block">
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback className="bg-[#E3E2D9] font-serif">
+              <AvatarFallback className="bg-[#E3E2D9] bg-[#555555] font-serif">
                 FG
               </AvatarFallback>
             </Avatar>
           </div>
-          <h1 className="text-base font-normal font-serif text-[#323232]">
+          <h1 className="text-base font-normal font-serif text-[#323232] dark:text-[#F3F2EC]">
             Gerald Maduabubuhari
           </h1>
         </div>

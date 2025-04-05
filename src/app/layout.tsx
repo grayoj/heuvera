@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "./site-config";
+import { ThemeProvider } from "next-themes";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -26,7 +27,9 @@ export default function RootLayout({
         className="antialiased bg-[#F3F2ED]"
         style={{ fontFamily: "Quicksand, sans-serif" }}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

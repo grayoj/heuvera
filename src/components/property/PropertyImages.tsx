@@ -20,7 +20,6 @@ export default function PropertyImages() {
 
   return (
     <>
-      {/* Main Property Image */}
       <div className="w-full h-[14rem] md:h-[20rem] lg:h-[20rem] xl:h-[24rem] 2xl:h-[40rem] bg-blue-400 rounded-2xl md:rounded-[3rem] lg:rounded-[3rem] xl:rounded-[3rem] 2xl:rounded-[3rem]">
         <Image
           src={images[0]}
@@ -31,7 +30,6 @@ export default function PropertyImages() {
         />
       </div>
 
-      {/* Two Secondary Images */}
       <div className="flex flex-row gap-3 md:gap-6 lg:gap-6 xl:gap-6 2xl:gap-6 mt-3 md:mt-6 lg:mt-6 xl:mt-6 2xl:mt-6">
         <div className="w-6/12 h-28 md:h-60 lg:h-40 xl:h-48 2xl:h-60 rounded-2xl md:rounded-[2rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[3rem]">
           <Image
@@ -53,7 +51,6 @@ export default function PropertyImages() {
         </div>
       </div>
 
-      {/* View More Pictures */}
       <div
         className="relative h-[14rem] md:h-[20rem] lg:h-[20rem] xl:h-[24rem] 2xl:h-[40rem] bg-blue-400 rounded-2xl md:rounded-[2rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[3rem] overflow-hidden cursor-pointer mt-3 md:mt-6 lg:mt-6 xl:mt-6 2xl:mt-6"
         onClick={() => setIsOpen(true)}
@@ -79,7 +76,6 @@ export default function PropertyImages() {
         </div>
       </div>
 
-      {/* Modal */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/70 flex flex-col items-center justify-center z-[2000]"

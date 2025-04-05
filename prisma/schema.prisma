@@ -14,13 +14,14 @@ datasource db {
 }
 
 model User {
-  id             String    @id @default(uuid())
-  auth0_id       String    @unique
-  email          String    @unique
+  id             String            @id @default(uuid())
+  auth0_id       String            @unique
+  email          String            @unique
   name           String?
   picture        String?
-  isHostApproved Boolean   @default(false)
-  profile        Profile?  @relation()
+  isHostApproved Boolean           @default(false)
+  accountStatus  AccountStatus     @default(ENABLED)
+  profile        Profile?          @relation()
   listings       Listing[]
   host           Host?
   Booking        Booking[]
@@ -129,6 +130,12 @@ enum VerificationStatus {
   REJECTED
 }
 
+enum AccountStatus {
+  ENABLED
+  SUSPENDED
+  BANNED
+}
+
 model Booking {
   id         String   @id @default(uuid())
   userId     String
@@ -145,15 +152,23 @@ model Booking {
 }
 
 model Review {
-  id        String   @id @default(uuid())
+  id        String  @id @default(uuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
   listingId String
-  listing   Listing  @relation(fields: [listingId], references: [id])
-  rating    Int      @default(5)
+  listing   Listing @relation(fields: [listingId], references: [id])
+  rating    Int     @default(5)
   comment   String
 
   createdAt DateTime @default(now())
 
   @@unique([userId, listingId])
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
