@@ -13,7 +13,7 @@ export function FindPropertyCard({
   count,
   imageUrl,
   width = "w-3/12",
-  height
+  height,
 }: FindPropertyCard) {
   return (
     <div className={`${width} ${height} rounded-2xl bg-red-200 relative`}>
