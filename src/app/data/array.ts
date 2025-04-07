@@ -23,8 +23,8 @@ import {
 
 export const sideBar = [
   {
-    name: "Personal Info",
-    route: "personal",
+    route: "account",
+    name: "My Account",
     description:
       "Update your profile, contact details, and preferences to personalize your experience.",
     icon: User,
