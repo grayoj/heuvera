@@ -31,7 +31,7 @@ export default function ProfileLayout({
   return (
     <div className="flex h-screen">
       <aside className="w-[25%] md:w-[30%] lg:w-[25%] xl:w-[25%] 2xl:w-[25%] bg-[#F8F7F2] dark:bg-[#333333] border-r-[1px] flex flex-col gap-2 overflow-y-auto">
-        <div className="w-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 py-4">
+        <div className="w-full px-4 md:px-8 lg:px-10 xl:px-10 2xl:px-20 py-4">
           <Button variant="outline" onClick={() => router.push("/")} className="cursor-pointer">
             <ArrowLeft className="mr-2" /> Back to Home
           </Button>
