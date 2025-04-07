@@ -41,18 +41,18 @@ export function FeaturedSection({
       >
         <motion.h1
           variants={fadeInUp}
-          className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232]"
+          className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232] dark:text-[#A7A7A7]"
         >
           Feature Categories
         </motion.h1>
         <motion.h1
           variants={fadeInUp}
-          className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232]"
+          className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232] dark:text-[#A7A7A7]"
         >
           Discover your perfect property by the features that matter most to you
         </motion.h1>
         <motion.div
-          className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 pt-10"
+          className="w-full grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-5 pt-10"
           variants={staggerContainer}
         >
           {propertyCategories.map((item) => (
@@ -74,7 +74,7 @@ export function FeaturedSection({
       </motion.div>
 
       <motion.div
-        className="w-full flex flex-col items-center justify-center"
+        className="w-full flex flex-col items-center justify-center mt-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -82,13 +82,13 @@ export function FeaturedSection({
       >
         <motion.h1
           variants={fadeInUp}
-          className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232]"
+          className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232] dark:text-[#A7A7A7]"
         >
           Find Properties in These Cities
         </motion.h1>
         <motion.h1
           variants={fadeInUp}
-          className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232]"
+          className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232] dark:text-[#A7A7A7]"
         >
           Based on your viewing history, we think you'll love these locations
         </motion.h1>
@@ -111,9 +111,10 @@ export function FeaturedSection({
                 count={propertyLocation[0].count}
                 imageUrl={propertyLocation[0].imageUrl}
                 width="w-12/12"
+                height="h-44 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
               />
             </motion.div>
-            <div className="w-full md:w-6/12 flex flex-col md:flex-row gap-5">
+            <div className="w-full md:w-6/12 flex flex-row gap-5">
               <motion.div
                 className="w-full md:w-6/12 cursor-pointer"
                 variants={cardAnimation}
@@ -127,6 +128,7 @@ export function FeaturedSection({
                   count={propertyLocation[1].count}
                   imageUrl={propertyLocation[1].imageUrl}
                   width="w-12/12"
+                  height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
                 />
               </motion.div>
               <motion.div
@@ -142,15 +144,16 @@ export function FeaturedSection({
                   count={propertyLocation[2].count}
                   imageUrl={propertyLocation[2].imageUrl}
                   width="w-12/12"
+                  height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
                 />
               </motion.div>
             </div>
           </motion.div>
           <motion.div
-            className="w-12/12 flex flex-col md:flex-row gap-5"
+            className="w-12/12 flex flex-col-reverse md:flex-row gap-5"
             variants={fadeInUp}
           >
-            <div className="w-full md:w-6/12 flex flex-col md:flex-row gap-5">
+            <div className="w-full md:w-6/12 flex flex-row gap-5">
               <motion.div
                 className="w-full md:w-6/12 cursor-pointer"
                 variants={cardAnimation}
@@ -164,6 +167,7 @@ export function FeaturedSection({
                   count={propertyLocation[1].count}
                   imageUrl={propertyLocation[1].imageUrl}
                   width="w-full md:w-12/12"
+                  height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
                 />
               </motion.div>
               <motion.div
@@ -179,6 +183,7 @@ export function FeaturedSection({
                   count={propertyLocation[2].count}
                   imageUrl={propertyLocation[2].imageUrl}
                   width="w-12/12"
+                  height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
                 />
               </motion.div>
             </div>
@@ -193,6 +198,7 @@ export function FeaturedSection({
                 count={propertyLocation[0].count}
                 imageUrl={propertyLocation[0].imageUrl}
                 width="w-12/12"
+                height="h-44 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
               />
             </motion.div>
           </motion.div>

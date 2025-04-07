@@ -5,6 +5,7 @@ interface FindPropertyCard {
   count: number;
   imageUrl: string;
   width: string;
+  height?: string;
 }
 
 export function FindPropertyCard({
@@ -12,11 +13,10 @@ export function FindPropertyCard({
   count,
   imageUrl,
   width = "w-3/12",
+  height
 }: FindPropertyCard) {
   return (
-    <div
-      className={`${width} h-96 md:h-52 lg:h-64 xl:h-72 2xl:h-96 rounded-2xl bg-red-200 relative`}
-    >
+    <div className={`${width} ${height} rounded-2xl bg-red-200 relative`}>
       <Image
         src={imageUrl || "/apartment.jpg"}
         width={500}
@@ -24,9 +24,9 @@ export function FindPropertyCard({
         alt={`${category} property`}
         className="h-full w-full object-cover rounded-2xl"
       />
-      <div className="absolute inset-0 bg-black/30 rounded-2xl z-10"></div>
+      <div className="absolute inset-0 bg-black/50 rounded-2xl z-10"></div>
 
-      <div className="flex flex-col absolute left-14 md:left-6 lg:left-6 xl:left-8 2xl:left-14 top-14 md:top-6 lg:top-6 xl:top-8 2xl:top-14 z-20">
+      <div className="flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:top-14 md:left-14 md:transform-none z-20 max-w-fit text-center whitespace-nowrap">
         <h1 className="text-xl font-medium font-serif text-white">
           {category}
         </h1>

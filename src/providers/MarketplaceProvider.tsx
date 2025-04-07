@@ -172,13 +172,16 @@ export function MarketplaceProvider({
                 ))}
               </div>
             )}
-            <div className="w-24 flex items-end justify-end">
-              {/* {!isMobile && <ProfileDropdown selected="Profile" />} */}
-              <Button className="bg-transparent hover:bg-[#7B4F3A] hover:dark:bg-[#8B5F4D] hover:text-[#F8F7F2] hover:dark:text-[#F8F7F2] text-[#7B4F3A] dark:text-[#8B5F4D] border border-[#7B4F3A] dark:border-[#8B5F4D] font-serif font-medium py-2 px-6 gap-2 hover:transition-transform duration-300 hover:scale-105">
-                Login
-                <LucideLogIn />
-              </Button>
-            </div>
+            {!isMobile &&
+              <div className="w-24 flex items-end justify-end">
+                <Button className="bg-transparent hover:bg-[#7B4F3A] hover:dark:bg-[#8B5F4D] hover:text-[#F8F7F2] hover:dark:text-[#F8F7F2] text-[#7B4F3A] dark:text-[#8B5F4D] border border-[#7B4F3A] dark:border-[#8B5F4D] font-serif font-medium py-2 px-6 gap-2 hover:transition-transform duration-300 hover:scale-105">
+                  Login
+                  <LucideLogIn />
+                </Button>
+                {/* <ProfileDropdown selected="Profile" /> */}
+              </div>
+            }
+
           </div>
         </div>
 

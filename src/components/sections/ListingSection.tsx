@@ -22,7 +22,7 @@ export function ListingsSection({
         <motion.h1
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className="text-2xl font-semibold font-serif text-[#323232]"
+          className="text-2xl font-semibold font-serif text-[#323232] dark:text-[#A7A7A7]"
         >
           {selectedCategory.type === "property"
             ? selectedCategory.name
@@ -34,7 +34,7 @@ export function ListingsSection({
           onClick={handleCloseFiltered}
           className="cursor-pointer"
         >
-          <X size={24} className="text-[#323232]" />
+          <X size={24} className="text-[#323232] dark:text-[#A7A7A7]" />
         </motion.div>
       </div>
 
