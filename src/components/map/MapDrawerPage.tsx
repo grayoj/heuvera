@@ -100,7 +100,7 @@ export default function MapDrawerPage({ properties = [] }: MapDrawerPageProps) {
         className="z-[1000] bg-white dark:bg-[#333333] shadow-subtle w-full"
       >
         <div className="container mx-auto w-full py-4 flex flex-col items-center justify-between space-x-4 px-4">
-          <div className="w-full flex items-center justify-between px-4">
+          <div className="w-full flex items-center justify-between px-4 gap-6 md:gap-0">
             <div className="flex-grow flex justify-center">
               <motion.form
                 onSubmit={(e) => {
@@ -120,7 +120,7 @@ export default function MapDrawerPage({ properties = [] }: MapDrawerPageProps) {
                         ? "bg-white dark:bg-[#333333] border-[#7B4F3A] dark:border-[#8B5F4D] shadow-sm"
                         : "bg-[#F8F7F2] dark:bg-[#333333] border-[#E3E2D9] dark:border-[#555555]"
                     } 
-                    border rounded-full flex items-center transition-all duration-300
+                    border rounded-lg flex items-center transition-all duration-300
                 `}
                 >
                   <div className="flex items-center pl-3 text-[#898989] dark:text-[#666666]">

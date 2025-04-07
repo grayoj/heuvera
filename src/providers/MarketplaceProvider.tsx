@@ -9,7 +9,7 @@ import {
   useRef,
   useEffect,
 } from "react";
-import { LucideHeart, LucideCompass } from "lucide-react";
+import { LucideHeart, LucideCompass, LucideLogIn } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { HeuveraLogo } from "@heuvera/components/logo";
 import useIsMobile from "@heuvera/hooks/IsMobile";
@@ -19,6 +19,8 @@ import { IoCompass, IoCompassOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Footer from "@heuvera/components/footer";
 import { ProfileDropdown } from "@heuvera/components/ProfileDropdown";
+import Link from "next/link";
+import { Button } from "@heuvera/components/ui/button";
 
 interface MarketplaceContextType {
   selected: string;
@@ -59,15 +61,15 @@ export function MarketplaceProvider({
   } = {
     Explore: {
       filled: <GoHomeFill fill="#7B4F3A" className="text-xl" />,
-      outline: <GoHome className="text-[#323232] text-xl" />,
+      outline: <GoHome className="text-[#323232] dark:text-[#F8F7F2] text-xl" />,
     },
     Favorites: {
       filled: <GoHeartFill fill="#7B4F3A" className="text-xl" />,
-      outline: <GoHeart className="text-[#323232] text-xl" />,
+      outline: <GoHeart className="text-[#323232] dark:text-[#F8F7F2] text-xl" />,
     },
     Discover: {
       filled: <IoCompass className="text-2xl" fill="#7B4F3A" />,
-      outline: <IoCompassOutline className="text-2xl text-[#323232]" />,
+      outline: <IoCompassOutline className="text-2xl dark:text-[#F8F7F2] text-[#323232]" />,
     },
     Profile: {
       filled: (
@@ -122,37 +124,62 @@ export function MarketplaceProvider({
       value={{ selected, setSelected, openSearchModal }}
     >
       <div className="w-full h-full flex flex-col bg-[#F8F7F2] dark:bg-[#333333]">
-        <div className="px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 h-20 w-full flex items-center justify-between">
-          {isMobile ? (
-            <div className="w-full flex items-center justify-center">
-              <HeuveraLogo width={35} height={35} />
-            </div>
-          ) : (
-            <div className="flex-shrink-0">
-              <HeuveraLogo width={35} height={35} />
-            </div>
-          )}
-          {!isMobile && (
-            <div className="flex items-center space-x-8">
-              {NavigationContent.slice(0, 3).map((content, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setSelected(content.title);
-                    router.push(content.link);
-                  }}
-                  className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
-                    selected === content.title
+        <style jsx global>{`
+        .animated-underline {
+          position: relative;
+          display: inline-block;
+        }
+
+        .animated-underline::after {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 1px;
+          bottom: -2px;
+          left: 0;
+          background-color: #7b4f3a;
+          transition: width 0.3s ease-in-out;
+        }
+
+        .animated-underline:hover::after {
+          width: 100%;
+        }
+      `}</style>
+        <div className="w-full backdrop-blur-xl sticky top-0 bg-[#F8F7F299] dark:bg-[#33333399] z-[5000]">
+          <div className="px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 h-20 w-full flex items-center justify-between">
+            {isMobile ? (
+              <div className="w-full flex items-center justify-center backdrop-blur-none">
+                <HeuveraLogo width={35} height={35} />
+              </div>
+            ) : (
+              <div className="flex-shrink-0 w-24">
+                <HeuveraLogo width={35} height={35} />
+              </div>
+            )}
+            {!isMobile && (
+              <div className="flex items-center space-x-8">
+                {NavigationContent.slice(0, 3).map((content, index) => (
+                  <Link
+                    key={index}
+                    href={content.link}
+                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
                       ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
-                      : "text-[#323232] dark:text-[#F8F7F2] hover:text-[#7B4F3A] dark:text-[#8B5F4D]"
-                  }`}
-                >
-                  {content.title}
-                </button>
-              ))}
+                      : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-105 hover:font-semibold"
+                      }`}
+                  >
+                    {content.title}
+                  </Link>
+                ))}
+              </div>
+            )}
+            <div className="w-24 flex items-end justify-end">
+              {/* {!isMobile && <ProfileDropdown selected="Profile" />} */}
+              <Button className="bg-transparent hover:bg-[#7B4F3A] hover:dark:bg-[#8B5F4D] hover:text-[#F8F7F2] hover:dark:text-[#F8F7F2] text-[#7B4F3A] dark:text-[#8B5F4D] border border-[#7B4F3A] dark:border-[#8B5F4D] font-serif font-medium py-2 px-6 gap-2 hover:transition-transform duration-300 hover:scale-105">
+                Login
+                <LucideLogIn />
+              </Button>
             </div>
-          )}
-          {!isMobile && <ProfileDropdown selected="Profile" />}
+          </div>
         </div>
 
         <div className="pb-32 w-full flex-1 flex flex-col gap-32">
@@ -162,54 +189,55 @@ export function MarketplaceProvider({
 
         {isMobile && (
           <div className="w-full h-[90px] fixed bottom-3 left-0 px-4 z-[1000]">
-            <div className="w-full bg-[#E3E2D9] dark:bg-[#555555] shadow-md rounded-2xl px-4 flex items-center h-[70px] justify-between">
-              {NavigationContent.map((content, index) => {
-                const isSelected = selected === content.title;
-
-                return (
-                  <button
-                    key={index}
-                    ref={(el) => {
-                      navRefs.current[index] = el;
-                    }}
-                    onClick={() => {
-                      setSelected(content.title);
-                      router.push(content.link);
-                    }}
-                    className="flex flex-col items-center justify-center min-w-[60px] h-full transition-all duration-300"
-                  >
-                    {content.title === "Profile" ? (
-                      <span
-                        className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D] border-2 border-[#7B4F3A] dark:border-[#8B5F4D] bg-[#7B4F3A] dark:bg-[#8B5F4D] rounded-full" : "text-[#323232]"}`}
-                      >
-                        <div className="size-6">
-                          <Avatar className="rounded-full overflow-hidden block">
-                            <AvatarImage
-                              src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
-                              alt="avatar"
-                            />
-                            <AvatarFallback>FG</AvatarFallback>
-                          </Avatar>
-                        </div>
-                      </span>
-                    ) : (
-                      <span
-                        className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323232] dark:text-[#F8F7F2]"}`}
-                      >
-                        {isSelected
-                          ? iconMapping[content.title]?.filled
-                          : iconMapping[content.title]?.outline}
-                      </span>
-                    )}
-
-                    <span
-                      className={`text-xs font-medium ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323232] dark:text-[#F8F7F2]"}`}
+            <div className="w-full backdrop-blur-xl bg-[#E3E2D999] dark:bg-[#44444499] shadow-md rounded-2xl">
+              <div className="w-full px-4 flex items-center h-[70px] justify-between overflow-hidden">
+                {NavigationContent.map((content, index) => {
+                  const isSelected = selected === content.title;
+                  return (
+                    <button
+                      key={index}
+                      ref={(el) => {
+                        navRefs.current[index] = el;
+                      }}
+                      onClick={() => {
+                        setSelected(content.title);
+                        router.push(content.link);
+                      }}
+                      className="flex flex-col items-center justify-center min-w-[60px] h-full transition-all duration-300"
                     >
-                      {content.title}
-                    </span>
-                  </button>
-                );
-              })}
+                      {content.title === "Profile" ? (
+                        <span
+                          className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D] border-2 border-[#7B4F3A] dark:border-[#8B5F4D] bg-[#7B4F3A] dark:bg-[#8B5F4D] rounded-full" : "text-[#323232]"}`}
+                        >
+                          <div className="size-6">
+                            <Avatar className="rounded-full overflow-hidden block">
+                              <AvatarImage
+                                src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
+                                alt="avatar"
+                              />
+                              <AvatarFallback>FG</AvatarFallback>
+                            </Avatar>
+                          </div>
+                        </span>
+                      ) : (
+                        <span
+                          className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323232] dark:text-[#F8F7F2]"}`}
+                        >
+                          {isSelected
+                            ? iconMapping[content.title]?.filled
+                            : iconMapping[content.title]?.outline}
+                        </span>
+                      )}
+
+                      <span
+                        className={`text-xs font-medium ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323232] dark:text-[#F8F7F2]"}`}
+                      >
+                        {content.title}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}

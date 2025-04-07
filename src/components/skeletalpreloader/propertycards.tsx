@@ -3,7 +3,7 @@ function SkeletalPreloader() {
     <div className="pt-5 md:pt-10 lg:pt-10 xl:pt-10 2xl:pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 gap-y-8 justify-center">
       {[...Array(25)].map((_, index) => (
         <div key={`skeleton-${index}`} className="w-full flex justify-center">
-          <div className="w-full max-w-[300px] animate-pulse border rounded-lg">
+          <div className="w-full md:max-w-[300px] animate-pulse border rounded-lg">
             <div className="bg-gray-200 dark:bg-[#444444] w-full h-60 md:h-36 lg:h-28 xl:h-36 2xl:h-44 rounded-t-lg">
               <div className="w-full flex justify-end p-4">
                 <div className="size-8 bg-gray-300 dark:bg-[#55555577] rounded"></div>
