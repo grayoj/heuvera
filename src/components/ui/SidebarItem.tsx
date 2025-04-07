@@ -21,10 +21,7 @@ function SidebarItem({
   item: Item;
 }) {
   const pathname = usePathname();
-  const fullRoute =
-    route === "/"
-      ? "/profile/property-renters"
-      : `/profile/property-renters/${route}`;
+  const fullRoute = route === "account" ? "/account" : `/account/${route}`;
   const isActive = pathname === fullRoute;
 
   return (
