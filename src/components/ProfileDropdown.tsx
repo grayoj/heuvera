@@ -48,11 +48,11 @@ export function ProfileDropdown({
       >
         <DropdownMenuItem asChild>
           <Link
-            href="/profile"
+            href="/account"
             className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-[#444444] rounded-md"
           >
             <RiSettings3Line className="text-lg" />
-            <span>Settings</span>
+            <span>Account</span>
           </Link>
         </DropdownMenuItem>
 
