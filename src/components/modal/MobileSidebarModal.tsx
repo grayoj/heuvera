@@ -16,15 +16,15 @@ import {
   DialogHeader,
 } from "@heuvera/components/ui/dialog";
 
-import PersonInfo from "@heuvera/app/(main)/profile/property-renters/personal/page";
-import BookingHistory from "@heuvera/app/(main)/profile/property-renters/booking/page";
-import PaymentMethods from "@heuvera/app/(main)/profile/property-renters/payment/page";
-import Support from "@heuvera/app/(main)/profile/property-renters/support/page";
+import PersonInfo from "@heuvera/app/(main)/account/page";
+import BookingHistory from "@heuvera/app/(main)/account/booking/page";
+import PaymentMethods from "@heuvera/app/(main)/account/payment/page";
+import Support from "@heuvera/app/(main)/account/support/page";
 
 const sideBarItems = [
   {
-    name: "Personal Info",
-    route: "personal",
+    route: "account",
+    name: "My Account",
     description:
       "Update your profile, contact details, and preferences to personalize your experience.",
     icon: User,
@@ -82,7 +82,7 @@ const MobileProfileSettings = () => {
             onClick={() => handleItemClick(item)}
             className="cursor-pointer"
           >
-            <SidebarItem item={item} route={item.route}>
+            <SidebarItem item={item} route={item.route || ""}>
               <div className="flex items-center justify-between w-full">
                 <div className="flex flex-col">
                   <h2 className="font-medium text-sm">{item.name}</h2>
