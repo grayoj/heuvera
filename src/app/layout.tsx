@@ -3,6 +3,7 @@ import { Quicksand } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "./site-config";
 import { ThemeProvider } from "next-themes";
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -28,7 +29,9 @@ export default function RootLayout({
         style={{ fontFamily: "Quicksand, sans-serif" }}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <UserProvider>
           {children}
+          </UserProvider>
         </ThemeProvider>
       </body>
     </html>
