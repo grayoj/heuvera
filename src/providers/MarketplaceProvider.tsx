@@ -16,11 +16,12 @@ import useIsMobile from "@heuvera/hooks/IsMobile";
 import { GoHeart, GoHeartFill, GoHome, GoHomeFill } from "react-icons/go";
 import React from "react";
 import { IoCompass, IoCompassOutline } from "react-icons/io5";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Footer from "@heuvera/components/footer";
-import { ProfileDropdown } from "@heuvera/components/ProfileDropdown";
 import Link from "next/link";
 import { Button } from "@heuvera/components/ui/button";
+import { ProfileDropdown } from "@heuvera/components/ProfileDropdown";
+import { useAuthClient } from "@heuvera/hooks/useAuth";
 
 interface MarketplaceContextType {
   selected: string;
@@ -45,13 +46,14 @@ export function MarketplaceProvider({
   const navRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+  const { user, isAuthenticated, isLoading } = useAuthClient();
 
   const NavigationContent = useMemo(
     () => [
-      { title: "Explore", link: "/explore", icon: <GoHomeFill /> },
+      { title: "Explore", link: "/", icon: <GoHomeFill /> },
       { title: "Discover", link: "/discover", icon: <LucideCompass /> },
       { title: "Favorites", link: "/favorites", icon: <LucideHeart /> },
-      { title: "Profile", link: "/profile", icon: null },
     ],
     [],
   );
@@ -61,15 +63,21 @@ export function MarketplaceProvider({
   } = {
     Explore: {
       filled: <GoHomeFill fill="#7B4F3A" className="text-xl" />,
-      outline: <GoHome className="text-[#323232] dark:text-[#F8F7F2] text-xl" />,
+      outline: (
+        <GoHome className="text-[#323232] dark:text-[#F8F7F2] text-xl" />
+      ),
     },
     Favorites: {
       filled: <GoHeartFill fill="#7B4F3A" className="text-xl" />,
-      outline: <GoHeart className="text-[#323232] dark:text-[#F8F7F2] text-xl" />,
+      outline: (
+        <GoHeart className="text-[#323232] dark:text-[#F8F7F2] text-xl" />
+      ),
     },
     Discover: {
       filled: <IoCompass className="text-2xl" fill="#7B4F3A" />,
-      outline: <IoCompassOutline className="text-2xl dark:text-[#F8F7F2] text-[#323232]" />,
+      outline: (
+        <IoCompassOutline className="text-2xl dark:text-[#F8F7F2] text-[#323232]" />
+      ),
     },
     Profile: {
       filled: (
@@ -125,26 +133,26 @@ export function MarketplaceProvider({
     >
       <div className="w-full h-full flex flex-col bg-[#F8F7F2] dark:bg-[#333333]">
         <style jsx global>{`
-        .animated-underline {
-          position: relative;
-          display: inline-block;
-        }
+          .animated-underline {
+            position: relative;
+            display: inline-block;
+          }
 
-        .animated-underline::after {
-          content: "";
-          position: absolute;
-          width: 0;
-          height: 1px;
-          bottom: -2px;
-          left: 0;
-          background-color: #7b4f3a;
-          transition: width 0.3s ease-in-out;
-        }
+          .animated-underline::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #7b4f3a;
+            transition: width 0.3s ease-in-out;
+          }
 
-        .animated-underline:hover::after {
-          width: 100%;
-        }
-      `}</style>
+          .animated-underline:hover::after {
+            width: 100%;
+          }
+        `}</style>
         <div className="w-full backdrop-blur-xl sticky top-0 bg-[#F8F7F299] dark:bg-[#33333399] z-[5000]">
           <div className="px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 h-20 w-full flex items-center justify-between">
             {isMobile ? (
@@ -162,26 +170,34 @@ export function MarketplaceProvider({
                   <Link
                     key={index}
                     href={content.link}
-                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${selected === content.title
-                      ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
-                      : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-105 hover:font-semibold"
-                      }`}
+                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
+                      pathname === content.link
+                        ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
+                        : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-105 hover:font-semibold"
+                    }`}
                   >
                     {content.title}
                   </Link>
                 ))}
               </div>
             )}
-            {!isMobile &&
+            {!isMobile && (
               <div className="w-24 flex items-end justify-end">
-                <Button className="bg-transparent hover:bg-[#7B4F3A] hover:dark:bg-[#8B5F4D] hover:text-[#F8F7F2] hover:dark:text-[#F8F7F2] text-[#7B4F3A] dark:text-[#8B5F4D] border border-[#7B4F3A] dark:border-[#8B5F4D] font-serif font-medium py-2 px-6 gap-2 hover:transition-transform duration-300 hover:scale-105">
-                  Login
-                  <LucideLogIn />
-                </Button>
-                {/* <ProfileDropdown selected="Profile" /> */}
-              </div>
-            }
-
+              {isLoading ?   <div className="h-10 w-10 rounded-full bg-[#E0E0E0] dark:bg-[#333] animate-pulse" />: isAuthenticated ? (
+                <ProfileDropdown
+                  selected="Profile"
+                  avatarUrl={user?.picture || '/no-avatar.jpg'}
+                />
+              ) : (
+                <a className="cursor-pointer" href="/api/auth/login">
+                  <Button className="bg-transparent cursor-pointer hover:bg-[#7B4F3A] hover:dark:bg-[#8B5F4D] hover:text-[#F8F7F2] hover:dark:text-[#F8F7F2] text-[#7B4F3A] dark:text-[#8B5F4D] border border-[#7B4F3A] dark:border-[#8B5F4D] font-serif font-medium py-2 px-6 gap-2 hover:transition-transform duration-300 hover:scale-105">
+                    Login
+                    <LucideLogIn />
+                  </Button>
+                </a>
+              )}
+            </div>
+            )}
           </div>
         </div>
 
