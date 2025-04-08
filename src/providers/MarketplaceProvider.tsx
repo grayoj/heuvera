@@ -132,27 +132,6 @@ export function MarketplaceProvider({
       value={{ selected, setSelected, openSearchModal }}
     >
       <div className="w-full h-full flex flex-col bg-[#F8F7F2] dark:bg-[#333333]">
-        <style jsx global>{`
-          .animated-underline {
-            position: relative;
-            display: inline-block;
-          }
-
-          .animated-underline::after {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: #7b4f3a;
-            transition: width 0.3s ease-in-out;
-          }
-
-          .animated-underline:hover::after {
-            width: 100%;
-          }
-        `}</style>
         <div className="w-full backdrop-blur-xl sticky top-0 bg-[#F8F7F299] dark:bg-[#33333399] z-[5000]">
           <div className="px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 h-20 w-full flex items-center justify-between">
             {isMobile ? (
@@ -170,11 +149,10 @@ export function MarketplaceProvider({
                   <Link
                     key={index}
                     href={content.link}
-                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
-                      pathname === content.link
+                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${pathname === content.link
                         ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
-                        : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-105 hover:font-semibold"
-                    }`}
+                        : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-102 hover:font-medium"
+                      }`}
                   >
                     {content.title}
                   </Link>
