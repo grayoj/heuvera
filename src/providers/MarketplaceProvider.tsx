@@ -184,10 +184,11 @@ export function MarketplaceProvider({
             {!isMobile && (
               <div className="w-24 flex items-end justify-end">
               {isLoading ?   <div className="h-10 w-10 rounded-full bg-[#E0E0E0] dark:bg-[#333] animate-pulse" />: isAuthenticated ? (
-                <ProfileDropdown
-                  selected="Profile"
-                  avatarUrl={user?.picture || '/no-avatar.jpg'}
-                />
+               <ProfileDropdown
+               selected="Profile"
+               avatarUrl={user?.picture ?? undefined}
+               fallbackName={user?.name || user?.email || undefined}
+             />
               ) : (
                 <a className="cursor-pointer" href="/api/auth/login">
                   <Button className="bg-transparent cursor-pointer hover:bg-[#7B4F3A] hover:dark:bg-[#8B5F4D] hover:text-[#F8F7F2] hover:dark:text-[#F8F7F2] text-[#7B4F3A] dark:text-[#8B5F4D] border border-[#7B4F3A] dark:border-[#8B5F4D] font-serif font-medium py-2 px-6 gap-2 hover:transition-transform duration-300 hover:scale-105">
