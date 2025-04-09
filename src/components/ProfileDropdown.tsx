@@ -21,13 +21,23 @@ import {
 interface ProfileDropdownProps {
   selected?: string;
   avatarUrl?: string;
-  fallback?: string;
+  fallbackName?: string; 
+}
+
+function getInitials(nameOrEmail?: string) {
+  if (!nameOrEmail) return "U";
+  const parts = nameOrEmail.trim().split(" ");
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  } else {
+    return nameOrEmail.slice(0, 2).toUpperCase();
+  }
 }
 
 export function ProfileDropdown({
   selected,
-  avatarUrl = "https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c",
-  fallback = "FG",
+  avatarUrl = "/no-avatar.jpg",
+  fallbackName,
 }: ProfileDropdownProps) {
   return (
     <DropdownMenu>
@@ -37,14 +47,14 @@ export function ProfileDropdown({
             className={`rounded-full overflow-hidden ${selected === "Profile" ? "ring-2 ring-[#7B4F3A] dark:ring-[#8B5F4D]" : ""}`}
           >
             <AvatarImage src={avatarUrl} alt="avatar" />
-            <AvatarFallback>{fallback}</AvatarFallback>
+            <AvatarFallback>{getInitials(fallbackName)}</AvatarFallback>
           </Avatar>
         </button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
         align="end"
-        className="w-48 bg-[#F8F7F2] dark:bg-[#333333] shadow-md rounded-md"
+        className="z-auto w-48 bg-[#F8F7F2] dark:bg-[#333333] border rounded-md my-4"
       >
         <DropdownMenuItem asChild>
           <Link
@@ -71,7 +81,9 @@ export function ProfileDropdown({
           className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-[#444444] rounded-md cursor-pointer"
         >
           <RiLogoutBoxRLine className="text-lg text-red-500" />
-          <span className="text-red-500">Logout</span>
+          <a href="/api/auth/logout">
+            <span className="text-red-500">Logout</span>
+          </a>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
