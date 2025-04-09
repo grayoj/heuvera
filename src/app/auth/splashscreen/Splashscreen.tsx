@@ -13,7 +13,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsAnimating(false);
-      router.push("/explore");
+      router.push("/onboarding");
     }, 3000);
 
     return () => clearTimeout(timer);
