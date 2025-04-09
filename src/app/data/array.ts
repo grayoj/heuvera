@@ -63,51 +63,51 @@ export const sideBar = [
 
 export const sideBarAdmin = [
   {
-    name: 'Personal Info',
-    route: '/',
+    name: "Personal Info",
+    route: "/",
     description:
-      'Update your profile, contact details, and preferences to personalize your experience.',
+      "Update your profile, contact details, and preferences to personalize your experience.",
     icon: User,
   },
   {
-    route: 'property',
-    name: 'Property Listings',
+    route: "property",
+    name: "Property Listings",
     description:
-      'Manage and view all properties you’ve listed for rent or lease.',
+      "Manage and view all properties you’ve listed for rent or lease.",
     icon: House,
   },
   {
-    route: 'booking',
-    name: 'Booking Mangement',
-    description: 'Track upcoming, ongoing, and past bookings in one place',
+    route: "booking",
+    name: "Booking Mangement",
+    description: "Track upcoming, ongoing, and past bookings in one place",
     icon: Calendar,
   },
   {
-    route: 'earnings',
-    name: 'Earnings & Payouts',
+    route: "earnings",
+    name: "Earnings & Payouts",
     description:
-      'Monitor your earnings, track pending payments, and manage payout preferences.',
+      "Monitor your earnings, track pending payments, and manage payout preferences.",
     icon: Wallet,
   },
   {
-    route: 'reviews',
-    name: 'Reviews & Ratings',
+    route: "reviews",
+    name: "Reviews & Ratings",
     description:
-      'View guest feedback, monitor your ratings, and maintain your reputation.',
+      "View guest feedback, monitor your ratings, and maintain your reputation.",
     icon: Star,
   },
   {
-    route: 'insights',
-    name: 'Property Insights',
+    route: "insights",
+    name: "Property Insights",
     description:
-      'Analyze booking trends, occupancy rates, and performance metrics for your listings. ',
+      "Analyze booking trends, occupancy rates, and performance metrics for your listings. ",
     icon: GitGraph,
   },
   {
-    route: 'support',
-    name: 'Support & Assistance',
+    route: "support",
+    name: "Support & Assistance",
     description:
-      'Access help articles, contact support, or resolve issues with your listings. ',
+      "Access help articles, contact support, or resolve issues with your listings. ",
     icon: LifeBuoy,
   },
 ];
@@ -162,35 +162,35 @@ export const pastBookings = [
 
 export const upcomingBookings = [
   {
-    guestName: 'Godiwn Praise',
-    date: 'Mar 12, 2025 - Mar 21, 2025',
-    propertyName: 'George duplex',
-    status: 'Pending',
+    guestName: "Godiwn Praise",
+    date: "Mar 12, 2025 - Mar 21, 2025",
+    propertyName: "George duplex",
+    status: "Pending",
   },
   {
-    guestName: 'Godiwn Praise',
-    date: 'Mar 12, 2025 - Mar 21, 2025',
-    propertyName: 'George duplex',
-    status: 'Pending',
+    guestName: "Godiwn Praise",
+    date: "Mar 12, 2025 - Mar 21, 2025",
+    propertyName: "George duplex",
+    status: "Pending",
   },
 ];
 export const pastAdminBookings = [
   {
-    image: 'hheye',
-    name: 'George’s Semi Detached',
-    location: 'Behind Block C, Abuja',
-    date: 'Mar 12, 2025 - Mar 21, 2025',
-    status: 'Pending',
-    pricePaid: '50,000',
+    image: "hheye",
+    name: "George’s Semi Detached",
+    location: "Behind Block C, Abuja",
+    date: "Mar 12, 2025 - Mar 21, 2025",
+    status: "Pending",
+    pricePaid: "50,000",
     noOfGuests: 3,
   },
   {
-    image: 'hheye',
-    name: 'Emma Semi Detached',
-    location: 'Behind Block C, Abuja',
-    date: 'Mar 12, 2025 - Mar 21, 2025',
-    status: 'Pending',
-    pricePaid: '50,000',
+    image: "hheye",
+    name: "Emma Semi Detached",
+    location: "Behind Block C, Abuja",
+    date: "Mar 12, 2025 - Mar 21, 2025",
+    status: "Pending",
+    pricePaid: "50,000",
     noOfGuests: 3,
   },
 ];
@@ -293,109 +293,108 @@ export const propertyLocation = [
   { id: 6, category: "Austin", count: 47, imageUrl: "/austin.jpg" },
 ];
 
-
 export const propertyListings = [
   {
-    image: '',
-    price: '₦50,000',
-    address: '3617 W.Gray St. Utica',
+    image: "",
+    price: "₦50,000",
+    address: "3617 W.Gray St. Utica",
     noOfBeds: 2,
     noOfBaths: 2,
-    measurement: '60m^2',
+    measurement: "60m^2",
   },
 ];
 
 export const earnings = [
   {
-    heading: 'Total Earnings',
-    amount: '₦2,500,000',
+    heading: "Total Earnings",
+    amount: "₦2,500,000",
     percent: 45,
   },
   {
-    heading: 'Pending Payout',
-    amount: '₦2,500,000',
+    heading: "Pending Payout",
+    amount: "₦2,500,000",
     percent: 35,
   },
   {
-    heading: 'Available Balance',
-    amount: '₦2,500,000',
+    heading: "Available Balance",
+    amount: "₦2,500,000",
     percent: 47,
   },
 ];
 
 export const earningsTable = [
   {
-    method: 'Bank Transfer',
-    date: 'Mar 12, 2025',
-    amount: '₦2,500,000',
-    status: 'Pending',
+    method: "Bank Transfer",
+    date: "Mar 12, 2025",
+    amount: "₦2,500,000",
+    status: "Pending",
   },
   {
-    method: 'Bank Transfer',
-    date: 'Mar 12, 2025',
-    amount: '₦2,500,000',
-    status: 'Completed',
+    method: "Bank Transfer",
+    date: "Mar 12, 2025",
+    amount: "₦2,500,000",
+    status: "Completed",
   },
 ];
 
 export const reviews = [
   {
-    guestName: 'Godwin Praise Tochi',
-    date: 'Mar 12, 2025',
+    guestName: "Godwin Praise Tochi",
+    date: "Mar 12, 2025",
     rating: 5,
     content:
-      'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presentlydvndsbhbvahbnjib nfuvbfmxbifbnakuvfb nb oiubgnbjetuhnybviubdnu',
+      "George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presentlydvndsbhbvahbnjib nfuvbfmxbifbnakuvfb nb oiubgnbjetuhnybviubdnu",
   },
   {
-    guestName: 'Edward Mfon Sarah',
-    date: 'Mar 12, 2025',
+    guestName: "Edward Mfon Sarah",
+    date: "Mar 12, 2025",
     rating: 3,
     content:
-      'George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presently',
+      "George’s Property is one of the best I have ever stayed in. It’s even better than the house I live in presently",
   },
 ];
 
 export const amenities = [
   {
-    name: 'Wifi',
+    name: "Wifi",
     icon: Wifi,
   },
-  { 
-    name: 'Video Cam', 
-    icon: Camera 
+  {
+    name: "Video Cam",
+    icon: Camera,
   },
-  { 
-    name: 'Washer', 
-    icon: WashingMachine 
+  {
+    name: "Washer",
+    icon: WashingMachine,
   },
-  { 
-    name: 'Kitchen', 
-    icon: Microwave 
+  {
+    name: "Kitchen",
+    icon: Microwave,
   },
-  { 
-    name: 'Refrigerator', 
-    icon: Refrigerator 
+  {
+    name: "Refrigerator",
+    icon: Refrigerator,
   },
-  { 
-    name: 'Wifi', 
-    icon: Wifi 
+  {
+    name: "Wifi",
+    icon: Wifi,
   },
 ];
 
-export   const features = [
+export const features = [
   {
-    type: 'guest',
-    icon: User ,
-    label: 'Guest',
+    type: "guest",
+    icon: User,
+    label: "Guest",
   },
   {
-    type: 'bed',
+    type: "bed",
     icon: BedDouble,
-    label: 'Bedroom',
+    label: "Bedroom",
   },
   {
-    type: 'bath',
+    type: "bath",
     icon: ShowerHead,
-    label: 'Bathroom',
+    label: "Bathroom",
   },
 ];

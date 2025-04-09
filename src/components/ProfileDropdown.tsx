@@ -58,7 +58,7 @@ export function ProfileDropdown({
 
         <DropdownMenuItem asChild>
           <Link
-            href="/host/dashboard"
+            href="/hosts"
             className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-[#444444] rounded-md"
           >
             <RiHomeSmileLine className="text-lg" />

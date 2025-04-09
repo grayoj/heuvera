@@ -1,5 +1,5 @@
-import { features } from '@heuvera/app/data/array';
-import DropDown from '../ui/DropDown';
+import { features } from "@heuvera/app/data/array";
+import DropDown from "../ui/DropDown";
 
 export default function PropertyFeature() {
   return (

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export default function DropDown({
   type,
@@ -24,7 +24,7 @@ export default function DropDown({
         required
       >
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
-          <option className='cursor-pointer' key={index} value={item}>
+          <option className="cursor-pointer" key={index} value={item}>
             {item}
           </option>
         ))}

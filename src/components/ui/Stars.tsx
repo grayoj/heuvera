@@ -1,13 +1,13 @@
 export default function Stars() {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
       3.5
       {[...Array(5)].map((_, index) => (
         <svg
           key={index}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill={index < 3 ? 'gold' : index === 3 ? 'url(#half)' : 'gray'}
+          fill={index < 3 ? "gold" : index === 3 ? "url(#half)" : "gray"}
           width="20"
           height="20"
         >

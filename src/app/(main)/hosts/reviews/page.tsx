@@ -1,7 +1,7 @@
-import ReviewTable from '@heuvera/components/review/ReviewTable';
-import AccountHeader from '@heuvera/components/ui/AccountHeader';
-import PageLayout from '@heuvera/components/ui/PageLayout';
-import Stars from '@heuvera/components/ui/Stars';
+import ReviewTable from "@heuvera/components/review/ReviewTable";
+import AccountHeader from "@heuvera/components/ui/AccountHeader";
+import PageLayout from "@heuvera/components/ui/PageLayout";
+import Stars from "@heuvera/components/ui/Stars";
 
 export default function Page() {
   return (

@@ -1,9 +1,9 @@
-import { propertyListings } from '@heuvera/app/data/array';
-import BookingContainer from '@heuvera/components/booking/BookingContainer';
-import PropertyCard from '@heuvera/components/property/PropertyCard';
-import AccountHeader from '@heuvera/components/ui/AccountHeader';
-import { Button } from '@heuvera/components/ui/button';
-import PageLayout from '@heuvera/components/ui/PageLayout';
+import { propertyListings } from "@heuvera/app/data/array";
+import BookingContainer from "@heuvera/components/booking/BookingContainer";
+import PropertyCard from "@heuvera/components/property/PropertyCard";
+import AccountHeader from "@heuvera/components/ui/AccountHeader";
+import { Button } from "@heuvera/components/ui/button";
+import PageLayout from "@heuvera/components/ui/PageLayout";
 
 export default function Page() {
   return (
@@ -25,7 +25,11 @@ export default function Page() {
           Booking Trend
         </BookingContainer>
         <BookingContainer className="border w-[30%] h-full p-4">
-          <PropertyCard showActBtns={false} className='w-fit h-fit' property={propertyListings[0]} />
+          <PropertyCard
+            showActBtns={false}
+            className="w-fit h-fit"
+            property={propertyListings[0]}
+          />
         </BookingContainer>
       </div>
     </PageLayout>

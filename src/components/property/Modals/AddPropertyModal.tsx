@@ -1,13 +1,13 @@
-import { Dialog, DialogContent, DialogTitle } from '@radix-ui/react-dialog';
-import { Button } from '../../ui/button';
-import { DialogHeader } from '../../ui/dialog';
-import Input from '../../ui/Input';
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import PropertyFeature from '../PropertyFeature';
-import Amenities from '../Amenities';
-import PropertyImage from '../PropertyImage';
-import PropertyForm from '../PropertyForm';
+import { Dialog, DialogContent, DialogTitle } from "@radix-ui/react-dialog";
+import { Button } from "../../ui/button";
+import { DialogHeader } from "../../ui/dialog";
+import Input from "../../ui/Input";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import PropertyFeature from "../PropertyFeature";
+import Amenities from "../Amenities";
+import PropertyImage from "../PropertyImage";
+import PropertyForm from "../PropertyForm";
 
 export default function AddPropertyModal({
   open,
@@ -18,21 +18,21 @@ export default function AddPropertyModal({
 }) {
   const [active, setActive] = useState<number[]>([]);
   const handleOpenChange = (isOpen: boolean) => {
-    setOpen(isOpen ? 'add' : '');
+    setOpen(isOpen ? "add" : "");
   };
 
   return (
     <div className="fixed inset-0 bg-[#00000080] flex items-center justify-center z-50">
       <AnimatePresence>
-        {open === 'add' && (
+        {open === "add" && (
           <motion.div
             className="bg-white rounded-xl p-4 my-10 space-y-6"
-            initial={{ opacity: 0, scale: 0.9 }} 
-            animate={{ opacity: 1, scale: 1 }} 
-            exit={{ opacity: 0, scale: 0.9 }} 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3 }}
           >
-            <Dialog open={open === 'add'} onOpenChange={handleOpenChange}>
+            <Dialog open={open === "add"} onOpenChange={handleOpenChange}>
               <DialogContent className="max-h-[80vh] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle className="font-semibold text-xl mb-4">

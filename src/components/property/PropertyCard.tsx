@@ -6,17 +6,17 @@ import {
   Pencil,
   RectangleVertical,
   Trash,
-} from 'lucide-react';
-import Image from 'next/image';
-import { Button } from '@heuvera/components/ui/button';
+} from "lucide-react";
+import Image from "next/image";
+import { Button } from "@heuvera/components/ui/button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardFooter,
-} from '@heuvera/components/ui/card';
-import PropertyIcon from './PropertyIcon'; 
+} from "@heuvera/components/ui/card";
+import PropertyIcon from "./PropertyIcon";
 
 interface Property {
   price: string;
@@ -40,7 +40,7 @@ export default function PropertyCard({
 }) {
   return (
     <Card
-      className={`${className ? className : 'w-[30%]'} pt-0 px-0 gap-0  bg-transparent`}
+      className={`${className ? className : "w-[30%]"} pt-0 px-0 gap-0  bg-transparent`}
     >
       <Image
         src="https://picsum.photos/303/172"
@@ -52,7 +52,7 @@ export default function PropertyCard({
       <CardHeader className="gap-0">
         <CardTitle className="text-[1.75rem] mb-2.5 flex justify-between items-center">
           <div>
-            {property.price}{' '}
+            {property.price}{" "}
             <span className="text-[#898989] text-sm">/night</span>
           </div>
           <BadgeCheck color="#7b4f3a" />
@@ -81,7 +81,7 @@ export default function PropertyCard({
       {showActBtns && (
         <CardFooter className="flex space-x-2 mt-5">
           <Button
-            onClick={() => setOpen && setOpen('edit')}
+            onClick={() => setOpen && setOpen("edit")}
             variant="outline"
             className="bg-[#F8F7F2] rounded-full cursor-pointer"
           >

@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@heuvera/components/ui/button";
 import SidebarItem from "@heuvera/components/ui/SidebarItem";
-import { sideBar } from "@heuvera/app/data/array";
+import { sideBarAdmin } from "@heuvera/app/data/array";
 import useIsMobile from "@heuvera/hooks/IsMobile";
 import MobileProfileSettings from "@heuvera/components/modal/MobileSidebarModal";
+import AdminSideBarItem from "@heuvera/components/ui/AdminSideBarItem";
 
 interface Item {
   icon: React.ComponentType<{ className?: string }>;
@@ -41,9 +42,9 @@ export default function ProfileLayout({
           </Button>
         </div>
         <div className="w-full">
-          {sideBar.map((item: Item) => (
+          {sideBarAdmin.map((item: Item) => (
             <div key={item.route}>
-              <SidebarItem item={item} route={item.route}>
+              <AdminSideBarItem item={item} route={item.route}>
                 <div className="flex items-center">
                   <div className="flex flex-col ml-3">
                     <h2 className="font-medium text-sm">{item.name}</h2>
@@ -52,7 +53,7 @@ export default function ProfileLayout({
                     </p>
                   </div>
                 </div>
-              </SidebarItem>
+              </AdminSideBarItem>
             </div>
           ))}
         </div>

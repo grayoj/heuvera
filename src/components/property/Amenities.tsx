@@ -1,4 +1,4 @@
-import { amenities } from '@heuvera/app/data/array';
+import { amenities } from "@heuvera/app/data/array";
 
 export default function Amenities({
   active,
@@ -11,7 +11,7 @@ export default function Amenities({
     if (active.includes(index)) {
       setActive(active.filter((i) => i !== index));
     } else {
-      setActive([...active, index]); 
+      setActive([...active, index]);
     }
   };
 
@@ -26,7 +26,7 @@ export default function Amenities({
             key={index}
             className={`${
               active.includes(index) &&
-              'border-[#7B4F3A] text-[#7B4F3A] bg-[#7B4F3A1A]'
+              "border-[#7B4F3A] text-[#7B4F3A] bg-[#7B4F3A1A]"
             } bg-[#F8F7F2] flex justify-between py-3 px-1.5 rounded-md border-2 cursor-pointer`}
           >
             {amenity.name}

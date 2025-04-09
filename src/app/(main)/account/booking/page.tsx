@@ -1,8 +1,8 @@
 "use client";
 
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
+import BookingTable from "@heuvera/components/ui/BookingTable";
 import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
-import BookingTable from "@heuvera/components/ui/Table";
 import { Button } from "@heuvera/components/ui/button";
 import { ArrowDown, Newspaper } from "lucide-react";
 import { RotateCw } from "lucide-react";

@@ -1,12 +1,12 @@
-import { upcomingBookings } from '../../app/data/array';
+import { upcomingBookings } from "../../app/data/array";
 
 export default function UpcomingBookingTable() {
   const tableHeadings = [
-    'S/N',
-    'Guest Name',
-    'Check-In Date & Check-Out Date',
-    'Property Name',
-    'Booking Status',
+    "S/N",
+    "Guest Name",
+    "Check-In Date & Check-Out Date",
+    "Property Name",
+    "Booking Status",
   ];
   return (
     <div className="relative overflow-x-auto ">
@@ -17,8 +17,8 @@ export default function UpcomingBookingTable() {
               <th
                 key={index}
                 scope="col"
-                className={`${index === 0 && 'py-4 px-3'} py-4 px-3 whitespace-nowrap border-x ${
-                  index === tableHeadings.length - 1 ? 'border-r' : ''
+                className={`${index === 0 && "py-4 px-3"} py-4 px-3 whitespace-nowrap border-x ${
+                  index === tableHeadings.length - 1 ? "border-r" : ""
                 }`}
               >
                 {heading}
@@ -37,7 +37,7 @@ export default function UpcomingBookingTable() {
               <td className="border-x ">{booking.date}</td>
               <td className="border-x">{booking.propertyName}</td>
               <td
-                className={`${booking.status === 'Pending' ? 'text-[#FF9500]' : 'text-[#03B10F]'} border-x`}
+                className={`${booking.status === "Pending" ? "text-[#FF9500]" : "text-[#03B10F]"} border-x`}
               >
                 {booking.status}
               </td>

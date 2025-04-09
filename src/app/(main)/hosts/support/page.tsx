@@ -1,8 +1,8 @@
-import SupportForm from '@heuvera/components/support/SupportForm';
-import AccountHeader from '@heuvera/components/ui/AccountHeader';
-import Help from '@heuvera/components/ui/Help';
-import PageLayout from '@heuvera/components/ui/PageLayout';
-import Link from 'next/link';
+import SupportForm from "@heuvera/components/support/SupportForm";
+import AccountHeader from "@heuvera/components/ui/AccountHeader";
+import Help from "@heuvera/components/ui/Help";
+import PageLayout from "@heuvera/components/ui/PageLayout";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -12,7 +12,12 @@ export default function Page() {
         subheading="Get help, contact support, and access resources to enhance your
           experience."
       >
-        <Link className='text-xs text-[#898989] underline font-medium ' href="#">Help Center</Link>
+        <Link
+          className="text-xs text-[#898989] underline font-medium "
+          href="#"
+        >
+          Help Center
+        </Link>
       </AccountHeader>
 
       <div className="flex justify-between ">
