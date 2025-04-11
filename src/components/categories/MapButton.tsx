@@ -39,8 +39,7 @@ const MapButton = ({ className }: MapButtonProps) => {
       <DrawerTrigger asChild>
         <Button
           variant="outline"
-          size="sm"
-          className={`bg-transparent border border-[#E3E2D9] dark:border-[#555555] text-[#555555] dark:text-[#E3E2D9] shadow-none text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-serif h-10 sm:h-9 md:h-10 px-3 sm:px-4 ${className}`}
+          className={`hover:dark:bg-[#55555599] hover:bg-[#E3E2D999] border border-[#E3E2D9] dark:border-[#555555] text-[#555555] dark:text-[#E3E2D9] shadow-none text-xs sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-serif h-10 sm:h-9 md:h-10 px-3 sm:px-4`}
         >
           <Map className="mr-2 h-4 w-4" />
           Map
@@ -64,8 +63,7 @@ const MapButton = ({ className }: MapButtonProps) => {
   ) : (
     <Button
       variant="outline"
-      size="sm"
-      className={`bg-transparent border border-[#E3E2D9] dark:border-[#555555] text-[#555555] dark:text-[#E3E2D9] shadow-none text-xs sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-serif h-8 sm:h-9 md:h-10 px-3 sm:px-4 ${className}`}
+      className={`hover:dark:bg-[#55555599] hover:bg-[#E3E2D999] border border-[#E3E2D9] dark:border-[#555555] text-[#555555] dark:text-[#E3E2D9] shadow-none text-xs sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base font-serif h-10 sm:h-9 md:h-10 px-3 sm:px-4`}
       onClick={handleClick}
     >
       <Map className="mr-2 h-4 w-4" />

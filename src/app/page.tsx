@@ -127,12 +127,17 @@ const Explore = React.memo(() => {
             onCategorySelect={setSelectedCategory}
             setActiveFilters={setActiveFilters}
           />
-          {Object.keys(activeFilters).length > 0 && (
-            <FilterTags
-              activeFilters={activeFilters}
-              removeFilter={removeFilter}
-            />
-          )}
+          <div className="w-full flex items-center justify-start">
+            {Object.keys(activeFilters).length > 0 && (
+              <div className="gap-2 flex items-center">
+                {/* <h1 className="text-[#3E3E3E] dark:text-[#666666]">Showing search results for:</h1> */}
+                <FilterTags
+                  activeFilters={activeFilters}
+                  removeFilter={removeFilter}
+                />
+              </div>
+            )}
+          </div>
         </div>
 
         {loading ? (

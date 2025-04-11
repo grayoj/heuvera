@@ -6,7 +6,7 @@ const FilterTags: React.FC<FilterTagsProps> = ({
   removeFilter,
 }) => {
   const filterDisplayMap: Record<keyof ActiveFilters, (val: any) => string> = {
-    priceRange: (val) => `$${val[0]} - $${val[1]}`,
+    priceRange: (val) => `₦${val[0]} - ₦${val[1]}`,
     bedrooms: (val) => `${val} Bedrooms`,
     beds: (val) => `${val} Beds`,
     bathrooms: (val) => `${val} Bathrooms`,
@@ -25,11 +25,11 @@ const FilterTags: React.FC<FilterTagsProps> = ({
         return display ? (
           <div
             key={key}
-            className="flex items-center bg-[#f8efe9] rounded-full px-3 py-1 text-xs sm:text-sm"
+            className="flex items-center bg-[#7B4F3A] dark:bg-[#8B5F4D] rounded-md px-4 py-2 text-xs sm:text-sm"
           >
             <span className="mr-2">{display}</span>
             <button onClick={() => removeFilter(key as keyof ActiveFilters)}>
-              <X className="h-4 w-4 text-[#8B4513]" />
+              <X className="h-4 w-4" />
             </button>
           </div>
         ) : null;

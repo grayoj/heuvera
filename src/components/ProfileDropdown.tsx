@@ -21,7 +21,7 @@ import {
 interface ProfileDropdownProps {
   selected?: string;
   avatarUrl?: string;
-  fallbackName?: string; 
+  fallbackName?: string;
 }
 
 function getInitials(nameOrEmail?: string) {
