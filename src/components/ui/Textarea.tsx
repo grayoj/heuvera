@@ -1,33 +1,18 @@
-"use client";
+import * as React from "react";
 
-import { useState } from "react";
+import { cn } from "@heuvera/lib/utils";
 
-export default function Textarea({
-  label,
-  initialValue,
-  className,
-}: {
-  label: string;
-  initialValue: string;
-  className?: string;
-}) {
-  const [value, setValue] = useState(initialValue);
-
+function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
   return (
-    <div className={className}>
-      <label
-        htmlFor={label}
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >
-        {label}
-      </label>
-      <textarea
-        id={label}
-        rows={4}
-        className="block p-2.5 w-full text-sm bg-[#F8F7F2] dark:bg-[#333333] border border-gray-300 dark:border-[#555555] text-gray-900 dark:text-gray-200 rounded-lg"
-        value=""
-        onChange={(e) => setValue(e.target.value)}
-      ></textarea>
-    </div>
+    <textarea
+      data-slot="textarea"
+      className={cn(
+        "border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 flex field-sizing-content min-h-16 w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        className,
+      )}
+      {...props}
+    />
   );
 }
+
+export { Textarea };

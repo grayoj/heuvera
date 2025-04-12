@@ -1,6 +1,6 @@
 import { Lock } from "lucide-react";
 import { Button } from "../ui/button";
-import Input from "../ui/Input";
+import Input from "../ui/input";
 import { motion } from "framer-motion";
 
 export default function CreditPayment() {

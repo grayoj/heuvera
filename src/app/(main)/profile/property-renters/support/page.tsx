@@ -2,9 +2,9 @@
 
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import Help from "@heuvera/components/ui/Help";
-import Input from "@heuvera/components/ui/Input";
+import Input from "@heuvera/components/ui/input";
 import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
-import Textarea from "@heuvera/components/ui/Textarea";
+import Textarea from "@heuvera/components/ui/textarea";
 import { Button } from "@heuvera/components/ui/button";
 import { useState } from "react";
 

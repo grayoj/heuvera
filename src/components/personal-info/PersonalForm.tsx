@@ -1,6 +1,6 @@
 import { Plus, Upload } from "lucide-react";
 import { Button } from "../ui/button";
-import Input from "../ui/Input";
+import Input from "../ui/input";
 import { personInput } from "@heuvera/app/data/array";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { motion } from "framer-motion";
