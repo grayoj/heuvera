@@ -13,7 +13,6 @@ export default function Page() {
   return (
     <PageLayout>
       <AccountHeader
-        className="border-none relative"
         heading="Booking Management"
         subheading="Track upcoming, ongoing, and past bookings in one place"
       >

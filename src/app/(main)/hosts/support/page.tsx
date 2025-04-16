@@ -27,7 +27,7 @@ export default function Page() {
           </h2>
           <SupportForm />
         </div>
-        <Help />
+        <Help isVisible={true} />
       </div>
     </PageLayout>
   );
