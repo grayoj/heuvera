@@ -1,18 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent } from "react";
 
 export default function Textarea({
   label,
-  initialValue,
+  value,
   className,
+  onChange,
 }: {
   label: string;
-  initialValue: string;
+  value?: string;
   className?: string;
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }) {
-  const [value, setValue] = useState(initialValue);
-
   return (
     <div className={className}>
       <label
@@ -25,9 +25,9 @@ export default function Textarea({
         id={label}
         rows={4}
         className="block p-2.5 w-full text-sm bg-[#F8F7F2] dark:bg-[#333333] border border-gray-300 dark:border-[#555555] text-gray-900 dark:text-gray-200 rounded-lg"
-        value=""
-        onChange={(e) => setValue(e.target.value)}
-      ></textarea>
+        value={value}
+        onChange={onChange}
+      />
     </div>
   );
 }
