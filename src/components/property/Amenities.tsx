@@ -1,6 +1,5 @@
 import { amenities } from "@heuvera/app/data/array";
 
-
 export default function Amenities({
   activeAmenities,
   setActiveAmenities,
@@ -8,12 +7,11 @@ export default function Amenities({
   activeAmenities: string[];
   setActiveAmenities: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
-
   const handleToggle = (name: string) => {
     setActiveAmenities((prev) =>
       prev.includes(name)
         ? prev.filter((item) => item !== name)
-        : [...prev, name]
+        : [...prev, name],
     );
   };
 
@@ -39,4 +37,3 @@ export default function Amenities({
     </div>
   );
 }
-

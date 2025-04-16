@@ -29,6 +29,8 @@
     "@react-email/tailwind": "^1.0.4",
     "@react-google-maps/api": "^2.20.6",
     "@sentry/nextjs": "^9",
+    "@tanstack/react-query": "^5.74.3",
+    "@tanstack/react-query-devtools": "^5.74.3",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-react": "^5.18.0",
     "@upstash/redis": "^1.34.5",

@@ -4,6 +4,7 @@ import "./globals.css";
 import { siteConfig } from "./site-config";
 import { ThemeProvider } from "next-themes";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { ReactQueryProvider } from "../providers/ReactQueryProvider";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -25,11 +26,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="antialiased bg-[#F3F2ED]"
-        style={{ fontFamily: "Quicksand, sans-serif" }}
+        className={`antialiased bg-[#F3F2ED] ${quicksand.className}`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <UserProvider>{children}</UserProvider>
+          <UserProvider>
+            <ReactQueryProvider>
+              {children}
+            </ReactQueryProvider>
+          </UserProvider>
         </ThemeProvider>
       </body>
     </html>

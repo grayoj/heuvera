@@ -7,7 +7,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Amenities from "../Amenities";
 import Textarea from "@heuvera/components/ui/Textarea";
 import DropDown from "@heuvera/components/ui/DropDown";
-import { amenities } from "@heuvera/app/data/array";
 import Image from "next/image";
 import { Bath, BedDouble, Trash, Upload, User } from "lucide-react";
 
@@ -30,9 +29,11 @@ export default function AddPropertyModal({
   const [activeAmenities, setActiveAmenities] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
 
-  const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [field]: e.target.value }));
-  };
+  const handleChange =
+    (field: string) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+    };
 
   const handleDropdownChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -132,14 +133,18 @@ export default function AddPropertyModal({
                         icon={<BedDouble />}
                         label="Bedrooms"
                         value={formData.bedrooms}
-                        onChange={(val) => handleDropdownChange("bedrooms", val)}
+                        onChange={(val) =>
+                          handleDropdownChange("bedrooms", val)
+                        }
                       />
                       <DropDown
                         type="bathrooms"
                         icon={<Bath/>}
                         label="Bathrooms"
                         value={formData.bathrooms}
-                        onChange={(val) => handleDropdownChange("bathrooms", val)}
+                        onChange={(val) =>
+                          handleDropdownChange("bathrooms", val)
+                        }
                       />
                     </div>
 
@@ -155,7 +160,6 @@ export default function AddPropertyModal({
                       onChange={handleChange("price")}
                     />
                   </div>
-
 
                   <div className="flex-1">
                     <div className="flex justify-between items-center mb-4">
