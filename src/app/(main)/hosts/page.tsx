@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@heuvera/components/ui/button";
-import { personInput } from "../../data/array";
 import Input from "../../../components/ui/Input";
 import {
   Avatar,
@@ -13,6 +12,7 @@ import { Plus, Upload } from "lucide-react";
 import { useState } from "react";
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import PageLayout from "@heuvera/components/ui/PageLayout";
+import { motion } from "framer-motion";
 
 export default function PersonInfo() {
   const [userImage, setUserImage] = useState("");
@@ -36,6 +36,29 @@ export default function PersonInfo() {
   }
   const toggleHelp = () => {
     setIsHelpVisible(!isHelpVisible);
+  };
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 300, damping: 24 },
+    },
+  };
+
+  const avatarVariants = {
+    hover: { scale: 1.05, boxShadow: "0px 0px 8px rgba(0,0,0,0.2)" },
   };
   return (
     <PageLayout>
@@ -88,35 +111,124 @@ export default function PersonInfo() {
             </div>
           </div>
 
-          {personInput.map((item, index) => (
-            <div
-              key={index}
-              className={`${item.label2 && "flex-row"} flex flex-col space-y-4`}
-            >
-              <div className="flex justify-between items-center space-x-4 space-y-5 border-b w-full">
-                <div className="flex flex-col justify-center mt-3 space-y-4 w-[40%]">
-                  <Input label={item.label || ""} />
-                  {index >= 1 && (
-                    <Button
-                      variant="outline"
-                      className="w-fit rounded-full  hover:cursor-pointer"
+          <motion.div
+            className="w-full flex flex-row w-full gap-5 border-b pt-5 pb-8"
+            variants={itemVariants}
+          >
+            <Input label="First name" placeholder="John" className="w-full" />
+            <Input label="Last name" placeholder="Doe" className="w-full" />
+          </motion.div>
+
+          <motion.div
+            className="w-full flex flex-col md:flex-row w-full gap-5 pt-5 pb-8 border-b items-center justify-between"
+            variants={itemVariants}
+          >
+            <div className="flex flex-col w-full gap-5">
+              <Input
+                label="Email"
+                placeholder="example@gmail.com"
+                className="w-12/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
+              />
+              <div className="w-full flex items-center justify-between">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button
+                    variant="outline"
+                    className="max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                  >
+                    <motion.div
+                      whileHover={{ rotate: 90 }}
+                      transition={{ duration: 0.2 }}
                     >
                       <Plus />
-                      {item.secondaryBtn}
-                    </Button>
-                  )}
-                </div>
-                {item.label2 && (
-                  <Input className="w-[40%]" label={item.label2 || ""} />
-                )}
-                {index >= 1 && (
-                  <Button variant="outline" className=" hover:cursor-pointer">
-                    {item.primaryBtn}
+                    </motion.div>
+                    Add another email
                   </Button>
-                )}
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    variant="outline"
+                    className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                  >
+                    Change email
+                  </Button>
+                </motion.div>
               </div>
             </div>
-          ))}
+          </motion.div>
+
+          <motion.div
+            className="w-full flex flex-row w-full gap-5 pt-5 pb-8 border-b items-center justify-between"
+            variants={itemVariants}
+          >
+            <div className="flex flex-col w-full gap-5">
+              <Input
+                label="Phone number"
+                placeholder="0000-0000-0000"
+                className="w-12/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
+              />
+              <div className="w-full flex items-center flex-wrap justify-between gap-5">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button
+                    variant="outline"
+                    className="max-w-fit text-xs px-3 md:px-4 md:text-sm lg:text-xs xl:text-sm"
+                  >
+                    <motion.div
+                      whileHover={{ rotate: 90 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Plus />
+                    </motion.div>
+                    Add another phone number
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    variant="outline"
+                    className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                  >
+                    Change phone number
+                  </Button>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="w-full flex flex-row w-full gap-5 pt-5 pb-8 border-b items-center justify-between"
+            variants={itemVariants}
+          >
+            <div className="flex flex-col w-full gap-5">
+              <Input
+                label="Address"
+                placeholder="plot 24 room 1254 BC, Abuja"
+                className="w-12/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
+              />
+              <div className="w-full flex items-center justify-between gap-5">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button
+                    variant="outline"
+                    className="max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                  >
+                    <motion.div
+                      whileHover={{ rotate: 90 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Plus />
+                    </motion.div>
+                    Add another address
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    variant="outline"
+                    className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
+                  >
+                    Change address
+                  </Button>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
         </form>
 
         <Help isVisible={isHelpVisible} />

@@ -16,11 +16,11 @@ export default function Page() {
         heading="Booking Management"
         subheading="Track upcoming, ongoing, and past bookings in one place"
       >
-        <div className="absolute flex justify-end w-full items-end top-[25%] border-b mt-4">
+        <div className="flex justify-end items-end border-b mt-4">
           <Button
             onClick={() => setActive("upcoming")}
             variant="outline"
-            className={`${active === "upcoming" ? "bg-[#F5F5F0] hover:bg-[#e2e2e2]" : "bg-[#E3E2D9]"} py-2.5 px-6 rounded-t-xl hover:cursor-pointer  absolute right-40 rounded-b-[0px] border-b-0`}
+            className={`${active === "upcoming" ? "bg-[#F5F5F0] dark:bg-[#333333] hover:bg-[#e2e2e2]" : "bg-[#E3E2D9]"} py-2.5 px-6 rounded-t-xl hover:cursor-pointer rounded-b-[0px] border-b-0`}
           >
             Upcoming Bookings
           </Button>

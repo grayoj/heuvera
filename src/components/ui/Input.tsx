@@ -27,7 +27,7 @@ export default function Input({
       </label>
       <div className="relative">
         {prefix && (
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-900">
+          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#A7A7A7]">
             {prefix}
           </span>
         )}

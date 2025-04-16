@@ -29,7 +29,7 @@ export default function Amenities({
               activeAmenities.includes(amenity.name)
                 ? "border-[#7B4F3A] text-[#7B4F3A] bg-[#7B4F3A1A]"
                 : ""
-            } bg-[#F8F7F2] flex justify-between py-3 px-1.5 rounded-md border-2 cursor-pointer`}
+            } bg-[#F8F7F2] dark:bg-[#333333] flex justify-between py-3 px-1.5 rounded-md border-2 cursor-pointer`}
           >
             <span>{amenity.name}</span>
             <amenity.icon />

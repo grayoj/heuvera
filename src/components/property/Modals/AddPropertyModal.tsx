@@ -9,7 +9,7 @@ import Textarea from "@heuvera/components/ui/Textarea";
 import DropDown from "@heuvera/components/ui/DropDown";
 import { amenities } from "@heuvera/app/data/array";
 import Image from "next/image";
-import { Trash, Upload } from "lucide-react";
+import { Bath, BedDouble, Trash, Upload, User } from "lucide-react";
 
 export default function AddPropertyModal({
   open,
@@ -87,14 +87,14 @@ export default function AddPropertyModal({
       <AnimatePresence>
         {open === "add" && (
           <motion.div
-            className="bg-white rounded-xl p-4 my-10 space-y-6 w-[90vw] max-w-[1024px]"
+            className="bg-[#F8F7F2] dark:bg-[#333333] rounded-xl p-4 my-10 space-y-6 w-[90vw] max-w-[1024px]"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3 }}
           >
             <Dialog open={open === "add"} onOpenChange={handleOpenChange}>
-              <DialogContent className="max-h-[80vh] overflow-y-auto">
+              <DialogContent className="max-h-[80vh] bg-[#F8F7F2] dark:bg-[#333333] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle className="font-semibold text-xl mb-4">
                     Add Property
@@ -122,21 +122,21 @@ export default function AddPropertyModal({
                     <div className="flex gap-4 w-full">
                       <DropDown
                         type="guests"
-                        icon={<span>👥</span>}
+                        icon={<User />}
                         label="Guests"
                         value={formData.guests}
                         onChange={(val) => handleDropdownChange("guests", val)}
                       />
                       <DropDown
                         type="bedrooms"
-                        icon={<span>🛏</span>}
+                        icon={<BedDouble />}
                         label="Bedrooms"
                         value={formData.bedrooms}
                         onChange={(val) => handleDropdownChange("bedrooms", val)}
                       />
                       <DropDown
                         type="bathrooms"
-                        icon={<span>🛁</span>}
+                        icon={<Bath/>}
                         label="Bathrooms"
                         value={formData.bathrooms}
                         onChange={(val) => handleDropdownChange("bathrooms", val)}

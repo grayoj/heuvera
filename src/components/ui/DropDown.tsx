@@ -15,7 +15,7 @@ export default function DropDown({
 }) {
   return (
     <div className="flex flex-col gap-1.5 w-full">
-      <label htmlFor={type} className="flex items-center text-sm font-medium text-gray-900">
+      <label htmlFor={type} className="flex items-center text-sm font-medium text-[#A7A7A7]">
         {label}
         <span className="ml-1">{icon}</span>
       </label>
@@ -23,7 +23,7 @@ export default function DropDown({
         id={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 text-center cursor-pointer"
+        className="bg-transparent border border-[#E3E2D9] dark:border-[#555555] text-[#A7A7A7] text-sm rounded-lg block w-full p-2.5 text-center cursor-pointer"
         required
       >
         {[...Array(10)].map((_, i) => (

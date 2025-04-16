@@ -47,7 +47,7 @@ export default function ProfileBanner({
           <span className="font-semibold">{formattedPathSegment}</span>
         </p>
         <Input
-          className="w-48 md:w-72 flex items-center justify-center text-center font-serif"
+          className="w-48 md:w-96 flex items-center justify-center text-center font-serif"
           placeholder="Search"
         />
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
