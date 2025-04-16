@@ -25,14 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased bg-[#F3F2ED] ${quicksand.className}`}
-      >
+      <body className={`antialiased bg-[#F3F2ED] ${quicksand.className}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <UserProvider>
-            <ReactQueryProvider>
-              {children}
-            </ReactQueryProvider>
+            <ReactQueryProvider>{children}</ReactQueryProvider>
           </UserProvider>
         </ThemeProvider>
       </body>

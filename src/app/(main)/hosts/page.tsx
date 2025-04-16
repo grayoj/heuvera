@@ -130,7 +130,10 @@ export default function PersonInfo() {
                 className="w-12/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
               />
               <div className="w-full flex items-center justify-between">
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <Button
                     variant="outline"
                     className="max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -144,7 +147,10 @@ export default function PersonInfo() {
                     Add another email
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button
                     variant="outline"
                     className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -167,7 +173,10 @@ export default function PersonInfo() {
                 className="w-12/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
               />
               <div className="w-full flex items-center flex-wrap justify-between gap-5">
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <Button
                     variant="outline"
                     className="max-w-fit text-xs px-3 md:px-4 md:text-sm lg:text-xs xl:text-sm"
@@ -181,7 +190,10 @@ export default function PersonInfo() {
                     Add another phone number
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button
                     variant="outline"
                     className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -204,7 +216,10 @@ export default function PersonInfo() {
                 className="w-12/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
               />
               <div className="w-full flex items-center justify-between gap-5">
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <Button
                     variant="outline"
                     className="max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -218,7 +233,10 @@ export default function PersonInfo() {
                     Add another address
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button
                     variant="outline"
                     className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"

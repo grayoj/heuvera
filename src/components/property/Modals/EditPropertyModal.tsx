@@ -29,9 +29,11 @@ export default function EditPropertyModal({
   const [activeAmenities, setActiveAmenities] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
 
-  const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [field]: e.target.value }));
-  };
+  const handleChange =
+    (field: string) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+    };
 
   const handleDropdownChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -152,7 +154,6 @@ export default function EditPropertyModal({
                   onChange={handleChange("price")}
                 />
               </div>
-
 
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-4">

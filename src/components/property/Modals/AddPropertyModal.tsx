@@ -139,7 +139,7 @@ export default function AddPropertyModal({
                       />
                       <DropDown
                         type="bathrooms"
-                        icon={<Bath/>}
+                        icon={<Bath />}
                         label="Bathrooms"
                         value={formData.bathrooms}
                         onChange={(val) =>

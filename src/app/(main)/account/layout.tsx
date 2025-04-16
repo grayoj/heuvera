@@ -44,9 +44,11 @@ export default function ProfileLayout({
           {sideBar.map((item: Item) => (
             <div key={item.route}>
               <SidebarItem item={item} route={item.route}>
-              <div className="flex items-center">
+                <div className="flex items-center">
                   <div className="flex flex-row">
-                    <h2 className="font-medium md:text-[0.6rem] lg:text-xs">{item.name}</h2>
+                    <h2 className="font-medium md:text-[0.6rem] lg:text-xs">
+                      {item.name}
+                    </h2>
                   </div>
                 </div>
               </SidebarItem>

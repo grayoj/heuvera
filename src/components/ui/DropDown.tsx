@@ -15,7 +15,10 @@ export default function DropDown({
 }) {
   return (
     <div className="flex flex-col gap-1.5 w-full">
-      <label htmlFor={type} className="flex items-center text-sm font-medium text-[#A7A7A7]">
+      <label
+        htmlFor={type}
+        className="flex items-center text-sm font-medium text-[#A7A7A7]"
+      >
         {label}
         <span className="ml-1">{icon}</span>
       </label>

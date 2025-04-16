@@ -47,14 +47,15 @@ export default function ProfileLayout({
               <AdminSideBarItem item={item} route={item.route}>
                 <div className="flex items-center">
                   <div className="flex flex-row">
-                    <h2 className="font-medium md:text-[0.6rem] lg:text-xs">{item.name}</h2>
+                    <h2 className="font-medium md:text-[0.6rem] lg:text-xs">
+                      {item.name}
+                    </h2>
                   </div>
                 </div>
               </AdminSideBarItem>
             </div>
           ))}
         </div>
-
       </aside>
 
       <main className="flex-1 min-h-0 overflow-y-auto pb-4 bg-[#F8F7F2] dark:bg-[#333333]">
