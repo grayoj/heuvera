@@ -2,7 +2,7 @@ export default function AccountHeader({
   heading,
   subheading,
   children,
-  className
+  className,
 }: {
   heading: string;
   subheading: string;
@@ -10,7 +10,9 @@ export default function AccountHeader({
   className?: string;
 }) {
   return (
-    <div className={`flex justify-between border-b items-center py-4 font-serif ${className}`}>
+    <div
+      className={`flex justify-between border-b items-center py-4 font-serif ${className}`}
+    >
       <div className="">
         <h2 className="text-xl md:text-xl lg:text-base xl:text-xl 2xl:text-xl font-medium-">
           {heading}

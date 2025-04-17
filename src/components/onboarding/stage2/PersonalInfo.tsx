@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Label } from "@heuvera/components/ui/label";
 import { Input } from "@heuvera/components/ui/input";
 import {
@@ -15,6 +18,32 @@ import {
   interestOptions,
 } from "@heuvera/components/data/OnbaordingData";
 
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    }
+  },
+  exit: {
+    opacity: 0,
+    x: -100,
+    transition: { duration: 0.3 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" }
+  }
+};
+
 interface PersonalInfoProps {
   stage: number;
   formData: FormInfo;
@@ -29,17 +58,46 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
   toggleArrayValue,
 }) => {
   const [isClient, setIsClient] = useState(false);
+  const [animateEmployment, setAnimateEmployment] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+  // Animate employment section with delay when employment status changes
+  useEffect(() => {
+    if (formData.isEmployed) {
+      setTimeout(() => {
+        setAnimateEmployment(true);
+      }, 100);
+    } else {
+      setAnimateEmployment(false);
+    }
+  }, [formData.isEmployed]);
+
+  // For API integration - prepare the data
+  const preparePersonalData = () => {
+    return {
+      isStudent: formData.isStudent,
+      isEmployed: formData.isEmployed,
+      occupation: formData.occupation,
+      incomeRange: formData.incomeRange,
+      interests: formData.interests
+    };
+  };
+
   if (stage !== 2) return null;
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-4">
-        <div className="flex items-center space-x-2">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={containerVariants}
+      className="space-y-6"
+    >
+      <motion.div className="space-y-4" variants={itemVariants}>
+        <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.02 }}>
           <Checkbox
             id="isStudent"
             checked={formData.isStudent}
@@ -50,9 +108,9 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
           <Label htmlFor="isStudent" className="font-medium cursor-pointer">
             I am currently a student
           </Label>
-        </div>
+        </motion.div>
 
-        <div className="flex items-center space-x-2">
+        <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.02 }}>
           <Checkbox
             id="isEmployed"
             checked={formData.isEmployed}
@@ -63,12 +121,18 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
           <Label htmlFor="isEmployed" className="font-medium cursor-pointer">
             I am currently employed
           </Label>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {formData.isEmployed && (
-        <div className="space-y-4 pl-2 border-l-2 border-gray-200">
-          <div className="space-y-2">
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+          className="space-y-4 pl-2 border-l-2 border-gray-200 overflow-hidden"
+        >
+          <motion.div className="space-y-2">
             <Label htmlFor="occupation" className="text-sm font-medium">
               What is your occupation?
             </Label>
@@ -78,9 +142,9 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
               value={formData.occupation}
               onChange={(e) => handleInputChange("occupation", e.target.value)}
             />
-          </div>
+          </motion.div>
 
-          <div className="space-y-2">
+          <motion.div className="space-y-2">
             <Label htmlFor="incomeRange" className="text-sm font-medium">
               Income Range
             </Label>
@@ -103,19 +167,24 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
                 </SelectContent>
               </Select>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
 
-      <div className="space-y-3">
+      <motion.div className="space-y-3" variants={itemVariants}>
         <Label className="block text-sm font-medium mb-1">
           What are your interests? (Select all that apply)
         </Label>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {interestOptions.map((interest) => (
-            <div
+        <motion.div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {interestOptions.map((interest, index) => (
+            <motion.div
               key={interest.id}
-              className="flex items-center space-x-2 bg-gray-50 p-2 rounded-md hover:bg-gray-100 transition-colors"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 + 0.2 }}
+              whileHover={{ scale: 1.03 }}
+              className={`flex items-center space-x-2 bg-transparent border border-[#E3E2D9] dark:border-[#555555] p-2 h-14 rounded-md hover:bg-gray-100 dark:hover:bg-[#444444] transition-colors ${formData.interests.includes(interest.id) ? "border-[#7b4f3a] dark:border-[#7b4f3a] bg-[#7b4f3a10]" : ""
+                }`}
             >
               <Checkbox
                 id={`interest-${interest.id}`}
@@ -130,15 +199,18 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
               >
                 {interest.label}
               </Label>
-            </div>
+            </motion.div>
           ))}
-        </div>
-        <p className="text-xs text-gray-500 mt-1">
+        </motion.div>
+        <motion.p
+          variants={itemVariants}
+          className="text-xs text-[#A7A7A7] mt-1"
+        >
           This helps us match you with properties in communities that align with
           your lifestyle.
-        </p>
-      </div>
-    </div>
+        </motion.p>
+      </motion.div>
+    </motion.div>
   );
 };
 

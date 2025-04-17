@@ -11,21 +11,22 @@ export default function UpcomingBookingTable() {
   return (
     <div className="relative overflow-x-auto ">
       <table className="text-14px w-full text-sm text-left rtl:text-right text-tableText">
-      <thead className="bg-[#E3E2D966] dark:bg-[#55555566] text-[#898989] dark:text-[#666666]">
-            <tr className="text-center">
-              {tableHeadings.map((heading, index) => (
-                <th
-                  key={index}
-                  className={`py-4 px-3 border-x ${index === 2 || index === 3
+        <thead className="bg-[#E3E2D966] dark:bg-[#55555566] text-[#898989] dark:text-[#666666]">
+          <tr className="text-center">
+            {tableHeadings.map((heading, index) => (
+              <th
+                key={index}
+                className={`py-4 px-3 border-x ${
+                  index === 2 || index === 3
                     ? "break-words"
                     : "whitespace-nowrap"
-                    } ${index === tableHeadings.length - 1 ? "border-r" : ""}`}
-                >
-                  {heading}
-                </th>
-              ))}
-            </tr>
-          </thead>
+                } ${index === tableHeadings.length - 1 ? "border-r" : ""}`}
+              >
+                {heading}
+              </th>
+            ))}
+          </tr>
+        </thead>
         <tbody>
           {upcomingBookings.map((booking, index) => (
             <tr

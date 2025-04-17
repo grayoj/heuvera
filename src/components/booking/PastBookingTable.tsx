@@ -21,10 +21,11 @@ export default function BookingTable() {
               {tableHeadings.map((heading, index) => (
                 <th
                   key={index}
-                  className={`py-4 px-3 border-x ${index === 2 || index === 3
-                    ? "break-words"
-                    : "whitespace-nowrap"
-                    } ${index === tableHeadings.length - 1 ? "border-r" : ""}`}
+                  className={`py-4 px-3 border-x ${
+                    index === 2 || index === 3
+                      ? "break-words"
+                      : "whitespace-nowrap"
+                  } ${index === tableHeadings.length - 1 ? "border-r" : ""}`}
                 >
                   {heading}
                 </th>

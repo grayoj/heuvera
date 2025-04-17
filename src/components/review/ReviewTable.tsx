@@ -21,8 +21,9 @@ export default function ReviewTable() {
               <th
                 key={index}
                 scope="col"
-                className={`${index === 0 && "py-4 px-3"} py-4 px-3 whitespace-nowrap border-x ${index === tableHeadings.length - 1 ? "border-r" : ""
-                  }`}
+                className={`${index === 0 && "py-4 px-3"} py-4 px-3 whitespace-nowrap border-x ${
+                  index === tableHeadings.length - 1 ? "border-r" : ""
+                }`}
               >
                 {heading}
               </th>
