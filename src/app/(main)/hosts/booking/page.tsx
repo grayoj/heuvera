@@ -15,26 +15,25 @@ export default function Page() {
       <AccountHeader
         heading="Booking Management"
         subheading="Track upcoming, ongoing, and past bookings in one place"
+        className="relative"
       >
-        <div className="flex justify-end items-end border-b mt-4">
-          <Button
+        <div className="absolute right-0 bottom-0 flex justify-end items-end mt-4">
+          <div
             onClick={() => setActive("upcoming")}
-            variant="outline"
-            className={`${active === "upcoming" ? "bg-[#F5F5F0] dark:bg-[#333333] hover:bg-[#e2e2e2]" : "bg-[#E3E2D9]"} py-2.5 px-6 rounded-t-xl hover:cursor-pointer rounded-b-[0px] border-b-0`}
+            className={`${active === "upcoming" ? "bg-[#7B4F3A] dark:bg-[#8B5F4D] text-white" : "bg-transparent text-white"} py-2 px-6 rounded-t-xl hover:cursor-pointer`}
           >
             Upcoming Bookings
-          </Button>
-          <Button
+          </div>
+          <div
             onClick={() => setActive("past")}
-            variant="default"
-            className={`${active === "past" ? "bg-[#F5F5F0] hover:bg-[#e2e2e2]" : "bg-[#E3E2D9] hover:bg-[#cac9c3]"} py-2.5 px-12 rounded-t-xl rounded-b-[0px] hover:cursor-pointer   text-black`}
+            className={`${active === "past" ? "bg-[#7B4F3A] dark:bg-[#8B5F4D] text-white" : "bg-transparent text-white"} py-2.5 px-12 rounded-t-xl rounded-b-[0px] hover:cursor-pointer text-black`}
           >
             Past Bookings
-          </Button>
+          </div>
         </div>
       </AccountHeader>
 
-      <div className="flex justify-between items-center mb-4 border-l">
+      <div className="flex justify-between items-center mb-4">
         <h3>Upcoming Bookings</h3>
         <div className="flex justify-between gap-3 text-[#E3E2D9]">
           <Button variant="outline" className="cursor-pointer bg-transparent">
