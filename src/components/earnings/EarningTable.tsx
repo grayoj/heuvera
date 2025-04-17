@@ -11,7 +11,7 @@ export default function EarningTable() {
   return (
     <div className="relative overflow-x-auto ">
       <table className="text-14px w-full text-sm text-left rtl:text-right text-tableText">
-        <thead className="bg-[#E3E2D966] text-[#898989]">
+        <thead className="bg-[#E3E2D966] dark:bg-[#55555566] text-[#898989] dark:text-[#666666]">
           <tr className="text-center">
             {tableHeadings.map((heading, index) => (
               <th
@@ -30,7 +30,7 @@ export default function EarningTable() {
           {earningsTable.map((booking, index) => (
             <tr
               key={index}
-              className="bg-[#F8F7F2] border-b text-center border-gray-200 hover:bg-gray-50 "
+              className="bg-[#F8F7F2] dark:bg-[#333333] border-b text-center border-gray-200 dark:border-[#555555] hover:bg-gray-50 "
             >
               <td className="border-x">{index + 1}</td>
               <td className="border-x py-3 px-14">{booking.method}</td>
@@ -43,17 +43,6 @@ export default function EarningTable() {
               </td>
             </tr>
           ))}
-          {/* Default last row */}
-          <tr className="bg-[#F8F7F2] border-b text-center border-gray-200 hover:bg-gray-50 h-[20vh]">
-            <td className="border-x"></td>
-            <td className="border-x"></td>
-            <td className="border-x"></td>
-            <td className="border-x"></td>
-            <td className="border-x"></td>
-            <td className="border-x"></td>
-            <td className="border-x"></td>
-            <td className="border-x"></td>
-          </tr>
         </tbody>
       </table>
     </div>

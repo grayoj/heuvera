@@ -38,7 +38,7 @@ export default function StatsBox({
   const color = heading === "Pending Payout" ? "#707070" : "#7B4F3A";
 
   return (
-    <div className="flex justify-between gap-7 px-6 py-14 border border-[#E3E2D9] rounded-lg w-full">
+    <div className="flex justify-between gap-7 px-6 py-14 border border-[#E3E2D9] dark:border-[#555555] rounded-lg w-full">
       <div className="mb-2">
         <h3 className="text-[#898989] text-xs font-medium">{heading}</h3>
         <p className="text-2xl font-semibold mt-1">{amount}</p>
@@ -46,7 +46,7 @@ export default function StatsBox({
           className={percentClass || `text-[${color}]`}
           style={{
             color: percentClass ? undefined : color,
-            fontSize: "0.75rem",
+            fontSize: "1rem",
             fontWeight: 500,
             marginTop: "0.25rem",
           }}
