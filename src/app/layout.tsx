@@ -26,6 +26,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://your-image-cdn.com" />
+        <link rel="dns-prefetch" href="https://your-image-cdn.com" />
+      </head>
       <body className={`antialiased bg-[#F3F2ED] ${quicksand.className}`}>
         <ThemeProvider>
           <UserProvider>

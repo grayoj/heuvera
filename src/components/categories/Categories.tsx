@@ -6,6 +6,7 @@ import FilterButton from "./FilterButton";
 import LeaseRentStays from "./LeaseRentStays";
 import CategoryList from "./CategoryList";
 import useIsMobile from "@heuvera/hooks/IsMobile";
+import React, { useCallback } from "react";
 
 interface CategoriesProps {
   onCategorySelect: (category: string | null) => void;
@@ -23,16 +24,13 @@ interface CategoriesProps {
   >;
 }
 
-const Categories: React.FC<CategoriesProps> = ({
-  onCategorySelect,
-  setActiveFilters,
-}) => {
+const Categories = React.memo(({ onCategorySelect, setActiveFilters }: CategoriesProps) => {
   const router = useRouter();
   const isMobile = useIsMobile();
 
-  const ToMap = () => {
+  const toMap = useCallback(() => {
     router.push("/explore/map");
-  };
+  }, [router]);
 
   return (
     <div
@@ -45,7 +43,7 @@ const Categories: React.FC<CategoriesProps> = ({
       {isMobile ? (
         <div className="w-full flex flex-col gap-4">
           <div className="w-full flex justify-between gap-4 md:gap-0">
-            <MapButton onClick={ToMap} />
+            <MapButton onClick={toMap} />
             <LeaseRentStays />
             <FilterButton setActiveFilters={setActiveFilters} />
           </div>
@@ -54,7 +52,7 @@ const Categories: React.FC<CategoriesProps> = ({
       ) : (
         <div className="w-full flex items-center justify-between gap-2 min-w-0 flex-nowrap">
           <div className="">
-            <MapButton onClick={ToMap} />
+            <MapButton onClick={toMap} />
           </div>
 
           <div className="h-8 border-[#E3E2D9] dark:border-[#555555] border-l" />
@@ -72,6 +70,8 @@ const Categories: React.FC<CategoriesProps> = ({
       )}
     </div>
   );
-};
+});
+
+Categories.displayName = "Categories";
 
 export default Categories;

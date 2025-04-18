@@ -1,20 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import { MobileSearchBar } from "./mobile/MobileSearchBar";
 import { DesktopSearchBar } from "./desktop/DesktopSearchBar";
 import { FilterType, SearchBarProps } from "@heuvera/utils/props";
 import RenderMobileSearchBar from "./mobile/SearchBarContents";
 
-const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
+const SearchBar = React.memo(({ isMobile }: SearchBarProps) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const [checkInDate, setCheckInDate] = useState<Date | undefined>(new Date());
-  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(
-    new Date(),
-  );
+  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(new Date());
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -47,30 +45,37 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
     };
   }, [isSearchModalOpen]);
 
-  const openSearchModal = () => {
+  const openSearchModal = useCallback(() => {
     setIsSearchModalOpen(true);
-  };
+  }, []);
 
-  const closeSearchModal = () => {
+  const closeSearchModal = useCallback(() => {
     setIsSearchModalOpen(false);
     setActiveFilter(null);
-  };
+  }, []);
 
-  const clearAll = () => {
+  const clearAll = useCallback(() => {
     setActiveFilter(null);
     if (inputRef.current) {
       inputRef.current.value = "";
     }
     setSearchText("");
-  };
+  }, []);
 
-  const toggleFilter = (filter: FilterType) => {
-    if (activeFilter === filter) {
-      setActiveFilter(null);
-    } else {
-      setActiveFilter(filter);
-    }
-  };
+  const toggleFilter = useCallback((filter: FilterType) => {
+    setActiveFilter(prev => prev === filter ? null : filter);
+  }, []);
+
+  const renderSearchModal = useCallback(() => {
+    return (
+      <RenderMobileSearchBar
+        closeSearchModal={closeSearchModal}
+        toggleFilter={toggleFilter}
+        activeFilter={activeFilter}
+        clearAll={clearAll}
+      />
+    );
+  }, [closeSearchModal, toggleFilter, activeFilter, clearAll]);
 
   if (isMobile) {
     return (
@@ -98,17 +103,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ isMobile }) => {
       />
     </div>
   );
+});
 
-  function renderSearchModal() {
-    return (
-      <RenderMobileSearchBar
-        closeSearchModal={closeSearchModal}
-        toggleFilter={toggleFilter}
-        activeFilter={activeFilter}
-        clearAll={clearAll}
-      />
-    );
-  }
-};
+SearchBar.displayName = "SearchBar";
 
 export default SearchBar;

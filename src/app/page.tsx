@@ -1,6 +1,6 @@
 "use client";
 
-import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
+import React, { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import Categories from "@heuvera/components/categories/Categories";
 import { PropertyData } from "@heuvera/components/data/PropertyData";
 import FilterTags from "@heuvera/components/FilterTags";
@@ -8,9 +8,9 @@ import SearchBar from "@heuvera/components/search/SearchBar";
 import { SkeletalPreloader } from "@heuvera/components/skeletalpreloader/propertycards";
 import useIsMobile from "@heuvera/hooks/IsMobile";
 import { MarketplaceProvider } from "@heuvera/providers/MarketplaceProvider";
+
 import { motion } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
-import React from "react";
+import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
 
 const Explore = React.memo(() => {
   const isMobile = useIsMobile();
@@ -66,7 +66,7 @@ const Explore = React.memo(() => {
         activeFilters.bedrooms === "5+"
           ? property.propertyDetails.bedrooms >= 5
           : property.propertyDetails.bedrooms ===
-            parseInt(activeFilters.bedrooms || "0"),
+          parseInt(activeFilters.bedrooms || "0"),
       );
     }
 
@@ -116,6 +116,29 @@ const Explore = React.memo(() => {
     });
   }, []);
 
+  // Column configuration for different screen sizes
+  const columnsConfig = {
+    sm: 1,
+    md: 3,
+    lg: 4,
+    xl: 5,
+    xxl: 6
+  };
+
+
+  // Simple loading placeholders
+  const CategoriesPlaceholder = () => (
+    <div className="w-full h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t border-b border-[#E3E2D9] dark:border-[#555555] bg-gray-100 dark:bg-[#333333] animate-pulse"></div>
+  );
+
+  const FilterTagsPlaceholder = () => (
+    <div className="w-full flex flex-wrap gap-2 my-2">
+      <div className="h-8 w-24 bg-gray-200 dark:bg-[#444444] rounded-md animate-pulse"></div>
+      <div className="h-8 w-32 bg-gray-200 dark:bg-[#444444] rounded-md animate-pulse"></div>
+    </div>
+  );
+
+
   return (
     <MarketplaceProvider>
       <div className="flex flex-col flex-1 h-full w-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20">
@@ -123,18 +146,21 @@ const Explore = React.memo(() => {
           <div className="w-full flex items-center justify-between">
             <SearchBar isMobile={isMobile} />
           </div>
+
           <Categories
             onCategorySelect={setSelectedCategory}
             setActiveFilters={setActiveFilters}
           />
+
           <div className="w-full flex items-center justify-start">
             {Object.keys(activeFilters).length > 0 && (
               <div className="gap-2 flex items-center">
-                {/* <h1 className="text-[#3E3E3E] dark:text-[#666666]">Showing search results for:</h1> */}
+
                 <FilterTags
                   activeFilters={activeFilters}
                   removeFilter={removeFilter}
                 />
+
               </div>
             )}
           </div>
@@ -155,7 +181,7 @@ const Explore = React.memo(() => {
               },
             }}
           >
-            {filteredProperties.map((property) => (
+            {filteredProperties.map((property, index) => (
               <motion.div
                 key={`property-${property.id}`}
                 variants={{
@@ -165,7 +191,10 @@ const Explore = React.memo(() => {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="w-full flex justify-center"
               >
-                <PropertyCard property={property} />
+                <PropertyCard
+                  property={property}
+                  isPriority={index < 6}
+                />
               </motion.div>
             ))}
           </motion.div>
@@ -174,5 +203,7 @@ const Explore = React.memo(() => {
     </MarketplaceProvider>
   );
 });
+
+Explore.displayName = "Explore";
 
 export default Explore;

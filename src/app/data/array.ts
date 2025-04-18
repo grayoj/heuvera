@@ -280,25 +280,25 @@ export const PROPERTY_TYPES = [
 ];
 
 export const propertyCategories = [
-  { id: 1, category: "Town House", count: 2, imageUrl: "/town.jpg" },
-  { id: 2, category: "Apartment", count: 5, imageUrl: "/apartment.jpg" },
-  { id: 3, category: "Villa", count: 3, imageUrl: "/villa.jpg" },
-  { id: 4, category: "Penthouse", count: 1, imageUrl: "/penthouse.jpg" },
-  { id: 5, category: "Cottage", count: 4, imageUrl: "/cottage.jpg" },
+  { id: 1, category: "Town House", count: 2, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3phcn8xI2Lu0XwHJrSxcvqVDhOdB6NCKt1PyT" },
+  { id: 2, category: "Apartment", count: 5, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3GdwyzqCVRoiYeHqrBkJfW3caLQ5lM0buSpPx" },
+  { id: 3, category: "Villa", count: 3, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3vTT17DyW6BQgZeazd3k7Yml4LOqIjiGXMASf" },
+  { id: 4, category: "Penthouse", count: 1, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3WsOb6u1pMUoZwXLj3k6ldNI2CFaTcx1qezn8" },
+  { id: 5, category: "Cottage", count: 4, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3ypK2PxoDM9XSs0VbgBT3FuZ5A214tkGqfCdh" },
 ];
 
 export const propertyLocation = [
-  { id: 1, category: "Abuja", count: 158, imageUrl: "/abuja.jpg" },
-  { id: 2, category: "Lagos", count: 94, imageUrl: "/lagos.jpg" },
-  { id: 3, category: "Kano", count: 76, imageUrl: "/kano.jpg" },
-  { id: 4, category: "Chicago", count: 63, imageUrl: "/chicago.jpg" },
+  { id: 1, category: "Abuja", count: 158, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3HnvfUSkEtuf4RZwjAGnTY3DldsPxg891a0Xy" },
+  { id: 2, category: "Lagos", count: 94, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc320OIWLpc2rEVf1NIlx35DbLqHe9oJaSdMvOY" },
+  { id: 3, category: "Kano", count: 76, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3XGcUI67EvNZlmoY3gb5AQRrD6qCywca7HOtB" },
+  { id: 4, category: "Chicago", count: 63, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3WsOb6u1pMUoZwXLj3k6ldNI2CFaTcx1qezn8" },
   {
     id: 5,
     category: "San Francisco",
     count: 52,
-    imageUrl: "/sanfrancisco.jpg",
+    imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3WsOb6u1pMUoZwXLj3k6ldNI2CFaTcx1qezn8",
   },
-  { id: 6, category: "Austin", count: 47, imageUrl: "/austin.jpg" },
+  { id: 6, category: "Austin", count: 47, imageUrl: "https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3WsOb6u1pMUoZwXLj3k6ldNI2CFaTcx1qezn8" },
 ];
 
 export const propertyListings = [

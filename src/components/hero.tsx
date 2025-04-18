@@ -30,7 +30,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <Image
-            src="/img4.jpeg"
+            src="https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3M5ou9RV5jzRkLnm0p6AbUtIfSZa7c93Pry2s"
             alt="property1"
             height={500}
             width={500}
@@ -45,7 +45,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           <Image
-            src="/img3.jpeg"
+            src="https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3VHnlGwtyKFLTnfJI02x378QNM9kmi46hAEYD"
             alt="property1"
             height={500}
             width={500}
@@ -60,7 +60,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.6 }}
         >
           <Image
-            src="/img5.jpeg"
+            src="https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3Vexjd6tyKFLTnfJI02x378QNM9kmi46hAEYD"
             alt="property1"
             height={500}
             width={500}
@@ -75,7 +75,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.8 }}
         >
           <Image
-            src="/img1.jpeg"
+            src="https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3K66gV64oABY0aqEjF4QrpIGc3dw68HTMCNuv"
             alt="property1"
             height={500}
             width={500}
@@ -90,7 +90,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 1.0 }}
         >
           <Image
-            src="/img2.jpeg"
+            src="https://mtrgycro9i.ufs.sh/f/8rGFBkantSc3cylBjnG62GqxXBtAY97Pf4blFhj1wnyp3rgK"
             alt="property1"
             height={500}
             width={500}

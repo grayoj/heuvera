@@ -2,16 +2,19 @@ import { useState } from "react";
 import Image from "next/image";
 import BookmarkButton from "@heuvera/components/buttons/BookmarkButton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import React from "react";
 
 interface PropertyImageCarouselProps {
   images?: string[];
+  isPriority: boolean;
 }
 
-export default function PropertyImageCarousel({
-  images = [],
-}: PropertyImageCarouselProps) {
+const PropertyImageCarousel = ({
+  images = [], isPriority = false,
+}: PropertyImageCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
@@ -35,6 +38,9 @@ export default function PropertyImageCarousel({
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
+      {!imgLoaded && (
+        <div className="absolute inset-0 bg-gray-200 dark:bg-[#444444] animate-pulse" />
+      )}
       {images.length > 0 ? (
         <>
           <div className="w-full h-full">
@@ -44,6 +50,10 @@ export default function PropertyImageCarousel({
               width={500}
               height={500}
               className="w-full h-full object-cover transition-all duration-300"
+              priority={isPriority}
+              fetchPriority={isPriority ? "high" : "auto"}
+              loading={isPriority ? "eager" : "lazy"}
+              onLoad={() => setImgLoaded(true)}
             />
           </div>
 
@@ -92,3 +102,6 @@ export default function PropertyImageCarousel({
     </div>
   );
 }
+
+
+export default React.memo(PropertyImageCarousel);
