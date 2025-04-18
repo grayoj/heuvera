@@ -2,7 +2,7 @@
 
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import Help from "@heuvera/components/ui/Help";
-import Input from "@heuvera/components/ui/Input";
+import Input from "@heuvera/components/ui/LabelInput";
 import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
 import Textarea from "@heuvera/components/ui/Textarea";
 import { Button } from "@heuvera/components/ui/button";
@@ -33,10 +33,7 @@ export default function Support() {
               <Input label="Email" className="w-full" />
             </div>
 
-            <Textarea
-              label="Issue Description"
-              id="support"
-            />
+            <Textarea label="Issue Description" id="support" />
             <Button
               variant="default"
               className="bg-[#7B4F3A] dark:bg-[#8B5F4D] text-white py-[0.6875rem] px-[2.5rem] hover:bg-[#664130] hover:cursor-pointer"

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@heuvera/components/ui/button";
-import Input from "../../../components/ui/Input";
+import Input from "../../../components/ui/LabelInput";
 import {
   Avatar,
   AvatarFallback,

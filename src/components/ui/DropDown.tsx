@@ -7,10 +7,10 @@ export default function DropDown({
   value,
   onChange,
 }: {
-  type: string;
-  label: string;
-  icon: ReactNode;
-  value: string | number;
+  type?: string;
+  label?: string;
+  icon?: ReactNode;
+  value?: string | number;
   onChange: (value: string) => void;
 }) {
   return (

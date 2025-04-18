@@ -1,7 +1,7 @@
 import { FormInfo } from "./FormData";
 import StepHeading from "./StepHeading";
 import Textarea from "@heuvera/components/ui/Textarea";
-import Input from "@heuvera/components/ui/Input";
+import Input from "@heuvera/components/ui/LabelInput";
 import { CardDescription, CardTitle } from "@heuvera/components/ui/card";
 import { motion } from "framer-motion";
 import { Label } from "@heuvera/components/ui/label";

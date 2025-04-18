@@ -2,7 +2,7 @@
 
 import { ArrowLeft, LucideHelpCircle } from "lucide-react";
 import { Button } from "./button";
-import Input from "./Input";
+import Input from "./LabelInput";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import { motion } from "framer-motion";

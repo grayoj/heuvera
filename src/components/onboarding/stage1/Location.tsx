@@ -11,7 +11,7 @@ import {
 } from "@heuvera/components/ui/select";
 import { FormInfo } from "../Formdata";
 import { Label } from "@heuvera/components/ui/label";
-import Input from "@heuvera/components/ui/Input";
+import Input from "@heuvera/components/ui/LabelInput";
 
 // Animation variants
 const containerVariants = {

@@ -1,8 +1,9 @@
 import { Plus, Upload } from "lucide-react";
 import { Button } from "../ui/button";
-import Input from "../ui/Input";
+
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { motion } from "framer-motion";
+import Input from "../ui/LabelInput";
 
 export default function PersonalForm({
   userImage,

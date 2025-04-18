@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogTitle } from "@radix-ui/react-dialog";
 import { Button } from "../../ui/button";
 import { DialogHeader } from "../../ui/dialog";
-import Input from "../../ui/Input";
+import Input from "../../ui/LabelInput";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Textarea from "@heuvera/components/ui/Textarea";
@@ -31,9 +31,9 @@ export default function EditPropertyModal({
 
   const handleChange =
     (field: string) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
-    };
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+      };
 
   const handleDropdownChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -111,6 +111,7 @@ export default function EditPropertyModal({
                     onChange={handleChange("location")}
                   />
                   <Textarea
+                    id="prop-description"
                     label="Property Description"
                     className="col-span-3"
                     value={formData.description}
