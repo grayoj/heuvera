@@ -26,13 +26,13 @@ const containerVariants = {
     transition: {
       staggerChildren: 0.1,
       delayChildren: 0.2,
-    }
+    },
   },
   exit: {
     opacity: 0,
     x: -100,
-    transition: { duration: 0.3 }
-  }
+    transition: { duration: 0.3 },
+  },
 };
 
 const itemVariants = {
@@ -40,8 +40,8 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" }
-  }
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
 };
 
 interface PersonalInfoProps {
@@ -82,7 +82,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
       isEmployed: formData.isEmployed,
       occupation: formData.occupation,
       incomeRange: formData.incomeRange,
-      interests: formData.interests
+      interests: formData.interests,
     };
   };
 
@@ -97,7 +97,10 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
       className="space-y-6"
     >
       <motion.div className="space-y-4" variants={itemVariants}>
-        <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.02 }}>
+        <motion.div
+          className="flex items-center space-x-2"
+          whileHover={{ scale: 1.02 }}
+        >
           <Checkbox
             id="isStudent"
             checked={formData.isStudent}
@@ -110,7 +113,10 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
           </Label>
         </motion.div>
 
-        <motion.div className="flex items-center space-x-2" whileHover={{ scale: 1.02 }}>
+        <motion.div
+          className="flex items-center space-x-2"
+          whileHover={{ scale: 1.02 }}
+        >
           <Checkbox
             id="isEmployed"
             checked={formData.isEmployed}
@@ -183,8 +189,11 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 + 0.2 }}
               whileHover={{ scale: 1.03 }}
-              className={`flex items-center space-x-2 bg-transparent border border-[#E3E2D9] dark:border-[#555555] p-2 h-14 rounded-md hover:bg-gray-100 dark:hover:bg-[#444444] transition-colors ${formData.interests.includes(interest.id) ? "border-[#7b4f3a] dark:border-[#7b4f3a] bg-[#7b4f3a10]" : ""
-                }`}
+              className={`flex items-center space-x-2 bg-transparent border border-[#E3E2D9] dark:border-[#555555] p-2 h-14 rounded-md hover:bg-gray-100 dark:hover:bg-[#444444] transition-colors ${
+                formData.interests.includes(interest.id)
+                  ? "border-[#7b4f3a] dark:border-[#7b4f3a] bg-[#7b4f3a10]"
+                  : ""
+              }`}
             >
               <Checkbox
                 id={`interest-${interest.id}`}

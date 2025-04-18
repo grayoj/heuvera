@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Input } from "@heuvera/components/ui/input";
-import { Label } from "@heuvera/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -12,6 +10,8 @@ import {
   SelectValue,
 } from "@heuvera/components/ui/select";
 import { FormInfo } from "../Formdata";
+import { Label } from "@heuvera/components/ui/label";
+import Input from "@heuvera/components/ui/Input";
 
 // Animation variants
 const containerVariants = {
@@ -21,13 +21,13 @@ const containerVariants = {
     transition: {
       staggerChildren: 0.1,
       delayChildren: 0.2,
-    }
+    },
   },
   exit: {
     opacity: 0,
     x: -100,
-    transition: { duration: 0.3 }
-  }
+    transition: { duration: 0.3 },
+  },
 };
 
 const itemVariants = {
@@ -35,8 +35,8 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" }
-  }
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
 };
 
 export default function Location({
@@ -52,7 +52,7 @@ export default function Location({
     country: false,
     state: false,
     city: false,
-    address: false
+    address: false,
   });
 
   useEffect(() => {
@@ -61,18 +61,17 @@ export default function Location({
         country: !!formData.country,
         state: !!formData.state,
         city: !!formData.city,
-        address: !!formData.address
+        address: !!formData.address,
       });
     }
   }, [formData, stage]);
-
 
   const prepareLocationData = () => {
     return {
       country: formData.country,
       state: formData.state,
       city: formData.city,
-      address: formData.address
+      address: formData.address,
     };
   };
 
@@ -95,7 +94,10 @@ export default function Location({
           value={formData.country}
           onValueChange={(value) => handleInputChange("country", value)}
         >
-          <SelectTrigger id="country" className={!validation.country && formData.country === "" ? "" : ""}>
+          <SelectTrigger
+            id="country"
+            className={!validation.country && formData.country === "" ? "" : ""}
+          >
             <SelectValue placeholder="Select your country" />
           </SelectTrigger>
           <SelectContent>
@@ -107,9 +109,9 @@ export default function Location({
           </SelectContent>
         </Select>
         {!validation.country && formData.country === "" && (
-          <motion.p 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             className="text-xs text-[#FF6B6B] mt-1"
           >
             Country is required
@@ -122,16 +124,15 @@ export default function Location({
           State/Province <span className="text-[#FF6B6B]">*</span>
         </Label>
         <Input
-          id="state"
           placeholder="Enter your state or province"
           value={formData.state}
           onChange={(e) => handleInputChange("state", e.target.value)}
           className={!validation.state && formData.state === "" ? "" : ""}
         />
         {!validation.state && formData.state === "" && (
-          <motion.p 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             className="text-xs text-[#FF6B6B] mt-1"
           >
             State/Province is required
@@ -144,16 +145,15 @@ export default function Location({
           City <span className="text-[#FF6B6B]">*</span>
         </Label>
         <Input
-          id="city"
           placeholder="Enter your city"
           value={formData.city}
           onChange={(e) => handleInputChange("city", e.target.value)}
           className={!validation.city && formData.city === "" ? "" : ""}
         />
         {!validation.city && formData.city === "" && (
-          <motion.p 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             className="text-xs text-[#FF6B6B] mt-1"
           >
             City is required
@@ -166,16 +166,15 @@ export default function Location({
           Address <span className="text-[#FF6B6B]">*</span>
         </Label>
         <Input
-          id="address"
           placeholder="Enter your address"
           value={formData.address}
           onChange={(e) => handleInputChange("address", e.target.value)}
           className={!validation.address && formData.address === "" ? "" : ""}
         />
         {!validation.address && formData.address === "" && (
-          <motion.p 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             className="text-xs text-[#FF6B6B] mt-1"
           >
             Address is required

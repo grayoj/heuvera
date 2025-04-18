@@ -26,13 +26,13 @@ const containerVariants = {
     transition: {
       staggerChildren: 0.1,
       delayChildren: 0.2,
-    }
+    },
   },
   exit: {
     opacity: 0,
     x: -100,
-    transition: { duration: 0.3 }
-  }
+    transition: { duration: 0.3 },
+  },
 };
 
 const itemVariants = {
@@ -40,13 +40,13 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" }
-  }
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
 };
 
 const badgeVariants = {
   unselected: { scale: 1 },
-  selected: { scale: 1.05, transition: { type: "spring", stiffness: 300 } }
+  selected: { scale: 1.05, transition: { type: "spring", stiffness: 300 } },
 };
 
 interface HousingProps {
@@ -66,7 +66,7 @@ export default function Housing({
   const [errors, setErrors] = useState({
     preferredRentRange: false,
     preferredPropertyTypes: false,
-    stayDuration: false
+    stayDuration: false,
   });
 
   // Check for required fields
@@ -75,7 +75,7 @@ export default function Housing({
       setErrors({
         preferredRentRange: !formData.preferredRentRange,
         preferredPropertyTypes: formData.preferredPropertyTypes.length === 0,
-        stayDuration: !formData.stayDuration
+        stayDuration: !formData.stayDuration,
       });
     }
   }, [formData, stage]);
@@ -88,7 +88,7 @@ export default function Housing({
       stayDuration: formData.stayDuration,
       hasPets: formData.hasPets,
       hasChildren: formData.hasChildren,
-      smoking: formData.smoking
+      smoking: formData.smoking,
     };
   };
 
@@ -108,7 +108,9 @@ export default function Housing({
         </Label>
         <Select
           value={formData.preferredRentRange}
-          onValueChange={(value) => handleInputChange("preferredRentRange", value)}
+          onValueChange={(value) =>
+            handleInputChange("preferredRentRange", value)
+          }
         >
           <SelectTrigger className={errors.preferredRentRange ? "" : ""}>
             <SelectValue placeholder="Select your preferred monthly rent" />
@@ -144,7 +146,9 @@ export default function Housing({
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{
                 opacity: 1,
-                scale: formData.preferredPropertyTypes.includes(type.id) ? 1.05 : 1
+                scale: formData.preferredPropertyTypes.includes(type.id)
+                  ? 1.05
+                  : 1,
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

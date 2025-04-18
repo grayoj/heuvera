@@ -6,6 +6,9 @@ interface InputProps {
   placeholder?: string;
   prefix?: string;
   value?: string;
+  id?: string;
+  type?: string;
+  typeClassname?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -15,6 +18,9 @@ export default function Input({
   placeholder,
   prefix,
   value,
+  id,
+  type,
+  typeClassname,
   onChange,
 }: InputProps) {
   return (
@@ -32,9 +38,9 @@ export default function Input({
           </span>
         )}
         <input
-          type="text"
-          id={label}
-          className={`bg-[#F8F7F2] dark:bg-[#333333] border border-gray-300 dark:border-[#555555] text-gray-900 dark:text-gray-200 text-sm rounded-md block w-full h-10 px-2 ${
+          type={type}
+          id={id}
+          className={`bg-[#F8F7F2] dark:bg-[#333333] border border-gray-300 dark:border-[#555555] text-gray-900 dark:text-gray-200 text-sm rounded-md block w-full h-10 px-2 ${typeClassname} ${
             prefix ? "pl-6" : ""
           }`}
           value={value}

@@ -25,12 +25,12 @@ export default function ContinueScreen() {
         transition: { type: "spring", stiffness: 150, damping: 10 },
       });
       setIsVisible(true);
-      
+
       // Add delay before showing other elements
       setTimeout(() => {
         setShowElements(true);
       }, 600);
-      
+
       // Start background animation
       setTimeout(() => {
         setAnimateBackground(true);
@@ -46,7 +46,7 @@ export default function ContinueScreen() {
     const left = Math.random() * 100;
     const animationDuration = Math.random() * 3 + 2;
     const delay = Math.random() * 0.5;
-    
+
     return (
       <motion.div
         key={i}
@@ -56,16 +56,21 @@ export default function ContinueScreen() {
           top: "-20px",
           width: `${size}px`,
           height: `${size}px`,
-          background: i % 3 === 0 ? "#7b4f3a" : i % 3 === 1 ? "#ffd700" : "#f8f9fa",
+          background:
+            i % 3 === 0 ? "#7b4f3a" : i % 3 === 1 ? "#ffd700" : "#f8f9fa",
           borderRadius: i % 2 === 0 ? "50%" : "0",
           transform: i % 2 === 0 ? "rotate(45deg)" : "",
         }}
         initial={{ y: -10, opacity: 0 }}
-        animate={showElements ? {
-          y: ["0%", "100%"],
-          opacity: [1, 0],
-          rotate: i % 2 === 0 ? [0, 360] : [0, 0],
-        } : {}}
+        animate={
+          showElements
+            ? {
+                y: ["0%", "100%"],
+                opacity: [1, 0],
+                rotate: i % 2 === 0 ? [0, 360] : [0, 0],
+              }
+            : {}
+        }
         transition={{
           duration: animationDuration,
           ease: "easeOut",
@@ -79,17 +84,18 @@ export default function ContinueScreen() {
 
   // Stars around the checkmark
   const stars = Array.from({ length: 6 }).map((_, i) => {
-    const angle = (i * 60) * (Math.PI / 180);
+    const angle = i * 60 * (Math.PI / 180);
     const radius = 80;
     const x = Math.cos(angle) * radius;
     const y = Math.sin(angle) * radius;
-    
+
     return (
       <motion.div
         key={i}
         className="absolute"
         style={{
-          x, y,
+          x,
+          y,
           originX: "center",
           originY: "center",
         }}
@@ -97,7 +103,7 @@ export default function ContinueScreen() {
         animate={showElements ? { scale: 1, opacity: 1 } : {}}
         transition={{
           duration: 0.4,
-          delay: 0.8 + (i * 0.1),
+          delay: 0.8 + i * 0.1,
           type: "spring",
         }}
       >
@@ -114,7 +120,7 @@ export default function ContinueScreen() {
       transition={{ duration: 1 }}
     >
       {/* Background pattern */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-10 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: animateBackground ? 0.07 : 0 }}
@@ -122,7 +128,7 @@ export default function ContinueScreen() {
       >
         <div className="absolute inset-0 bg-transparent" />
         {Array.from({ length: 20 }).map((_, i) => (
-          <div 
+          <div
             key={i}
             className="absolute rounded-full"
             style={{
@@ -135,10 +141,10 @@ export default function ContinueScreen() {
           />
         ))}
       </motion.div>
-      
+
       {/* Custom confetti */}
       {showElements && confettiElements}
-      
+
       {/* Success icon with circle */}
       <motion.div className="relative flex items-center justify-center mb-8">
         {showElements && stars}
@@ -148,7 +154,7 @@ export default function ContinueScreen() {
         >
           <CircleCheck size={80} strokeWidth={2} />
         </motion.div>
-        
+
         {/* Pulsing ring animation */}
         {showElements && (
           <motion.div
@@ -163,9 +169,9 @@ export default function ContinueScreen() {
           />
         )}
       </motion.div>
-      
+
       {/* Success message */}
-      <motion.div 
+      <motion.div
         className="mt-6 text-center relative z-10"
         initial={{ y: 20, opacity: 0 }}
         animate={isVisible ? { y: 0, opacity: 1 } : {}}
@@ -173,7 +179,7 @@ export default function ContinueScreen() {
       >
         <h2 className="text-3xl font-bold text-[#A7A7A7] mb-3">Completed!</h2>
         <p className="text-[#898989] text-lg">Thank you for your submission.</p>
-        
+
         <motion.p
           className="text-[#7b4f3a] dark:text-[#8B5F4D] mt-4 font-medium flex items-center justify-center gap-2"
           initial={{ opacity: 0 }}
@@ -185,17 +191,17 @@ export default function ContinueScreen() {
           <GiPartyPopper size={20} />
         </motion.p>
       </motion.div>
-      
+
       {/* Call to action button */}
       <motion.button
         className="mt-12 px-8 py-3 bg-[#7b4f3a] dark:bg-[#8B5F4D] text-white rounded-full font-medium shadow-lg hover:bg-[#8d5b45] transition-colors"
         initial={{ y: 30, opacity: 0 }}
         animate={showElements ? { y: 0, opacity: 1 } : {}}
-        transition={{ 
+        transition={{
           duration: 0.5,
           delay: 1,
           type: "spring",
-          stiffness: 120
+          stiffness: 120,
         }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
