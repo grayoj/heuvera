@@ -31,9 +31,9 @@ export default function AddPropertyModal({
 
   const handleChange =
     (field: string) =>
-      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData((prev) => ({ ...prev, [field]: e.target.value }));
-      };
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+    };
 
   const handleDropdownChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

@@ -11,7 +11,7 @@ export default function AccountHeader({
 }) {
   return (
     <div
-      className={`flex justify-between border-b items-center py-4 font-serif ${className}`}
+      className={`flex justify-between border-b items-center py-4 hidden md:block ${className}`}
     >
       <div className="">
         <h2 className="text-xl md:text-xl lg:text-base xl:text-xl 2xl:text-xl font-medium-">

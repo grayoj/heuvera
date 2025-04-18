@@ -22,6 +22,7 @@ import {
   ShowerHead,
   Microwave,
   Camera,
+  Settings,
 } from "lucide-react";
 import {
   IoBedOutline,
@@ -58,6 +59,13 @@ export const sideBar = [
     description:
       "Get help, contact support, and access resources to enhance your experience.",
     icon: HelpCircle,
+  },
+  {
+    route: "settings",
+    name: "General Settings",
+    description:
+      "Get help, contact support, and access resources to enhance your experience.",
+    icon: Settings,
   },
 ];
 
