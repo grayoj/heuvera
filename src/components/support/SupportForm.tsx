@@ -13,7 +13,7 @@ export default function SupportForm() {
       ))}
       <Textarea
         label="Issue Description"
-        initialValue="Hello, I need help with..."
+        id="support"
       />
       <Button
         variant="default"
