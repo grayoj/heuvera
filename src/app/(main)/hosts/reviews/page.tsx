@@ -3,7 +3,7 @@ import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import PageLayout from "@heuvera/components/ui/PageLayout";
 import Stars from "@heuvera/components/ui/Stars";
 
-export default function Page() {
+export default function ReviewsPage() {
   return (
     <PageLayout>
       <AccountHeader

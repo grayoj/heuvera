@@ -78,7 +78,6 @@ const MobileProfileSettings = () => {
     setTimeout(() => setSelectedItem(null), 300);
   };
 
-  // If not on mobile, we'll use a different layout that's handled elsewhere
   if (!isMobile) {
     return null;
   }
@@ -86,29 +85,28 @@ const MobileProfileSettings = () => {
   return (
     <div className="flex flex-col h-full">
       <div className="px-4 py-6">
-        <h1 className="text-xl font-bold">Settings</h1>
+      <h1 className="text-xl font-semibold text-[#3E3E3E] dark:text-[#F8F7F2]">Profile</h1>
       </div>
 
-      <div className="flex-1 overflow-y-auto">
-        <div className="mt-2 rounded-md shadow-sm">
+      <div className="flex-1 overflow-y-auto px-4">
+        <div className="mt-2">
           {sideBarItems.map((item) => (
             <div
               key={item.route}
-              className="border-b last:border-b-0 border-[#E3E2D9] dark:border-[#555555]"
+              className="border-b-[0.2px] last:border-b-0 border-[#E3E2D988] dark:border-[#44444488]"
             >
               <div
-                className="flex items-center justify-between p-4 cursor-pointer active:bg-gray-100 dark:active:bg-[#555555]"
+                className="flex items-center justify-between py-4 cursor-pointer active:bg-gray-100 dark:active:bg-[#555555]"
                 onClick={() => handleItemClick(item)}
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-[#555555]">
+                  <div className="flex items-center justify-center">
                     <item.icon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                   </div>
                   <div>
                     <p className="font-medium text-[#3E3E3E] dark:text-[#F8F7F2]">
                       {item.name}
                     </p>
-                    <p className="text-sm text-[#A7A7A7]">{item.description}</p>
                   </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-[#A7A7A7]" />

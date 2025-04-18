@@ -105,18 +105,18 @@ export const sideBarAdmin = [
     icon: Star,
   },
   {
-    route: "insights",
-    name: "Property Insights",
-    description:
-      "Analyze booking trends, occupancy rates, and performance metrics for your listings. ",
-    icon: GitGraph,
-  },
-  {
     route: "support",
     name: "Support & Assistance",
     description:
       "Access help articles, contact support, or resolve issues with your listings. ",
     icon: LifeBuoy,
+  },
+  {
+    route: "settings",
+    name: "General Settings",
+    description:
+      "Get help, contact support, and access resources to enhance your experience.",
+    icon: Settings,
   },
 ];
 

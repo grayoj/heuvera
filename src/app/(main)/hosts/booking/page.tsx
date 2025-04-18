@@ -8,7 +8,7 @@ import PageLayout from "@heuvera/components/ui/PageLayout";
 import { MessageSquare, Pencil, X } from "lucide-react";
 import { useState } from "react";
 
-export default function Page() {
+export default function BookingManagementPage() {
   const [active, setActive] = useState("upcoming");
   return (
     <PageLayout>

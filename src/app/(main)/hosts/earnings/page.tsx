@@ -6,7 +6,7 @@ import { Button } from "@heuvera/components/ui/button";
 import PageLayout from "@heuvera/components/ui/PageLayout";
 import Link from "next/link";
 
-export default function Page() {
+export default function EarningsPage() {
   return (
     <PageLayout>
       <AccountHeader

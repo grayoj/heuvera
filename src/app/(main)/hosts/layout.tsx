@@ -9,6 +9,7 @@ import { sideBarAdmin } from "@heuvera/app/data/array";
 import useIsMobile from "@heuvera/hooks/IsMobile";
 import MobileProfileSettings from "@heuvera/components/modal/MobileSidebarModal";
 import AdminSideBarItem from "@heuvera/components/ui/AdminSideBarItem";
+import MobileHostProfileSettings from "@heuvera/components/modal/MobileHostSidebarModal";
 
 interface Item {
   icon: React.ComponentType<{ className?: string }>;
@@ -26,7 +27,7 @@ export default function ProfileLayout({
   const isMobile = useIsMobile();
 
   if (isMobile) {
-    return <MobileProfileSettings />;
+    return <MobileHostProfileSettings />;
   }
 
   return (

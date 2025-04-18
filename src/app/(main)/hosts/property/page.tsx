@@ -9,7 +9,7 @@ import { useState } from "react";
 import AddPropertyModal from "@heuvera/components/property/Modals/AddPropertyModal";
 import EditPropertyModal from "@heuvera/components/property/Modals/EditPropertyModal";
 
-export default function Page() {
+export default function PropertyListingsPage() {
   const [open, setOpen] = useState("");
 
   return (

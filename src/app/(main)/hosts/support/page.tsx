@@ -4,7 +4,7 @@ import Help from "@heuvera/components/ui/Help";
 import PageLayout from "@heuvera/components/ui/PageLayout";
 import Link from "next/link";
 
-export default function Page() {
+export default function SupportPage() {
   return (
     <PageLayout>
       <AccountHeader
