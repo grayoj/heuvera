@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, lazy, Suspense } from "react";
-import Categories from "@heuvera/components/categories/Categories";
+import React, { useState, useEffect, useCallback } from "react";
 import { PropertyData } from "@heuvera/components/data/PropertyData";
 import FilterTags from "@heuvera/components/FilterTags";
-import SearchBar from "@heuvera/components/search/SearchBar";
 import { SkeletalPreloader } from "@heuvera/components/skeletalpreloader/propertycards";
 import useIsMobile from "@heuvera/hooks/IsMobile";
 import { MarketplaceProvider } from "@heuvera/providers/MarketplaceProvider";
 import { motion } from "framer-motion";
-import PropertyCard from "@heuvera/components/cards/PropertyCards/PropertyCard";
+import dynamic from "next/dynamic";
+const SearchBar = dynamic(()=> import("@heuvera/components/search/SearchBar"));
+const Categories = dynamic(()=> import("@heuvera/components/categories/Categories"));
+const PropertyCard = dynamic(()=>import("@heuvera/components/cards/PropertyCards/PropertyCard"));
 
 const Explore = React.memo(() => {
   const isMobile = useIsMobile();
@@ -114,6 +115,8 @@ const Explore = React.memo(() => {
       return newFilters;
     });
   }, []);
+
+
 
   return (
     <MarketplaceProvider>

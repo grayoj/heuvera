@@ -8,7 +8,7 @@ import { Property } from "@heuvera/utils/props";
 const PropertyImageCarousel = lazy(() => import('./PropertyImage'));
 
 const PropertyCardFallback = () => (
-  <div className="h-64 md:h-36 lg:h-28 xl:h-32 2xl:h-44 bg-gray-200 dark:bg-[#444444] rounded-t-2xl animate-pulse" />
+  <div className="h-60 md:h-36 lg:h-28 xl:h-32 2xl:h-40 bg-gray-200 dark:bg-[#444444] rounded-t-2xl animate-pulse" />
 );
 
 const PropertyCard = React.memo(({ property, isPriority = false }: { property: Property, isPriority?: boolean }) => {
