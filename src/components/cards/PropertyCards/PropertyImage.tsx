@@ -10,7 +10,8 @@ interface PropertyImageCarouselProps {
 }
 
 const PropertyImageCarousel = ({
-  images = [], isPriority = false,
+  images = [],
+  isPriority = false,
 }: PropertyImageCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
@@ -101,7 +102,6 @@ const PropertyImageCarousel = ({
       </div>
     </div>
   );
-}
-
+};
 
 export default React.memo(PropertyImageCarousel);

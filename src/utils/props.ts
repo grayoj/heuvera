@@ -1,3 +1,4 @@
+import { LatLngTuple } from "leaflet";
 import { RefObject } from "react";
 
 export interface ActiveFilters {
@@ -132,6 +133,7 @@ export type TabType = "price" | "rooms" | "type" | "amenities" | "book";
 export interface Property {
   id: number;
   propertyName: string;
+  propertyCategory: string;
   propertyDetails: {
     price: number;
     currency: string;
@@ -147,9 +149,18 @@ export interface Property {
     name: string;
     profilePicture: string;
   };
-  images: string[];
   amenities: string[];
-  isBookmarked: boolean;
+  images: string[];
   isVerified: boolean;
   listedDate: string;
+  reviews?: string[];
+  location?: {
+    position?: [number, number];
+    name?: string;
+    details?: string;
+  };
+  importantInfo?: {
+    title?: string;
+    items?: string[];
+  };
 }

@@ -85,7 +85,9 @@ const MobileProfileSettings = () => {
   return (
     <div className="flex flex-col h-full">
       <div className="px-4 py-6">
-      <h1 className="text-xl font-semibold text-[#3E3E3E] dark:text-[#F8F7F2]">Profile</h1>
+        <h1 className="text-xl font-semibold text-[#3E3E3E] dark:text-[#F8F7F2]">
+          Profile
+        </h1>
       </div>
 
       <div className="flex-1 overflow-y-auto px-4">

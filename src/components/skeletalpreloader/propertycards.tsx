@@ -26,8 +26,8 @@ const SkeletonItem = React.memo(() => (
 SkeletonItem.displayName = "SkeletonItem";
 
 const SkeletalPreloader = React.memo(() => {
-  const skeletonItems = Array(10).fill(0);
-  
+  const skeletonItems = Array(12).fill(0);
+
   return (
     <div className="pt-5 md:pt-10 lg:pt-10 xl:pt-10 2xl:pt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 gap-y-8 justify-center">
       {skeletonItems.map((_, index) => (

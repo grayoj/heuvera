@@ -8,13 +8,20 @@ import useIsMobile from "@heuvera/hooks/IsMobile";
 import { MarketplaceProvider } from "@heuvera/providers/MarketplaceProvider";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-const SearchBar = dynamic(()=> import("@heuvera/components/search/SearchBar"));
-const Categories = dynamic(()=> import("@heuvera/components/categories/Categories"));
-const PropertyCard = dynamic(()=>import("@heuvera/components/cards/PropertyCards/PropertyCard"));
+const SearchBar = dynamic(() => import("@heuvera/components/search/SearchBar"));
+const Categories = dynamic(
+  () => import("@heuvera/components/categories/Categories"),
+);
+const PropertyCard = dynamic(
+  () => import("@heuvera/components/cards/PropertyCards/PropertyCard"),
+  {
+    loading: () => null,
+  },
+);
 
 const Explore = React.memo(() => {
   const isMobile = useIsMobile();
-  const [loading, setLoading] = useState(true);
+  const [isCardLoading, setIsCardLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [filteredProperties, setFilteredProperties] = useState(PropertyData);
   const [activeFilters, setActiveFilters] = useState<{
@@ -29,10 +36,16 @@ const Explore = React.memo(() => {
   }>({});
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
+    const checkCardLoaded = async () => {
+      try {
+        await import("@heuvera/components/cards/PropertyCards/PropertyCard");
+        setIsCardLoading(false);
+      } catch (error) {
+        console.error("Error loading PropertyCard:", error);
+      }
+    };
+
+    checkCardLoaded();
   }, []);
 
   useEffect(() => {
@@ -66,7 +79,7 @@ const Explore = React.memo(() => {
         activeFilters.bedrooms === "5+"
           ? property.propertyDetails.bedrooms >= 5
           : property.propertyDetails.bedrooms ===
-          parseInt(activeFilters.bedrooms || "0"),
+            parseInt(activeFilters.bedrooms || "0"),
       );
     }
 
@@ -116,8 +129,6 @@ const Explore = React.memo(() => {
     });
   }, []);
 
-
-
   return (
     <MarketplaceProvider>
       <div className="flex flex-col flex-1 h-full w-full px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20">
@@ -134,18 +145,16 @@ const Explore = React.memo(() => {
           <div className="w-full flex items-center justify-start">
             {Object.keys(activeFilters).length > 0 && (
               <div className="gap-2 flex items-center">
-
                 <FilterTags
                   activeFilters={activeFilters}
                   removeFilter={removeFilter}
                 />
-
               </div>
             )}
           </div>
         </div>
 
-        {loading ? (
+        {isCardLoading ? (
           <SkeletalPreloader />
         ) : (
           <motion.div
@@ -156,7 +165,7 @@ const Explore = React.memo(() => {
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
-                transition: { staggerChildren: 0.1 },
+                transition: { staggerChildren: 0.15 },
               },
             }}
           >
@@ -164,16 +173,13 @@ const Explore = React.memo(() => {
               <motion.div
                 key={`property-${property.id}`}
                 variants={{
-                  hidden: { opacity: 0, y: 10 },
+                  hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
                 className="w-full flex justify-center"
               >
-                <PropertyCard
-                  property={property}
-                  isPriority={index < 6}
-                />
+                <PropertyCard property={property} isPriority={index < 6} />
               </motion.div>
             ))}
           </motion.div>

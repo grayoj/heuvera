@@ -5,6 +5,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import SectionHeaderText from "../text/SectionHeaderText";
+import { LatLngTuple } from "leaflet";
+
 const defaultIcon = new L.Icon({
   iconUrl:
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
@@ -18,9 +20,17 @@ const defaultIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-export default function LocationSection() {
-  const position: [number, number] = [9.0765, 7.4815];
+interface LocationSectionProps {
+  position?: LatLngTuple;
+  locationName?: string;
+  locationDetails?: string;
+}
 
+export default function LocationSection({
+  position = [9.0765, 7.4815],
+  locationName = "Maitama, Abuja, Nigeria",
+  locationDetails = "5 minutes to city center, 20 minutes to airport",
+}: LocationSectionProps) {
   return (
     <div className="w-full flex flex-col gap-2">
       <SectionHeaderText title="Where you're staying" />
@@ -38,17 +48,17 @@ export default function LocationSection() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <Marker position={position} icon={defaultIcon}>
-            <Popup>Your accommodation in Maitama, Abuja, Nigeria</Popup>
+            <Popup>Your accommodation in {locationName}</Popup>
           </Marker>
         </MapContainer>
       </div>
 
       <div className="pt-2">
         <p className="text-sm text-gray-600 dark:text-gray-200">
-          Maitama, Abuja, Nigeria
+          {locationName}
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          5 minutes to city center, 20 minutes to airport
+          {locationDetails}
         </p>
       </div>
     </div>

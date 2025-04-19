@@ -3,7 +3,11 @@ import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { LucideMoreVertical } from "lucide-react";
 import { FaStar } from "react-icons/fa6";
 
-export default function ReviewCard() {
+interface ReviewCardProps {
+  reviews: string;
+}
+
+export default function ReviewCard({ reviews }: ReviewCardProps) {
   return (
     <div className="w-full flex flex-col gap-5 rounded-xl border border-[#E3E2D9] dark:border-[#555555] p-6">
       <div className="flex flex-row justify-between items-center">
@@ -37,10 +41,7 @@ export default function ReviewCard() {
         </div>
       </div>
       <h1 className="text-base font-serif text-[#3e3e3e] dark:text-[#666666]">
-        Absolutely stunning! The apartment exceeded my expectations. The
-        interiors are elegant, the view is breathtaking, and the staff is
-        incredibly professional. I felt safe and comfortable throughout my
-        stay."
+        {reviews}
       </h1>
       <div className="flex flex-row justify-between">
         <h1 className="text-[#3e3e3e] dark:text-[#666666] text-base font-serif">

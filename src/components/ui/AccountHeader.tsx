@@ -25,6 +25,5 @@ export default function AccountHeader({
         {children}
       </div>
     </div>
-
   );
 }

@@ -12,7 +12,9 @@ const SearchBar = React.memo(({ isMobile }: SearchBarProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const [checkInDate, setCheckInDate] = useState<Date | undefined>(new Date());
-  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(new Date());
+  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(
+    new Date(),
+  );
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -63,7 +65,7 @@ const SearchBar = React.memo(({ isMobile }: SearchBarProps) => {
   }, []);
 
   const toggleFilter = useCallback((filter: FilterType) => {
-    setActiveFilter(prev => prev === filter ? null : filter);
+    setActiveFilter((prev) => (prev === filter ? null : filter));
   }, []);
 
   const renderSearchModal = useCallback(() => {
