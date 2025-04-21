@@ -9,7 +9,7 @@ import {
   useRef,
   useEffect,
 } from "react";
-import { LucideHeart, LucideCompass, LucideLogIn } from "lucide-react";
+import { LucideHeart, LucideCompass, LucideLogIn, LucideUser } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { HeuveraLogo } from "@heuvera/components/logo";
 import useIsMobile from "@heuvera/hooks/IsMobile";
@@ -22,12 +22,9 @@ import Link from "next/link";
 import { Button } from "@heuvera/components/ui/button";
 import { ProfileDropdown } from "@heuvera/components/ProfileDropdown";
 import { useAuthClient } from "@heuvera/hooks/useAuth";
+import { MarketplaceContextType } from "@heuvera/utils/props";
 
-interface MarketplaceContextType {
-  selected: string;
-  setSelected: (value: string) => void;
-  openSearchModal: () => void;
-}
+
 
 const MarketplaceContext = createContext<MarketplaceContextType | undefined>(
   undefined,
@@ -49,14 +46,12 @@ export function MarketplaceProvider({
   const pathname = usePathname();
   const { user, isAuthenticated, isLoading } = useAuthClient();
 
-  const NavigationContent = useMemo(
-    () => [
-      { title: "Explore", link: "/", icon: <GoHomeFill /> },
-      { title: "Discover", link: "/discover", icon: <LucideCompass /> },
-      { title: "Favorites", link: "/favorites", icon: <LucideHeart /> },
-    ],
-    [],
-  );
+  const NavigationContent = [
+    { title: "Explore", link: "/", icon: <GoHomeFill /> },
+    { title: "Discover", link: "/discover", icon: <LucideCompass /> },
+    { title: "Favorites", link: "/favorites", icon: <LucideHeart /> },
+    { title: "Account", link: "/account", icon: <></> },
+  ];
 
   const iconMapping: {
     [key: string]: { filled: JSX.Element; outline: JSX.Element };
@@ -135,12 +130,20 @@ export function MarketplaceProvider({
         <div className="w-full backdrop-blur-xl sticky top-0 bg-[#F8F7F299] dark:bg-[#33333399] z-[5000]">
           <div className="px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 h-20 w-full flex items-center justify-between">
             {isMobile ? (
-              <div className="w-full flex items-center justify-center backdrop-blur-none">
+              //Remove the gap-2 and the beta pill
+              <div className="w-full gap-2 flex items-center justify-center backdrop-blur-none">
                 <HeuveraLogo width={35} height={35} />
+                <div className="max-w-fit w-full px-3 py-1 border rounded-full flex items-center justify-center border-[#7B4F3A] dark:border-[#8B5F4D]">
+                  <h1 className="text-[#7B4F3A] text-xs dark:text-[#8B5F4D]">BETA</h1>
+                </div>
               </div>
             ) : (
-              <div className="flex-shrink-0 w-24">
+              //Formerly w-24, remove the "flex items-center justify-center alongside the pill"
+              <div className="flex-shrink-0 w-32 flex items-center justify-between">
                 <HeuveraLogo width={35} height={35} />
+                <div className="max-w-fit w-full px-4 py-1 border rounded-full flex items-center justify-center border-[#7B4F3A] dark:border-[#8B5F4D]">
+                  <h1 className="text-[#7B4F3A] text-sm dark:text-[#8B5F4D]">BETA</h1>
+                </div>
               </div>
             )}
             {!isMobile && (
@@ -150,11 +153,10 @@ export function MarketplaceProvider({
                     key={index}
                     href={content.link}
                     prefetch={true}
-                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
-                      pathname === content.link
-                        ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
-                        : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-102 hover:font-medium"
-                    }`}
+                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${pathname === content.link
+                      ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
+                      : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-102 hover:font-medium"
+                      }`}
                   >
                     {content.title}
                   </Link>
@@ -162,9 +164,9 @@ export function MarketplaceProvider({
               </div>
             )}
             {!isMobile && (
-              <div className="w-24 flex items-end justify-end">
+              <div className="w-32 flex items-end justify-end">
                 {isLoading ? (
-                  <div className="h-10 w-10 rounded-full bg-[#E0E0E0] dark:bg-[#333] animate-pulse" />
+                  <div className="h-10 w-10 rounded-full bg-[#E0E0E0] dark:bg-[#444444] animate-pulse" />
                 ) : isAuthenticated ? (
                   <ProfileDropdown
                     selected="Profile"
@@ -173,14 +175,9 @@ export function MarketplaceProvider({
                   />
                 ) : (
                   <a className="cursor-pointer" href="/api/auth/login">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="text-[#7B4F3A] dark:text-[#8B5F4D] cursor-pointer border border-[#7B4F3A] dark:border-[#8B5F4D] py-2 px-6 hover:transition-transform duration-300 hover:scale-105"
-                    >
-                      Login
-                      <LucideLogIn />
-                    </Button>
+                    <div className="size-7 p-1  text-[#323232] dark:text-[#F8F7F2] ring-[#323232] dark:ring-[#F8F7F2] ring rounded-full flex items-center justify-center">
+                      <LucideUser />
+                    </div>
                   </a>
                 )}
               </div>
@@ -211,19 +208,27 @@ export function MarketplaceProvider({
                       }}
                       className="flex flex-col items-center justify-center min-w-[60px] h-full transition-all duration-300"
                     >
-                      {content.title === "Profile" ? (
+                      {content.title === "Account" ? (
                         <span
-                          className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D] border-2 border-[#7B4F3A] dark:border-[#8B5F4D] bg-[#7B4F3A] dark:bg-[#8B5F4D] rounded-full" : "text-[#323232]"}`}
+                          className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D] border-2 border-[#7B4F3A] dark:border-[#8B5F4D] bg-transparent rounded-full" : "text-[#323232]"}`}
                         >
-                          <div className="size-6">
+                          {isLoading ? (
+                            <div className="size-[1.25rem] rounded-full bg-[#E0E0E0] dark:bg-[#444444] animate-pulse" />
+                          ) : isAuthenticated ? (
                             <Avatar className="rounded-full overflow-hidden block">
                               <AvatarImage
-                                src="https://lh3.googleusercontent.com/a/ACg8ocKQWfaudEjOg1tHLb3WZFMGH1DLf56QEhrIhRYRMeJVROgTRbifUA=s96-c"
+                                src={user?.picture || '/no-avatar.jpg'}
                                 alt="avatar"
                               />
                               <AvatarFallback>FG</AvatarFallback>
                             </Avatar>
-                          </div>
+                          ) : (
+                            <a className="cursor-pointer" href="/api/auth/login">
+                              <div className="size-[1.25rem] p-1 text-[#323232] dark:text-[#F8F7F2] ring-[#323232] dark:ring-[#F8F7F2] ring rounded-full flex items-center justify-center">
+                                <LucideUser />
+                              </div>
+                            </a>
+                          )}
                         </span>
                       ) : (
                         <span
@@ -248,7 +253,7 @@ export function MarketplaceProvider({
           </div>
         )}
       </div>
-    </MarketplaceContext.Provider>
+    </MarketplaceContext.Provider >
   );
 }
 

@@ -20,6 +20,7 @@ import PaymentMethods from "@heuvera/app/(main)/account/payment/page";
 import Support from "@heuvera/app/(main)/account/support/page";
 import GeneralSettingsPage from "@heuvera/app/(main)/account/settings/page";
 import useIsMobile from "@heuvera/hooks/IsMobile";
+import { RiHomeSmileLine, RiLogoutBoxRLine } from "react-icons/ri";
 
 const sideBarItems = [
   {
@@ -95,7 +96,7 @@ const MobileProfileSettings = () => {
           {sideBarItems.map((item) => (
             <div
               key={item.route}
-              className="border-b-[0.2px] last:border-b-0 border-[#E3E2D988] dark:border-[#44444488]"
+              className="border-b-[0.2px] border-[#E3E2D988] dark:border-[#44444488]"
             >
               <div
                 className="flex items-center justify-between py-4 cursor-pointer active:bg-gray-100 dark:active:bg-[#555555]"
@@ -116,6 +117,38 @@ const MobileProfileSettings = () => {
             </div>
           ))}
         </div>
+        <a href="/hosts">
+          <div className="border-b-[0.2px] border-[#E3E2D988] dark:border-[#44444488]">
+            <div className="flex items-center justify-between py-4 cursor-pointer active:bg-gray-100 dark:active:bg-[#555555]">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center">
+                  <RiHomeSmileLine className="text-lg" />
+                </div>
+                <div>
+                  <p className="font-medium text-[#3E3E3E] dark:text-[#F8F7F2]">
+                    Switch to Host
+                  </p>
+                </div>
+              </div>
+              <ChevronRight className="w-5 h-5 text-[#A7A7A7]" />
+            </div>
+          </div>
+        </a>
+        <a href="/api/auth/logout">
+          <div className="flex items-center justify-between py-4 cursor-pointer active:bg-gray-100 dark:active:bg-[#555555]">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center">
+                <RiLogoutBoxRLine className="text-lg text-[#FF6B6B]" />
+              </div>
+              <div>
+                <p className="font-medium text-[#FF6B6B]">
+                  Logout
+                </p>
+              </div>
+            </div>
+            <ChevronRight className="w-5 h-5 text-[#FF6B6B]" />
+          </div>
+        </a>
       </div>
 
       <Dialog open={isModalOpen} onOpenChange={handleCloseModal}>

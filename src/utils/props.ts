@@ -164,3 +164,9 @@ export interface Property {
     items?: string[];
   };
 }
+
+export interface MarketplaceContextType {
+  selected: string;
+  setSelected: (value: string) => void;
+  openSearchModal: () => void;
+}
