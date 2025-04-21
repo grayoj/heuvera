@@ -1,3 +1,4 @@
+import { memo, useCallback } from "react";
 import {
   cardAnimation,
   fadeInUp,
@@ -9,27 +10,38 @@ import { FindPropertyCard } from "../cards/DiscoverCards/FindPropertyCard";
 import { PropertyCategoryCard } from "../cards/DiscoverCards/PropertyCategoryCard";
 import { motion } from "framer-motion";
 
-export function FeaturedSection({
+type PropertyItem = {
+  id: number;
+  category: string;
+  count: number;
+  imageUrl: string;
+};
+
+type FeaturedSectionProps = {
+  propertyCategories: PropertyItem[];
+  propertyLocation: PropertyItem[];
+  handlePropertyCategoryClick: (category: string) => void;
+  handleLocationClick: (location: string) => void;
+};
+
+export const FeaturedSection = memo(function FeaturedSection({
   propertyCategories,
   propertyLocation,
   handlePropertyCategoryClick,
   handleLocationClick,
-}: {
-  propertyCategories: {
-    id: number;
-    category: string;
-    count: number;
-    imageUrl: string;
-  }[];
-  propertyLocation: {
-    id: number;
-    category: string;
-    count: number;
-    imageUrl: string;
-  }[];
-  handlePropertyCategoryClick: (category: string) => void;
-  handleLocationClick: (location: string) => void;
-}) {
+}: FeaturedSectionProps) {
+  const handleLocation0Click = useCallback(() => {
+    handleLocationClick(propertyLocation[0].category);
+  }, [handleLocationClick, propertyLocation]);
+  
+  const handleLocation1Click = useCallback(() => {
+    handleLocationClick(propertyLocation[1].category);
+  }, [handleLocationClick, propertyLocation]);
+  
+  const handleLocation2Click = useCallback(() => {
+    handleLocationClick(propertyLocation[2].category);
+  }, [handleLocationClick, propertyLocation]);
+
   return (
     <>
       <motion.div
@@ -73,137 +85,151 @@ export function FeaturedSection({
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className="w-full flex flex-col items-center justify-center mt-10"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+      <LocationsSection 
+        propertyLocation={propertyLocation}
+        handleLocation0Click={handleLocation0Click}
+        handleLocation1Click={handleLocation1Click}
+        handleLocation2Click={handleLocation2Click}
+      />
+    </>
+  );
+});
+
+
+const LocationsSection = memo(function LocationsSection({ 
+  propertyLocation,
+  handleLocation0Click,
+  handleLocation1Click,
+  handleLocation2Click
+}: {
+  propertyLocation: PropertyItem[];
+  handleLocation0Click: () => void;
+  handleLocation1Click: () => void;
+  handleLocation2Click: () => void;
+}) {
+  return (
+    <motion.div
+      className="w-full flex flex-col items-center justify-center mt-10"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={fadeInUp}
+    >
+      <motion.h1
         variants={fadeInUp}
+        className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232] dark:text-[#A7A7A7]"
       >
-        <motion.h1
-          variants={fadeInUp}
-          className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232] dark:text-[#A7A7A7]"
-        >
-          Find Properties in These Cities
-        </motion.h1>
-        <motion.h1
-          variants={fadeInUp}
-          className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232] dark:text-[#A7A7A7]"
-        >
-          Based on your viewing history, we think you'll love these locations
-        </motion.h1>
+        Find Properties in These Cities
+      </motion.h1>
+      <motion.h1
+        variants={fadeInUp}
+        className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232] dark:text-[#A7A7A7]"
+      >
+        Based on your viewing history, we think you'll love these locations
+      </motion.h1>
+      <motion.div
+        className="w-full flex flex-col gap-5 pt-10"
+        variants={staggerContainer}
+      >
         <motion.div
-          className="w-full flex flex-col gap-5 pt-10"
-          variants={staggerContainer}
+          className="w-12/12 flex flex-col md:flex-row gap-5"
+          variants={fadeInUp}
         >
           <motion.div
-            className="w-12/12 flex flex-col md:flex-row gap-5"
-            variants={fadeInUp}
+            className="w-full md:w-6/12 cursor-pointer"
+            variants={slideInLeft}
+            whileHover="hover"
+            onClick={handleLocation0Click}
           >
-            <motion.div
-              className="w-full md:w-6/12 cursor-pointer"
-              variants={slideInLeft}
-              whileHover="hover"
-              onClick={() => handleLocationClick(propertyLocation[0].category)}
-            >
-              <FindPropertyCard
-                category={propertyLocation[0].category}
-                count={propertyLocation[0].count}
-                imageUrl={propertyLocation[0].imageUrl}
-                width="w-12/12"
-                height="h-44 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
-              />
-            </motion.div>
-            <div className="w-full md:w-6/12 flex flex-row gap-5">
-              <motion.div
-                className="w-full md:w-6/12 cursor-pointer"
-                variants={cardAnimation}
-                whileHover="hover"
-                onClick={() =>
-                  handleLocationClick(propertyLocation[1].category)
-                }
-              >
-                <FindPropertyCard
-                  category={propertyLocation[1].category}
-                  count={propertyLocation[1].count}
-                  imageUrl={propertyLocation[1].imageUrl}
-                  width="w-12/12"
-                  height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
-                />
-              </motion.div>
-              <motion.div
-                className="w-full md:w-6/12 cursor-pointer"
-                variants={cardAnimation}
-                whileHover="hover"
-                onClick={() =>
-                  handleLocationClick(propertyLocation[2].category)
-                }
-              >
-                <FindPropertyCard
-                  category={propertyLocation[2].category}
-                  count={propertyLocation[2].count}
-                  imageUrl={propertyLocation[2].imageUrl}
-                  width="w-12/12"
-                  height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
-                />
-              </motion.div>
-            </div>
+            <FindPropertyCard
+              category={propertyLocation[0].category}
+              count={propertyLocation[0].count}
+              imageUrl={propertyLocation[0].imageUrl}
+              width="w-12/12"
+              height="h-44 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
+            />
           </motion.div>
-          <motion.div
-            className="w-12/12 flex flex-col-reverse md:flex-row gap-5"
-            variants={fadeInUp}
-          >
-            <div className="w-full md:w-6/12 flex flex-row gap-5">
-              <motion.div
-                className="w-full md:w-6/12 cursor-pointer"
-                variants={cardAnimation}
-                whileHover="hover"
-                onClick={() =>
-                  handleLocationClick(propertyLocation[1].category)
-                }
-              >
-                <FindPropertyCard
-                  category={propertyLocation[1].category}
-                  count={propertyLocation[1].count}
-                  imageUrl={propertyLocation[1].imageUrl}
-                  width="w-full md:w-12/12"
-                  height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
-                />
-              </motion.div>
-              <motion.div
-                className="w-full md:w-6/12 cursor-pointer"
-                variants={cardAnimation}
-                whileHover="hover"
-                onClick={() =>
-                  handleLocationClick(propertyLocation[2].category)
-                }
-              >
-                <FindPropertyCard
-                  category={propertyLocation[2].category}
-                  count={propertyLocation[2].count}
-                  imageUrl={propertyLocation[2].imageUrl}
-                  width="w-12/12"
-                  height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
-                />
-              </motion.div>
-            </div>
+          <div className="w-full md:w-6/12 flex flex-row gap-5">
             <motion.div
               className="w-full md:w-6/12 cursor-pointer"
-              variants={slideInRight}
+              variants={cardAnimation}
               whileHover="hover"
-              onClick={() => handleLocationClick(propertyLocation[0].category)}
+              onClick={handleLocation1Click}
             >
               <FindPropertyCard
-                category={propertyLocation[0].category}
-                count={propertyLocation[0].count}
-                imageUrl={propertyLocation[0].imageUrl}
+                category={propertyLocation[1].category}
+                count={propertyLocation[1].count}
+                imageUrl={propertyLocation[1].imageUrl}
                 width="w-12/12"
-                height="h-44 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
+                height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
               />
             </motion.div>
+            <motion.div
+              className="w-full md:w-6/12 cursor-pointer"
+              variants={cardAnimation}
+              whileHover="hover"
+              onClick={handleLocation2Click}
+            >
+              <FindPropertyCard
+                category={propertyLocation[2].category}
+                count={propertyLocation[2].count}
+                imageUrl={propertyLocation[2].imageUrl}
+                width="w-12/12"
+                height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
+              />
+            </motion.div>
+          </div>
+        </motion.div>
+        <motion.div
+          className="w-12/12 flex flex-col-reverse md:flex-row gap-5"
+          variants={fadeInUp}
+        >
+          <div className="w-full md:w-6/12 flex flex-row gap-5">
+            <motion.div
+              className="w-full md:w-6/12 cursor-pointer"
+              variants={cardAnimation}
+              whileHover="hover"
+              onClick={handleLocation1Click}
+            >
+              <FindPropertyCard
+                category={propertyLocation[1].category}
+                count={propertyLocation[1].count}
+                imageUrl={propertyLocation[1].imageUrl}
+                width="w-full md:w-12/12"
+                height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
+              />
+            </motion.div>
+            <motion.div
+              className="w-full md:w-6/12 cursor-pointer"
+              variants={cardAnimation}
+              whileHover="hover"
+              onClick={handleLocation2Click}
+            >
+              <FindPropertyCard
+                category={propertyLocation[2].category}
+                count={propertyLocation[2].count}
+                imageUrl={propertyLocation[2].imageUrl}
+                width="w-12/12"
+                height="h-32 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
+              />
+            </motion.div>
+          </div>
+          <motion.div
+            className="w-full md:w-6/12 cursor-pointer"
+            variants={slideInRight}
+            whileHover="hover"
+            onClick={handleLocation0Click}
+          >
+            <FindPropertyCard
+              category={propertyLocation[0].category}
+              count={propertyLocation[0].count}
+              imageUrl={propertyLocation[0].imageUrl}
+              width="w-12/12"
+              height="h-44 md:h-52 lg:h-64 xl:h-72 2xl:h-96"
+            />
           </motion.div>
         </motion.div>
       </motion.div>
-    </>
+    </motion.div>
   );
-}
+});

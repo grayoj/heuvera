@@ -1,13 +1,22 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, Suspense } from "react";
 import useIsMobile from "@heuvera/hooks/IsMobile";
-import { ListingsSection } from "@heuvera/components/sections/ListingSection";
-import { FeaturedSection } from "@heuvera/components/sections/FeaturedSection";
-import { CategoriesSection } from "@heuvera/components/sections/CategoriesSection";
-import { HeaderSection } from "@heuvera/components/sections/HeaderSection";
+import dynamic from "next/dynamic";
 import { propertyCategories, propertyLocation } from "@heuvera/app/data/array";
 import { memo } from "react";
+import { HeaderSection } from "@heuvera/components/sections/HeaderSection";
+import { CategoriesSection } from "@heuvera/components/sections/CategoriesSection";
+
+const ListingsSection = dynamic(
+  () => import("@heuvera/components/sections/ListingSection").then(mod => ({ default: mod.ListingsSection })),
+  { loading: () => null }
+);
+
+const FeaturedSection = dynamic(
+  () => import("@heuvera/components/sections/FeaturedSection").then(mod => ({ default: mod.FeaturedSection })),
+  { loading: () => null }
+);
 
 const Discover = memo(function Discover() {
   const isMobile = useIsMobile();

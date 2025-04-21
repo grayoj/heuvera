@@ -45,3 +45,35 @@ export const slideInRight = {
     transition: { duration: 0.2 },
   },
 };
+
+
+// animations.ts
+export const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, ease: "easeOut" },
+};
+
+export const fadeIn = (delay = 0) => ({
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { delay, duration: 0.8, ease: "easeOut" },
+});
+
+export const slideInY = (delay = 0) => ({
+  initial: { y: 100, opacity: 0 },
+  animate: { y: 0, opacity: 1 },
+  transition: { duration: 0.7, delay },
+});
+
+export const slideInX = (delay = 0) => ({
+  initial: { x: 100, opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  transition: { duration: 0.7, delay },
+});
+
+export const slideOutY = (delay = 0) => ({
+  initial: { y: -100, opacity: 0 },
+  animate: { y: 0, opacity: 1 },
+  transition: { duration: 0.7, delay },
+});

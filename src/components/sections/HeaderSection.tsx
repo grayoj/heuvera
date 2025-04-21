@@ -1,8 +1,15 @@
+import { memo } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import Hero from "../hero";
-import SearchBar from "../search/SearchBar";
 
-export function HeaderSection({ isMobile }: { isMobile: boolean }) {
+const SearchBar = dynamic(
+  () => import("../search/SearchBar"),
+  { loading: () => <div className="h-14 bg-white/80 backdrop-blur rounded-lg shadow-lg animate-pulse"></div> }
+);
+
+import Hero from "../hero";
+
+export const HeaderSection = memo(function HeaderSection({ isMobile }: { isMobile: boolean }) {
   return (
     <motion.div
       className="w-full h-full relative"
@@ -21,4 +28,4 @@ export function HeaderSection({ isMobile }: { isMobile: boolean }) {
       </motion.div>
     </motion.div>
   );
-}
+});

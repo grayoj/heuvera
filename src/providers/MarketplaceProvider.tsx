@@ -19,12 +19,9 @@ import { IoCompass, IoCompassOutline } from "react-icons/io5";
 import { usePathname, useRouter } from "next/navigation";
 import Footer from "@heuvera/components/footer";
 import Link from "next/link";
-import { Button } from "@heuvera/components/ui/button";
 import { ProfileDropdown } from "@heuvera/components/ProfileDropdown";
 import { useAuthClient } from "@heuvera/hooks/useAuth";
 import { MarketplaceContextType } from "@heuvera/utils/props";
-
-
 
 const MarketplaceContext = createContext<MarketplaceContextType | undefined>(
   undefined,
