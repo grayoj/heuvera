@@ -5,9 +5,10 @@ import { motion } from "framer-motion";
 import { LucideStar } from "lucide-react";
 import { PropertyData } from "@heuvera/components/data/PropertyData";
 import useIsMobile from "@heuvera/hooks/IsMobile";
-import { Property, ViewMode, SortOption } from "@heuvera/types/map";
+import { Property, SortOption } from "@heuvera/types/map";
 import dynamic from "next/dynamic";
 import { SkeletalPreloader } from "@heuvera/components/skeletalpreloader/propertycards";
+import { ViewMode } from "@heuvera/types/types";
 
 const FavoritesHeader = dynamic(() => import("@heuvera/components/header/FavoritesHeader"));
 const PropertyCard = dynamic(() => import("@heuvera/components/cards/PropertyCards/PropertyCard"),
@@ -38,7 +39,8 @@ export default function Favorites() {
   const isMobile = useIsMobile();
   const [loading, setLoading] = useState<boolean>(true);
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
-  const [sortOption, setSortOption] = useState<SortOption>("recent");
+  const [sortOption, setSortOption] = useState<SortOption | "">("");
+
 
   useEffect(() => {
     const timer = setTimeout(() => {

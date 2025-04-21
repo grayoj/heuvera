@@ -30,5 +30,4 @@ export interface MapSectionProps {
   isTrayOpen?: boolean;
 }
 
-export type ViewMode = "grid" | "list";
 export type SortOption = "recent" | "price-low" | "price-high";

@@ -2,16 +2,19 @@
 
 import React from "react";
 import { Grid, List, LucideListFilter } from "lucide-react";
-import { ViewMode, SortOption } from "@heuvera/types/map";
-import SortDropdown from "../SortDropdown";
 
-interface FavoritesHeaderProps {
-  sortOption: SortOption;
-  setSortOption: React.Dispatch<React.SetStateAction<SortOption>>;
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { SortOption } from "@heuvera/types/map";
+import { ViewMode } from "@heuvera/types/types";
+
+type FavoritesHeaderProps = {
+  sortOption: SortOption | "";
+  setSortOption: (value: SortOption | "") => void;
   viewMode: ViewMode;
-  setViewMode: React.Dispatch<React.SetStateAction<ViewMode>>;
+  setViewMode: (view: ViewMode) => void;
   isMobile?: boolean;
-}
+};
+
 
 const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
   sortOption,
@@ -20,18 +23,41 @@ const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
   setViewMode,
   isMobile = false,
 }) => {
+  
+  const SortOption = [
+    {
+      sort: "Recently Added" as SortOption,
+    },
+    {
+      sort: "Price: Low to High" as SortOption,
+    },
+    {
+      sort: "Price: High to Low" as SortOption,
+    },
+  ];
   return (
     <div
       className={`w-full ${isMobile ? "flex flex-col space-y-4" : "flex items-center justify-between"}`}
     >
-      <div className="flex items-center">
-        <LucideListFilter className="text-[#323232] dark:text-[#FBFAF6] mr-1" />
-        <SortDropdown
+      <div className="flex items-center gap-2">
+        <LucideListFilter className="text-[#323232] dark:text-[#555555] mr-1" />
+        <Select
           value={sortOption}
-          onValueChange={(value) => {
-            setSortOption(value);
-          }}
-        />
+          onValueChange={(value: SortOption) => setSortOption(value)}
+        >
+          <SelectTrigger className="max-w-fit">
+            <SelectValue placeholder="Recently Added" />
+          </SelectTrigger>
+          <SelectContent>
+            {SortOption.map((item, index) => (
+              <SelectItem key={index} value={item.sort}>
+                {item.sort}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+
       </div>
       <div className={`flex items-center ${isMobile ? "" : "ml-auto"}`}>
         <div className="flex items-center space-x-2 bg-[#FBFAF6] dark:bg-[#444444] rounded-full p-1">

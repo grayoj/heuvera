@@ -59,7 +59,7 @@ interface HousingProps {
 export default function Housing({
   stage,
   formData,
-  handleInputChange,
+handleInputChange,
   toggleArrayValue,
 }: HousingProps) {
   // Validation state
