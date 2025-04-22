@@ -16,12 +16,11 @@ export default function Support() {
   };
   return (
     <>
-      <ProfileBanner toggleHelp={toggleHelp} isHelpVisible={isHelpVisible} />
       <AccountHeader
         heading="Support & Assistance"
         subheading="Get help, contact support, and access resources to enhance your experience."
+        toggleHelp={toggleHelp} isHelpVisible={isHelpVisible}
       />
-
       <div className="flex flex-col md:flex-col lg:flex-row justify-between my-5 gap-5 md:gap-5 font-serif">
         <div className="flex-grow">
           <h2 className="text-[1.25rem] font-normal mb-[.94rem]">
