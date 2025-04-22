@@ -58,7 +58,6 @@ export default function BankPayment() {
       <motion.div
         className="flex items-center space-x-2 p-3 bg-[#f9f5f3] dark:bg-[#444444] rounded-lg text-[14px] text-gray-600 dark:text-[#A7A7A7] mt-2"
         variants={itemVariants}
-        whileHover={{ backgroundColor: "#f2ebe7" }}
       >
         <Clock size={16} className="text-[#7B4F3A] dark:text-[#8B5F4D]" />
         <span>Bank transfers typically take 2-3 business days to process</span>

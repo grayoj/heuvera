@@ -103,10 +103,11 @@ export default function BookingHistory() {
 
   return (
     <div>
-      <ProfileBanner toggleHelp={toggleHelp} isHelpVisible={isHelpVisible} />
       <AccountHeader
         heading="Booking Management"
         subheading="Track upcoming, ongoing, and past bookings in one place"
+        toggleHelp={toggleHelp} 
+        isHelpVisible={isHelpVisible}
       />
 
       <div className="flex flex-wrap justify-between items-center">

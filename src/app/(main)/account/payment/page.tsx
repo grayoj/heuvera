@@ -16,10 +16,11 @@ export default function PaymentMethods() {
   };
   return (
     <>
-      <ProfileBanner toggleHelp={toggleHelp} isHelpVisible={isHelpVisible} />
       <AccountHeader
         heading="Payment Method"
         subheading="Securely manage and update your preferred payment options for smooth transactions."
+        toggleHelp={toggleHelp}
+        isHelpVisible={isHelpVisible}
       />
 
       <div className="">

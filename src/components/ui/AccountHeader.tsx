@@ -1,13 +1,25 @@
+import { motion } from "framer-motion";
+import { LucideHelpCircle } from "lucide-react";
+import { ButtonAnimation } from "../animations/anim";
+import { Button } from "./button";
+
+
+
+
 export default function AccountHeader({
   heading,
   subheading,
   children,
   className,
+  toggleHelp,
+  isHelpVisible
 }: {
   heading: string;
   subheading: string;
   children?: React.ReactNode;
   className?: string;
+  toggleHelp: () => void;
+  isHelpVisible: boolean;
 }) {
   return (
     <div className="hidden md:block">
@@ -23,6 +35,16 @@ export default function AccountHeader({
           </p>
         </div>
         {children}
+        <motion.div variants={ButtonAnimation}>
+          <Button
+            variant="outline"
+            className="bg-[#F8F7F2] dark:bg-[#333333] hover:cursor-pointer font-serif"
+            onClick={toggleHelp}
+          >
+            <LucideHelpCircle />
+            {isHelpVisible ? "Close Help" : "Help"}
+          </Button>
+        </motion.div>
       </div>
     </div>
   );

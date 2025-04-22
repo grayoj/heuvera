@@ -21,10 +21,6 @@ export default function PaymentSecurity() {
     visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
   };
 
-  const buttonVariants = {
-    initial: { scale: 1 },
-    hover: { scale: 1.05, transition: { duration: 0.2 } },
-  };
 
   return (
     <motion.div
@@ -82,18 +78,12 @@ export default function PaymentSecurity() {
         <p className="text-sm text-gray-600 dark:text-[#A7A7A7]">
           Need help with payments?
         </p>
-        <motion.div
-          variants={buttonVariants}
-          initial="initial"
-          whileHover="hover"
+        <Button
+          variant="outline"
+          className="mt-2 w-full hover:bg-[#f9f5f3] hover:bg-[#444444]"
         >
-          <Button
-            variant="outline"
-            className="mt-2 w-full border-[#7B4F3A] border-[#7B4F3A] hover:bg-[#f9f5f3] hover:bg-[#444444]"
-          >
-            Contact Support
-          </Button>
-        </motion.div>
+          Contact Support
+        </Button>
       </motion.div>
     </motion.div>
   );

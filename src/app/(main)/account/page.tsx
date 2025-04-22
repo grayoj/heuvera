@@ -34,12 +34,13 @@ export default function PersonInfo() {
 
   return (
     <>
-      <ProfileBanner toggleHelp={toggleHelp} isHelpVisible={isHelpVisible} />
       <div className="flex flex-col gap-5">
         <AccountHeader
           heading="Personal Info"
           subheading="Update your profile, contact details, and preferences to personalize
           your experience."
+          toggleHelp={toggleHelp} 
+          isHelpVisible={isHelpVisible}
         />
         <div className="flex justify-between flex-col md:flex-col lg:flex-row relative">
           <motion.div
