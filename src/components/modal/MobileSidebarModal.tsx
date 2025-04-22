@@ -141,9 +141,7 @@ const MobileProfileSettings = () => {
                 <RiLogoutBoxRLine className="text-lg text-[#FF6B6B]" />
               </div>
               <div>
-                <p className="font-medium text-[#FF6B6B]">
-                  Logout
-                </p>
+                <p className="font-medium text-[#FF6B6B]">Logout</p>
               </div>
             </div>
             <ChevronRight className="w-5 h-5 text-[#FF6B6B]" />

@@ -3,7 +3,11 @@ import { LucideMapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Calendar } from "../../ui/calendar";
 import { FilterContentProps } from "@heuvera/utils/props";
-import { ButtonAnimation, containerAnimation, slidingAnimation } from "@heuvera/components/animations/anim";
+import {
+  ButtonAnimation,
+  containerAnimation,
+  slidingAnimation,
+} from "@heuvera/components/animations/anim";
 
 const FilterContent: React.FC<FilterContentProps> = ({
   type,
@@ -13,12 +17,8 @@ const FilterContent: React.FC<FilterContentProps> = ({
   setCheckOutDate,
 }) => {
   if (type === "location") {
-
     return (
-      <motion.div
-        className="space-y-4"
-        variants={slidingAnimation}
-      >
+      <motion.div className="space-y-4" variants={slidingAnimation}>
         <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#F8F7F2]">
           Popular destinations
         </h3>
@@ -50,10 +50,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
 
   if (type === "dates") {
     return (
-      <motion.div
-        className="space-y-4"
-        variants={slidingAnimation}
-      >
+      <motion.div className="space-y-4" variants={slidingAnimation}>
         <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#F8F7F2]">
           When will you be there?
         </h3>
@@ -107,10 +104,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
 
   if (type === "guests") {
     return (
-      <motion.div
-        className="space-y-4"
-        variants={slidingAnimation}
-      >
+      <motion.div className="space-y-4" variants={slidingAnimation}>
         <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#F8F7F2]">
           Who will be there?
         </h3>

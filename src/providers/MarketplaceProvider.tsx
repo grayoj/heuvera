@@ -9,7 +9,12 @@ import {
   useRef,
   useEffect,
 } from "react";
-import { LucideHeart, LucideCompass, LucideLogIn, LucideUser } from "lucide-react";
+import {
+  LucideHeart,
+  LucideCompass,
+  LucideLogIn,
+  LucideUser,
+} from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { HeuveraLogo } from "@heuvera/components/logo";
 import useIsMobile from "@heuvera/hooks/IsMobile";
@@ -131,7 +136,9 @@ export function MarketplaceProvider({
               <div className="w-full gap-2 flex items-center justify-center backdrop-blur-none">
                 <HeuveraLogo width={35} height={35} />
                 <div className="max-w-fit w-full px-3 py-1 border rounded-full flex items-center justify-center border-[#7B4F3A] dark:border-[#8B5F4D]">
-                  <h1 className="text-[#7B4F3A] text-xs dark:text-[#8B5F4D]">BETA</h1>
+                  <h1 className="text-[#7B4F3A] text-xs dark:text-[#8B5F4D]">
+                    BETA
+                  </h1>
                 </div>
               </div>
             ) : (
@@ -139,7 +146,9 @@ export function MarketplaceProvider({
               <div className="flex-shrink-0 w-32 flex items-center justify-between">
                 <HeuveraLogo width={35} height={35} />
                 <div className="max-w-fit w-full px-4 py-1 border rounded-full flex items-center justify-center border-[#7B4F3A] dark:border-[#8B5F4D]">
-                  <h1 className="text-[#7B4F3A] text-sm dark:text-[#8B5F4D]">BETA</h1>
+                  <h1 className="text-[#7B4F3A] text-sm dark:text-[#8B5F4D]">
+                    BETA
+                  </h1>
                 </div>
               </div>
             )}
@@ -150,10 +159,11 @@ export function MarketplaceProvider({
                     key={index}
                     href={content.link}
                     prefetch={true}
-                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${pathname === content.link
-                      ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
-                      : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-102 hover:font-medium"
-                      }`}
+                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
+                      pathname === content.link
+                        ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
+                        : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-102 hover:font-medium"
+                    }`}
                   >
                     {content.title}
                   </Link>
@@ -214,13 +224,16 @@ export function MarketplaceProvider({
                           ) : isAuthenticated ? (
                             <Avatar className="rounded-full overflow-hidden block">
                               <AvatarImage
-                                src={user?.picture || '/no-avatar.jpg'}
+                                src={user?.picture || "/no-avatar.jpg"}
                                 alt="avatar"
                               />
                               <AvatarFallback>FG</AvatarFallback>
                             </Avatar>
                           ) : (
-                            <a className="cursor-pointer" href="/api/auth/login">
+                            <a
+                              className="cursor-pointer"
+                              href="/api/auth/login"
+                            >
                               <div className="size-[1.25rem] p-1 text-[#323232] dark:text-[#F8F7F2] ring-[#323232] dark:ring-[#F8F7F2] ring rounded-full flex items-center justify-center">
                                 <LucideUser />
                               </div>
@@ -250,7 +263,7 @@ export function MarketplaceProvider({
           </div>
         )}
       </div>
-    </MarketplaceContext.Provider >
+    </MarketplaceContext.Provider>
   );
 }
 

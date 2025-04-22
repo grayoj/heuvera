@@ -27,6 +27,7 @@ function SidebarItem({
   return (
     <Link
       href={fullRoute}
+      prefetch={true}
       className={`flex items-center gap-4 md:gap-0 lg:gap-0 xl:gap-0 2xl:gap-1 md:px-1 xl:px-4 h-10 md:py-4 
         ${isActive ? "text-[#7B4F3A] dark:text-[#8B5F4D] border-b-2 border-b-[#7B4F3A] dark:border-b-[#8B5F4D]" : "border-b-2 border-transparent"}
       `}

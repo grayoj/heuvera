@@ -4,6 +4,11 @@ import { Button } from "../ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { motion } from "framer-motion";
 import Input from "../ui/LabelInput";
+import {
+  ButtonAnimation,
+  containerVariants,
+  itemVariants,
+} from "../animations/anim";
 
 export default function PersonalForm({
   userImage,
@@ -12,26 +17,6 @@ export default function PersonalForm({
   userImage: string;
   handleImageUpload: () => void;
 }) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 300, damping: 24 },
-    },
-  };
-
   const avatarVariants = {
     hover: { scale: 1.05, boxShadow: "0px 0px 8px rgba(0,0,0,0.2)" },
   };
@@ -62,7 +47,7 @@ export default function PersonalForm({
             </p>
           </div>
           <div className="flex space-x-5">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="default"
                 className="bg-[#7B4F3A] dark:bg-[#8B5F4D] hover:bg-[#664130] text-white hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -72,7 +57,7 @@ export default function PersonalForm({
                 Upload Image
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="outline"
                 className="hover:cursor-pointer px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -103,7 +88,7 @@ export default function PersonalForm({
             className="w-12/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
           />
           <div className="w-full flex items-center justify-between">
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="outline"
                 className="max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -117,7 +102,7 @@ export default function PersonalForm({
                 Add another email
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="outline"
                 className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -140,7 +125,7 @@ export default function PersonalForm({
             className="w-12/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
           />
           <div className="w-full flex items-center flex-wrap justify-between gap-5">
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="outline"
                 className="max-w-fit text-xs px-3 md:px-4 md:text-sm lg:text-xs xl:text-sm"
@@ -154,7 +139,7 @@ export default function PersonalForm({
                 Add another phone number
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="outline"
                 className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -167,7 +152,7 @@ export default function PersonalForm({
       </motion.div>
 
       <motion.div
-        className="w-full flex flex-row w-full gap-5 space-y-6 border-b items-center justify-between"
+        className="w-full flex flex-row w-full gap-5 space-y-6 items-center justify-between"
         variants={itemVariants}
       >
         <div className="flex flex-col w-full gap-5 pb-5">
@@ -177,7 +162,7 @@ export default function PersonalForm({
             className="w-12/12 md:w-12/12 lg:w-12/12 xl:w-9/12 2xl:w-6/12"
           />
           <div className="w-full flex items-center justify-between gap-5">
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="outline"
                 className="max-w-fit px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -191,7 +176,7 @@ export default function PersonalForm({
                 Add another address
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="outline"
                 className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"

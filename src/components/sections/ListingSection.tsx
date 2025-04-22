@@ -5,8 +5,8 @@ import { PropertyData } from "../data/PropertyData";
 import { motion } from "framer-motion";
 
 type ListingsSectionProps = {
-  selectedCategory: { 
-    type: string; 
+  selectedCategory: {
+    type: string;
     name: string;
   };
   handleCloseFiltered: () => void;
@@ -18,22 +18,25 @@ export const ListingsSection = memo(function ListingsSection({
 }: ListingsSectionProps) {
   const filteredProperties = useMemo(() => {
     if (selectedCategory.type === "property") {
-      return PropertyData.filter(property => 
-        property.propertyCategory === selectedCategory.name || 
-        property.amenities?.includes(selectedCategory.name)
+      return PropertyData.filter(
+        (property) =>
+          property.propertyCategory === selectedCategory.name ||
+          property.amenities?.includes(selectedCategory.name),
       );
     } else if (selectedCategory.type === "location") {
-      return PropertyData.filter(property => 
-        property.propertyDetails?.location === selectedCategory.name || 
-        property.propertyDetails?.location.includes(selectedCategory.name)
+      return PropertyData.filter(
+        (property) =>
+          property.propertyDetails?.location === selectedCategory.name ||
+          property.propertyDetails?.location.includes(selectedCategory.name),
       );
     }
     return PropertyData;
   }, [selectedCategory]);
 
-  const headingText = selectedCategory.type === "property"
-    ? selectedCategory.name
-    : `Properties in ${selectedCategory.name}`;
+  const headingText =
+    selectedCategory.type === "property"
+      ? selectedCategory.name
+      : `Properties in ${selectedCategory.name}`;
 
   return (
     <motion.div
@@ -71,7 +74,7 @@ export const ListingsSection = memo(function ListingsSection({
           hidden: { opacity: 0 },
           visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.1 }
+            transition: { staggerChildren: 0.1 },
           },
         }}
       >
@@ -92,13 +95,15 @@ export const ListingsSection = memo(function ListingsSection({
       </motion.div>
 
       {filteredProperties.length === 0 && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
           className="w-full text-center py-16"
         >
-          <p className="text-lg text-gray-500">No properties found matching your criteria.</p>
+          <p className="text-lg text-gray-500">
+            No properties found matching your criteria.
+          </p>
         </motion.div>
       )}
     </motion.div>

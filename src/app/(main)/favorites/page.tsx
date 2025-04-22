@@ -10,18 +10,23 @@ import dynamic from "next/dynamic";
 import { ViewMode } from "@heuvera/types/types";
 import LazyPropertyCard from "@heuvera/components/lazy/LazyPropertyCard";
 
-const FavoritesHeader = dynamic(() => import("@heuvera/components/header/FavoritesHeader"));
-const PropertyCard = dynamic(() => import("@heuvera/components/cards/PropertyCards/PropertyCard"),
+const FavoritesHeader = dynamic(
+  () => import("@heuvera/components/header/FavoritesHeader"),
+);
+const PropertyCard = dynamic(
+  () => import("@heuvera/components/cards/PropertyCards/PropertyCard"),
   {
-    loading: () => <LazyPropertyCard/>
-  });
-const PropertyListView = dynamic(() => import("@heuvera/components/cards/PropertyCards/PropertyList"));
+    loading: () => <LazyPropertyCard />,
+  },
+);
+const PropertyListView = dynamic(
+  () => import("@heuvera/components/cards/PropertyCards/PropertyList"),
+);
 export default function Favorites() {
   const isMobile = useIsMobile();
   const [loading, setLoading] = useState<boolean>(true);
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [sortOption, setSortOption] = useState<SortOption | "">("");
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,12 +59,12 @@ export default function Favorites() {
             No Favorites Yet
           </h2>
           <p className="text-gray-400 text-[#323232] dark:text-[#555555] max-w-md">
-            Explore amazing properties and mark them as favorites to see them here.
+            Explore amazing properties and mark them as favorites to see them
+            here.
           </p>
         </motion.div>
       ) : (
         <>
-
           <>
             {/* Grid View */}
             {viewMode === "grid" && (
@@ -121,7 +126,6 @@ export default function Favorites() {
               </motion.div>
             )}
           </>
-
         </>
       )}
     </div>

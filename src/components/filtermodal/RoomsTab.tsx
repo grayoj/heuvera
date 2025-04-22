@@ -18,7 +18,7 @@ export function RoomsTab({
               <button
                 key={`${type}-${num}`}
                 className={cn(
-                  "rounded-full py-1 px-1 sm:py-2 sm:px-2 md:py-1 md:px-3 text-xs sm:text-sm",
+                  "rounded-full py-1 px-1 sm:py-2 sm:px-2 md:py-1 md:px-3 text-xs sm:text-smzz",
                   { bedrooms, beds, bathrooms }[type] === num
                     ? "bg-[#F3F2EC] dark:bg-[#444444] shadow shadow-lg"
                     : "bg-[#E3E2D9] dark:bg-[#555555]",

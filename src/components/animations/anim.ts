@@ -46,7 +46,6 @@ export const slideInRight = {
   },
 };
 
-
 // animations.ts
 export const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -78,21 +77,41 @@ export const slideOutY = (delay = 0) => ({
   transition: { duration: 0.7, delay },
 });
 
-export const slidingAnimation = ({
+export const slidingAnimation = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   transition: { duration: 0.2 },
-});
+};
 
 export const containerAnimation = (x = 0, delay = 0) => ({
   initial: { opacity: 0, x: x },
   animate: { opacity: 1, x: 0 },
   transition: { duration: 0.3, delay: delay },
   whileHover: { scale: 1.02 },
-  whileTap: { scale: 0.98 }
-})
+  whileTap: { scale: 0.98 },
+});
 
-export const ButtonAnimation = ({
+export const ButtonAnimation = {
   whileHover: { scale: 1.1 },
-  whileTap: { scale: 0.9 }
-})
+  whileTap: { scale: 0.9 },
+};
+
+export const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+export const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 300, damping: 24 },
+  },
+};

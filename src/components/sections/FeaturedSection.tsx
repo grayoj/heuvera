@@ -33,11 +33,11 @@ export const FeaturedSection = memo(function FeaturedSection({
   const handleLocation0Click = useCallback(() => {
     handleLocationClick(propertyLocation[0].category);
   }, [handleLocationClick, propertyLocation]);
-  
+
   const handleLocation1Click = useCallback(() => {
     handleLocationClick(propertyLocation[1].category);
   }, [handleLocationClick, propertyLocation]);
-  
+
   const handleLocation2Click = useCallback(() => {
     handleLocationClick(propertyLocation[2].category);
   }, [handleLocationClick, propertyLocation]);
@@ -85,7 +85,7 @@ export const FeaturedSection = memo(function FeaturedSection({
         </motion.div>
       </motion.div>
 
-      <LocationsSection 
+      <LocationsSection
         propertyLocation={propertyLocation}
         handleLocation0Click={handleLocation0Click}
         handleLocation1Click={handleLocation1Click}
@@ -95,12 +95,11 @@ export const FeaturedSection = memo(function FeaturedSection({
   );
 });
 
-
-const LocationsSection = memo(function LocationsSection({ 
+const LocationsSection = memo(function LocationsSection({
   propertyLocation,
   handleLocation0Click,
   handleLocation1Click,
-  handleLocation2Click
+  handleLocation2Click,
 }: {
   propertyLocation: PropertyItem[];
   handleLocation0Click: () => void;

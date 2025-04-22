@@ -9,13 +9,19 @@ import { HeaderSection } from "@heuvera/components/sections/HeaderSection";
 import { CategoriesSection } from "@heuvera/components/sections/CategoriesSection";
 
 const ListingsSection = dynamic(
-  () => import("@heuvera/components/sections/ListingSection").then(mod => ({ default: mod.ListingsSection })),
-  { loading: () => null }
+  () =>
+    import("@heuvera/components/sections/ListingSection").then((mod) => ({
+      default: mod.ListingsSection,
+    })),
+  { loading: () => null },
 );
 
 const FeaturedSection = dynamic(
-  () => import("@heuvera/components/sections/FeaturedSection").then(mod => ({ default: mod.FeaturedSection })),
-  { loading: () => null }
+  () =>
+    import("@heuvera/components/sections/FeaturedSection").then((mod) => ({
+      default: mod.FeaturedSection,
+    })),
+  { loading: () => null },
 );
 
 const Discover = memo(function Discover() {

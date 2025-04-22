@@ -6,6 +6,7 @@ import Input from "./LabelInput";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import { motion } from "framer-motion";
+import { ButtonAnimation } from "../animations/anim";
 
 interface ProfileBannerProps {
   toggleHelp: () => void;
@@ -46,11 +47,7 @@ export default function ProfileBanner({
           Account {">"}{" "}
           <span className="font-semibold">{formattedPathSegment}</span>
         </p>
-        <Input
-          className="w-48 md:w-96 flex items-center justify-center text-center font-serif"
-          placeholder="Search"
-        />
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <motion.div variants={ButtonAnimation}>
           <Button
             variant="outline"
             className="bg-[#F8F7F2] dark:bg-[#333333] hover:cursor-pointer font-serif"

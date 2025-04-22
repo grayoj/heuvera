@@ -26,7 +26,6 @@ interface ProfileDropdownProps {
 }
 
 function getInitials(nameOrEmail?: string) {
-
   if (!nameOrEmail) return "U";
   const parts = nameOrEmail.trim().split(" ");
   if (parts.length >= 2) {

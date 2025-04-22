@@ -1,13 +1,17 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { fadeUp, fadeIn, slideInY, slideInX, slideOutY } from "./animations/anim";
-
+import {
+  fadeUp,
+  fadeIn,
+  slideInY,
+  slideInX,
+  slideOutY,
+} from "./animations/anim";
 
 export default function Hero() {
   return (
     <div className="relative">
       <div className="bg-[#7B4F3A] rounded-lg md:rounded-3xl w-full h-[200px] md:h-[300px] lg:h-[350px] xl:h-[500px] 2xl:h-[600px] flex flex-col flex-1 justify-center items-center relative overflow-hidden">
-        
         <motion.h1
           className="text-[#F8F7F2] dark:text-[#323232] text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif text-center z-10"
           {...fadeUp}
@@ -16,7 +20,9 @@ export default function Hero() {
           <motion.span className="text-[#B65E33]" {...fadeIn(0.4)}>
             exclusive homes
           </motion.span>{" "}
-          that<br />fit your life style
+          that
+          <br />
+          fit your life style
         </motion.h1>
 
         <motion.div

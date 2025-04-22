@@ -2,10 +2,15 @@
 
 import React from "react";
 import { Grid, List, LucideListFilter } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 import { SortOption } from "@heuvera/types/map";
 import { FavoritesHeaderProps } from "@heuvera/types/types";
-
 
 const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
   sortOption,
@@ -14,7 +19,6 @@ const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
   setViewMode,
   isMobile = false,
 }) => {
-
   const SortOption = [
     {
       sort: "Recently Added" as SortOption,
@@ -47,8 +51,6 @@ const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
             ))}
           </SelectContent>
         </Select>
-
-
       </div>
       <div className={`flex items-center ${isMobile ? "" : "ml-auto"}`}>
         <div className="flex items-center space-x-2 bg-[#FBFAF6] dark:bg-[#444444] rounded-full p-1">
