@@ -126,7 +126,7 @@ export default function GeneralSettings({
   };
 
   const saveChanges = () => {
-    // Here you would typically send these settings to your backend
+    
     console.log({
       theme: activeTheme,
       language,
@@ -142,7 +142,6 @@ export default function GeneralSettings({
     }, 3000);
   };
 
-  // Helper function to get language label
   const getLanguageLabel = (code: LanguageOption) => {
     const labels: Record<LanguageOption, string> = {
       "en-US": "English (US)",
@@ -152,6 +151,12 @@ export default function GeneralSettings({
       "zh-CN": "中文",
     };
     return labels[code];
+  };
+
+  const [isHelpVisible, setIsHelpVisible] = useState(false);
+
+  const toggleHelp = () => {
+    setIsHelpVisible(!isHelpVisible);
   };
 
   return (
@@ -164,6 +169,8 @@ export default function GeneralSettings({
       <AccountHeader
         heading="General Settings"
         subheading="Manage your application preferences and appearance"
+        toggleHelp={toggleHelp}
+        isHelpVisible={isHelpVisible}
       />
       {/* Theme Settings */}
       <motion.div className="pb-5 border-b" variants={itemVariants}>

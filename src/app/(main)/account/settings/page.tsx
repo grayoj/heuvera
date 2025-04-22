@@ -1,18 +1,11 @@
 "use client";
 
-import GeneralSettings from "@heuvera/components/settings/GeneralSettings";
-import { useTheme } from "@heuvera/hooks/ThemeContext";
+import dynamic from "next/dynamic";
 
-export default function GeneralSettingsPage() {
-  const { setTheme } = useTheme();
+const GeneralSettingsPage = dynamic(() => import("@heuvera/components/profile/guests/GeneralSettings"));
 
-  const handleThemeChange = (newTheme: "light" | "dark" | "system") => {
-    setTheme(newTheme);
-  };
-
+export default function GeneralSettings() {
   return (
-    <div className="py-0 md:py-8">
-      <GeneralSettings onThemeChange={handleThemeChange} />
-    </div>
+    <GeneralSettingsPage />
   );
 }
