@@ -77,3 +77,22 @@ export const slideOutY = (delay = 0) => ({
   animate: { y: 0, opacity: 1 },
   transition: { duration: 0.7, delay },
 });
+
+export const slidingAnimation = ({
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.2 },
+});
+
+export const containerAnimation = (x = 0, delay = 0) => ({
+  initial: { opacity: 0, x: x },
+  animate: { opacity: 1, x: 0 },
+  transition: { duration: 0.3, delay: delay },
+  whileHover: { scale: 1.02 },
+  whileTap: { scale: 0.98 }
+})
+
+export const ButtonAnimation = ({
+  whileHover: { scale: 1.1 },
+  whileTap: { scale: 0.9 }
+})

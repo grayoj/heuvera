@@ -7,32 +7,13 @@ import { PropertyData } from "@heuvera/components/data/PropertyData";
 import useIsMobile from "@heuvera/hooks/IsMobile";
 import { Property, SortOption } from "@heuvera/types/map";
 import dynamic from "next/dynamic";
-import { SkeletalPreloader } from "@heuvera/components/skeletalpreloader/propertycards";
 import { ViewMode } from "@heuvera/types/types";
+import LazyPropertyCard from "@heuvera/components/lazy/LazyPropertyCard";
 
 const FavoritesHeader = dynamic(() => import("@heuvera/components/header/FavoritesHeader"));
 const PropertyCard = dynamic(() => import("@heuvera/components/cards/PropertyCards/PropertyCard"),
   {
-    loading: () => <div className="w-full flex justify-center">
-      <div className="w-full md:max-w-[300px] animate-pulse border rounded-lg">
-        <div className="bg-gray-200 dark:bg-[#444444] w-full h-60 md:h-36 lg:h-28 xl:h-36 2xl:h-44 rounded-t-lg">
-          <div className="w-full flex justify-end p-4">
-            <div className="size-8 bg-gray-300 dark:bg-[#55555577] rounded"></div>
-          </div>
-        </div>
-        <div className="space-y-3 p-4">
-          <div className="flex justify-between items-center">
-            <div className="h-4 bg-gray-200 dark:bg-[#444444] rounded w-3/4"></div>
-            <div className="h-4 bg-gray-200 dark:bg-[#444444] rounded w-1/12"></div>
-          </div>
-          <div className="h-4 bg-gray-200 dark:bg-[#444444] rounded w-1/2"></div>
-          <div className="flex justify-between items-center">
-            <div className="h-4 bg-gray-200 dark:bg-[#444444] rounded w-2/3"></div>
-            <div className="h-4 bg-gray-200 dark:bg-[#444444] rounded w-1/6"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    loading: () => <LazyPropertyCard/>
   });
 const PropertyListView = dynamic(() => import("@heuvera/components/cards/PropertyCards/PropertyList"));
 export default function Favorites() {
@@ -68,13 +49,12 @@ export default function Favorites() {
           animate={{ opacity: 1 }}
           className="flex flex-col items-center justify-center h-[70vh] text-center"
         >
-          <LucideStar size={64} className="text-gray-300 mb-4" />
-          <h2 className="text-3xl font-bold text-gray-600 mb-2">
+          <LucideStar size={64} className="text-[#A7A7A7] mb-4" />
+          <h2 className="text-3xl font-bold text-[#A7A7A7] mb-2">
             No Favorites Yet
           </h2>
-          <p className="text-gray-400 max-w-md">
-            Explore amazing properties and mark them as favorites to see them
-            here.
+          <p className="text-gray-400 text-[#323232] dark:text-[#555555] max-w-md">
+            Explore amazing properties and mark them as favorites to see them here.
           </p>
         </motion.div>
       ) : (

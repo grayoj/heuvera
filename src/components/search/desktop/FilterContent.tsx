@@ -3,6 +3,7 @@ import { LucideMapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Calendar } from "../../ui/calendar";
 import { FilterContentProps } from "@heuvera/utils/props";
+import { ButtonAnimation, containerAnimation, slidingAnimation } from "@heuvera/components/animations/anim";
 
 const FilterContent: React.FC<FilterContentProps> = ({
   type,
@@ -12,12 +13,11 @@ const FilterContent: React.FC<FilterContentProps> = ({
   setCheckOutDate,
 }) => {
   if (type === "location") {
+
     return (
       <motion.div
         className="space-y-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
+        variants={slidingAnimation}
       >
         <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#F8F7F2]">
           Popular destinations
@@ -52,9 +52,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
     return (
       <motion.div
         className="space-y-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
+        variants={slidingAnimation}
       >
         <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#F8F7F2]">
           When will you be there?
@@ -62,11 +60,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
         <div className="grid grid-cols-2 gap-4">
           <motion.div
             className="p-4 border border-[#E3E2D9] dark:border-[#555555] rounded-lg bg-white dark:bg-[#555555] shadow-sm hover:shadow-md transition-shadow"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            variants={containerAnimation(-20, 0.1)}
           >
             <p className="text-sm mb-2 text-[#7B4F3A] dark:text-[#8B5F4D] font-medium">
               Check in
@@ -87,11 +81,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
           </motion.div>
           <motion.div
             className="p-4 border border-[#E3E2D9] dark:border-[#555555] rounded-lg bg-white dark:bg-[#555555] shadow-sm hover:shadow-md transition-shadow"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            variants={containerAnimation(20, 0.2)}
           >
             <p className="text-sm mb-2 text-[#7B4F3A] dark:text-[#8B5F4D] font-medium">
               Check out
@@ -119,9 +109,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
     return (
       <motion.div
         className="space-y-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
+        variants={slidingAnimation}
       >
         <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#F8F7F2]">
           Who will be there?
@@ -156,16 +144,14 @@ const FilterContent: React.FC<FilterContentProps> = ({
               <div className="flex items-center gap-4">
                 <motion.button
                   className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#777777] flex items-center justify-center text-[#323232] dark:text-[#F8F7F2] bg-white dark:bg-[#555555]"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  variants={ButtonAnimation}
                 >
                   -
                 </motion.button>
                 <span className="w-5 text-center">0</span>
                 <motion.button
                   className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#777777] flex items-center justify-center text-[#323232] dark:text-[#F8F7F2] bg-white dark:bg-[#555555]"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  variants={ButtonAnimation}
                 >
                   +
                 </motion.button>

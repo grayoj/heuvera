@@ -2,18 +2,9 @@
 
 import React from "react";
 import { Grid, List, LucideListFilter } from "lucide-react";
-
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { SortOption } from "@heuvera/types/map";
-import { ViewMode } from "@heuvera/types/types";
-
-type FavoritesHeaderProps = {
-  sortOption: SortOption | "";
-  setSortOption: (value: SortOption | "") => void;
-  viewMode: ViewMode;
-  setViewMode: (view: ViewMode) => void;
-  isMobile?: boolean;
-};
+import { FavoritesHeaderProps } from "@heuvera/types/types";
 
 
 const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
@@ -23,7 +14,7 @@ const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
   setViewMode,
   isMobile = false,
 }) => {
-  
+
   const SortOption = [
     {
       sort: "Recently Added" as SortOption,
