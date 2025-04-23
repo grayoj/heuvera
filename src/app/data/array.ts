@@ -170,12 +170,14 @@ export const pastBookings = [
 
 export const upcomingBookings = [
   {
+    id:1,
     guestName: "Godiwn Praise",
     date: "Mar 12, 2025 - Mar 21, 2025",
     propertyName: "George duplex",
     status: "Pending",
   },
   {
+    id:2,
     guestName: "Godiwn Praise",
     date: "Mar 12, 2025 - Mar 21, 2025",
     propertyName: "George duplex",
@@ -184,6 +186,7 @@ export const upcomingBookings = [
 ];
 export const pastAdminBookings = [
   {
+    id:1,
     image: "hheye",
     name: "George’s Semi Detached",
     location: "Behind Block C, Abuja",
@@ -193,6 +196,7 @@ export const pastAdminBookings = [
     noOfGuests: 3,
   },
   {
+    id:2,
     image: "hheye",
     name: "Emma Semi Detached",
     location: "Behind Block C, Abuja",
@@ -402,7 +406,7 @@ export const earningsTable = [
     method: "Bank Transfer",
     date: "Mar 12, 2025",
     amount: "₦2,500,000",
-    status: "Completed",
+    status: "Successful",
   },
 ];
 

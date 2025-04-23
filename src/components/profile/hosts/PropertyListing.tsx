@@ -1,28 +1,22 @@
 "use client";
 
 import { propertyListings } from "@heuvera/app/data/array";
-import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import { Button } from "@heuvera/components/ui/button";
 import PropertyCard from "@heuvera/components/property/PropertyCard";
 import PageLayout from "@heuvera/components/ui/PageLayout";
 import { useState } from "react";
 import AddPropertyModal from "@heuvera/components/property/Modals/AddPropertyModal";
 import EditPropertyModal from "@heuvera/components/property/Modals/EditPropertyModal";
+import SettingsHeader from "@heuvera/components/header/SettingsHeader";
 
 export default function PropertyListingsPage() {
   const [open, setOpen] = useState("");
-  const [isHelpVisible, setIsHelpVisible] = useState(false);
-
-  const toggleHelp = () => {
-    setIsHelpVisible(!isHelpVisible);
-  };
+  
   return (
     <PageLayout>
-      <AccountHeader
+      <SettingsHeader
         heading="Property Listings"
         subheading="Manage and view all properties you’ve listed for rent or lease"
-        toggleHelp={toggleHelp} 
-        isHelpVisible={isHelpVisible}
       >
         <Button
           onClick={() => setOpen("add")}
@@ -31,7 +25,7 @@ export default function PropertyListingsPage() {
         >
           + Add another property
         </Button>
-      </AccountHeader>
+      </SettingsHeader>
 
       {propertyListings.map((property, index) => (
         <PropertyCard

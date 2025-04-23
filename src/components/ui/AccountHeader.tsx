@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
 import { LucideHelpCircle } from "lucide-react";
-import { ButtonAnimation } from "../animations/anim";
 import { Button } from "./button";
-
-
-
+import { ButtonAnimation } from "../animations/anim";
 
 export default function AccountHeader({
   heading,

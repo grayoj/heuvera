@@ -10,13 +10,12 @@ import {
 import Help from "@heuvera/components/ui/Help";
 import { Plus, Upload } from "lucide-react";
 import { useState } from "react";
-import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import PageLayout from "@heuvera/components/ui/PageLayout";
 import { motion } from "framer-motion";
+import SettingsHeader from "@heuvera/components/header/SettingsHeader";
 
 export default function PersonInfo() {
     const [userImage, setUserImage] = useState("");
-    const [isHelpVisible, setIsHelpVisible] = useState(false);
 
     function handleImageUpload() {
         const fileInput = document.createElement("input");
@@ -34,9 +33,6 @@ export default function PersonInfo() {
         };
         fileInput.click();
     }
-    const toggleHelp = () => {
-        setIsHelpVisible(!isHelpVisible);
-    };
 
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
@@ -49,12 +45,10 @@ export default function PersonInfo() {
 
     return (
         <PageLayout>
-            <AccountHeader
+            <SettingsHeader
                 heading="Admin Info"
                 subheading="Update your profile, contact details, and preferences to personalize
               your experience."
-                toggleHelp={toggleHelp}
-                isHelpVisible={isHelpVisible}
             >
                 <Button
                     variant="default"
@@ -62,7 +56,7 @@ export default function PersonInfo() {
                 >
                     Delete Account
                 </Button>
-            </AccountHeader>
+            </SettingsHeader>
 
             <div className="flex justify-between">
                 <form className="flex flex-col justify-between w-full pr-5">
@@ -202,8 +196,6 @@ export default function PersonInfo() {
                         </div>
                     </motion.div>
                 </form>
-
-                <Help isVisible={isHelpVisible} />
             </div>
         </PageLayout>
     );
