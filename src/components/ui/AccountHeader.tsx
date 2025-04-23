@@ -34,17 +34,19 @@ export default function AccountHeader({
             {subheading}
           </p>
         </div>
-        {children}
-        <motion.div variants={ButtonAnimation}>
-          <Button
-            variant="outline"
-            className="bg-[#F8F7F2] dark:bg-[#333333] hover:cursor-pointer font-serif"
-            onClick={toggleHelp}
-          >
-            <LucideHelpCircle />
-            {isHelpVisible ? "Close Help" : "Help"}
-          </Button>
-        </motion.div>
+        <div className="flex gap-4">
+          {children}
+          <motion.div variants={ButtonAnimation}>
+            <Button
+              variant="outline"
+              className="bg-[#F8F7F2] dark:bg-[#333333] hover:cursor-pointer font-serif"
+              onClick={toggleHelp}
+            >
+              <LucideHelpCircle />
+              {isHelpVisible ? "Close Help" : "Help"}
+            </Button>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
