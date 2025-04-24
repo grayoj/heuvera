@@ -1,18 +1,19 @@
-import ReviewTable from "@heuvera/components/review/ReviewTable";
-import AccountHeader from "@heuvera/components/ui/AccountHeader";
+import SettingsHeader from "@heuvera/components/header/SettingsHeader";
 import PageLayout from "@heuvera/components/ui/PageLayout";
 import Stars from "@heuvera/components/ui/Stars";
+import dynamic from "next/dynamic";
+
+const ReviewTable = dynamic(()=> import("@heuvera/components/review/ReviewTable"));
 
 export default function ReviewsPage() {
   return (
     <PageLayout>
-      <AccountHeader
+      <SettingsHeader
         heading="Reviews & Payout"
         subheading="View guest feedback, monitor your ratings, and maintain your reputation."
       >
         <Stars />
-      </AccountHeader>
-
+      </SettingsHeader>
       <ReviewTable />
     </PageLayout>
   );

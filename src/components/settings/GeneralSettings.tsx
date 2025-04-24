@@ -15,6 +15,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@heuvera/components/ui/button";
 import AccountHeader from "../ui/AccountHeader";
+import SettingsHeader from "../header/SettingsHeader";
+import { ButtonAnimation } from "../animations/anim";
 
 type ThemeOption = "light" | "dark" | "system";
 type LanguageOption = "en-US" | "fr-FR" | "es-ES" | "de-DE" | "zh-CN";
@@ -166,11 +168,9 @@ export default function GeneralSettings({
       initial="hidden"
       animate="visible"
     >
-      <AccountHeader
+      <SettingsHeader
         heading="General Settings"
         subheading="Manage your application preferences and appearance"
-        toggleHelp={toggleHelp}
-        isHelpVisible={isHelpVisible}
       />
       {/* Theme Settings */}
       <motion.div className="pb-5 border-b" variants={itemVariants}>
@@ -183,7 +183,7 @@ export default function GeneralSettings({
           </div>
 
           <div className="flex space-x-3 mt-4 lg:mt-0">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant={activeTheme === "light" ? "default" : "outline"}
                 className={`px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm flex items-center gap-2 ${
@@ -198,7 +198,7 @@ export default function GeneralSettings({
               </Button>
             </motion.div>
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant={activeTheme === "dark" ? "default" : "outline"}
                 className={`px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm flex items-center gap-2 ${
@@ -213,7 +213,7 @@ export default function GeneralSettings({
               </Button>
             </motion.div>
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant={activeTheme === "system" ? "default" : "outline"}
                 className={`px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm flex items-center gap-2 ${
@@ -244,8 +244,7 @@ export default function GeneralSettings({
           <div className="flex flex-col space-y-3 mt-4 lg:mt-0">
             <div className="flex space-x-3">
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                variants={ButtonAnimation}
               >
                 <Button
                   variant="outline"
@@ -257,8 +256,7 @@ export default function GeneralSettings({
               </motion.div>
 
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                variants={ButtonAnimation}
               >
                 <Button
                   variant="outline"
@@ -306,7 +304,7 @@ export default function GeneralSettings({
       <motion.div className="pb-5 border-b" variants={itemVariants}>
         <div className="flex mt-5 gap-3 md:gap-3 lg:gap-0 flex-col md:flex-col lg:flex-row justify-between">
           <div>
-            <h2 className="text-[1.25rem] font-normal  flex items-center gap-2">
+            <h2 className="text-[1.25rem] text-[#333333] dark:text-[#F8F7F2] font-normal flex items-center gap-2">
               <Bell size={20} /> Notification Preferences
             </h2>
             <p className="text-[#898989] dark:text-[#666666] text-sm md:text-base lg:text-xs xl:text-base">
@@ -315,7 +313,7 @@ export default function GeneralSettings({
           </div>
 
           <div className="flex space-x-3 mt-4 lg:mt-0">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="outline"
                 className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -338,7 +336,7 @@ export default function GeneralSettings({
           >
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded-md">
               <div>
-                <h3 className="font-medium">Email Notifications</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">Email Notifications</h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Receive updates via email
                 </p>
@@ -356,7 +354,7 @@ export default function GeneralSettings({
             </div>
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded-md">
               <div>
-                <h3 className="font-medium">Push Notifications</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">Push Notifications</h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Notifications on your device
                 </p>
@@ -374,7 +372,7 @@ export default function GeneralSettings({
             </div>
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded-md">
               <div>
-                <h3 className="font-medium">SMS Notifications</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">SMS Notifications</h3>
                 <p className="text-xs text-[#A7A7A7]">Receive text messages</p>
               </div>
               <Button
@@ -390,7 +388,7 @@ export default function GeneralSettings({
             </div>
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded-md">
               <div>
-                <h3 className="font-medium">In-App Notifications</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">In-App Notifications</h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Notifications inside the app
                 </p>
@@ -414,7 +412,7 @@ export default function GeneralSettings({
       <motion.div className="pb-5 border-b" variants={itemVariants}>
         <div className="flex mt-5 gap-3 md:gap-3 lg:gap-0 flex-col md:flex-col lg:flex-row justify-between">
           <div>
-            <h2 className="text-[1.25rem] font-normal  flex items-center gap-2">
+            <h2 className="text-[1.25rem] font-normal text-[#333333] dark:text-[#F8F7F2] flex items-center gap-2">
               <ShieldCheck size={20} /> Privacy & Security
             </h2>
             <p className="text-[#898989] dark:text-[#666666] text-sm md:text-base lg:text-xs xl:text-base">
@@ -423,7 +421,7 @@ export default function GeneralSettings({
           </div>
 
           <div className="flex space-x-3 mt-4 lg:mt-0">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="outline"
                 className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -443,7 +441,7 @@ export default function GeneralSettings({
             exit={{ opacity: 0, height: 0 }}
           >
             <div>
-              <h3 className="font-medium mb-2">Profile Visibility</h3>
+              <h3 className="font-medium mb-2 text-[#333333] dark:text-[#F8F7F2]">Profile Visibility</h3>
               <div className="flex space-x-3">
                 <Button
                   variant={
@@ -498,7 +496,7 @@ export default function GeneralSettings({
 
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded">
               <div>
-                <h3 className="font-medium">Data Sharing</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">Data Sharing</h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Allow anonymous usage data to improve services
                 </p>
@@ -517,7 +515,7 @@ export default function GeneralSettings({
 
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded">
               <div>
-                <h3 className="font-medium">Two-Factor Authentication</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">Two-Factor Authentication</h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Add extra security to your account
                 </p>
@@ -541,7 +539,7 @@ export default function GeneralSettings({
       <motion.div className="pb-5 border-b" variants={itemVariants}>
         <div className="flex mt-5 gap-3 md:gap-3 lg:gap-0 flex-col md:flex-col lg:flex-row justify-between">
           <div>
-            <h2 className="text-[1.25rem] font-normal  flex items-center gap-2">
+            <h2 className="text-[1.25rem] font-normal text-[#333333] dark:text-[#F8F7F2] flex items-center gap-2">
               <UserCog size={20} /> Account Preferences
             </h2>
             <p className="text-[#898989] dark:text-[#666666] text-sm md:text-base lg:text-xs xl:text-base">
@@ -552,14 +550,14 @@ export default function GeneralSettings({
           <div className="flex items-center space-x-3 mt-4 lg:mt-0">
             {changesSaved && (
               <motion.span
-                className="text-green-600 flex items-center text-sm"
+                className="text-[#3E8E41] dark:text-[#34C759] flex items-center text-sm"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
                 <Check size={16} className="mr-1" /> Changes saved!
               </motion.span>
             )}
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={ButtonAnimation}>
               <Button
                 variant="default"
                 className="bg-[#7B4F3A] dark:bg-[#8B5F4D] hover:bg-[#664130] text-white px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"

@@ -1,3 +1,4 @@
+import SettingsHeader from "@heuvera/components/header/SettingsHeader";
 import SupportForm from "@heuvera/components/support/SupportForm";
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import Help from "@heuvera/components/ui/Help";
@@ -7,7 +8,7 @@ import Link from "next/link";
 export default function SupportPage() {
   return (
     <PageLayout>
-      <AccountHeader
+      <SettingsHeader
         heading="Support & Assistance"
         subheading="Get help, contact support, and access resources to enhance your
           experience."
@@ -18,7 +19,7 @@ export default function SupportPage() {
         >
           Help Center
         </Link>
-      </AccountHeader>
+      </SettingsHeader>
 
       <div className="flex justify-between ">
         <div className="flex-grow mr-5">

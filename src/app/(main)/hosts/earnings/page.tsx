@@ -1,9 +1,10 @@
 import { earnings } from "@heuvera/app/data/array";
-import EarningTable from "@heuvera/components/earnings/EarningTable";
-import StatsBox from "@heuvera/components/earnings/StatsBox";
 import SettingsHeader from "@heuvera/components/header/SettingsHeader";
 import { Button } from "@heuvera/components/ui/button";
 import PageLayout from "@heuvera/components/ui/PageLayout";
+import dynamic from "next/dynamic";
+const StatsBox = dynamic(()=> import("@heuvera/components/earnings/StatsBox"));
+const EarningTable = dynamic(()=> import("@heuvera/components/earnings/EarningTable"));
 
 export default function EarningsPage() {
   return (
@@ -15,7 +16,7 @@ export default function EarningsPage() {
         <div className="flex justify-center items-center space-x-4">
           <Button
             variant="link"
-            className="text-xs text-[#898989] underline font-medium "
+            className="text-xs text-[#898989] underline font-medium hover:underline-[#7B4F3A] dark:hover:underline-[#8B5F4D]"
           >
             Setup Payment Method
           </Button>

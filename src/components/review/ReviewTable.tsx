@@ -2,66 +2,72 @@
 
 import { useState } from "react";
 import { reviews } from "../../app/data/array";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 
 export default function ReviewTable() {
-  const tableHeadings = [
-    "S/N",
-    "Guest Name",
-    "Review Date",
-    "Rating",
-    "Review Content",
+  
+  const TableHeadings = [
+    {
+      title: "S/N",
+    },
+    {
+      title: "Guest Name",
+    },
+    {
+      title: "Review Date",
+    },
+    {
+      title: "Ratings",
+    },
+    {
+      title: "Review Content",
+    },
   ];
   const [expand, setExpand] = useState(false);
   return (
     <div className="relative overflow-x-auto ">
-      <table className="text-14px w-full text-sm text-left rtl:text-right text-tableText">
-        <thead className="bg-[#E3E2D966] dark:bg-[#55555566] text-[#898989] dark:text-[#666666]">
-          <tr className="text-center">
-            {tableHeadings.map((heading, index) => (
-              <th
+      <div className="rounded-md border border-[#D3D2C9] dark:border-[#666666] bg-[#F8F7F2] dark:bg-bg-[#333333] overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-[#E3E2D9] dark:bg-[#555555] hover:bg-[#E3E2D999] dark:hover:bg-[#666666] border-b border-[#D3D2C9] dark:border-b-[#666666]">
+              {TableHeadings.map((heading) => (
+                <TableHead className="text-center border-x border-[#D3D2C9] dark:border-[#666666] last:border-x-0 first:border-x-0">{heading.title}</TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody className="bg-[#F8F7F2] dark:bg-[#333333]">
+            {reviews.map((review, index) => (
+              <TableRow
                 key={index}
-                scope="col"
-                className={`${index === 0 && "py-4 px-3"} py-4 px-3 whitespace-nowrap border-x ${
-                  index === tableHeadings.length - 1 ? "border-r" : ""
-                }`}
+                className="hover:bg-[#F0EFE9] dark:hover:bg-[#44444422] border-b border-b-[#D3D2C9] dark:border-b-[#666666] last:border-b-0"
               >
-                {heading}
-              </th>
+                <TableCell className="text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666] first:border-l-0">{index + 1}</TableCell>
+                <TableCell className="break-words text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666]">{review.guestName}</TableCell>
+                <TableCell className="break-words text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666]">{review.date}</TableCell>
+                <TableCell className="break-words text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666]">{review.rating}</TableCell>
+                <TableCell className="text-center break-words border-x border-x-[#D3D2C9] dark:border-x-[#666666] last:border-r-0">
+                  {review.content.length > 50 ? (
+                    <>
+                      {expand
+                        ? review.content
+                        : `${review.content.slice(0, 50)} ...`}
+                      ...
+                      <span
+                        className="text-[#323232] underline ml-1.5 cursor-pointer"
+                        onClick={() => setExpand((expand) => !expand)}
+                      >
+                        read {expand ? "less" : "more"}
+                      </span>
+                    </>
+                  ) : (
+                    review.content
+                  )}
+                </TableCell>
+              </TableRow>
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {reviews.map((review, index) => (
-            <tr
-              key={index}
-              className="bg-[#F8F7F2] dark:bg-[#333333] border-b text-center border-gray-200 dark:border-[#555555] hover:bg-gray-50"
-            >
-              <td className="border-x">{index + 1}</td>
-              <td className="border-x py-3 px-14">{review.guestName}</td>
-              <td className="border-x ">{review.date}</td>
-              <td className="border-x">{review.rating}</td>
-              <td className="border-x px-4">
-                {review.content.length > 50 ? (
-                  <>
-                    {expand
-                      ? review.content
-                      : `${review.content.slice(0, 50)} ...`}
-                    ...
-                    <span
-                      className="text-[#323232] underline ml-1.5 cursor-pointer"
-                      onClick={() => setExpand((expand) => !expand)}
-                    >
-                      read {expand ? "less" : "more"}
-                    </span>
-                  </>
-                ) : (
-                  review.content
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }
