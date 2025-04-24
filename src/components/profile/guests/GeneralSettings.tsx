@@ -3,18 +3,20 @@
 import { useTheme } from "@heuvera/hooks/ThemeContext";
 import dynamic from "next/dynamic";
 
-const GeneralSettings = dynamic(() => import("@heuvera/components/settings/GeneralSettings"))
+const GeneralSettings = dynamic(
+  () => import("@heuvera/components/settings/GeneralSettings"),
+);
 
 export default function GeneralSettingsPage() {
-    const { setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
-    const handleThemeChange = (newTheme: "light" | "dark" | "system") => {
-        setTheme(newTheme);
-    };
+  const handleThemeChange = (newTheme: "light" | "dark" | "system") => {
+    setTheme(newTheme);
+  };
 
-    return (
-        <div className="py-0 md:py-8">
-            <GeneralSettings onThemeChange={handleThemeChange} />
-        </div>
-    );
+  return (
+    <div className="py-0 md:py-8">
+      <GeneralSettings onThemeChange={handleThemeChange} />
+    </div>
+  );
 }

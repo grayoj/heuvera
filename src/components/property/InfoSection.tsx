@@ -5,14 +5,14 @@ interface InfoSectionProps {
 
 export default function InfoSection({ title, items }: InfoSectionProps) {
   return (
-    <div className="w-full border border-[#E3E2D9] dark:border-[#555555] rounded-xl p-6 md:p-6 lg:p-6 xl:p-6 2xl:p-6 flex flex-col gap-3 md:gap-5 lg:gap-5 xl:gap-5 2xl:gap-5">
-      <h1 className="text-[#3e3e3e] dark:text-[#666666] text-base md:text-xl lg:text-xl xl:text-2xl 2xl:text-2xl font-serif">
+    <div className="w-full border border-[#D3D2C9] dark:border-[#555555] rounded-xl p-6 md:p-6 lg:p-6 xl:p-6 2xl:p-6 flex flex-col gap-3 md:gap-5 lg:gap-5 xl:gap-5 2xl:gap-5">
+      <h1 className="text-[#333333] dark:text-[#666666] text-base md:text-xl lg:text-xl xl:text-2xl 2xl:text-2xl font-serif">
         {title}
       </h1>
       {items.map((item, index) => (
         <h1
           key={index}
-          className="text-[#3e3e3e] dark:text-[#666666] text-sm md:text-base lg:text-base xl:text-base 2xl:text-base font-serif"
+          className="text-[#333333] dark:text-[#666666] text-sm md:text-base lg:text-base xl:text-base 2xl:text-base font-serif"
         >
           {item}
         </h1>

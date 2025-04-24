@@ -21,7 +21,6 @@ export default function PaymentSecurity() {
     visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
   };
 
-
   return (
     <motion.div
       className="w-72 bg-[#f9f5f3] dark:bg-[#444444] p-6 rounded-lg h-fit"

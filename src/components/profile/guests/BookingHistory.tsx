@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import AccountHeader from "@heuvera/components/ui/AccountHeader";
 import ProfileBanner from "@heuvera/components/ui/ProfileBanner";
 import { Button } from "@heuvera/components/ui/button";
@@ -21,7 +21,7 @@ const BookingTable = dynamic(
   {
     loading: () => <BookingSkeleton />,
     ssr: false,
-  }
+  },
 );
 
 type SortOption =
@@ -43,17 +43,19 @@ export default function BookingHistory() {
     const fetchBookings = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('/api/bookings/history');
+        const response = await fetch("/api/bookings/history");
 
         if (!response.ok) {
-          throw new Error('Failed to fetch booking history');
+          throw new Error("Failed to fetch booking history");
         }
 
         const data = await response.json();
         setBookings(data.bookings);
       } catch (err) {
         console.error(err);
-        setError(err instanceof Error ? err.message : 'Failed to load bookings');
+        setError(
+          err instanceof Error ? err.message : "Failed to load bookings",
+        );
       } finally {
         setTimeout(() => {
           setIsLoading(false);
@@ -68,29 +70,28 @@ export default function BookingHistory() {
     propertyId: string | number,
     startDate: Date,
     endDate: Date,
-    guests: number
+    guests: number,
   ) => {
     try {
-      const response = await fetch('/api/bookings/create', {
-        method: 'POST',
+      const response = await fetch("/api/bookings/create", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           propertyId,
           checkInDate: startDate.toISOString(),
           checkOutDate: endDate.toISOString(),
-          noOfGuests: guests
+          noOfGuests: guests,
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to create booking');
+        throw new Error("Failed to create booking");
       }
 
       // Add toast notification here
       // toast.success('Booking successful! You can view it in your upcoming bookings.');
-
     } catch (err) {
       // toast.error('Booking failed. Please try again.');
       console.error(err);
@@ -106,7 +107,7 @@ export default function BookingHistory() {
       <AccountHeader
         heading="Booking Management"
         subheading="Track upcoming, ongoing, and past bookings in one place"
-        toggleHelp={toggleHelp} 
+        toggleHelp={toggleHelp}
         isHelpVisible={isHelpVisible}
       />
 

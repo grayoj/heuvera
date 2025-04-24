@@ -186,16 +186,12 @@ export default function BookingTable({
 
   // Show error state
   if (error) {
-    return (
-      <ErrorState error={error} />
-    )
+    return <ErrorState error={error} />;
   }
 
   // Show empty state
   if (!isLoading && bookings.length === 0) {
-    return (
-      <EmptyState />
-    );
+    return <EmptyState />;
   }
 
   return (

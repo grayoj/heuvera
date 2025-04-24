@@ -20,7 +20,7 @@ const PropertyCard = React.memo(
     isPriority?: boolean;
   }) => {
     return (
-      <div className="h-96 w-full md:size-60 lg:h-52 lg:w-56 xl:size-56 2xl:size-72 rounded-2xl border border-[#E3E2D9] dark:border-[#555555] transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
+      <div className="h-96 w-full md:size-60 lg:h-52 lg:w-56 xl:size-56 2xl:size-72 rounded-2xl border border-[#E0E0E0] dark:border-[#555555] transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer">
         <Suspense fallback={<PropertyCardFallback />}>
           <PropertyImageCarousel
             images={property.images}

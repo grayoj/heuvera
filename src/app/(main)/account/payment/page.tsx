@@ -2,10 +2,10 @@
 
 import dynamic from "next/dynamic";
 
-const PaymentMethods = dynamic(() => import("@heuvera/components/profile/guests/PaymentMethod"))
+const PaymentMethods = dynamic(
+  () => import("@heuvera/components/profile/guests/PaymentMethod"),
+);
 
 export default function PaymentMethod() {
-  return (
-    <PaymentMethods />
-  );
+  return <PaymentMethods />;
 }

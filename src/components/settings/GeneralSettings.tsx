@@ -128,7 +128,6 @@ export default function GeneralSettings({
   };
 
   const saveChanges = () => {
-    
     console.log({
       theme: activeTheme,
       language,
@@ -243,9 +242,7 @@ export default function GeneralSettings({
 
           <div className="flex flex-col space-y-3 mt-4 lg:mt-0">
             <div className="flex space-x-3">
-              <motion.div
-                variants={ButtonAnimation}
-              >
+              <motion.div variants={ButtonAnimation}>
                 <Button
                   variant="outline"
                   className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm flex items-center gap-2"
@@ -255,9 +252,7 @@ export default function GeneralSettings({
                 </Button>
               </motion.div>
 
-              <motion.div
-                variants={ButtonAnimation}
-              >
+              <motion.div variants={ButtonAnimation}>
                 <Button
                   variant="outline"
                   className="px-3 md:px-4 text-xs md:text-sm lg:text-xs xl:text-sm"
@@ -336,7 +331,9 @@ export default function GeneralSettings({
           >
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded-md">
               <div>
-                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">Email Notifications</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">
+                  Email Notifications
+                </h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Receive updates via email
                 </p>
@@ -354,7 +351,9 @@ export default function GeneralSettings({
             </div>
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded-md">
               <div>
-                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">Push Notifications</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">
+                  Push Notifications
+                </h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Notifications on your device
                 </p>
@@ -372,7 +371,9 @@ export default function GeneralSettings({
             </div>
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded-md">
               <div>
-                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">SMS Notifications</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">
+                  SMS Notifications
+                </h3>
                 <p className="text-xs text-[#A7A7A7]">Receive text messages</p>
               </div>
               <Button
@@ -388,7 +389,9 @@ export default function GeneralSettings({
             </div>
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded-md">
               <div>
-                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">In-App Notifications</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">
+                  In-App Notifications
+                </h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Notifications inside the app
                 </p>
@@ -441,7 +444,9 @@ export default function GeneralSettings({
             exit={{ opacity: 0, height: 0 }}
           >
             <div>
-              <h3 className="font-medium mb-2 text-[#333333] dark:text-[#F8F7F2]">Profile Visibility</h3>
+              <h3 className="font-medium mb-2 text-[#333333] dark:text-[#F8F7F2]">
+                Profile Visibility
+              </h3>
               <div className="flex space-x-3">
                 <Button
                   variant={
@@ -496,7 +501,9 @@ export default function GeneralSettings({
 
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded">
               <div>
-                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">Data Sharing</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">
+                  Data Sharing
+                </h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Allow anonymous usage data to improve services
                 </p>
@@ -515,7 +522,9 @@ export default function GeneralSettings({
 
             <div className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-[#444444] rounded">
               <div>
-                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">Two-Factor Authentication</h3>
+                <h3 className="font-medium text-[#333333] dark:text-[#F8F7F2]">
+                  Two-Factor Authentication
+                </h3>
                 <p className="text-xs text-[#A7A7A7]">
                   Add extra security to your account
                 </p>

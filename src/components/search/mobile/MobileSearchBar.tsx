@@ -7,13 +7,13 @@ export const MobileSearchBar = memo(
     return (
       <div
         onClick={openSearchModal}
-        className="w-full rounded-full h-16 bg-[#FBFAF6] dark:bg-[#444444] pl-4 pr-2 shadow-sm flex flex-row items-center justify-between"
+        className="w-full rounded-full h-16 bg-[#F8F7F2] dark:bg-[#444444] pl-4 pr-2 shadow-sm flex flex-row items-center justify-between"
       >
         <div className="flex flex-col justify-center h-full">
           <h1 className="font-serif font-medium text-sm text-[#7B4F3A] dark:text-[#8B5F4D]">
             Where
           </h1>
-          <h1 className="font-serif text-sm text-[#323232] dark:text-[#FBFAF6]">
+          <h1 className="font-serif text-sm text-[#333333] dark:text-[#F8F7F2]">
             Anywhere
           </h1>
         </div>
@@ -22,7 +22,7 @@ export const MobileSearchBar = memo(
           <h1 className="font-serif font-medium text-sm text-[#7B4F3A] dark:text-[#8B5F4D]">
             When
           </h1>
-          <h1 className="font-serif text-sm text-[#323232] dark:text-[#FBFAF6]">
+          <h1 className="font-serif text-sm text-[#333333] dark:text-[#F8F7F2]">
             Any week
           </h1>
         </div>
@@ -31,12 +31,12 @@ export const MobileSearchBar = memo(
           <h1 className="font-serif font-medium text-sm text-[#7B4F3A] dark:text-[#8B5F4D]">
             Who
           </h1>
-          <h1 className="font-serif text-sm text-[#323232] dark:text-[#FBFAF6]">
+          <h1 className="font-serif text-sm text-[#333333] dark:text-[#F8F7F2]">
             Add guests
           </h1>
         </div>
         <div className="bg-[#7B4F3A] dark:bg-[#8B5F4D] size-13 rounded-full flex items-center justify-center">
-          <LucideSearch className="text-[#FBFAF6] text-2xl" />
+          <LucideSearch className="text-[#F8F7F2] text-2xl" />
         </div>
       </div>
     );

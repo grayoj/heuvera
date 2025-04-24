@@ -5,7 +5,14 @@ import { UserStatus } from "../ui/BookingTable";
 import ErrorState from "../errors/table/bookingHistory/ErrorState";
 import EmptyState from "../errors/table/bookingHistory/EmptyState";
 import { useMemo } from "react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
 import { Badge } from "../ui/badge";
 
 export type BookingStatus = "Active" | "Pending" | "Banned";
@@ -67,7 +74,6 @@ type SortOption =
   | "priceLowToHigh"
   | "name";
 
-
 interface PastBookingTableProps {
   bookings?: PastBooking[];
   isLoading?: boolean;
@@ -81,7 +87,6 @@ export default function BookingTable({
   error,
   sortBy = "latest",
 }: PastBookingTableProps) {
-
   const PastBookings = useMemo(() => {
     if (bookings.length === 0) return [];
 
@@ -101,7 +106,9 @@ export default function BookingTable({
           return dateA.localeCompare(dateB);
         });
       case "name":
-        return sortedList.sort((a, b) => a.propertyName.localeCompare(b.propertyName));
+        return sortedList.sort((a, b) =>
+          a.propertyName.localeCompare(b.propertyName),
+        );
       default:
         return sortedList;
     }
@@ -110,14 +117,20 @@ export default function BookingTable({
   // // Show error state
   if (error) {
     return (
-      <ErrorState errorMessage="Failed to load booking history." error={error} />
-    )
+      <ErrorState
+        errorMessage="Failed to load booking history."
+        error={error}
+      />
+    );
   }
 
   // // // Show empty state
   if (!isLoading && bookings.length === 0) {
     return (
-      <EmptyState errorMessage="No Bookings History" errorSubMessage="You don't have any past bookings yet."/>
+      <EmptyState
+        errorMessage="No Bookings History"
+        errorSubMessage="You don't have any past bookings yet."
+      />
     );
   }
 
@@ -144,8 +157,8 @@ export default function BookingTable({
       title: "Price Paid",
     },
     {
-      title: "Number of Guests"
-    }
+      title: "Number of Guests",
+    },
   ];
   return (
     <div className="rounded-md border border-[#D3D2C9] dark:border-[#666666] relative 2xl:w-full xl:w-full lg:overflow-x-auto md:overflow-x-auto sm:overflow-x-auto">
@@ -154,7 +167,9 @@ export default function BookingTable({
           <TableHeader>
             <TableRow className="bg-[#E3E2D9] border-b border-[#D3D2C9] dark:border-b-[#666666] dark:bg-[#555555] hover:bg-[#E3E2D999] dark:hover:bg-[#666666]">
               {TableHeadings.map((heading) => (
-                <TableHead className="text-[#444444] dark:text-[#F7F7F7] text-center border-x border-[#D3D2C9] dark:border-[#666666] last:border-x-0 first:border-x-0">{heading.title}</TableHead>
+                <TableHead className="text-[#444444] dark:text-[#F7F7F7] text-center border-x border-[#D3D2C9] dark:border-[#666666] last:border-x-0 first:border-x-0">
+                  {heading.title}
+                </TableHead>
               ))}
             </TableRow>
           </TableHeader>
@@ -162,8 +177,13 @@ export default function BookingTable({
             {PastBookings.map((booking, index) => {
               const statusInfo = getStatusInfo(booking.status);
               return (
-                <TableRow key={booking.id} className="hover:bg-[#F0EFE9] dark:hover:bg-[#44444422]">
-                  <TableCell className="text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666] first:border-l-0">{index + 1}</TableCell>
+                <TableRow
+                  key={booking.id}
+                  className="hover:bg-[#F0EFE9] dark:hover:bg-[#44444422]"
+                >
+                  <TableCell className="text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666] first:border-l-0">
+                    {index + 1}
+                  </TableCell>
                   <TableCell className="flex justify-center items-center">
                     <div className="flex justify-center items-center">
                       <Image
@@ -202,7 +222,7 @@ export default function BookingTable({
                     {booking.numberOfGuests}
                   </TableCell>
                 </TableRow>
-              )
+              );
             })}
           </TableBody>
         </Table>
@@ -211,7 +231,10 @@ export default function BookingTable({
       {/* Mobile View: Cards (Visible on Small Screens) */}
       <div className="block md:hidden space-y-4 gap-5">
         {pastAdminBookings.map((booking, index) => (
-          <div key={index} className="bg-[#F8F7F2] dark:bg-[#333333] p-4 rounded-lg shadow-md">
+          <div
+            key={index}
+            className="bg-[#F8F7F2] dark:bg-[#333333] p-4 rounded-lg shadow-md"
+          >
             <div className="flex items-center space-x-4">
               <Image
                 src="https://picsum.photos/50/36"
@@ -221,8 +244,12 @@ export default function BookingTable({
                 alt="Property Image"
               />
               <div>
-                <h3 className="font-semibold text-[#3E3E3E] dark:text-[#]">{booking.name}</h3>
-                <p className="text-xs text-[#898989] dark:text-[#666666]">{booking.location}</p>
+                <h3 className="font-semibold text-[#333333] dark:text-[#]">
+                  {booking.name}
+                </h3>
+                <p className="text-xs text-[#898989] dark:text-[#666666]">
+                  {booking.location}
+                </p>
               </div>
             </div>
             <div className="mt-2 text-sm space-y-1">

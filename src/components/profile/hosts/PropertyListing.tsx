@@ -11,7 +11,7 @@ import SettingsHeader from "@heuvera/components/header/SettingsHeader";
 
 export default function PropertyListingsPage() {
   const [open, setOpen] = useState("");
-  
+
   return (
     <PageLayout>
       <SettingsHeader

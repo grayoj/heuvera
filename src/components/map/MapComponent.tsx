@@ -213,7 +213,7 @@ const MapComponents = ({
                   style={{ width: "100%", height: "auto" }}
                 />
                 <div className="px-2">
-                  <h3 className="font-bold text-[#3e3e3e] dark:text-gray-200 text-xs">
+                  <h3 className="font-bold text-[#333333] dark:text-gray-200 text-xs">
                     {property.name}
                   </h3>
                   <div className="flex justify-between items-center">

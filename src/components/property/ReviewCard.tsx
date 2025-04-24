@@ -25,7 +25,7 @@ export default function ReviewCard({ reviews }: ReviewCardProps) {
               </Avatar>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-base font-medium font-serif text-[#323232] dark:text-[#666666]">
+              <h1 className="text-base font-medium font-serif text-[#333333] dark:text-[#666666]">
                 Gerald Maduabubuhari
               </h1>
               <div className="flex flex-row gap-2">
@@ -37,14 +37,14 @@ export default function ReviewCard({ reviews }: ReviewCardProps) {
           </div>
         </div>
         <div className="">
-          <LucideMoreVertical className="text-[#3e3e3e] dark:text-[#666666] text-2xl" />
+          <LucideMoreVertical className="text-[#333333] dark:text-[#666666] text-2xl" />
         </div>
       </div>
-      <h1 className="text-base font-serif text-[#3e3e3e] dark:text-[#666666]">
+      <h1 className="text-base font-serif text-[#333333] dark:text-[#666666]">
         {reviews}
       </h1>
       <div className="flex flex-row justify-between">
-        <h1 className="text-[#3e3e3e] dark:text-[#666666] text-base font-serif">
+        <h1 className="text-[#333333] dark:text-[#666666] text-base font-serif">
           Was this review helpful?
         </h1>
         <div className="flex flex-row gap-2">

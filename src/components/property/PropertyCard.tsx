@@ -39,7 +39,7 @@ export default function PropertyCard({
   setOpen?: (value: string) => void;
 }) {
   return (
-    <div className="h-96 w-full md:size-60 lg:h-52 lg:w-56 xl:w-72 xl:h-86 2xl:w-72 2xl:h-86 rounded-2xl border border-[#E3E2D9] dark:border-[#555555] flex flex-col justify-start">
+    <div className="h-96 w-full md:size-60 lg:h-52 lg:w-56 xl:w-72 xl:h-86 2xl:w-72 2xl:h-86 rounded-2xl border border-[#D3D2C9] dark:border-[#555555] flex flex-col justify-start">
       <div className="w-full h-60 md:h-36 lg:h-28 xl:h-40 2xl:h-40 overflow-hidden rounded-t-2xl">
         <Image
           src="https://picsum.photos/303/172"
@@ -61,7 +61,7 @@ export default function PropertyCard({
           <CardDescription className="text-[#505050] text-[0.69rem] flex justify-between">
             <div className="flex flex-col gap-3">
               <p className="">{property.address}</p>
-              <div className="flex space-x-5 text-sm text-[#E3E2D9]">
+              <div className="flex space-x-5 text-sm text-[#D3D2C9]">
                 <PropertyIcon>
                   <BedDouble />
                   <span>{property.noOfBeds}</span>

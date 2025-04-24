@@ -3,7 +3,9 @@ import PageLayout from "@heuvera/components/ui/PageLayout";
 import Stars from "@heuvera/components/ui/Stars";
 import dynamic from "next/dynamic";
 
-const ReviewTable = dynamic(()=> import("@heuvera/components/review/ReviewTable"));
+const ReviewTable = dynamic(
+  () => import("@heuvera/components/review/ReviewTable"),
+);
 
 export default function ReviewsPage() {
   return (

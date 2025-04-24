@@ -38,7 +38,7 @@ export default function Favorites() {
   return (
     <div className="flex flex-col flex-1 h-full w-full px-4 md:px-8 lg:px-16 xl:px-20 2xl:px-20">
       <div
-        className={`w-full border-b border-[#E3E2D9] dark:border-[#555555] ${isMobile ? "h-[130px]" : "h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t"} flex items-center relative`}
+        className={`w-full border-b border-[#D3D2C9] dark:border-[#555555] ${isMobile ? "h-[130px]" : "h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t"} flex items-center relative`}
       >
         <FavoritesHeader
           setSortOption={setSortOption}
@@ -58,7 +58,7 @@ export default function Favorites() {
           <h2 className="text-3xl font-bold text-[#A7A7A7] mb-2">
             No Favorites Yet
           </h2>
-          <p className="text-gray-400 text-[#323232] dark:text-[#555555] max-w-md">
+          <p className="text-gray-400 text-[#333333] dark:text-[#555555] max-w-md">
             Explore amazing properties and mark them as favorites to see them
             here.
           </p>

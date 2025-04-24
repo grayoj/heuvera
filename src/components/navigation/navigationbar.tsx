@@ -37,7 +37,7 @@ export default function NavigationLayout({
                   className={`text-base md:text-xs lg:text-xs xl:text-base 2xl:text-base font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
                     selected === content.title
                       ? "text-[#7B4F3A] font-semibold border-[#7B4F3A] border-b-2"
-                      : "text-[#323232] hover:text-primary"
+                      : "text-[#333333] hover:text-primary"
                   }`}
                 >
                   {content.title}
@@ -46,7 +46,7 @@ export default function NavigationLayout({
             ))}
           </div>
           <div className="w-52 flex flex-row items-center justify-between">
-            <LucideSearch className="text-[#323232] text-2xl" />
+            <LucideSearch className="text-[#333333] text-2xl" />
             <div className="flex gap-2 items-center">
               <Avatar className="overflow-hidden block">
                 <AvatarImage
@@ -56,7 +56,7 @@ export default function NavigationLayout({
                 <AvatarFallback className="bg-[#E3E2D9]">FG</AvatarFallback>
               </Avatar>
             </div>
-            <LucideBell className="text-2xl text-[#323232]" />
+            <LucideBell className="text-2xl text-[#333333]" />
           </div>
         </div>
         <div className="pt-10">{children}</div>

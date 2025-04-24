@@ -196,7 +196,7 @@ const OnboardingPage = () => {
             animate="visible"
             variants={cardVariants}
           >
-            <Card className="bg-[#F8F7F2] dark:bg-[#333333] shadow-md border-[#E3E2D9] dark:border-[#444444]">
+            <Card className="bg-[#F8F7F2] dark:bg-[#333333] shadow-md border-[#D3D2C9] dark:border-[#444444]">
               <CardHeader>
                 <AnimatePresence mode="wait">
                   {stage === 1 && <Stage1Header key="header-1" stage={stage} />}

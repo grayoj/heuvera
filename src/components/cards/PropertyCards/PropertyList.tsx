@@ -33,7 +33,7 @@ export default function PropertyListView({ property }: { property: Property }) {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="w-full"
       >
-        <div className="flex flex-row md:flex-row border border-[#E3E2D9] dark:border-[#555555] rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 h-40 md:h-48 lg:h-52 xl:h-60 2xl:h-80 font-serif">
+        <div className="flex flex-row md:flex-row border border-[#E0E0E0] dark:border-[#555555] rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 h-40 md:h-48 lg:h-52 xl:h-60 2xl:h-80 font-serif">
           {/* Property Image */}
           <div className="relative w-1/3 h-full">
             <Image
@@ -52,7 +52,7 @@ export default function PropertyListView({ property }: { property: Property }) {
           <div className="p-3 md:p-4 lg:p-4 xl:p-6 2xl:p-6 flex flex-col flex-1 justify-between">
             <div>
               <div className="flex justify-between items-start gap-2">
-                <h3 className="text-sm md:text-xl font-semibold text-[#323232] dark:text-[#FBFAF6]">
+                <h3 className="text-sm md:text-xl font-semibold text-[#333333] dark:text-[#F8F7F2]">
                   {property.propertyName}
                 </h3>
                 <p className="text-sm md:text-xl font-bold text-[#7B4F3A] dark:text-[#8B5F4D]">

@@ -2,7 +2,14 @@ import { CheckCircle2, CircleOff, XCircle } from "lucide-react";
 import { earningsTable } from "../../app/data/array";
 import EmptyState from "../errors/table/bookingHistory/EmptyState";
 import ErrorState from "../errors/table/bookingHistory/ErrorState";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
 import { Badge } from "../ui/badge";
 
 export type PaymentStatus = "Successful" | "Pending" | "Unsuccessful";
@@ -65,18 +72,23 @@ export default function EarningTable({
   isLoading = false,
   error,
 }: EarningsTableProps) {
-
   // // Show error state
   if (error) {
     return (
-      <ErrorState errorMessage="Failed to load earnings history." error={error} />
-    )
+      <ErrorState
+        errorMessage="Failed to load earnings history."
+        error={error}
+      />
+    );
   }
 
   // // Show empty state
   if (!isLoading && bookings.length === 0) {
     return (
-      <EmptyState errorMessage="No Earnings History" errorSubMessage="You don't have any past earnings yet."/>
+      <EmptyState
+        errorMessage="No Earnings History"
+        errorSubMessage="You don't have any past earnings yet."
+      />
     );
   }
 
@@ -94,7 +106,7 @@ export default function EarningTable({
       title: "Amount",
     },
     {
-      title: "Payment Status"
+      title: "Payment Status",
     },
   ];
 
@@ -111,7 +123,7 @@ export default function EarningTable({
       amount: "",
       status: "Successful" as PaymentStatus,
     },
-  ]
+  ];
 
   return (
     <div className="relative overflow-x-auto rounded-md border border-[#D3D2C9] dark:border-[#666666]">
@@ -119,7 +131,9 @@ export default function EarningTable({
         <TableHeader>
           <TableRow className="bg-[#E3E2D9] border-b border-[#D3D2C9] dark:border-b-[#666666] dark:bg-[#555555] hover:bg-[#E3E2D999] dark:hover:bg-[#666666]">
             {EarningsTableHeadings.map((heading, index) => (
-              <TableHead className="text-[#444444] dark:text-[#F7F7F7] text-center border-x border-[#D3D2C9] dark:border-[#666666] first:border-l-0 last:border-r-0">{heading.title}</TableHead>
+              <TableHead className="text-[#444444] dark:text-[#F7F7F7] text-center border-x border-[#D3D2C9] dark:border-[#666666] first:border-l-0 last:border-r-0">
+                {heading.title}
+              </TableHead>
             ))}
           </TableRow>
         </TableHeader>
@@ -131,25 +145,28 @@ export default function EarningTable({
                 key={index}
                 className="bg-[#F8F7F2] dark:bg-[#333333] border-b text-center border-[#D3D2C9] hover:bg-[#F0EFE9] dark:hover:bg-[#44444422]"
               >
-                <TableCell className="border-x border-x-[#D3D2C9] dark:border-x-[#666666] border-l-0 break-words">{index + 1}</TableCell>
-                <TableCell className="border-x border-x-[#D3D2C9] dark:border-x-[#666666] break-words">{booking.method}</TableCell>
-                <TableCell className="border-x border-x-[#D3D2C9] dark:border-x-[#666666] break-words">{booking.date}</TableCell>
-                <TableCell className="border-x border-x-[#D3D2C9] dark:border-x-[#666666] break-words">{booking.amount}</TableCell>
-                <TableCell
-                  className="text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666] whitespace-nowrap"
-                >
+                <TableCell className="border-x border-x-[#D3D2C9] dark:border-x-[#666666] border-l-0 break-words">
+                  {index + 1}
+                </TableCell>
+                <TableCell className="border-x border-x-[#D3D2C9] dark:border-x-[#666666] break-words">
+                  {booking.method}
+                </TableCell>
+                <TableCell className="border-x border-x-[#D3D2C9] dark:border-x-[#666666] break-words">
+                  {booking.date}
+                </TableCell>
+                <TableCell className="border-x border-x-[#D3D2C9] dark:border-x-[#666666] break-words">
+                  {booking.amount}
+                </TableCell>
+                <TableCell className="text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666] whitespace-nowrap">
                   <div className="flex items-center justify-center gap-2">
                     {statusInfo.icon}
-                    <Badge
-                      variant="outline"
-                      className={statusInfo.badgeClass}
-                    >
+                    <Badge variant="outline" className={statusInfo.badgeClass}>
                       {booking.status}
                     </Badge>
                   </div>
                 </TableCell>
               </TableRow>
-            )
+            );
           })}
         </TableBody>
       </Table>

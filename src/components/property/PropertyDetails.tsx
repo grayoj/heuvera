@@ -29,11 +29,11 @@ export default function PropertyDetails({
     <div className="w-full flex flex-col">
       <div className="gap-3 md:gap-5 flex flex-col">
         <div className="flex flex-col justify-between gap-1">
-          <h1 className="text-2xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-serif font-semibold text-[#3E3E3E] dark:text-[#A7A7A7]">
+          <h1 className="text-2xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-serif font-semibold text-[#333333] dark:text-[#A7A7A7]">
             {propertyName}
           </h1>
           <div className="flex flex-row gap-2">
-            <h1 className="text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-medium font-serif text-[#323232] dark:text-[#a7a7a7]">
+            <h1 className="text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-medium font-serif text-[#333333] dark:text-[#a7a7a7]">
               {propertyDetails.rating}
             </h1>
             <div className="flex flex-row gap-2 mt-0 md:mt-0.5 lg:mt-0.5 xl:mt-0 2xl:mt-0">
@@ -46,12 +46,12 @@ export default function PropertyDetails({
             </div>
           </div>
         </div>
-        <h1 className="text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-serif font-normal text-[#3E3E3E] dark:text-[#666666]">
+        <h1 className="text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-serif font-normal text-[#333333] dark:text-[#666666]">
           {propertyDetails.location}
         </h1>
         <h1 className="text-xl md:text-xl lg:text-xl xl:text-2xl 2xl:text-2xl text-[#3F3B2B] dark:text-[#A7A7A7] font-semibold font-serif">
           {propertyDetails.price}
-          <span className="text-sm text-[#3E3E3E] dark:text-[#666666] font-serif font-normal">
+          <span className="text-sm text-[#333333] dark:text-[#666666] font-serif font-normal">
             {" "}
             /night
           </span>

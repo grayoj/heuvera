@@ -19,7 +19,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
   if (type === "location") {
     return (
       <motion.div className="space-y-4" variants={slidingAnimation}>
-        <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#F8F7F2]">
+        <h3 className="font-serif font-medium text-lg text-[#333333] dark:text-[#F8F7F2]">
           Popular destinations
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -51,7 +51,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
   if (type === "dates") {
     return (
       <motion.div className="space-y-4" variants={slidingAnimation}>
-        <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#F8F7F2]">
+        <h3 className="font-serif font-medium text-lg text-[#333333] dark:text-[#F8F7F2]">
           When will you be there?
         </h3>
         <div className="grid grid-cols-2 gap-4">
@@ -105,7 +105,7 @@ const FilterContent: React.FC<FilterContentProps> = ({
   if (type === "guests") {
     return (
       <motion.div className="space-y-4" variants={slidingAnimation}>
-        <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#F8F7F2]">
+        <h3 className="font-serif font-medium text-lg text-[#333333] dark:text-[#F8F7F2]">
           Who will be there?
         </h3>
         <div className="space-y-3">
@@ -137,14 +137,14 @@ const FilterContent: React.FC<FilterContentProps> = ({
               </div>
               <div className="flex items-center gap-4">
                 <motion.button
-                  className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#777777] flex items-center justify-center text-[#323232] dark:text-[#F8F7F2] bg-white dark:bg-[#555555]"
+                  className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#777777] flex items-center justify-center text-[#333333] dark:text-[#F8F7F2] bg-white dark:bg-[#555555]"
                   variants={ButtonAnimation}
                 >
                   -
                 </motion.button>
                 <span className="w-5 text-center">0</span>
                 <motion.button
-                  className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#777777] flex items-center justify-center text-[#323232] dark:text-[#F8F7F2] bg-white dark:bg-[#555555]"
+                  className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#777777] flex items-center justify-center text-[#333333] dark:text-[#F8F7F2] bg-white dark:bg-[#555555]"
                   variants={ButtonAnimation}
                 >
                   +

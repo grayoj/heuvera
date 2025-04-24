@@ -42,7 +42,7 @@ export default function ProfileLayout({
             <ArrowLeft className="mr-2" /> Back to Home
           </Button>
         </div>
-        <div className="max-w-fit justify-center md:gap-1 lg:gap-1 xl:gap-0 flex border-b border-[#E3E2D9] dark:border-[#555555]">
+        <div className="max-w-fit justify-center md:gap-1 lg:gap-1 xl:gap-0 flex border-b border-[#D3D2C9] dark:border-[#555555]">
           {sideBarAdmin.map((item: Item) => (
             <div key={item.route}>
               <AdminSideBarItem item={item} route={item.route}>

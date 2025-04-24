@@ -2,11 +2,10 @@
 
 import dynamic from "next/dynamic";
 
-const PersonInfo = dynamic(() => import("@heuvera/components/profile/hosts/MyAccount"));
+const PersonInfo = dynamic(
+  () => import("@heuvera/components/profile/hosts/MyAccount"),
+);
 
 export default function MyAccount() {
-
-  return (
-    <PersonInfo />
-  );
+  return <PersonInfo />;
 }

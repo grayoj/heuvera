@@ -39,7 +39,7 @@ const LazyPropertyCard = memo(({ property }: LazyPropertyCardProps) => {
       {isVisible ? (
         <PropertyCard property={property} />
       ) : (
-        <div className="h-96 w-full md:size-60 lg:h-52 lg:w-56 xl:size-56 2xl:size-72 rounded-2xl border border-[#E3E2D9] dark:border-[#555555] bg-gray-100 dark:bg-[#333333] animate-pulse" />
+        <div className="h-96 w-full md:size-60 lg:h-52 lg:w-56 xl:size-56 2xl:size-72 rounded-2xl border border-[#D3D2C9] dark:border-[#555555] bg-gray-100 dark:bg-[#333333] animate-pulse" />
       )}
     </div>
   );

@@ -9,7 +9,7 @@ export default function AccountHeader({
   children,
   className,
   toggleHelp,
-  isHelpVisible
+  isHelpVisible,
 }: {
   heading: string;
   subheading: string;

@@ -1,10 +1,24 @@
-import { CheckCircle2, CircleOff, MessageSquare, Pencil, X, XCircle } from "lucide-react";
+import {
+  CheckCircle2,
+  CircleOff,
+  MessageSquare,
+  Pencil,
+  X,
+  XCircle,
+} from "lucide-react";
 import { upcomingBookings } from "../../app/data/array";
 import { UserStatus } from "../ui/BookingTable";
 import { useMemo } from "react";
 import EmptyState from "../errors/table/bookingHistory/EmptyState";
 import ErrorState from "../errors/table/bookingHistory/ErrorState";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
@@ -64,7 +78,6 @@ type SortOption =
   | "priceLowToHigh"
   | "name";
 
-
 interface UpcomingBookingTableProps {
   bookings?: Booking[];
   isLoading?: boolean;
@@ -78,7 +91,6 @@ export default function UpcomingBookingTable({
   error,
   sortBy = "latest",
 }: UpcomingBookingTableProps) {
-
   const sortedBookings = useMemo(() => {
     if (bookings.length === 0) return [];
 
@@ -98,7 +110,9 @@ export default function UpcomingBookingTable({
           return dateA.localeCompare(dateB);
         });
       case "name":
-        return sortedList.sort((a, b) => a.guestName.localeCompare(b.guestName));
+        return sortedList.sort((a, b) =>
+          a.guestName.localeCompare(b.guestName),
+        );
       default:
         return sortedList;
     }
@@ -106,17 +120,22 @@ export default function UpcomingBookingTable({
 
   if (error) {
     return (
-      <ErrorState errorMessage="Failed to load booking history." error={error} />
-    )
+      <ErrorState
+        errorMessage="Failed to load booking history."
+        error={error}
+      />
+    );
   }
 
   // // // Show empty state
   if (!isLoading && bookings.length === 0) {
     return (
-      <EmptyState errorMessage="No Bookings History" errorSubMessage="You don't have any past bookings yet." />
+      <EmptyState
+        errorMessage="No Bookings History"
+        errorSubMessage="You don't have any past bookings yet."
+      />
     );
   }
-
 
   const TableHeadings = [
     {
@@ -146,7 +165,9 @@ export default function UpcomingBookingTable({
             <TableHeader>
               <TableRow className="bg-[#E3E2D9] dark:bg-[#555555] hover:bg-[#E3E2D999] dark:hover:bg-[#666666] border-b border-[#D3D2C9] dark:border-b-[#666666]">
                 {TableHeadings.map((heading) => (
-                  <TableHead className="text-center border-x border-[#D3D2C9] dark:border-[#666666] last:border-x-0 first:border-x-0">{heading.title}</TableHead>
+                  <TableHead className="text-center border-x border-[#D3D2C9] dark:border-[#666666] last:border-x-0 first:border-x-0">
+                    {heading.title}
+                  </TableHead>
                 ))}
               </TableRow>
             </TableHeader>
@@ -158,7 +179,9 @@ export default function UpcomingBookingTable({
                     key={booking.id}
                     className="hover:bg-[#F0EFE9] dark:hover:bg-[#44444422]"
                   >
-                    <TableCell className="text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666] first:border-l-0">{index + 1}</TableCell>
+                    <TableCell className="text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666] first:border-l-0">
+                      {index + 1}
+                    </TableCell>
                     <TableCell className="break-words text-center border-x border-x-[#D3D2C9] dark:border-x-[#666666]">
                       {booking.guestName}
                     </TableCell>
@@ -205,7 +228,7 @@ export default function UpcomingBookingTable({
                       </div>
                     </TableCell>
                   </TableRow>
-                )
+                );
               })}
             </TableBody>
           </Table>
@@ -240,10 +263,7 @@ export default function UpcomingBookingTable({
                   <span className="font-medium">Status:</span>{" "}
                   <div className="inline-flex items-center gap-1">
                     {statusInfo.icon}
-                    <Badge
-                      variant="outline"
-                      className={statusInfo.badgeClass}
-                    >
+                    <Badge variant="outline" className={statusInfo.badgeClass}>
                       {booking.status}
                     </Badge>
                   </div>
@@ -276,6 +296,6 @@ export default function UpcomingBookingTable({
           );
         })}
       </div>
-    </div >
+    </div>
   );
 }

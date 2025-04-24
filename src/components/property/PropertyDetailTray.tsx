@@ -56,7 +56,7 @@ export default function PropertyDetailTray({
                     onClick={onClose}
                     className="rounded-full hover:bg-[#E3E2D9]"
                   >
-                    <X className="h-5 w-5 text-[#3E3E3E]" />
+                    <X className="h-5 w-5 text-[#333333]" />
                   </Button>
                 </div>
                 <div className="flex flex-row gap-2 items-center">
@@ -71,12 +71,12 @@ export default function PropertyDetailTray({
                 </div>
               </div>
 
-              <h1 className="text-2xl font-serif font-semibold text-[#3E3E3E]">
+              <h1 className="text-2xl font-serif font-semibold text-[#333333]">
                 {PropertyData[0].propertyName}
               </h1>
 
               <div className="flex flex-row gap-2 items-center">
-                <h1 className="text-lg font-medium font-serif text-[#323232]">
+                <h1 className="text-lg font-medium font-serif text-[#333333]">
                   4.5
                 </h1>
                 <div className="flex flex-row">
@@ -86,7 +86,7 @@ export default function PropertyDetailTray({
                 </div>
               </div>
 
-              <p className="text-base font-serif font-normal text-[#3E3E3E]">
+              <p className="text-base font-serif font-normal text-[#333333]">
                 {PropertyData[0].propertyDetails.location}
               </p>
 
@@ -113,13 +113,13 @@ export default function PropertyDetailTray({
                 </div>
               </div>
 
-              <p className="text-base font-serif font-normal text-[#3E3E3E] py-2">
+              <p className="text-base font-serif font-normal text-[#333333] py-2">
                 {PropertyData[0].propertyDescription}
               </p>
 
               <h1 className="text-2xl text-[#3F3B2B] font-semibold font-serif">
                 ₦{PropertyData[0].propertyDetails.price}
-                <span className="text-sm text-[#3E3E3E] font-serif font-normal">
+                <span className="text-sm text-[#333333] font-serif font-normal">
                   {" "}
                   /night
                 </span>
@@ -137,7 +137,7 @@ export default function PropertyDetailTray({
       </div>
 
       <div className="p-5">
-        <h3 className="text-lg font-serif font-semibold text-[#3E3E3E] mb-3">
+        <h3 className="text-lg font-serif font-semibold text-[#333333] mb-3">
           Similar Properties
         </h3>
         <div className="w-full flex overflow-x-auto gap-4 pb-4">

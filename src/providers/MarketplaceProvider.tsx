@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  useMemo,
   useState,
   createContext,
   useContext,
@@ -9,12 +8,7 @@ import {
   useRef,
   useEffect,
 } from "react";
-import {
-  LucideHeart,
-  LucideCompass,
-  LucideLogIn,
-  LucideUser,
-} from "lucide-react";
+import { LucideHeart, LucideCompass, LucideUser } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { HeuveraLogo } from "@heuvera/components/logo";
 import useIsMobile from "@heuvera/hooks/IsMobile";
@@ -61,19 +55,19 @@ export function MarketplaceProvider({
     Explore: {
       filled: <GoHomeFill fill="#7B4F3A" className="text-xl" />,
       outline: (
-        <GoHome className="text-[#323232] dark:text-[#F8F7F2] text-xl" />
+        <GoHome className="text-[#333333] dark:text-[#F8F7F2] text-xl" />
       ),
     },
     Favorites: {
       filled: <GoHeartFill fill="#7B4F3A" className="text-xl" />,
       outline: (
-        <GoHeart className="text-[#323232] dark:text-[#F8F7F2] text-xl" />
+        <GoHeart className="text-[#333333] dark:text-[#F8F7F2] text-xl" />
       ),
     },
     Discover: {
       filled: <IoCompass className="text-2xl" fill="#7B4F3A" />,
       outline: (
-        <IoCompassOutline className="text-2xl dark:text-[#F8F7F2] text-[#323232]" />
+        <IoCompassOutline className="text-2xl dark:text-[#F8F7F2] text-[#333333]" />
       ),
     },
     Profile: {
@@ -129,7 +123,7 @@ export function MarketplaceProvider({
       value={{ selected, setSelected, openSearchModal }}
     >
       <div className="w-full h-full flex flex-col bg-[#F8F7F2] dark:bg-[#333333]">
-        <div className="w-full backdrop-blur-xl sticky top-0 bg-[#F8F7F299] dark:bg-[#33333399] z-[5000]">
+        <div className="w-full backdrop-blur-xl sticky top-0 bg-[#F8F7F299] dark:bg-[#33333399] z-[3000]">
           <div className="px-4 md:px-8 lg:px-12 xl:px-14 2xl:px-20 h-20 w-full flex items-center justify-between">
             {isMobile ? (
               //Remove the gap-2 and the beta pill
@@ -147,7 +141,7 @@ export function MarketplaceProvider({
               //Formerly w-24, remove the "flex items-center justify-center alongside the pill"
               <div className="flex-shrink-0 w-32 flex items-center justify-between">
                 <Link href="/">
-                <HeuveraLogo width={35} height={35} />
+                  <HeuveraLogo width={35} height={35} />
                 </Link>
                 <div className="max-w-fit w-full px-4 py-1 border rounded-full flex items-center justify-center border-[#7B4F3A] dark:border-[#8B5F4D]">
                   <h1 className="text-[#7B4F3A] text-sm dark:text-[#8B5F4D]">
@@ -163,10 +157,11 @@ export function MarketplaceProvider({
                     key={index}
                     href={content.link}
                     prefetch={true}
-                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${pathname === content.link
+                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
+                      pathname === content.link
                         ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
-                        : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-102 hover:font-medium"
-                      }`}
+                        : "text-[#333333] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-102 hover:font-medium"
+                    }`}
                   >
                     {content.title}
                   </Link>
@@ -185,7 +180,7 @@ export function MarketplaceProvider({
                   />
                 ) : (
                   <a className="cursor-pointer" href="/api/auth/login">
-                    <div className="size-7 p-1  text-[#323232] dark:text-[#F8F7F2] ring-[#323232] dark:ring-[#F8F7F2] ring rounded-full flex items-center justify-center">
+                    <div className="size-7 p-1  text-[#333333] dark:text-[#F8F7F2] ring-[#333333] dark:ring-[#F8F7F2] ring rounded-full flex items-center justify-center">
                       <LucideUser />
                     </div>
                   </a>
@@ -220,7 +215,7 @@ export function MarketplaceProvider({
                     >
                       {content.title === "Account" ? (
                         <span
-                          className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D] border-2 border-[#7B4F3A] dark:border-[#8B5F4D] bg-transparent rounded-full" : "text-[#323232]"}`}
+                          className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D] border-2 border-[#7B4F3A] dark:border-[#8B5F4D] bg-transparent rounded-full" : "text-[#333333]"}`}
                         >
                           {isLoading ? (
                             <div className="size-[1.25rem] rounded-full bg-[#E0E0E0] dark:bg-[#444444] animate-pulse" />
@@ -237,7 +232,7 @@ export function MarketplaceProvider({
                               className="cursor-pointer"
                               href="/api/auth/login"
                             >
-                              <div className="size-[1.25rem] p-1 text-[#323232] dark:text-[#F8F7F2] ring-[#323232] dark:ring-[#F8F7F2] ring rounded-full flex items-center justify-center">
+                              <div className="size-[1.25rem] p-1 text-[#333333] dark:text-[#F8F7F2] ring-[#333333] dark:ring-[#F8F7F2] ring rounded-full flex items-center justify-center">
                                 <LucideUser />
                               </div>
                             </a>
@@ -245,7 +240,7 @@ export function MarketplaceProvider({
                         </span>
                       ) : (
                         <span
-                          className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323232] dark:text-[#F8F7F2]"}`}
+                          className={`text-2xl ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#333333] dark:text-[#F8F7F2]"}`}
                         >
                           {isSelected
                             ? iconMapping[content.title]?.filled
@@ -254,7 +249,7 @@ export function MarketplaceProvider({
                       )}
 
                       <span
-                        className={`text-xs font-medium ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#323232] dark:text-[#F8F7F2]"}`}
+                        className={`text-xs font-medium ${isSelected ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "text-[#333333] dark:text-[#F8F7F2]"}`}
                       >
                         {content.title}
                       </span>

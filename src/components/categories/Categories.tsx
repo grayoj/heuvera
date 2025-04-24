@@ -1,10 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import MapButton from "./MapButton";
-import FilterButton from "./FilterButton";
-import LeaseRentStays from "./LeaseRentStays";
-import CategoryList from "./CategoryList";
+import dynamic from "next/dynamic";
+
+const MapButton = dynamic(() => import("./MapButton"));
+const FilterButton = dynamic(() => import("./FilterButton"));
+const LeaseRentStays = dynamic(() => import("./LeaseRentStays"));
+const CategoryList = dynamic(() => import("./CategoryList"));
+
 import useIsMobile from "@heuvera/hooks/IsMobile";
 import React, { useCallback } from "react";
 
@@ -35,7 +38,7 @@ const Categories = React.memo(
 
     return (
       <div
-        className={`w-full border-b border-[#E3E2D9] dark:border-[#555555] ${
+        className={`w-full border-b border-[#D3D2C9] dark:border-[#555555] ${
           isMobile
             ? "h-[130px]"
             : "h-[130px] md:h-[88px] lg:h-[68px] xl:h-[88px] 2xl:h-[88px] border-t"
@@ -56,13 +59,13 @@ const Categories = React.memo(
               <MapButton onClick={toMap} />
             </div>
 
-            <div className="h-8 border-[#E3E2D9] dark:border-[#555555] border-l" />
+            <div className="h-8 border-[#D3D2C9] dark:border-[#555555] border-l" />
 
             <div className="min-w-0 overflow-hidden">
               <CategoryList onCategorySelect={onCategorySelect} />
             </div>
 
-            <div className="h-8 border-[#E3E2D9] dark:border-[#555555] border-l" />
+            <div className="h-8 border-[#D3D2C9] dark:border-[#555555] border-l" />
 
             <div className="">
               <FilterButton setActiveFilters={setActiveFilters} />

@@ -28,7 +28,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
         <div className="w-full flex-start mt-5">
           <button
             onClick={toggleReviews}
-            className="text-base font-serif font-medium text-[#3E3E3E] dark:text-[#666666] underline px-2"
+            className="text-base font-serif font-medium text-[#333333] dark:text-[#666666] underline px-2"
           >
             {showAll ? "See less reviews" : "See all reviews"}
           </button>

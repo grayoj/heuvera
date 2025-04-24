@@ -35,7 +35,7 @@ const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
       className={`w-full ${isMobile ? "flex flex-col space-y-4" : "flex items-center justify-between"}`}
     >
       <div className="flex items-center gap-2">
-        <LucideListFilter className="text-[#323232] dark:text-[#555555] mr-1" />
+        <LucideListFilter className="text-[#333333] dark:text-[#555555] mr-1" />
         <Select
           value={sortOption}
           onValueChange={(value: SortOption) => setSortOption(value)}
@@ -53,17 +53,17 @@ const FavoritesHeader: React.FC<FavoritesHeaderProps> = ({
         </Select>
       </div>
       <div className={`flex items-center ${isMobile ? "" : "ml-auto"}`}>
-        <div className="flex items-center space-x-2 bg-[#FBFAF6] dark:bg-[#444444] rounded-full p-1">
+        <div className="flex items-center space-x-2 bg-[#F8F7F2] dark:bg-[#444444] rounded-full p-1">
           <button
             onClick={() => setViewMode("grid")}
-            className={`p-2 rounded-full transition-all duration-300 ${viewMode === "grid" ? "bg-[#7B4F3A] dark:bg-[#8B5F4D] text-white" : "text-[#323232] hover:bg-[#D6D6D6] dark:hover:bg-[#555555]"}`}
+            className={`p-2 rounded-full transition-all duration-300 ${viewMode === "grid" ? "bg-[#7B4F3A] dark:bg-[#8B5F4D] text-white" : "text-[#333333] hover:bg-[#D6D6D6] dark:hover:bg-[#555555]"}`}
             aria-label="Grid view"
           >
             <Grid size={20} />
           </button>
           <button
             onClick={() => setViewMode("list")}
-            className={`p-2 rounded-full transition-all duration-300 ${viewMode === "list" ? "bg-[#7B4F3A] darK:bg-[#8B5F4D] text-white" : "text-[#323232] dark:hover:bg-[#555555]"}`}
+            className={`p-2 rounded-full transition-all duration-300 ${viewMode === "list" ? "bg-[#7B4F3A] darK:bg-[#8B5F4D] text-white" : "text-[#333333] dark:hover:bg-[#555555]"}`}
             aria-label="List view"
           >
             <List size={20} />

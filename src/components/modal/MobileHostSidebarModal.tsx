@@ -109,7 +109,7 @@ const MobileHostProfileSettings = () => {
   return (
     <div className="flex flex-col h-full bg-[#F8F7F2] dark:bg-[#333333]">
       <div className="px-4 py-6">
-        <h1 className="text-xl font-semibold text-[#3E3E3E] dark:text-[#F8F7F2]">
+        <h1 className="text-xl font-semibold text-[#333333] dark:text-[#F8F7F2]">
           Host
         </h1>
       </div>
@@ -130,7 +130,7 @@ const MobileHostProfileSettings = () => {
                     <item.icon className="w-5 h-5 text-[#7B4F3A] dark:text-[#F8F7F2]" />
                   </div>
                   <div>
-                    <p className="font-medium text-[#3E3E3E] dark:text-[#F8F7F2]">
+                    <p className="font-medium text-[#333333] dark:text-[#F8F7F2]">
                       {item.name}
                     </p>
                   </div>
@@ -144,7 +144,7 @@ const MobileHostProfileSettings = () => {
 
       <Dialog open={isModalOpen} onOpenChange={handleCloseModal}>
         <DialogContent className="p-0 sm:max-w-md max-w-full bg-[#F8F7F2] dark:bg-[#333333] w-full mx-auto sm:h-auto h-full flex flex-col rounded-none">
-          <div className="sticky top-0 z-10 flex items-center px-4 py-4 border-b border-[#E3E2D9] dark:border-[#555555] bg-[#F8F7F2] dark:bg-[#333333]">
+          <div className="sticky top-0 z-10 flex items-center px-4 py-4 border-b border-[#D3D2C9] dark:border-[#555555] bg-[#F8F7F2] dark:bg-[#333333]">
             <Button
               variant="ghost"
               size="icon"
@@ -153,7 +153,7 @@ const MobileHostProfileSettings = () => {
             >
               <ChevronLeft className="h-5 w-5 text-[#7B4F3A] dark:text-[#F8F7F2]" />
             </Button>
-            <h2 className="text-lg font-semibold text-[#3E3E3E] dark:text-[#F8F7F2]">
+            <h2 className="text-lg font-semibold text-[#333333] dark:text-[#F8F7F2]">
               {selectedItem?.name}
             </h2>
           </div>

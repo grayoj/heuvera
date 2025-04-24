@@ -51,7 +51,7 @@ export const ListingsSection = memo(function ListingsSection({
           initial={{ x: -15, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="text-2xl font-semibold font-serif text-[#323232] dark:text-[#A7A7A7]"
+          className="text-2xl font-semibold font-serif text-[#333333] dark:text-[#A7A7A7]"
         >
           {headingText}
         </motion.h1>
@@ -61,7 +61,7 @@ export const ListingsSection = memo(function ListingsSection({
           onClick={handleCloseFiltered}
           className="cursor-pointer"
         >
-          <X size={24} className="text-[#323232] dark:text-[#A7A7A7]" />
+          <X size={24} className="text-[#333333] dark:text-[#A7A7A7]" />
         </motion.div>
       </div>
 

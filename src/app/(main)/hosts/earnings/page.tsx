@@ -3,8 +3,10 @@ import SettingsHeader from "@heuvera/components/header/SettingsHeader";
 import { Button } from "@heuvera/components/ui/button";
 import PageLayout from "@heuvera/components/ui/PageLayout";
 import dynamic from "next/dynamic";
-const StatsBox = dynamic(()=> import("@heuvera/components/earnings/StatsBox"));
-const EarningTable = dynamic(()=> import("@heuvera/components/earnings/EarningTable"));
+const StatsBox = dynamic(() => import("@heuvera/components/earnings/StatsBox"));
+const EarningTable = dynamic(
+  () => import("@heuvera/components/earnings/EarningTable"),
+);
 
 export default function EarningsPage() {
   return (
@@ -20,11 +22,7 @@ export default function EarningsPage() {
           >
             Setup Payment Method
           </Button>
-          <Button
-            variant="default"
-          >
-            Withdraw Funds
-          </Button>
+          <Button variant="default">Withdraw Funds</Button>
         </div>
       </SettingsHeader>
 

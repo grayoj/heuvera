@@ -53,13 +53,13 @@ export const FeaturedSection = memo(function FeaturedSection({
       >
         <motion.h1
           variants={fadeInUp}
-          className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232] dark:text-[#A7A7A7]"
+          className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#333333] dark:text-[#A7A7A7]"
         >
           Feature Categories
         </motion.h1>
         <motion.h1
           variants={fadeInUp}
-          className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232] dark:text-[#A7A7A7]"
+          className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#333333] dark:text-[#A7A7A7]"
         >
           Discover your perfect property by the features that matter most to you
         </motion.h1>
@@ -116,13 +116,13 @@ const LocationsSection = memo(function LocationsSection({
     >
       <motion.h1
         variants={fadeInUp}
-        className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#323232] dark:text-[#A7A7A7]"
+        className="text-center text-2xl md:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-semibold font-serif text-[#333333] dark:text-[#A7A7A7]"
       >
         Find Properties in These Cities
       </motion.h1>
       <motion.h1
         variants={fadeInUp}
-        className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#323232] dark:text-[#A7A7A7]"
+        className="text-center text-base md:text-base lg:text-base xl:text-xl 2xl:text-xl font-normal font-serif text-[#333333] dark:text-[#A7A7A7]"
       >
         Based on your viewing history, we think you'll love these locations
       </motion.h1>

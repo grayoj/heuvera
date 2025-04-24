@@ -8,7 +8,15 @@ import useIsMobile from "@heuvera/hooks/IsMobile";
 import { MarketplaceProvider } from "@heuvera/providers/MarketplaceProvider";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-const SearchBar = dynamic(() => import("@heuvera/components/search/SearchBar"));
+const SearchBar = dynamic(
+  () => import("@heuvera/components/search/SearchBar"),
+  {
+    loading: () => (
+      <div className="max-w-3xl h-16 animated-pulse rounded-full bg-gray-200 dark:bg-[#444444]"></div>
+    ),
+    ssr: false,
+  },
+);
 const Categories = dynamic(
   () => import("@heuvera/components/categories/Categories"),
 );

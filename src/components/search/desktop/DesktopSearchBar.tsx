@@ -40,10 +40,10 @@ export const DesktopSearchBar = memo((props: DesktopSearchBarProps) => {
       className="w-full flex flex-col items-center justify-center pt-4 relative"
       {...containerMotion}
     >
-      <div className="bg-[#FBFAF6] dark:bg-[#444444] px-1 pt-1 rounded-t-lg">
+      <div className="bg-[#F8F7F2] dark:bg-[#444444] px-1 pt-1 rounded-t-lg">
         <LeaseRentStays />
       </div>
-      <div className="w-full max-w-3xl bg-[#FBFAF6] dark:bg-[#444444] rounded-full shadow-md overflow-hidden">
+      <div className="w-full max-w-3xl bg-[#F8F7F2] dark:bg-[#444444] rounded-full shadow-md overflow-hidden">
         <div className="flex items-center">
           <FilterOption
             type="location"
@@ -91,7 +91,7 @@ export const DesktopSearchBar = memo((props: DesktopSearchBarProps) => {
             {...dropdownMotion}
           >
             <div className="p-4 px-6 flex justify-between items-center border-b border-[#E3E2D9] dark:border-[#555555]">
-              <span className="font-serif font-medium text-[#323232] dark:text-[#FBFAF6]">
+              <span className="font-serif font-medium text-[#333333] dark:text-[#F8F7F2]">
                 {activeFilter === "location" && "Search destinations"}
                 {activeFilter === "dates" && "Select dates"}
                 {activeFilter === "guests" && "Who's coming?"}
@@ -101,7 +101,7 @@ export const DesktopSearchBar = memo((props: DesktopSearchBarProps) => {
                 className="p-2 rounded-full hover:bg-[#E3E2D9] dark:hover:bg-[#555555]"
               >
                 <LucideX
-                  className="text-[#323232] dark:text-[#F8F7F2]"
+                  className="text-[#333333] dark:text-[#F8F7F2]"
                   size={18}
                 />
               </button>

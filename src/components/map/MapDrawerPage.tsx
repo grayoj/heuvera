@@ -118,7 +118,7 @@ export default function MapDrawerPage({ properties = [] }: MapDrawerPageProps) {
                     ${
                       isSearchFocused
                         ? "bg-white dark:bg-[#333333] border-[#7B4F3A] dark:border-[#8B5F4D] shadow-sm"
-                        : "bg-[#F8F7F2] dark:bg-[#333333] border-[#E3E2D9] dark:border-[#555555]"
+                        : "bg-[#F8F7F2] dark:bg-[#333333] border-[#D3D2C9] dark:border-[#555555]"
                     } 
                     border rounded-lg flex items-center transition-all duration-300
                 `}
@@ -128,7 +128,7 @@ export default function MapDrawerPage({ properties = [] }: MapDrawerPageProps) {
                   </div>
                   <input
                     className="w-full px-3 py-2 text-sm bg-transparent focus:outline-none 
-                    text-[#3E3E3E] placeholder-[#A0A0A0]"
+                    text-[#333333] placeholder-[#A0A0A0]"
                     placeholder="Search properties, locations..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}

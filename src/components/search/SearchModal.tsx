@@ -37,9 +37,9 @@ const SearchModal: React.FC<SearchModalProps> = ({
             onClick={closeModal}
             className="p-2 rounded-full hover:bg-[#F8F7F2] dark:bg-[#333333]"
           >
-            <LucideX className="text-[#323232] dark:text-white" />
+            <LucideX className="text-[#333333] dark:text-white" />
           </button>
-          <span className="font-serif font-medium text-[#323232] dark:text-[#F8F7F2]">
+          <span className="font-serif font-medium text-[#333333] dark:text-[#F8F7F2]">
             Search
           </span>
           <div className="w-8 h-8"></div>
@@ -71,7 +71,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${
                   activeFilter === filter.id
                     ? "border-[#7B4F3A] dark:border-[#8B5F4D] bg-[#F8F7F2] dark:bg-[#333333] text-[#7B4F3A] dark:text-[#8B5F4D]"
-                    : "border-[#E3E2D9] dark:border-[#555555] text-[#323232]"
+                    : "border-[#E3E2D9] dark:border-[#555555] text-[#333333]"
                 }`}
                 whileTap={{ scale: 0.95 }}
               >
@@ -93,7 +93,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
               ref={inputRef}
               type="text"
               placeholder="Where are you going?"
-              className="w-full pl-12 pr-4 py-3 bg-[#F8F7F2] dark:bg-[#333333] border border-[#C4C3B8] dark:border-[#666666] rounded-full outline-none text-[#323232] dark:text-[#A7A7A7] font-serif"
+              className="w-full pl-12 pr-4 py-3 bg-[#F8F7F2] dark:bg-[#333333] border border-[#C4C3B8] dark:border-[#666666] rounded-full outline-none text-[#333333] dark:text-[#A7A7A7] font-serif"
               autoFocus
             />
           </div>

@@ -60,9 +60,9 @@ const RenderMobileSearchBar: React.FC<RenderMobileSearchBarProps> = ({
           onClick={closeSearchModal}
           className="p-2 rounded-full hover:bg-[#F8F7F2] dark:bg-[#333333]"
         >
-          <LucideX className="text-[#323232] dark:text-white" />
+          <LucideX className="text-[#333333] dark:text-white" />
         </button>
-        <span className="font-serif font-medium text-[#323232] dark:text-[#F8F7F2]">
+        <span className="font-serif font-medium text-[#333333] dark:text-[#F8F7F2]">
           Search
         </span>
         <div className="w-8 h-8"></div>
@@ -82,7 +82,7 @@ const RenderMobileSearchBar: React.FC<RenderMobileSearchBarProps> = ({
               className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${
                 activeFilter === filter.id
                   ? "border-[#7B4F3A] dark:border-[#8B5F4D] bg-[#F8F7F2] dark:bg-[#333333] text-[#7B4F3A] dark:text-[#8B5F4D]"
-                  : "border-[#E3E2D9] dark:border-[#555555] text-[#323232]"
+                  : "border-[#E3E2D9] dark:border-[#555555] text-[#333333]"
               }`}
               whileTap={{ scale: 0.95 }}
             >
@@ -109,7 +109,7 @@ const RenderMobileSearchBar: React.FC<RenderMobileSearchBarProps> = ({
             ref={inputRef}
             type="text"
             placeholder="Where are you going?"
-            className="w-full pl-12 pr-4 py-3 bg-[#F8F7F2] dark:bg-[#333333] border border-[#C4C3B8] dark:border-[#666666] rounded-full outline-none text-[#323232] dark:text-[#A7A7A7] font-serif"
+            className="w-full pl-12 pr-4 py-3 bg-[#F8F7F2] dark:bg-[#333333] border border-[#C4C3B8] dark:border-[#666666] rounded-full outline-none text-[#333333] dark:text-[#A7A7A7] font-serif"
             autoFocus
           />
         </div>
@@ -125,7 +125,7 @@ const RenderMobileSearchBar: React.FC<RenderMobileSearchBarProps> = ({
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#A7A7A7]">
+                <h3 className="font-serif font-medium text-lg text-[#333333] dark:text-[#A7A7A7]">
                   Popular destinations
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -161,7 +161,7 @@ const RenderMobileSearchBar: React.FC<RenderMobileSearchBarProps> = ({
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#A7A7A7]">
+                <h3 className="font-serif font-medium text-lg text-[#333333] dark:text-[#A7A7A7]">
                   When will you be there?
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -203,7 +203,7 @@ const RenderMobileSearchBar: React.FC<RenderMobileSearchBarProps> = ({
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="font-serif font-medium text-lg text-[#323232] dark:text-[#A7A7A7]">
+                <h3 className="font-serif font-medium text-lg text-[#333333] dark:text-[#A7A7A7]">
                   Who's coming?
                 </h3>
                 <div className="space-y-3">
@@ -236,7 +236,7 @@ const RenderMobileSearchBar: React.FC<RenderMobileSearchBarProps> = ({
                         </div>
                         <div className="flex items-center gap-4">
                           <motion.button
-                            className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#444444] items-center justify-center text-[#323232] bg-white dark:bg-[#555555]"
+                            className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#444444] items-center justify-center text-[#333333] bg-white dark:bg-[#555555]"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                           >
@@ -244,7 +244,7 @@ const RenderMobileSearchBar: React.FC<RenderMobileSearchBarProps> = ({
                           </motion.button>
                           <span className="w-5 text-center">0</span>
                           <motion.button
-                            className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#444444] flex items-center justify-center text-[#323232] bg-white dark:bg-[#555555]"
+                            className="w-8 h-8 rounded-full border border-[#C4C3B8] dark:border-[#444444] flex items-center justify-center text-[#333333] bg-white dark:bg-[#555555]"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                           >
@@ -267,7 +267,7 @@ const RenderMobileSearchBar: React.FC<RenderMobileSearchBarProps> = ({
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="font-serif font-medium text-lg text-[#323232]">
+                <h3 className="font-serif font-medium text-lg text-[#333333]">
                   Recent searches
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

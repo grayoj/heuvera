@@ -86,7 +86,7 @@ const MobileProfileSettings = () => {
   return (
     <div className="flex flex-col h-full">
       <div className="px-4 py-6">
-        <h1 className="text-xl font-semibold text-[#3E3E3E] dark:text-[#F8F7F2]">
+        <h1 className="text-xl font-semibold text-[#333333] dark:text-[#F8F7F2]">
           Profile
         </h1>
       </div>
@@ -107,7 +107,7 @@ const MobileProfileSettings = () => {
                     <item.icon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                   </div>
                   <div>
-                    <p className="font-medium text-[#3E3E3E] dark:text-[#F8F7F2]">
+                    <p className="font-medium text-[#333333] dark:text-[#F8F7F2]">
                       {item.name}
                     </p>
                   </div>
@@ -125,7 +125,7 @@ const MobileProfileSettings = () => {
                   <RiHomeSmileLine className="text-lg" />
                 </div>
                 <div>
-                  <p className="font-medium text-[#3E3E3E] dark:text-[#F8F7F2]">
+                  <p className="font-medium text-[#333333] dark:text-[#F8F7F2]">
                     Switch to Host
                   </p>
                 </div>

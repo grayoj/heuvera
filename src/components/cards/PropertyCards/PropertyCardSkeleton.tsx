@@ -1,6 +1,6 @@
 export default function PropertyCardSkeleton() {
   return (
-    <div className="h-96 w-full md:size-60 lg:h-52 lg:w-56 xl:w-80 xl:h-70 2xl:size-80 rounded-2xl border border-[#E3E2D9] overflow-hidden">
+    <div className="h-96 w-full md:size-60 lg:h-52 lg:w-56 xl:w-80 xl:h-70 2xl:size-80 rounded-2xl border border-[#D3D2C9] overflow-hidden">
       {/* Image Skeleton */}
       <div className="relative w-full h-60 md:h-36 lg:h-28 xl:h-36 2xl:h-44 bg-gray-200 animate-pulse">
         <div className="absolute top-3 right-3 size-8 md:size-8 lg:size-6 xl:size-8 2xl:size-8 bg-gray-300 rounded-full"></div>

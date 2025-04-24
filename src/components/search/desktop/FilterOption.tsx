@@ -40,11 +40,11 @@ export const FilterOption = memo(
               value={value}
               onChange={(e) => onChange(e.target.value)}
               placeholder="Search destinations"
-              className="w-full h-5 bg-transparent outline-none text-sm text-[#323232] dark:text-[#FBFAF6] font-serif"
+              className="w-full h-5 bg-transparent outline-none text-sm text-[#333333] dark:text-[#F8F7F2] font-serif"
               autoFocus
             />
           ) : (
-            <span className="font-serif text-sm text-[#323232] dark:text-[#F8F7F2]">
+            <span className="font-serif text-sm text-[#333333] dark:text-[#F8F7F2]">
               {placeholder}
             </span>
           )}

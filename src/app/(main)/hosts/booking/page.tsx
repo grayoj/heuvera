@@ -4,7 +4,12 @@ import PastBookingTable from "@heuvera/components/booking/PastBookingTable";
 import UpcomingBookingTable from "@heuvera/components/booking/UpcomingBookingTable";
 import SettingsHeader from "@heuvera/components/header/SettingsHeader";
 import PageLayout from "@heuvera/components/ui/PageLayout";
-import { Select, SelectContent, SelectItem, SelectTrigger } from "@heuvera/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@heuvera/components/ui/select";
 import { useState } from "react";
 
 type SortOption =
@@ -13,7 +18,6 @@ type SortOption =
   | "priceHighToLow"
   | "priceLowToHigh"
   | "name";
-
 
 export default function BookingManagementPage() {
   const [active, setActive] = useState("past");
@@ -48,7 +52,7 @@ export default function BookingManagementPage() {
 
       <div className="flex justify-between items-center mb-4">
         <h3>{active === "upcoming" ? "Upcoming Bookings" : "Past Bookings"}</h3>
-        <div className="flex justify-between gap-3 text-[#E3E2D9]">
+        <div className="flex justify-between gap-3 text-[#D3D2C9]">
           <Select
             value={sortBy}
             onValueChange={(value) => setSortBy(value as SortOption)}
@@ -66,13 +70,11 @@ export default function BookingManagementPage() {
           </Select>
         </div>
       </div>
-      {active === "upcoming" ?
-        <UpcomingBookingTable
-          sortBy={sortBy}
-        />
-        :
-        <PastBookingTable 
-        sortBy={sortBy}/>}
+      {active === "upcoming" ? (
+        <UpcomingBookingTable sortBy={sortBy} />
+      ) : (
+        <PastBookingTable sortBy={sortBy} />
+      )}
     </PageLayout>
   );
 }

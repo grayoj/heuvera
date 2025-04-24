@@ -54,11 +54,7 @@ export default function CreditPayment() {
           <Input label="Expiry Date" placeholder="MM/YY" />
         </div>
         <div className="flex-1">
-          <Input
-            label="CVC"
-            placeholder="XXX"
-            type="password"
-          />
+          <Input label="CVC" placeholder="XXX" type="password" />
         </div>
       </motion.div>
 
@@ -91,10 +87,7 @@ export default function CreditPayment() {
       </motion.div>
 
       <motion.div variants={itemVariants}>
-        <Button
-          variant="default"
-          className="w-full h-12"
-        >
+        <Button variant="default" className="w-full h-12">
           Save Payment Method
         </Button>
       </motion.div>

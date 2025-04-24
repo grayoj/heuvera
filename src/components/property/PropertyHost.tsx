@@ -26,7 +26,7 @@ export default function HostInfo({ propertyHost }: HostInfoProps) {
               </AvatarFallback>
             </Avatar>
           </div>
-          <h1 className="text-base font-normal font-serif text-[#323232] dark:text-[#F3F2EC]">
+          <h1 className="text-base font-normal font-serif text-[#333333] dark:text-[#F3F2EC]">
             {propertyHost.name}
           </h1>
         </div>

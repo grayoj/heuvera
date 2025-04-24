@@ -239,7 +239,7 @@ export default function Onboarding() {
             animate="visible"
             variants={cardVariants}
           >
-            <Card className="bg-[#F8F7F2] dark:bg-[#333333] shadow-md border-[#E3E2D9] dark:border-[#444444]">
+            <Card className="bg-[#F8F7F2] dark:bg-[#333333] shadow-md border-[#D3D2C9] dark:border-[#444444]">
               <CardContent>
                 <AnimatePresence mode="wait" initial={false} custom={direction}>
                   {step === 1 && (

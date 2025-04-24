@@ -12,11 +12,7 @@ export default function SupportForm() {
         </div>
       ))}
       <Textarea label="Issue Description" id="support" />
-      <Button
-        variant="default"
-      >
-        Submit
-      </Button>
+      <Button variant="default">Submit</Button>
     </form>
   );
 }
