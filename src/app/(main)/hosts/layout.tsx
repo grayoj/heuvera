@@ -32,7 +32,7 @@ export default function ProfileLayout({
 
   return (
     <div className="flex flex-col px-4 md:px-8 lg:px-10 xl:px-14 2xl:px-20">
-      <aside className="w-full bg-[#F8F7F2] dark:bg-[#333333] flex flex-col py-5">
+      <aside className="w-full bg-[#F8F7F2] dark:bg-[#333333] flex flex-col gap-2 py-5">
         <div className="max-w-fit py-4">
           <Button
             variant="outline"
@@ -48,7 +48,7 @@ export default function ProfileLayout({
               <AdminSideBarItem item={item} route={item.route}>
                 <div className="flex items-center">
                   <div className="flex flex-row">
-                    <h2 className="font-medium md:text-[0.6rem] lg:text-xs">
+                    <h2 className="font-medium md:text-[0.6rem] lg:text-xs xl:text-sm">
                       {item.name}
                     </h2>
                   </div>

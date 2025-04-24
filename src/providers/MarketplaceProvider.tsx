@@ -134,7 +134,9 @@ export function MarketplaceProvider({
             {isMobile ? (
               //Remove the gap-2 and the beta pill
               <div className="w-full gap-2 flex items-center justify-center backdrop-blur-none">
-                <HeuveraLogo width={35} height={35} />
+                <Link href="/">
+                  <HeuveraLogo width={35} height={35} />
+                </Link>
                 <div className="max-w-fit w-full px-3 py-1 border rounded-full flex items-center justify-center border-[#7B4F3A] dark:border-[#8B5F4D]">
                   <h1 className="text-[#7B4F3A] text-xs dark:text-[#8B5F4D]">
                     BETA
@@ -144,7 +146,9 @@ export function MarketplaceProvider({
             ) : (
               //Formerly w-24, remove the "flex items-center justify-center alongside the pill"
               <div className="flex-shrink-0 w-32 flex items-center justify-between">
+                <Link href="/">
                 <HeuveraLogo width={35} height={35} />
+                </Link>
                 <div className="max-w-fit w-full px-4 py-1 border rounded-full flex items-center justify-center border-[#7B4F3A] dark:border-[#8B5F4D]">
                   <h1 className="text-[#7B4F3A] text-sm dark:text-[#8B5F4D]">
                     BETA
@@ -159,11 +163,10 @@ export function MarketplaceProvider({
                     key={index}
                     href={content.link}
                     prefetch={true}
-                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${
-                      pathname === content.link
+                    className={`text-sm font-medium font-serif transition-colors duration-300 px-2 pb-2 ${pathname === content.link
                         ? "text-[#7B4F3A] dark:text-[#8B5F4D] font-semibold border-[#7B4F3A] dark:border-[#8B5F4D] border-b-2"
                         : "text-[#323232] dark:text-[#F8F7F2] hover:transition-transform duration-300 hover:scale-102 hover:font-medium"
-                    }`}
+                      }`}
                   >
                     {content.title}
                   </Link>

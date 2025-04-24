@@ -32,12 +32,12 @@ function AdminSidebarItem({
       `}
     >
       <div
-        className={`rounded-full flex justify-center items-center 
+        className={`flex justify-center items-center 
           ${isActive ? "text-[#7B4F3A] dark:text-[#8B5F4D]" : "bg-[#F8F7F2] dark:bg-[#44444433]"} 
-          size-4 md:size-5 lg:size-6 aspect-square
+          aspect-square
         `}
       >
-        <item.icon className="size-4" />
+        <item.icon className="size-4 xl:size-5" />
       </div>
 
       <div className="flex-1">{children}</div>
